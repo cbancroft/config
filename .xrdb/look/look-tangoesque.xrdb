@@ -1,0 +1,21 @@
+#define COLOR_FG                  #B8B8B8
+#define COLOR_BG                  #101010
+
+#define COLOR_TERM_BLACK          #000000
+#define COLOR_TERM_DARK_RED       #FF6565
+#define COLOR_TERM_DARK_GREEN     #93d44f
+#define COLOR_TERM_DARK_YELLOW    #eab93d
+#define COLOR_TERM_DARK_BLUE      #3579a8
+#define COLOR_TERM_DARK_MAGENTA   #ce5c00
+#define COLOR_TERM_DARK_CYAN      #89b6e2
+#define COLOR_TERM_LIGHT_GRAY     #cccccc
+
+#define COLOR_TERM_DARK_GRAY      #555753
+#define COLOR_TERM_LIGHT_RED      #ff8d8d
+#define COLOR_TERM_LIGHT_GREEN    #c8e7a8
+#define COLOR_TERM_LIGHT_YELLOW   #ffc123
+#define COLOR_TERM_LIGHT_BLUE     #5687c6
+/*#define COLOR_TERM_LIGHT_BLUE     #3465a4*/
+#define COLOR_TERM_LIGHT_MAGENTA  #f57900
+#define COLOR_TERM_LIGHT_CYAN     #46a4ff
+#define COLOR_TERM_WHITE          #ffffff

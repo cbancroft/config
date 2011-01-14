@@ -1,0 +1,57 @@
+Xft.dpi:	                    96
+Xft.lcdfilter:                  lcdfilterlegacy
+Xft.antialias:                  true
+Xft.rgba:                       rgb
+Xft.hinting:                    true
+Xft.hintstyle:                  hintslight
+
+Xcursor.theme:                  neutral
+
+!--[[ Urxvt config ]]--!
+
+#include "/home/cbancroft/.xrdb/urxvt.xrdb"
+
+xterm*utf8:                     2
+
+!--[[ Theme ]]--!
+#include "/home/cbancroft/.xrdb/look/look-tangoesque.xrdb"
+!#include "/home/cbancroft/.xrdb/look/look-daisuke.xrdb"
+!#include ".xrdb/look/look-zenburn.xrdb"
+
+! {{{ colors 
+*background:                    COLOR_BG
+*foreground:                    COLOR_FG
+
+! Black
+*color0:        COLOR_TERM_BLACK
+*color8:        COLOR_TERM_DARK_GRAY
+! Red
+*color1:        COLOR_TERM_DARK_RED
+*color9:        COLOR_TERM_LIGHT_RED
+! Green
+*color2:        COLOR_TERM_DARK_GREEN
+*color10:       COLOR_TERM_LIGHT_GREEN
+! Yellow
+*color3:        COLOR_TERM_DARK_YELLOW
+*color11:       COLOR_TERM_LIGHT_YELLOW
+! Blue
+*color4:        COLOR_TERM_DARK_BLUE
+*color12:       COLOR_TERM_LIGHT_BLUE
+! Mangenta
+*color5:        COLOR_TERM_DARK_MAGENTA
+*color13:       COLOR_TERM_LIGHT_MAGENTA
+! Cyan 
+*color6:        COLOR_TERM_DARK_CYAN
+*color14:       COLOR_TERM_LIGHT_CYAN
+! White
+*color7:        COLOR_TERM_LIGHT_GRAY
+*color15:       COLOR_TERM_WHITE
+! }}}
+
+! {{{ xpdf
+xpdf*enableFreetype:        yes
+xpdf*antialias:             yes
+xpdf*foreground:            black
+xpdf*background:            white
+xpdf*viKeys:                yes
+! }}}

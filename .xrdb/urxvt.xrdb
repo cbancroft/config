@@ -1,0 +1,54 @@
+! Fonts
+!urxvt*font:                     xft:Bitstream Vera Sans Mono:pixelsize=9
+urxvt*font:                     xft:Terminus:pixelsize=8
+!urxvt*font:                      xft:Profont:pixelsize=11
+
+!Save n lines of scrollback buffer
+URxvt*saveLines:            16384
+
+!toggle scrollbar
+URxvt*scrollBar:	        false
+
+!Scrollbar alignment
+URxvt*scrollBar_right:	    true
+URxvt*jumpScroll:           true
+URxvt*loginShell:	        true
+
+!Cursor options
+URxvt*cursorBlink:          true
+URxvt*cursorColor:          0xFFFFFF
+!Jump to bottom on keypress
+urxvt*scrollTtyKeypress:    true
+
+!Jump to bottom when new data comes in
+URxvt*scrollWithBuffer:     false
+
+!Jump to bottom on tty output
+URxvt*scrollTtyOutput:      false
+
+URxvt*skipBuiltinGlyphs:    true
+URxvt*xftAntialias:         true
+!URxvt*borderLess:               true
+!URxvt*fadeColor:                black
+URxvt*fadeColor:                #999999
+URxvt*tintColor:                white
+!URxvt*tintColor:                #999999
+URxvt*dynamicColors:            on
+!darken=(0 .. 100) lighten=(-1 .. -100)
+URxvt*shading:                 50
+URxvt*inheritPixmap:        false
+
+!Name to report in TERM
+URxvt*termName:		        rxvt-unicode-256color
+URxvt*transparent:	        true
+URxvt*cutchars:		        '"'()*,<>[]{}|
+URxvt*secondaryScroll:	        true
+#ifdef USE_COMPOSITING
+URxvt*background:           rgba:3333/3333/3333/bbbb
+URxvt*depth:                32
+#else
+URxvt*background:           #333333
+URxvt*depth:                24
+#endif
+urxvt*perl-lib:		       
+urxvt*perl-ext-common:	  
