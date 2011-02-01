@@ -12,6 +12,6 @@ export PACMAN="pacman-color"
 export DETERNET="users.isi.deterlab.net"
 export DETERLAB="deter.d.bbn.com"
 
-alias deternet="ssh cbancrof@${DETERNET}"
+alias deternet="ssh -X cbancrof@${DETERNET}"
 alias deterlab="ssh cbancrof@${DETERLAB}"
 

@@ -1,7 +1,7 @@
 ! Fonts
 !urxvt*font:                     xft:Bitstream Vera Sans Mono:pixelsize=9
-urxvt*font:                     xft:Terminus:pixelsize=8
-!urxvt*font:                      xft:Profont:pixelsize=11
+!urxvt*font:                     xft:Terminus:pixelsize=8
+urxvt*font:                      xft:Profont:pixelsize=11
 
 !Save n lines of scrollback buffer
 URxvt*saveLines:            16384
