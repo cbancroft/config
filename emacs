@@ -221,12 +221,15 @@
 ;; EasyPG assistant (GPG mode)
 (require 'epa)
 
-
+;; Ledger mode
+(require 'ledger)
 ;; Tramp (remote files editing)
 (require 'tramp)
 (setq tramp-default-method "ssh")
 
-
+;; BBDB (contact management)
+(require 'bbdb)
+(bbdb-initialize)
 ;; Egg (git interface)
 ;;   - http://github.com/bogolisk/egg
 (require 'egg)
