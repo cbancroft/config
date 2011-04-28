@@ -21,6 +21,34 @@ export DETERNET="users.isi.deterlab.net"
 export DETERLAB="deter.d.bbn.com"
 # }}}
 
+# {{{ zle configuration
+bindkey "\e[7~" beginning-of-line	#Home
+bindkey "\e[8~" end-of-line		#End
+bindkey "\e[5~" beginning-of-history # PageUp
+bindkey "\e[6~" end-of-history # PageDown
+bindkey "\e[2~" quoted-insert # Ins
+bindkey "\e[3~" delete-char # Del
+bindkey "\eOc" emacs-forward-word
+bindkey "\e[5D" backward-word
+bindkey "\eOd" emacs-backward-word
+bindkey "\e\e[C" forward-word
+bindkey "\e\e[D" backward-word
+bindkey "\e[Z" reverse-menu-complete # Shift+Tab
+bindkey "\e[3^" delete-word
+# for rxvt
+bindkey "\e[7~" beginning-of-line # Home
+bindkey "\e[8~" end-of-line # End
+# for non RH/Debian xterm, can't hurt for RH/Debian xterm
+bindkey "\eOH" beginning-of-line
+bindkey "\e[1~" beginning-of-line
+bindkey "\eOF" end-of-line
+bindkey "\e[4~" end-of-line
+# for freebsd console
+bindkey "\e[H" beginning-of-line
+bindkey "\e[F" end-of-line
+
+
+# }}}
 # {{{ Dircolors
 #       - with rxvt-256color support
 eval `dircolors -b "${HOME}/.dir_colors"`
@@ -92,6 +120,19 @@ alias deternet="ssh -X cbancrof@${DETERNET}"
 alias deterlab="ssh cbancrof@${DETERLAB}"
 # }}}
 
+# {{{ Auto Extension Stuff
+alias -s html=${BROWSER}
+alias -s png=feh
+alias -s jpg=feh
+alias -s cpp=${EDITOR}
+alias -s pdf=xpdf
+alias -s txt=${EDITOR}
+alias -s ppt=libreoffice
+alias -s pptx=libreoffice
+alias -s doc=libreoffice
+alias -s docx=libreoffice
+# }}}
+
 # {{{ Pacman
 alias pacsy="sudo pacman -Sy"           #Sync & Update
 alias pacup="sudo pacman -Syu"          #Sync, Update & Upgrade
@@ -129,6 +170,7 @@ compctl -k "(add delete draft edit list import preview publish update)" nb
 # }}}
 # }}}
 
+alias skype='xhost +local: && sudo -u skypeuser /usr/bin/skype'
 
 # {{{ ZSH settings
 setopt emacs

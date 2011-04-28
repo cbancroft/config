@@ -1,3 +1,4 @@
+
 -- {{{ License
 --
 -- Awesome configuration, using awesome 3.4.8 on Arch GNU/Linux
@@ -315,19 +316,20 @@ globalkeys = awful.util.table.join(
     -- {{{ Applications
     awful.key({ modkey }, "e", function () exec("emacsclient -n -c") end),
     awful.key({ modkey }, "r", function () exec("rox", false) end),
-    awful.key({ modkey }, "w", function () exec("google-chrome") end),
+    awful.key({ modkey }, "w", function () exec("chromium") end),
     awful.key({ altkey }, "F1",  function () exec("urxvtc") end),
     awful.key({ altkey }, "#49", function () scratch.drop("urxvtc", "bottom") end),
     awful.key({ modkey }, "a", function () exec("urxvt -T Alpine -e alpine") end),
     awful.key({ modkey }, "g", function () sexec("GTK2_RC_FILES=~/.gtkrc-gajim gajim") end),
     awful.key({ modkey }, "q", function () exec("emacsclient --eval '(make-capture-frame)'") end),
+    awful.key({ modkey }, "l", function () exec("xtrlock") end),
     -- }}}
 
     -- {{{ Multimedia keys
     awful.key({}, "#160", function () exec("kscreenlocker --forcelock") end),
     awful.key({}, "#121", function () exec("pvol.py -m") end),
-    awful.key({}, "#122", function () exec("pvol.py -p -c -2") end),
-    awful.key({}, "#123", function () exec("pvol.py -p -c 2")  end),
+    awful.key({}, "#122", function () exec("pvol.py -c -2") end),
+    awful.key({}, "#123", function () exec("pvol.py -c 2")  end),
     awful.key({}, "#232", function () exec("plight.py -s") end),
     awful.key({}, "#233", function () exec("plight.py -s") end),
     awful.key({}, "#244", function () exec("sudo /usr/sbin/pm-hibernate") end),
@@ -353,7 +355,7 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey }, "F4", function ()
         awful.prompt.run({ prompt = "Web: " }, promptbox[mouse.screen].widget,
             function (command)
-                sexec("firefox 'http://yubnub.org/parser/parse?command="..command.."'")
+                sexec("chromium 'http://yubnub.org/parser/parse?command="..command.."'")
                 awful.tag.viewonly(tags[1][3])
             end)
     end),
@@ -490,9 +492,9 @@ awful.rules.rules = {
       border_width = beautiful.border_width,
       border_color = beautiful.border_normal }
     },
-    { rule = { class = "Firefox",  instance = "Navigator" },
+    { rule = { class = "chromium",  instance = "Navigator" },
       properties = { tag = tags[1][3] } },
-    { rule = { class = "google-chrome",  instance = "google-chrome" },
+    { rule = { class = "chromium",  instance = "chromium" },
       properties = { tag = tags[1][3] } },
     { rule = { class = "Emacs",    instance = "emacs" },
       properties = { tag = tags[1][2] } },

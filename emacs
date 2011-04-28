@@ -1,12 +1,14 @@
 ;-*- coding: utf-8 -*-
 ; 
 ; anrxc's .emacs for GNU/Emacs 23.2 on Arch GNU/Linux
-
+;Updated on: Apr 19, 06:52:05 EDT 2011
 
 ;{{{ Initialization
 ;
 ;; Define the load path
 (setq load-path (cons "~/.emacs.d/" load-path))
+;(setq load-path (cons "/usr/share/emacs/site-lisp" load-path))
+;(setq load-path (cons "/usr/share/emacs/23.3/lisp" load-path))
 
 ;; Turn off the toolbar
 (tool-bar-mode -1)
@@ -32,6 +34,7 @@
 (setq color-theme-is-global t)
 (color-theme-initialize)
 (load "zenburn.el" )
+
 ;;
 ;; Load preferred theme
 ;;   - http://www.brockman.se/software/zenburn/zenburn.el
@@ -223,6 +226,7 @@
 
 ;; Ledger mode
 (require 'ledger)
+
 ;; Tramp (remote files editing)
 (require 'tramp)
 (setq tramp-default-method "ssh")
@@ -230,6 +234,7 @@
 ;; BBDB (contact management)
 (require 'bbdb)
 (bbdb-initialize)
+
 ;; Egg (git interface)
 ;;   - http://github.com/bogolisk/egg
 (require 'egg)
@@ -452,6 +457,7 @@ If there is no *ansi-term*, run it."
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cr" 'org-capture)
 (global-set-key "\C-cb" 'org-switchb)
+
 ;; Quicker access to go-to line
 
 (global-set-key (kbd "M-g") 'goto-line)
@@ -501,8 +507,8 @@ If there is no *ansi-term*, run it."
 ;   - http://www.emacswiki.org/emacs/OrgMode
 ;
 ;; Initialization
-(add-to-list 'load-path "~/.emacs.d/org/lisp")
-(require 'org)
+(add-to-list 'load-path "~/.emacs.d/org")
+(require 'org-install)
 (require 'cl)
 ;;
 ;; Extended mouse functionality
@@ -746,7 +752,10 @@ Skips capture tasks and tasks with no subtasks"
 ;    - http://lua-mode.luaforge.net/
 ;
 (autoload 'lua-mode "lua-mode" "Major-mode for editing lua scripts." t)
-(setq auto-mode-alist (cons '("\\.lua$" . lua-mode) auto-mode-alist))
+;(setq auto-mode-alist (cons '("\\.lua$" . lua-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\.lua$" . lua-mode) auto-mode-alist))
+    (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+
 ;}}}
 
 ;{{{ Crontab mode

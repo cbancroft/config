@@ -118,7 +118,7 @@ case "$WM" in
         exec gnome-session 
         ;;
     awesome)
-        exec awesome
+        exec awesome -c ~/.config/awesome/rc.lua
         ;;
     *)
         exec awesome
