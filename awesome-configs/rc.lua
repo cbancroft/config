@@ -116,7 +116,7 @@ fsicon.image = image(beautiful.widget_fs)
 -- Initialize widgets
 fs = {
   r = awful.widget.progressbar(), h = awful.widget.progressbar(),
-  s = awful.widget.progressbar(), b = awful.widget.progressbar()
+  a = awful.widget.progressbar(), b = awful.widget.progressbar()
 }
 -- Progressbar properties
 for _, w in pairs(fs) do
@@ -135,7 +135,7 @@ vicious.cache(vicious.widgets.fs)
 -- Register widgets
 vicious.register(fs.r, vicious.widgets.fs, "${/ used_p}",            599)
 vicious.register(fs.h, vicious.widgets.fs, "${/home used_p}",        599)
---vicious.register(fs.s, vicious.widgets.fs, "${/mnt/storage used_p}", 599)
+vicious.register(fs.a, vicious.widgets.fs, "${/abyss used_p}",	     599)
 --vicious.register(fs.b, vicious.widgets.fs, "${/mnt/backup used_p}",  599)
 -- }}}
 
@@ -148,33 +148,33 @@ upicon.image = image(beautiful.widget_netup)
 netwidget = widget({ type = "textbox" })
 -- Register widget
 vicious.register(netwidget, vicious.widgets.net, '<span color="'
-  .. beautiful.fg_netdn_widget ..'">${eth0 down_kb}</span> <span color="'
-  .. beautiful.fg_netup_widget ..'">${eth0 up_kb}</span>', 3)
+  .. beautiful.fg_netdn_widget ..'">${lan0 down_kb}</span> <span color="'
+  .. beautiful.fg_netup_widget ..'">${lan0 up_kb}</span>', 3)
 -- }}}
 
 -- {{{ Mail subject
-mailicon = widget({ type = "imagebox" })
-mailicon.image = image(beautiful.widget_mail)
+--mailicon = widget({ type = "imagebox" })
+--mailicon.image = image(beautiful.widget_mail)
 -- Initialize widget
-mailwidget = widget({ type = "textbox" })
+--mailwidget = widget({ type = "textbox" })
 -- Register widget
 --vicious.register(mailwidget, vicious.widgets.mbox, "$1", 181, {home .. "/mail/Inbox", 15})
 -- Register buttons
-mailwidget:buttons(awful.util.table.join(
-  awful.button({ }, 1, function () exec("urxvt -T Alpine -e alpine") end)
-))
+-- mailwidget:buttons(awful.util.table.join(
+--  awful.button({ }, 1, function () exec("urxvt -T Alpine -e alpine") end)
+-- ))
 -- }}}
 
 --[[
 -- {{{ Org-mode agenda
 orgicon = widget({ type = "imagebox" })
-orgicon.image = image(beautiful.widget_org)
+orgicon.image = image(beautiful.widget_mail)
 -- Initialize widget
 orgwidget = widget({ type = "textbox" })
 -- Configure widget
 local orgmode = {
-  files = { home.."/.org/computers.org",
-    home.."/.org/index.org", home.."/.org/personal.org",
+  files = { home.."/org/todo.org",
+    home.."/org/work.org"
   },
   color = {
     past   = '<span color="'..beautiful.fg_urgent..'">',
@@ -280,10 +280,12 @@ for s = 1, screen.count() do
         s == screen.count() and systray or nil,
         separator, datewidget, dateicon,
         separator, volwidget,  volbar.widget, volicon,
-        --separator, orgwidget,  orgicon,
-        separator, mailwidget, mailicon,
+        separator, 
+--orgwidget,  
+orgicon,
+        --separator, mailwidget, mailicon,
         separator, upicon,     netwidget, dnicon,
-        separator, fs.b.widget, fs.s.widget, fs.h.widget, fs.r.widget, fsicon,
+        separator, fs.r.widget, fs.h.widget, fs.a.widget, fsicon,
         separator, membar.widget, memicon,
         separator, batwidget, baticon,
         separator, tzswidget, cpugraph.widget, cpuicon,
@@ -322,7 +324,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "a", function () exec("urxvt -T Alpine -e alpine") end),
     awful.key({ modkey }, "g", function () sexec("GTK2_RC_FILES=~/.gtkrc-gajim gajim") end),
     awful.key({ modkey }, "q", function () exec("emacsclient --eval '(make-capture-frame)'") end),
-    awful.key({ modkey }, "l", function () exec("xtrlock") end),
+    awful.key({ modkey }, "#124", function () exec("xtrlock") end),
     -- }}}
 
     -- {{{ Multimedia keys

@@ -19,6 +19,7 @@ export XTERM="urxvt"
 export PACMAN="pacman-color"
 export DETERNET="users.isi.deterlab.net"
 export DETERLAB="deter.d.bbn.com"
+export WINEARCH=win32
 # }}}
 
 # {{{ zle configuration
@@ -118,6 +119,8 @@ alias keyshare="synergys -f --config /etc/synergy.conf"
 alias xpop="xprop | grep --color=none 'WM_CLASS\|^WM_NAME' |  xmessage -file -"
 alias deternet="ssh -X cbancrof@${DETERNET}"
 alias deterlab="ssh cbancrof@${DETERLAB}"
+alias wow="wine ~/wow/World\ of\ Warcraft/WoW.exe -opengl"
+alias bbnvpn="ssh -D 8080 -f -C -q -N cbancrof@ssh.bbn.com"
 # }}}
 
 # {{{ Auto Extension Stuff

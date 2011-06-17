@@ -1,4 +1,4 @@
-;-*- coding: utf-8 -*-
+;-*- coding: utf-8 mode: emacs-lisp -*-
 ; 
 ; anrxc's .emacs for GNU/Emacs 23.2 on Arch GNU/Linux
 ;Updated on: Apr 19, 06:52:05 EDT 2011
@@ -506,18 +506,27 @@ If there is no *ansi-term*, run it."
 ;{{{ OrgMode
 ;   - http://www.emacswiki.org/emacs/OrgMode
 ;
+
+;;
 ;; Initialization
+;;
 (add-to-list 'load-path "~/.emacs.d/org")
 (require 'org-install)
 (require 'cl)
+
 ;;
 ;; Extended mouse functionality
 (load "org-mouse.el")
 
+;; 
 ;; Settings
+;;
 (setq org-directory "~/org/")
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+
+;;
 ;; Misc
+;;
 (setq org-log-done t)
 (setq org-completion-use-ido t)
 (setq org-return-follows-link t)

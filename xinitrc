@@ -118,10 +118,10 @@ case "$WM" in
         exec gnome-session 
         ;;
     awesome)
-        exec awesome -c ~/.config/awesome/rc.lua
+	exec awesome -c ~/.config/awesome/rc.lua >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
         ;;
     *)
-        exec awesome
+	exec awesome -c ~/.config/awesome/rc.lua >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
         ;;
     esac
 # }}}
