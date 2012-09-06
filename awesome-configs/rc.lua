@@ -28,7 +28,7 @@ local modkey = "Mod4"
 local home   = os.getenv("HOME")
 local exec   = awful.util.spawn
 local sexec  = awful.util.spawn_with_shell
-
+local scount = screen.count()
 -- Beautiful theme
 beautiful.init(home .. "/.config/awesome/zenburn.lua")
 
@@ -51,7 +51,7 @@ tags = {
              layouts[6], layouts[6], layouts[5], layouts[6]
 }}
 
-for s = 1, screen.count() do
+for s = 1, scount do
   tags[s] = awful.tag(tags.names, s, tags.layout)
   for i, t in ipairs(tags[s]) do
       awful.tag.setproperty(t, "mwfact", i==5 and 0.13  or  0.5)
@@ -153,8 +153,8 @@ vicious.register(netwidget, vicious.widgets.net, '<span color="'
 -- }}}
 
 -- {{{ Mail subject
---mailicon = widget({ type = "imagebox" })
---mailicon.image = image(beautiful.widget_mail)
+mailicon = widget({ type = "imagebox" })
+mailicon.image = image(beautiful.widget_org)
 -- Initialize widget
 --mailwidget = widget({ type = "textbox" })
 -- Register widget
@@ -165,10 +165,11 @@ vicious.register(netwidget, vicious.widgets.net, '<span color="'
 -- ))
 -- }}}
 
---[[
+
 -- {{{ Org-mode agenda
-orgicon = widget({ type = "imagebox" })
-orgicon.image = image(beautiful.widget_mail)
+orgmodeicon = widget({ type = "imagebox" })
+orgmodeicon.image = image(beautiful.widget_mail)
+
 -- Initialize widget
 orgwidget = widget({ type = "textbox" })
 -- Configure widget
@@ -189,10 +190,10 @@ vicious.register(orgwidget, vicious.widgets.org,
 ) -- Register buttons
 orgwidget:buttons(awful.util.table.join(
   awful.button({ }, 1, function () exec("emacsclient --eval '(org-agenda-list)'") end),
-  awful.button({ }, 3, function () exec("emacsclient --eval '(make-remember-frame)'") end)
+  awful.button({ }, 3, function () exec("emacsclient --eval '(make-capture-frame)'") end)
 ))
--- }}}
---]]
+--}}}
+
 -- {{{ Volume level
 volicon = widget({ type = "imagebox" })
 volicon.image = image(beautiful.widget_vol)
@@ -212,7 +213,7 @@ vicious.register(volbar,    vicious.widgets.volume,  "$1",  2, "PCM")
 vicious.register(volwidget, vicious.widgets.volume, " $1%", 2, "PCM")
 -- Register buttons
 volbar.widget:buttons(awful.util.table.join(
-   awful.button({ }, 1, function () exec("kmix") end),
+   awful.button({ }, 1, function () exec("alsamixer") end),
    awful.button({ }, 4, function () exec("amixer -q set PCM 2dB+", false) end),
    awful.button({ }, 5, function () exec("amixer -q set PCM 2dB-", false) end)
 )) -- Register assigned buttons
@@ -280,10 +281,8 @@ for s = 1, screen.count() do
         s == screen.count() and systray or nil,
         separator, datewidget, dateicon,
         separator, volwidget,  volbar.widget, volicon,
-        separator, 
---orgwidget,  
-orgicon,
-        --separator, mailwidget, mailicon,
+        separator, orgwidget,  orgmodeicon,
+--        separator, mailwidget, mailicon,
         separator, upicon,     netwidget, dnicon,
         separator, fs.r.widget, fs.h.widget, fs.a.widget, fsicon,
         separator, membar.widget, memicon,

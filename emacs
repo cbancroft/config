@@ -3,8 +3,9 @@
 ; anrxc's .emacs for GNU/Emacs 23.2 on Arch GNU/Linux
 ;Updated on: Apr 19, 06:52:05 EDT 2011
 
-;{{{ Initialization
-;
+;* {{{ Initialization
+
+
 ;; Define the load path
 (setq load-path (cons "~/.emacs.d/" load-path))
 ;(setq load-path (cons "/usr/share/emacs/site-lisp" load-path))
@@ -18,11 +19,12 @@
 ;;
 ;; Turn off the scrollbar
 (scroll-bar-mode -1)
-;}}}
+
+; }}}
 
 
 
-;{{{ Look & Feel
+;* {{{ Look & Feel
 ;
 ;; Default font
 ;(set-default-font "-xos4-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-2")
@@ -115,7 +117,7 @@
 (setq-default ispell-dictionary "en_US")
 
 ;; Default Web Browser
-(setq browse-url-browser-function 'browse-url-firefox)
+(setq browse-url-browser-function 'browse-url-chromium)
 
 ;; Show unfinished keystrokes early
 (setq echo-keystrokes 0.1)
@@ -516,7 +518,7 @@ If there is no *ansi-term*, run it."
 
 ;;
 ;; Extended mouse functionality
-(load "org-mouse.el")
+(load "~/.emacs.d/org/org-mouse.el")
 
 ;; 
 ;; Settings
@@ -786,7 +788,7 @@ Skips capture tasks and tasks with no subtasks"
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/org/deter.org" "~/org/home.org" "~/org/todo.org" "~/org/refile.org" "~/org/work.org"))))
+ '(org-agenda-files (quote ("~/org/todo.org" "~/org/refile.org" "~/org/work.org"))))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.

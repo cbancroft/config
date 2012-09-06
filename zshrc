@@ -20,6 +20,7 @@ export PACMAN="pacman-color"
 export DETERNET="users.isi.deterlab.net"
 export DETERLAB="deter.d.bbn.com"
 export WINEARCH=win32
+export IMAP_SERVER="mail.bbn.com"
 # }}}
 
 # {{{ zle configuration
@@ -120,7 +121,7 @@ alias xpop="xprop | grep --color=none 'WM_CLASS\|^WM_NAME' |  xmessage -file -"
 alias deternet="ssh -X cbancrof@${DETERNET}"
 alias deterlab="ssh cbancrof@${DETERLAB}"
 alias wow="wine ~/wow/World\ of\ Warcraft/WoW.exe -opengl"
-alias bbnvpn="ssh -D 8080 -f -C -q -N cbancrof@ssh.bbn.com"
+alias bbnvpn="ssh -D 8080 -f -C -q -N cbancrof@ssh.bbn.com && export IMAP_SERVER=localhost:8143"
 # }}}
 
 # {{{ Auto Extension Stuff

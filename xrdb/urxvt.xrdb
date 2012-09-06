@@ -1,6 +1,7 @@
 ! Fonts
 !urxvt*font:                     xft:Bitstream Vera Sans Mono:pixelsize=9
-urxvt*font:                     xft:Terminus:pixelsize=8
+!urxvt*font:                     xft:Terminus:pixelsize=8
+urxvt*font:                     xft:Anonymous Pro:pixelsize=16
 !urxvt*font:                     xft:Dina:pixelsize=8
 !urxvt*font:                      xft:Profont:pixelsize=11
 
