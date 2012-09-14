@@ -23,10 +23,13 @@
 # {{{ Display settings
 #
 # Ignore reported display size and force DPI
-xrandr --dpi 96
+#xrandr --dpi 96
 
 # Force LVDS as the primary screen
-#xrandr --output LVDS1 --primary
+xrandr --output LVDS-1 --primary --auto
+if (xrandr -q | grep -u "VGA-1 connected" ); then
+	xrandr --output VGA-1 --right-of LVDS-1 --auto
+fi
 # }}}
 
 
@@ -91,7 +94,7 @@ xset fp rehash
 
 # Open a terminal emulator on the first tag
 #   - resume the old screen session or start a new one
-            urxvt -e byobu -l -UDRS term &
+            urxvt -e byobu -l -ODRS term &
 
 # Start the virtual box client
 #            /usr/bin/VBoxClient-all

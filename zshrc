@@ -345,4 +345,6 @@ $PR_GREEN$PR_SHIFT_IN$PR_LLCORNER$PR_GREEN$PR_HBAR$PR_SHIFT_OUT(\
 setprompt
 # }}}
 # }}}
-
+#autoload -U promptinit
+#promptinit
+#prompt wunjo

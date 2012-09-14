@@ -153,8 +153,8 @@ vicious.register(netwidget, vicious.widgets.net, '<span color="'
 -- }}}
 
 -- {{{ Mail subject
-mailicon = widget({ type = "imagebox" })
-mailicon.image = image(beautiful.widget_org)
+-- mailicon = widget({ type = "imagebox" })
+-- mailicon.image = image(beautiful.widget_org)
 -- Initialize widget
 --mailwidget = widget({ type = "textbox" })
 -- Register widget
@@ -319,11 +319,11 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "r", function () exec("rox", false) end),
     awful.key({ modkey }, "w", function () exec("chromium") end),
     awful.key({ altkey }, "F1",  function () exec("urxvtc") end),
-    awful.key({ altkey }, "#49", function () scratch.drop("urxvtc", "bottom") end),
+    awful.key({ modkey }, "F1", function () scratch.drop("urxvt", "bottom") end),
     awful.key({ modkey }, "a", function () exec("urxvt -T Alpine -e alpine") end),
     awful.key({ modkey }, "g", function () sexec("GTK2_RC_FILES=~/.gtkrc-gajim gajim") end),
     awful.key({ modkey }, "q", function () exec("emacsclient --eval '(make-capture-frame)'") end),
-    awful.key({ modkey }, "#124", function () exec("xtrlock") end),
+    awful.key({ altkey }, "F12", function () exec("xtrlock") end),
     -- }}}
 
     -- {{{ Multimedia keys
@@ -412,7 +412,9 @@ globalkeys = awful.util.table.join(
         local cmenu = awful.menu.clients({width=230}, { keygrabber=true, coords={x=525, y=330} })
     end),
     awful.key({ modkey, "Shift" }, "j", function () awful.client.swap.byidx(1)  end),
-    awful.key({ modkey, "Shift" }, "k", function () awful.client.swap.byidx(-1) end)
+    awful.key({ modkey, "Shift" }, "k", function () awful.client.swap.byidx(-1) end),
+    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative(1)  end),
+    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end)
     -- }}}
 )
 -- }}}
