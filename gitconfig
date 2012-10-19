@@ -1,3 +1,16 @@
 [user]
 	name = Charles Bancroft
 	email = charlie.bancroft@gmail.com
+[push]
+	default = upstream
+[alias]
+	up = "!git remote update -p; git merge --ff-only @{u}"
+	gb = log --graph --boundary --date-order --pretty=tformat:\"%C(yellow)%h%Creset %C(magenta)%aE %ai%Creset %C(green bold)%d%Creset%n        %s\"
+	g = !git gb --all
+	go = !git gb @{u}..
+	gi = "!git remote update -p; git gb ..@{u}"
+	unpushed = !git g --not --remotes --tags
+[color]
+	ui = auto
+[diff]
+	renames = true

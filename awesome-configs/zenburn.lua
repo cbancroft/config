@@ -3,7 +3,7 @@
 --    By Adrian C. (anrxc)   --
 --    License:  GNU GPL v2   --
 -------------------------------
-
+require("lfs")
 
 -- {{{ Main
 theme = {}
@@ -20,6 +20,8 @@ theme.font      = "Profont 8"
 theme.fg_normal = "#DCDCCC"
 theme.fg_focus  = "#F0DFAF"
 theme.fg_urgent = "#CC9393"
+theme.fg_highlight = "#DDDDDD"
+
 theme.bg_normal = "#3F3F3F"
 theme.bg_focus  = "#1E2320"
 theme.bg_urgent = theme.bg_normal
@@ -140,5 +142,11 @@ theme.titlebar_maximized_button_normal_inactive = theme.confdir .. "/icons/title
 -- }}}
 -- }}}
 
+theme.icons = {}
+icon_dir = theme.confdir .. "/icons/png/"
+
+for f in lfs.dir(icon_dir) do
+   theme.icons[string.sub(f,0,-5)] = icon_dir ..f 
+end
 
 return theme

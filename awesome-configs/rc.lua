@@ -15,9 +15,16 @@
 require("awful")
 require("awful.rules")
 require("awful.autofocus")
+
+--Notification Library
+require("naughty")
 -- User libraries
 require("vicious")
 require("scratch")
+require("mpd")
+require("pianobar")
+require("music")
+
 -- }}}
 
 
@@ -70,6 +77,15 @@ separator = widget({ type = "imagebox" })
 separator.image = image(beautiful.widget_sep)
 -- }}}
 
+-- {{{ Music
+musicwidget = music.widget("{artist} - {title}",
+			   "<span color=\"" .. beautiful.fg_highlight .. "\">Music - {state}</span>\n Title: {title}\n Artist: {artist}\n Album: {album}", 
+			   { pause = image(beautiful.icons.pause),
+			     play  = image(beautiful.icons.play)
+			   })
+musicwidget.width = 500
+
+-- }}}
 -- {{{ CPU usage and temperature
 cpuicon = widget({ type = "imagebox" })
 cpuicon.image = image(beautiful.widget_cpu)
@@ -209,13 +225,13 @@ volbar:set_gradient_colors({ beautiful.fg_widget,
 }) -- Enable caching
 vicious.cache(vicious.widgets.volume)
 -- Register widgets
-vicious.register(volbar,    vicious.widgets.volume,  "$1",  2, "PCM")
-vicious.register(volwidget, vicious.widgets.volume, " $1%", 2, "PCM")
+vicious.register(volbar,    vicious.widgets.volume,  "$1",  2, "Master")
+vicious.register(volwidget, vicious.widgets.volume, " $1%", 2, "Master")
 -- Register buttons
 volbar.widget:buttons(awful.util.table.join(
-   awful.button({ }, 1, function () exec("alsamixer") end),
-   awful.button({ }, 4, function () exec("amixer -q set PCM 2dB+", false) end),
-   awful.button({ }, 5, function () exec("amixer -q set PCM 2dB-", false) end)
+   awful.button({ }, 1, function () exec("urxvt -T alsamixer -e alsamixer") end),
+   awful.button({ }, 4, function () exec("amixer -q set Master 2dB+", false) end),
+   awful.button({ }, 5, function () exec("amixer -q set Master 2dB-", false) end)
 )) -- Register assigned buttons
 volwidget:buttons(volbar.widget:buttons())
 -- }}}
@@ -288,7 +304,8 @@ for s = 1, screen.count() do
         separator, membar.widget, memicon,
         separator, batwidget, baticon,
         separator, tzswidget, cpugraph.widget, cpuicon,
-        separator, ["layout"] = awful.widget.layout.horizontal.rightleft
+        separator, ["layout"] = awful.widget.layout.horizontal.rightleft,
+	musicwidget, separator
     }
 end
 -- }}}
@@ -328,7 +345,18 @@ globalkeys = awful.util.table.join(
 
     -- {{{ Multimedia keys
     awful.key({}, "#160", function () exec("kscreenlocker --forcelock") end),
-    awful.key({}, "#121", function () exec("pvol.py -m") end),
+    awful.key({}, "XF86AudioMute", function () 
+		 exec("amixer -q set Master toggle") 
+		 vicious.force({volwidget})
+				   end),
+    awful.key({}, "XF86AudioLowerVolume", function () 
+		 exec("amixer -q set Master 1%- unmute", false) 
+		 vicious.force({volwidget})
+					  end),
+    awful.key({}, "XF86AudioRaiseVolume", function () 
+		 exec("amixer -q set Master 1%+ unmute", false) 
+		 vicious.force({volwidget})
+					  end),
     awful.key({}, "#122", function () exec("pvol.py -c -2") end),
     awful.key({}, "#123", function () exec("pvol.py -c 2")  end),
     awful.key({}, "#232", function () exec("plight.py -s") end),
@@ -495,17 +523,15 @@ awful.rules.rules = {
       border_width = beautiful.border_width,
       border_color = beautiful.border_normal }
     },
-    { rule = { class = "chromium",  instance = "Navigator" },
+    { rule = { class = "Chromium" },
       properties = { tag = tags[1][3] } },
-    { rule = { class = "chromium",  instance = "chromium" },
+    { rule = { class = "Chromium",  instance = "chromium" },
       properties = { tag = tags[1][3] } },
     { rule = { class = "Emacs",    instance = "emacs" },
       properties = { tag = tags[1][2] } },
     { rule = { class = "Emacs",    instance = "_Remember_" },
       properties = { floating = true }, callback = awful.titlebar.add  },
     { rule = { class = "Xmessage", instance = "xmessage" },
-      properties = { floating = true }, callback = awful.titlebar.add  },
-    { rule = { instance = "firefox-bin" },
       properties = { floating = true }, callback = awful.titlebar.add  },
     { rule = { name  = "Alpine" },      properties = { tag = tags[1][4]} },
     { rule = { class = "Gajim.py" },    properties = { tag = tags[1][5]} },
@@ -553,6 +579,23 @@ end)
 -- {{{ Focus signal handlers
 client.add_signal("focus",   function (c) c.border_color = beautiful.border_focus  end)
 client.add_signal("unfocus", function (c) c.border_color = beautiful.border_normal end)
+-- }}}
+
+-- {{{ Notifications
+naughty.config.timeout          = 10
+naughty.config.presets.normal.screen           = 1
+naughty.config.presets.normal.position         = "top_right"
+naughty.config.presets.normal.margin           = 4
+naughty.config.presets.normal.gap              = 1
+naughty.config.presets.normal.ontop            = true
+naughty.config.presets.normal.icon             = nil
+naughty.config.presets.normal.icon_size        = 16
+naughty.config.presets.normal.border_width     = 1
+naughty.config.presets.normal.hover_timeout    = nil
+naughty.config.presets.normal.bg               = '#111111'
+naughty.config.presets.normal.border_color     = '#333333'
+naughty.config.presets.critical.bg = '#991000cc'
+
 -- }}}
 
 -- {{{ Arrange signal handler

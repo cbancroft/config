@@ -120,8 +120,9 @@ alias keyshare="synergys -f --config /etc/synergy.conf"
 alias xpop="xprop | grep --color=none 'WM_CLASS\|^WM_NAME' |  xmessage -file -"
 alias deternet="ssh -X cbancrof@${DETERNET}"
 alias deterlab="ssh cbancrof@${DETERLAB}"
-alias wow="wine ~/wow/World\ of\ Warcraft/WoW.exe -opengl"
 alias bbnvpn="ssh -D 8080 -f -C -q -N cbancrof@ssh.bbn.com && export IMAP_SERVER=localhost:8143"
+alias daytona="cd ~/work/daytona/DAYTONA-current"
+alias school="cd ~/git/school"
 # }}}
 
 # {{{ Auto Extension Stuff
