@@ -3,7 +3,7 @@
 coproc awesome-client || exit 0
 
 event=$1
-
+#print -p "print \"Event: ${(q)event}\""
 set_status() {
     print -p "pianobar.set(\"${(q)1}\", \"${(q)2}\")"
 }

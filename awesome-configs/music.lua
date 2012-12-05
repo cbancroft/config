@@ -27,7 +27,7 @@ local pairs = pairs
 local table = table
 local mpd = mpd
 local pianobar = pianobar
-
+local spotify = spotify
 local capi = { widget = widget,
                button = awful.button,
                escape = awful.util.escape,
@@ -46,7 +46,8 @@ module("music")
 DEFAULT_BACKEND = pianobar
 BACKENDS = {
     ["mpd"] = mpd,
-    ["pianobar"] = pianobar
+    ["pianobar"] = pianobar,
+    ["spotify"] = spotify
 }
 
 local backend = nil

@@ -19,10 +19,12 @@ require("awful.autofocus")
 --Notification Library
 require("naughty")
 -- User libraries
-require("vicious")
+vicious = require("vicious")
+vicious.contrib = require("vicious.contrib")
 require("scratch")
 require("mpd")
 require("pianobar")
+require("spotify")
 require("music")
 
 -- }}}
@@ -53,7 +55,7 @@ layouts = {
 
 -- {{{ Tags
 tags = {
-  names  = { "term", "emacs", "web", "mail", "im", 6, 7, "rss", "media" },
+  names  = { "term", "emacs", "web", "mail", "im", 6, 7, "pdf", "media" },
   layout = { layouts[2], layouts[1], layouts[1], layouts[4], layouts[1],
              layouts[6], layouts[6], layouts[5], layouts[6]
 }}
@@ -164,8 +166,8 @@ upicon.image = image(beautiful.widget_netup)
 netwidget = widget({ type = "textbox" })
 -- Register widget
 vicious.register(netwidget, vicious.widgets.net, '<span color="'
-  .. beautiful.fg_netdn_widget ..'">${lan0 down_kb}</span> <span color="'
-  .. beautiful.fg_netup_widget ..'">${lan0 up_kb}</span>', 3)
+  .. beautiful.fg_netdn_widget ..'">${wlan0 down_kb}</span> <span color="'
+  .. beautiful.fg_netup_widget ..'">${wlan0 up_kb}</span>', 3)
 -- }}}
 
 -- {{{ Mail subject
@@ -225,13 +227,13 @@ volbar:set_gradient_colors({ beautiful.fg_widget,
 }) -- Enable caching
 vicious.cache(vicious.widgets.volume)
 -- Register widgets
-vicious.register(volbar,    vicious.widgets.volume,  "$1",  2, "Master")
-vicious.register(volwidget, vicious.widgets.volume, " $1%", 2, "Master")
+vicious.register(volbar,    vicious.contrib.pulse,  "$1",  2, "alsa_output.pci-0000_00_1b.0.analog-stereo")
+vicious.register(volwidget, vicious.contrib.pulse, " $1%", 2, "alsa_output.pci-0000_00_1b.0.analog-stereo")
 -- Register buttons
 volbar.widget:buttons(awful.util.table.join(
-   awful.button({ }, 1, function () exec("urxvt -T alsamixer -e alsamixer") end),
-   awful.button({ }, 4, function () exec("amixer -q set Master 2dB+", false) end),
-   awful.button({ }, 5, function () exec("amixer -q set Master 2dB-", false) end)
+			 awful.button({ }, 1, function () awful.util.spawn("pavucontrol") end),
+			 awful.button({ }, 4, function () vicious.contrib.pulse.add(5, "alsa_output.pci-0000_00_1b.0.analog-stereo") end),
+			 awful.button({ }, 5, function () vicious.contrib.pulse.add(-5, "alsa_output.pci-0000_00_1b.0.analog-stereo") end)
 )) -- Register assigned buttons
 volwidget:buttons(volbar.widget:buttons())
 -- }}}
@@ -340,25 +342,24 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "a", function () exec("urxvt -T Alpine -e alpine") end),
     awful.key({ modkey }, "g", function () sexec("GTK2_RC_FILES=~/.gtkrc-gajim gajim") end),
     awful.key({ modkey }, "q", function () exec("emacsclient --eval '(make-capture-frame)'") end),
-    awful.key({ altkey }, "F12", function () exec("xtrlock") end),
+    awful.key({ altkey }, "F12", function () exec("xlock") end),
     -- }}}
 
     -- {{{ Multimedia keys
     awful.key({}, "#160", function () exec("kscreenlocker --forcelock") end),
     awful.key({}, "XF86AudioMute", function () 
-		 exec("amixer -q set Master toggle") 
+		 exec("/usr/bin/mute_toggle") 
 		 vicious.force({volwidget})
 				   end),
     awful.key({}, "XF86AudioLowerVolume", function () 
-		 exec("amixer -q set Master 1%- unmute", false) 
+		 exec("/usr/bin/vol_down", false) 
 		 vicious.force({volwidget})
 					  end),
     awful.key({}, "XF86AudioRaiseVolume", function () 
-		 exec("amixer -q set Master 1%+ unmute", false) 
+		 exec("/usr/bin/vol_up", false) 
 		 vicious.force({volwidget})
 					  end),
-    awful.key({}, "#122", function () exec("pvol.py -c -2") end),
-    awful.key({}, "#123", function () exec("pvol.py -c 2")  end),
+
     awful.key({}, "#232", function () exec("plight.py -s") end),
     awful.key({}, "#233", function () exec("plight.py -s") end),
     awful.key({}, "#244", function () exec("sudo /usr/sbin/pm-hibernate") end),

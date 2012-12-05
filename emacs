@@ -8,8 +8,8 @@
 
 ;; Define the load path
 (setq load-path (cons "~/.emacs.d/" load-path))
-;(setq load-path (cons "/usr/share/emacs/site-lisp" load-path))
-;(setq load-path (cons "/usr/share/emacs/23.3/lisp" load-path))
+(setq load-path (cons "/usr/share/emacs/site-lisp" load-path))
+(setq load-path (cons "/usr/share/emacs/23.3/lisp" load-path))
 
 ;; Turn off the toolbar
 (tool-bar-mode -1)
@@ -36,6 +36,10 @@
 (setq color-theme-is-global t)
 (color-theme-initialize)
 (load "zenburn.el" )
+
+;; EasyPG init
+(require 'epa-file)
+(epa-file-enable)
 
 ;;
 ;; Load preferred theme
@@ -227,7 +231,7 @@
 (require 'epa)
 
 ;; Ledger mode
-(require 'ledger)
+;; (require 'ledger)
 
 ;; Tramp (remote files editing)
 (require 'tramp)

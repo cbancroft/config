@@ -19,14 +19,14 @@ personal-name=Charles Bancroft
 user-domain=bbn.com
 
 # List of SMTP servers for sending mail. If blank: Unix Alpine uses sendmail.
-smtp-server=mail.bbn.com
+smtp-server=localhost:8025
 
 # NNTP server for posting news. Also sets news-collections for news reading.
 nntp-server=
 
 # Path of (local or remote) INBOX, e.g. ={mail.somewhere.edu}inbox
 # Normal Unix default is the local INBOX (usually /usr/spool/mail/$USER).
-inbox-path={mail.bbn.com/user=cbancrof/novalidate-cert}INBOX
+inbox-path={localhost:8143/user=cbancrof/novalidate-cert}INBOX
 
 # List of folder pairs; the first indicates a folder to archive, and the
 # second indicates the folder read messages in the first should
@@ -165,7 +165,7 @@ fcc-name-rule=
 # Sets presentation order of messages in Index. Choices:
 # Subject, From, Arrival, Date, Size, To, Cc, OrderedSubj, Score, and Thread.
 # Order may be reversed by appending /Reverse. Default: "Arrival".
-sort-key=tHread
+sort-key=Arrival
 
 # #Sets presentation order of threads in thread index. Choices:
 #arrival, and thread.
@@ -187,7 +187,7 @@ goto-default-rule=
 # Sets message which cursor begins on. Choices: first-unseen, first-recent,
 # first-important, first-important-or-unseen, first-important-or-recent,
 # first, last. Default: "first-unseen".
-incoming-startup-rule=first-unseen
+incoming-startup-rule=last
 
 # Allows a default answer for the prune folder questions. Choices: yes-ask,
 # yes-no, no-ask, no-no, ask-ask, ask-no. Default: "ask-ask".
@@ -317,7 +317,7 @@ use-only-domain-name=
 
 # This variable takes a list of programs that message text is piped into
 # after MIME decoding, prior to display.
-display-filters=_BEGINNING("-----BEGIN PGP ")_ /usr/bin/topal -display _TMPFILE_ _RESULTFILE_
+#display-filters=_BEGINNING("-----BEGIN PGP ")_ /usr/bin/topal -display _TMPFILE_ _RESULTFILE_
 
 
 # This defines a program that message text is piped into before MIME
@@ -424,7 +424,8 @@ mailcap-search-path=
 mimetype-search-path=
 
 # List of programs to open Internet URLs (e.g. http or ftp references).
-url-viewers=/usr/bin/google-chrome
+url-viewers=/usr/bin/google-chrome,
+	/usr/bin/chromium
 
 # The maximum number of non-stayopen remote connections that Alpine will use
 max-remote-connections=
@@ -466,7 +467,7 @@ incoming-folders=
 # the default for Saves. Example: Main {host1}mail/[], Desktop mail\[]
 # Syntax: optnl-label {optnl-imap-hostname}optnl-directory-path[]
 folder-collections=mail/[],
-	"IMAP Folders" {mail.bbn.com/user=cbancrof}INBOX.[],
+	"IMAP Folders" {localhost:8143/user=cbancrof}INBOX.[],
 	GMail {imap.gmail.com:993/SSL/User=charlie.bancroft}[]
 
 # List, only needed if nntp-server not set, or news is on a different host
@@ -485,10 +486,10 @@ address-book=
 global-address-book=
 
 # Set by Alpine; controls beginning-of-month sent-mail pruning.
-last-time-prune-questioned=111.1
+last-time-prune-questioned=112.12
 
 # Set by Alpine; controls display of "new version" message.
-last-version-used=6.00
+last-version-used=6.02
 
 # This names the path to an alternative program, and any necessary arguments,
 # to be used in posting mail messages.  Example:
@@ -599,7 +600,7 @@ personal-print-category=
 patterns-roles=
 
 # Patterns and their actions are stored here.
-patterns-filters2=
+patterns-filters2=LIT:pattern="/NICK=Bitheads/COMM=Move bitheads mail to the appropriate folder.\\n/SUBJ=[Bitheads]/FLDTYPE=SPEC/FOLDER=INBOX" action="/FILTER=1/FOLDER={localhost:8143\/user=cbancrof}INBOX.Bitheads/NOTDEL=1/NOKILL=1/STATN=SET/KEYSET=Bitheads"
 
 # Patterns and their actions are stored here.
 patterns-scores2=
@@ -766,3 +767,7 @@ wp-columns=
 normal-foreground-color=
 special-text-foreground-color=
 special-text-background-color=
+
+# This variable takes a list of programs that message text is piped into
+# after MIME decoding, prior to display.
+display-filters=

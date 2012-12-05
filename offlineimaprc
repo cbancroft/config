@@ -1,0 +1,21 @@
+# Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
+# get started fast.
+
+[general]
+accounts = Work
+
+[Account Work]
+localrepository = work-local
+remoterepository = work-remote
+status_backend = sqlite
+
+[Repository work-local]
+type = Maildir
+localfolders = ~/Maildir
+
+[Repository work-remote]
+type = IMAP
+remotehost = localhost
+remoteport = 8143
+remoteuser = cbancrof
+maxconnections = 3

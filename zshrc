@@ -14,13 +14,10 @@ export LESSHISTFILE="-"
 export READNULLCMD="${PAGER}"
 export VISUAL="emacsclient"
 export EDITOR="${VISUAL}"
-export BROWSER="google-chrome"
+export BROWSER="chromium"
 export XTERM="urxvt"
 export PACMAN="pacman-color"
-export DETERNET="users.isi.deterlab.net"
-export DETERLAB="deter.d.bbn.com"
-export WINEARCH=win32
-export IMAP_SERVER="mail.bbn.com"
+export FLASH_ALSA_DEVICE=plug:dmix
 # }}}
 
 # {{{ zle configuration
@@ -114,7 +111,7 @@ alias spell="aspell -a <<< "
 alias ec="emacsclient -a emacs -n "
 alias ect="emacsclient -a emacs -t "
 alias gpgd="gpg2 --decrypt"
-alias gpge="gpg2 -ear modoc"
+alias gpge='gpg2 -ear "cbancroft@bbn.com"'
 alias passgen="< /dev/urandom tr -cd \[:graph:\] | fold -w32 | head -n 5"
 alias keyshare="synergys -f --config /etc/synergy.conf"
 alias xpop="xprop | grep --color=none 'WM_CLASS\|^WM_NAME' |  xmessage -file -"
@@ -123,6 +120,9 @@ alias deterlab="ssh cbancrof@${DETERLAB}"
 alias bbnvpn="ssh -D 8080 -f -C -q -N cbancrof@ssh.bbn.com && export IMAP_SERVER=localhost:8143"
 alias daytona="cd ~/work/daytona/DAYTONA-current"
 alias school="cd ~/git/school"
+
+# {{{ Daytona nodes
+alias dbuild="ssh -A -l cbancroft build.daytona.ir.bbn.com"
 # }}}
 
 # {{{ Auto Extension Stuff
@@ -342,6 +342,10 @@ $PR_GREEN$PR_SHIFT_IN$PR_LLCORNER$PR_GREEN$PR_HBAR$PR_SHIFT_OUT(\
     esac
 }
 
+# Git autocomplete speed fix
+__git_files () { 
+    _wanted files expl 'local files' _files 
+}
 # Prompt init
 setprompt
 # }}}
@@ -349,3 +353,5 @@ setprompt
 #autoload -U promptinit
 #promptinit
 #prompt wunjo
+
+export _JAVA_AWT_WM_NONREPARENTING=1

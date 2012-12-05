@@ -1,5 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/home/cbancroft/.byobu'
 let g:netrw_dirhist_2='/home/cbancroft/.zsh'
 let g:netrw_dirhist_3='/home/cbancroft/.emacs.d'
+let g:netrw_dirhist_4='/usr/share/awesome/lib/awful'
+let g:netrw_dirhist_5='/home/cbancroft/git/school/CS6813/A6'
+let g:netrw_dirhist_6='/home/cbancroft/.ssh'
+let g:netrw_dirhist_7='/home/cbancroft/.offlineimap'
