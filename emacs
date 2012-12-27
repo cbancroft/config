@@ -708,7 +708,7 @@ Skips capture tasks and tasks with no subtasks"
 
 ;=====================================================================
 ;{{{  Email
-(setq smtpmail­smtp­server "mail.bbn.com")
+(setq smtpmail­smtp­server "smtp.bbn.com")
 (setq send­mail­function 'smtpmail­send­it)
 (setq message­send­mail­function 'smtpmail­send­it)
 (require 'smtpmail)

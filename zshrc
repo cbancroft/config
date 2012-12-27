@@ -3,6 +3,44 @@
 # cbancroft's init file for Z-SHELL 4.3.10 on Arch GNU/Linux
 # Modified from anxrc's .zshrc
 
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="clbancro"
+
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Set to this to use case-sensitive completion
+# CASE_SENSITIVE="true"
+
+# Comment this out to disable bi-weekly auto-update checks
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
+
+# Uncomment following line if you want to disable autosetting terminal title.
+#DISABLE_AUTO_TITLE="true"
+
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+COMPLETION_WAITING_DOTS="true"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(gitfast git-extras archlinux battery gpg-agent git-remote-branch )
+
+source $ZSH/oh-my-zsh.sh
+
 # {{{ User Settings
 
 # {{{ Environment
@@ -48,6 +86,7 @@ bindkey "\e[F" end-of-line
 
 
 # }}}
+
 # {{{ Dircolors
 #       - with rxvt-256color support
 eval `dircolors -b "${HOME}/.dir_colors"`
@@ -55,13 +94,13 @@ eval `dircolors -b "${HOME}/.dir_colors"`
 
 # {{{ Man Pages
 #       - colorize, since man-db fails to do so
-export LESS_TERMCAP_mb=$'\E[01;31m'     #begin blinking
-export LESS_TERMCAP_md=$'\E[01;31m'     #begin bold
-export LESS_TERMCAP_me=$'\E[0m'         #end mode
-export LESS_TERMCAP_se=$'\E[0m'         #end standout mode
-export LESS_TERMCAP_so=$'\E[1;33;40m'   #begin standout-mode - info box
-export LESS_TERMCAP_ue=$'\E[0m'         #end underline
-export LESS_TERMCAP_us=$'\E[1;32m'      #begin underline
+#export LESS_TERMCAP_mb=$'\E[01;31m'     #begin blinking
+#export LESS_TERMCAP_md=$'\E[01;31m'     #begin bold
+#export LESS_TERMCAP_me=$'\E[0m'         #end mode
+#export LESS_TERMCAP_se=$'\E[0m'         #end standout mode
+#export LESS_TERMCAP_so=$'\E[1;33;40m'   #begin standout-mode - info box
+#export LESS_TERMCAP_ue=$'\E[0m'         #end underline
+#export LESS_TERMCAP_us=$'\E[1;32m'      #begin underline
 # }}}
 
 # {{{ Aliases
@@ -99,9 +138,6 @@ alias mc=". /usr/lib/mc/mc-wrapper.sh -x"
 alias links="links ${HOME}/.links/startpage.html"
 alias cplay="cplay -v"
 alias xtr="extract"
-alias screen="screen -U -l"
-alias scr="screen -r"
-alias scd="screen -rd"
 alias sat="date +%R"
 alias bat="acpitool -b"
 alias calc="bc -l <<<"
@@ -138,29 +174,6 @@ alias -s doc=libreoffice
 alias -s docx=libreoffice
 # }}}
 
-# {{{ Pacman
-alias pacsy="sudo pacman -Sy"           #Sync & Update
-alias pacup="sudo pacman -Syu"          #Sync, Update & Upgrade
-alias pacdg="sudo pacman -Syuu"         #Sync, Update & Downgrade
-alias paclu="pacman -Qu"                #List upgradeable
-alias pacin="sudo pacman -S"            #Install a specific package
-alias pacnd="sudo pacman -Sd"           #Install a package but ignore deps
-alias pacrm="sudom pacman -Rns"         #Remove a specific package
-alias pacrd="sudo pacman -Rd"           #Remove a specific package but ignore deps
-alias pacss="pacman -Ss"            #Search for a package
-alias pacsl="pacman -Qs"            #Search for a package locally
-alias pacsi="pacman -Si"            #Package info
-alias pacqi="pacman -Qi"            #Package local info
-alias pacls="pacman -Ql"            #List files in a package
-alias pacui="pacman -Qm"            #List locally built packages
-alias pacfi="pacman -Qo"            #Which package file belongs to
-alias paccl="sudo pacman -Scc"      #Fully clean the package cache
-alias pacdl="sudo pacman -Sw"       #Download without installing
-alias paclo="pacman -Qdt"           #List package orphans
-alias paclog="pacman -Qc"           #Package changelog
-# }}}
-
-
 # {{{ Slurpy
 alias aurup="slurpy -c -u -d"               # Sync, Update & Download
 alias aurlu="slurpy -c -u"                  # Update & List upgradeable
@@ -192,8 +205,9 @@ setopt autopushd pushdminus pushdsilent pushdtohome
 setopt histreduceblanks histignorespace inc_append_history
 
 # Prompt requirements
-setopt extended_glob prompt_subst
-autoload colors zsh/terminfo
+#source ~/.zsh/git-prompt/zshrc.sh
+#setopt extended_glob prompt_subst
+#autoload colors zsh/terminfo
 
 # New style completion system
 autoload -U compinit; compinit
@@ -256,98 +270,103 @@ function extract () {
 }
 
 # {{{ Terminal and prompt
-function precmd {
-    # Terminal width = width - 1 (for lineup)
-    local TERMWIDTH
-    ((TERMWIDTH=${COLUMNS} - 1))
+#function precmd {
+#    # Terminal width = width - 1 (for lineup)
+#    local TERMWIDTH
+#    ((TERMWIDTH=${COLUMNS} - 1))
+#
+#    # Truncate long paths
+#    PR_FILLBAR=""
+#    PR_PWDLEN=""
+#    local PROMPTSIZE="${#${(%):---(%n@%m:%l)---()--}}"
+#    local PWDSIZE="${#${(%):-%~}}"
+#    if [[ "${PROMPTSIZE} + ${PWDSIZE}" -gt ${TERMWIDTH} ]]; then
+#	((PR_PWDLEN=${TERMWIDTH} - ${PROMPTSIZE}))
+#    else
+#        PR_FILLBAR="\${(l.((${TERMWIDTH} - (${PROMPTSIZE} + ${PWDSIZE})))..${PR_HBAR}.)}"
+#    fi
+#}
 
-    # Truncate long paths
-    PR_FILLBAR=""
-    PR_PWDLEN=""
-    local PROMPTSIZE="${#${(%):---(%n@%m:%l)---()--}}"
-    local PWDSIZE="${#${(%):-%~}}"
-    if [[ "${PROMPTSIZE} + ${PWDSIZE}" -gt ${TERMWIDTH} ]]; then
-	((PR_PWDLEN=${TERMWIDTH} - ${PROMPTSIZE}))
-    else
-        PR_FILLBAR="\${(l.((${TERMWIDTH} - (${PROMPTSIZE} + ${PWDSIZE})))..${PR_HBAR}.)}"
-    fi
-}
+#function preexec () {
+#    # Screen window titles as currently running programs
+#    if [[ "${TERM}" == "screen-256color" ]]; then
+#        local CMD="${1[(wr)^(*=*|sudo|-*)]}"
+#        echo -n "\ek$CMD\e\\"
+#    fi
+#}
 
-function preexec () {
-    # Screen window titles as currently running programs
-    if [[ "${TERM}" == "screen-256color" ]]; then
-        local CMD="${1[(wr)^(*=*|sudo|-*)]}"
-        echo -n "\ek$CMD\e\\"
-    fi
-}
-
-function setprompt () {
-    if [[ "${terminfo[colors]}" -ge 8 ]]; then
-        colors
-    fi
-    for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-	eval PR_"${color}"="%{${terminfo[bold]}$fg[${(L)color}]%}"
-	eval PR_LIGHT_"${color}"="%{$fg[${(L)color}]%}"
-    done
-    PR_NO_COLOUR="%{${terminfo[sgr0]}%}"
-
-    # Try to use extended characters to look nicer
-    typeset -A altchar
-    set -A altchar ${(s..)terminfo[acsc]}
-    PR_SET_CHARSET="%{${terminfo[enacs]}%}"
-    PR_SHIFT_IN="%{${terminfo[smacs]}%}"
-    PR_SHIFT_OUT="%{${terminfo[rmacs]}%}"
-    PR_HBAR="${altchar[q]:--}"
-    PR_ULCORNER="${altchar[l]:--}"
-    PR_LLCORNER="${altchar[m]:--}"
-    PR_LRCORNER="${altchar[j]:--}"
-    PR_URCORNER="${altchar[k]:--}"
-
-    # Terminal prompt settings
-    case "${TERM}" in
-        dumb) # Simple prompt for dumb terminals
-            unsetopt zle
-            PROMPT='%n@%m:%~%% '
-            ;;
-        linux) # Simple prompt with Zenburn colors for the console
-            echo -en "\e]P01e2320" # zenburn black (normal black)
-            echo -en "\e]P8709080" # bright-black  (darkgrey)
-            echo -en "\e]P1705050" # red           (darkred)
-            echo -en "\e]P9dca3a3" # bright-red    (red)
-            echo -en "\e]P260b48a" # green         (darkgreen)
-            echo -en "\e]PAc3bf9f" # bright-green  (green)
-            echo -en "\e]P3dfaf8f" # yellow        (brown)
-            echo -en "\e]PBf0dfaf" # bright-yellow (yellow)
-            echo -en "\e]P4506070" # blue          (darkblue)
-            echo -en "\e]PC94bff3" # bright-blue   (blue)
-            echo -en "\e]P5dc8cc3" # purple        (darkmagenta)
-            echo -en "\e]PDec93d3" # bright-purple (magenta)
-            echo -en "\e]P68cd0d3" # cyan          (darkcyan)
-            echo -en "\e]PE93e0e3" # bright-cyan   (cyan)
-            echo -en "\e]P7dcdccc" # white         (lightgrey)
-            echo -en "\e]PFffffff" # bright-white  (white)
-            PROMPT='$PR_GREEN%n@%m$PR_WHITE:$PR_YELLOW%l$PR_WHITE:$PR_RED%~$PR_YELLOW%%$PR_NO_COLOUR '
-            ;;
-        *)  # Main prompt
-            PROMPT='$PR_SET_CHARSET$PR_GREEN$PR_SHIFT_IN$PR_ULCORNER$PR_GREEN$PR_HBAR\
-$PR_SHIFT_OUT($PR_GREEN%(!.%SROOT%s.%n)$PR_GREEN@%m$PR_WHITE:$PR_YELLOW%l$PR_GREEN)\
-$PR_SHIFT_IN$PR_HBAR$PR_GREEN$PR_HBAR${(e)PR_FILLBAR}$PR_GREEN$PR_HBAR$PR_SHIFT_OUT(\
-$PR_RED%$PR_PWDLEN<...<%~%<<$PR_GREEN)$PR_SHIFT_IN$PR_HBAR$PR_GREEN$PR_URCORNER$PR_SHIFT_OUT\
-
-$PR_GREEN$PR_SHIFT_IN$PR_LLCORNER$PR_GREEN$PR_HBAR$PR_SHIFT_OUT(\
-%(?..$PR_RED%?$PR_WHITE:)%(!.$PR_RED.$PR_YELLOW)%#$PR_GREEN)$PR_NO_COLOUR '
-
-            RPROMPT=' $PR_GREEN$PR_SHIFT_IN$PR_HBAR$PR_GREEN$PR_LRCORNER$PR_SHIFT_OUT$PR_NO_COLOUR'
-            ;;
-    esac
-}
+#function setprompt () {
+#    if [[ "${terminfo[colors]}" -ge 8 ]]; then
+#        colors
+#    fi
+#    for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
+#	eval PR_"${color}"="%{${terminfo[bold]}$fg[${(L)color}]%}"
+#	eval PR_LIGHT_"${color}"="%{$fg[${(L)color}]%}"
+#    done
+#    PR_NO_COLOUR="%{${terminfo[sgr0]}%}"
+#
+#    # Try to use extended characters to look nicer
+#    typeset -A altchar
+#    set -A altchar ${(s..)terminfo[acsc]}
+#    PR_SET_CHARSET="%{${terminfo[enacs]}%}"
+#    PR_SHIFT_IN="%{${terminfo[smacs]}%}"
+#    PR_SHIFT_OUT="%{${terminfo[rmacs]}%}"
+#    PR_HBAR="${altchar[q]:--}"
+#    PR_ULCORNER="${altchar[l]:--}"
+#    PR_LLCORNER="${altchar[m]:--}"
+#    PR_LRCORNER="${altchar[j]:--}"
+#    PR_URCORNER="${altchar[k]:--}"
+#
+#    # Terminal prompt settings
+#    case "${TERM}" in
+#        dumb) # Simple prompt for dumb terminals
+#            unsetopt zle
+#            PROMPT='%n@%m:%~%% '
+#            ;;
+#        linux) # Simple prompt with Zenburn colors for the console
+#            echo -en "\e]P01e2320" # zenburn black (normal black)
+#            echo -en "\e]P8709080" # bright-black  (darkgrey)
+#            echo -en "\e]P1705050" # red           (darkred)
+#            echo -en "\e]P9dca3a3" # bright-red    (red)
+#            echo -en "\e]P260b48a" # green         (darkgreen)
+#            echo -en "\e]PAc3bf9f" # bright-green  (green)
+#            echo -en "\e]P3dfaf8f" # yellow        (brown)
+#            echo -en "\e]PBf0dfaf" # bright-yellow (yellow)
+#            echo -en "\e]P4506070" # blue          (darkblue)
+#            echo -en "\e]PC94bff3" # bright-blue   (blue)
+#            echo -en "\e]P5dc8cc3" # purple        (darkmagenta)
+#            echo -en "\e]PDec93d3" # bright-purple (magenta)
+#            echo -en "\e]P68cd0d3" # cyan          (darkcyan)
+#            echo -en "\e]PE93e0e3" # bright-cyan   (cyan)
+#            echo -en "\e]P7dcdccc" # white         (lightgrey)
+#            echo -en "\e]PFffffff" # bright-white  (white)
+#            PROMPT='$PR_GREEN%n@%m$PR_WHITE:$PR_YELLOW%l$PR_WHITE:$PR_RED%~$PR_YELLOW%%$PR_NO_COLOUR '
+#            ;;
+#        *)  # Main prompt
+#            PROMPT='$PR_SET_CHARSET$PR_GREEN$PR_SHIFT_IN$PR_ULCORNER$PR_GREEN$PR_HBAR\
+#$PR_SHIFT_OUT($PR_GREEN%(!.%SROOT%s.%n)$PR_GREEN@%m$PR_WHITE:$PR_YELLOW%l$PR_GREEN)\
+#$PR_SHIFT_IN$PR_HBAR$PR_GREEN$PR_HBAR${(e)PR_FILLBAR}$PR_GREEN$PR_HBAR$PR_SHIFT_OUT(\
+#$PR_RED%$PR_PWDLEN<...<%~%<<$PR_GREEN)$PR_SHIFT_IN$PR_HBAR$PR_GREEN$PR_URCORNER$PR_SHIFT_OUT\
+#
+#$PR_GREEN$PR_SHIFT_IN$PR_LLCORNER$PR_GREEN$PR_HBAR$(git_super_status)$PR_SHIFT_OUT(\
+#%(?..$PR_RED%?$PR_WHITE:)%(!.$PR_RED.$PR_YELLOW)%#$PR_GREEN)$PR_NO_COLOUR '
+#
+#            RPROMPT=' $PR_GREEN$PR_SHIFT_IN$PR_HBAR$PR_GREEN$PR_LRCORNER$PR_SHIFT_OUT$PR_NO_COLOUR'
+#            ;;
+#    esac
+#}
 
 # Git autocomplete speed fix
 __git_files () { 
     _wanted files expl 'local files' _files 
 }
+
+#function git_prompt_info() {
+#  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+#  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
+#}
 # Prompt init
-setprompt
+#setprompt
 # }}}
 # }}}
 #autoload -U promptinit

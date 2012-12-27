@@ -113,7 +113,7 @@ end
 
 format = function(template)
     if backend ~= nil then
-        return template:gsub("{(%w+)}", backend.get)
+        return template:gsub("{(%w+)}", backend.get):gsub("%&","&amp;")
     else
         return "Backend unset."
     end

@@ -29,7 +29,7 @@ METADATA_CMD = '/bin/bash -c "exec qdbus org.mpris.MediaPlayer2.spotify / org.fr
 local state
 local dbus_commands
 local reset = function()
-   print( "SPOTIFY: Reset" )
+   --print( "SPOTIFY: Reset" )
    state = {}
    dbus_commands = {}
    dbus_commands["pause"] = "org.mpris.MediaPlayer2.Player.Pause"
@@ -47,30 +47,30 @@ end
 local cmd = function(command)
    local dbus_cmd = dbus_commands[command]
    if dbus_cmd then
-      print( "SPOTIFYCMD: " ..  '/bin/bash -c "exec qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 ' .. dbus_cmd .. '"' )
+      --print( "SPOTIFYCMD: " ..  '/bin/bash -c "exec qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 ' .. dbus_cmd .. '"' )
       local bla =      io.popen( '/bin/bash -c "exec qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 ' .. dbus_cmd .. '"')
       local res = bla:read("*l")
       bla:close()
-      print( "RESULTS: " .. res )
+      --print( "RESULTS: " .. res )
    end
 end
 
     
 local query_spotify_state = function( file )
-   print( "SPOTIFY: Query State" )
+   --print( "SPOTIFY: Query State" )
    local tmp = io.popen( '/bin/bash -c "exec /usr/bin/qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get org.mpris.MediaPlayer2.Player PlaybackStatus"' )
    local state = tmp:read("*l")
-   print( "SPOTIFY: query_spotify_state :: state ==> " .. state )
+   --print( "SPOTIFY: query_spotify_state :: state ==> " .. state )
    tmp:close()
    return state
 end
 
 local refresh_co = function()
-   print( "SPOTIFY: Refresh Coroutine" )
+   --print( "SPOTIFY: Refresh Coroutine" )
 
    -- Get Playing State
    local spotify_state = query_spotify_state( TMP_FILE )
-   print( "SPOTIFY: refresh_co::Setting state to " .. spotify_state )
+   --print( "SPOTIFY: refresh_co::Setting state to " .. spotify_state )
    state["state"] = spotify_state
 
    -- Get song info
@@ -78,7 +78,7 @@ local refresh_co = function()
    print( "Execing: " .. METADATA_CMD )
    for line in metadata:lines() do
       for k,v in string.gmatch( line, "xesam:(%w+):(.*)" ) do
-	 print( "SPOTIFY: Setting " .. k .. " = " .. v )
+	 --print( "SPOTIFY: Setting " .. k .. " = " .. v )
 	 set( k, v )
       end
    end

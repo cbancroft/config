@@ -1,5 +1,6 @@
-#define COLOR_FG                  #B8B8B8
-#define COLOR_BG                  #101010
+#define COLOR_FG                  #FFFFFF
+/*#define COLOR_FG                  #B8B8B8*/
+#define COLOR_BG                  #0C0C0C
 
 #define COLOR_TERM_BLACK          #000000
 #define COLOR_TERM_DARK_RED       #FF6565

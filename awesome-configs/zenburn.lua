@@ -20,7 +20,7 @@ theme.font      = "Profont 8"
 theme.fg_normal = "#DCDCCC"
 theme.fg_focus  = "#F0DFAF"
 theme.fg_urgent = "#CC9393"
-theme.fg_highlight = "#DDDDDD"
+theme.fg_minimized = "#DDDDDD"
 
 theme.bg_normal = "#3F3F3F"
 theme.bg_focus  = "#1E2320"

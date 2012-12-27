@@ -1,10 +1,11 @@
 ! Fonts
 !urxvt*font:                     xft:Bitstream Vera Sans Mono:pixelsize=9
 !urxvt*font:                     xft:Terminus:pixelsize=8
-urxvt*font:                     xft:Anonymous Pro:pixelsize=16
+!urxvt*font:                     xft:Anonymous Pro:pixelsize=16
 !urxvt*font:                     xft:Dina:pixelsize=8
 !urxvt*font:                      xft:Profont:pixelsize=11
-
+!urxvt*font:			xft:Monaco:regular:size=8
+urxvt*font:			xft:Menlo for Powerline:size=9
 !Save n lines of scrollback buffer
 URxvt*saveLines:            16384
 
@@ -49,7 +50,7 @@ URxvt*secondaryScroll:	        true
 URxvt*background:           rgba:3333/3333/3333/bbbb
 URxvt*depth:                32
 #else
-URxvt*background:           #333333
+URxvt*background:           #1c1c1c
 URxvt*depth:                24
 #endif
 urxvt*perl-lib:		       

@@ -73,8 +73,9 @@ xsetroot -cursor_name left_ptr
 # }}}
 
 # {{{ Font Settings
-#xset +fp /usr/share/fonts/local
-#xset fp rehash
+xset +fp /usr/share/fonts/local
+xset +fp /home/cbancroft/.fonts
+xset fp rehash
 # }}}
 
 # {{{ Autostart settings

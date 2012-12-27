@@ -2,7 +2,7 @@
 	name = Charles Bancroft
 	email = charlie.bancroft@gmail.com
 [push]
-	default = tracking
+#	default = tracking
 [alias]
 	up = "!git remote update -p; git merge --ff-only @{u}"
 	gb = log --graph --boundary --date-order --pretty=tformat:\"%C(yellow)%h%Creset %C(magenta)%aE %ai%Creset %C(green bold)%d%Creset%n        %s\"
@@ -14,3 +14,5 @@
 	ui = auto
 [diff]
 	renames = true
+[push]
+	default = simple

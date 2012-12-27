@@ -29,6 +29,25 @@ require("music")
 
 -- }}}
 
+if awesome.startup_errors then
+    naughty.notify({ preset = naughty.config.presets.critical,
+                     title = "Oops, there were errors during startup!",
+                     text = awesome.startup_errors })
+end
+-- Handle runtime errors after startup
+do
+    local in_error = false
+    awesome.add_signal("debug::error", function (err)
+        -- Make sure we don't go into an endless error loop
+			  if in_error then return end
+        in_error = true
+
+        naughty.notify({ preset = naughty.config.presets.critical,
+                         title = "Oops, an error happened!",
+                         text = err })
+        in_error = false
+				       end)
+end
 
 -- {{{ Variable definitions
 local altkey = "Mod1"
@@ -81,7 +100,7 @@ separator.image = image(beautiful.widget_sep)
 
 -- {{{ Music
 musicwidget = music.widget("{artist} - {title}",
-			   "<span color=\"" .. beautiful.fg_highlight .. "\">Music - {state}</span>\n Title: {title}\n Artist: {artist}\n Album: {album}", 
+			   "<span color=\"" .. beautiful.fg_normal .. "\">Music - {state}</span>\n Title: {title}\n Artist: {artist}\n Album: {album}", 
 			   { pause = image(beautiful.icons.pause),
 			     play  = image(beautiful.icons.play)
 			   })
@@ -171,16 +190,17 @@ vicious.register(netwidget, vicious.widgets.net, '<span color="'
 -- }}}
 
 -- {{{ Mail subject
--- mailicon = widget({ type = "imagebox" })
--- mailicon.image = image(beautiful.widget_org)
+mailicon = widget({ type = "imagebox" })
+mailicon.image = image(beautiful.widget_mail)
 -- Initialize widget
---mailwidget = widget({ type = "textbox" })
+mailwidget = widget({ type = "textbox" })
 -- Register widget
---vicious.register(mailwidget, vicious.widgets.mbox, "$1", 181, {home .. "/mail/Inbox", 15})
+vicious.register(mailwidget, vicious.widgets.mdir, "$1", 60, {home .. "/Maildir"})
 -- Register buttons
--- mailwidget:buttons(awful.util.table.join(
---  awful.button({ }, 1, function () exec("urxvt -T Alpine -e alpine") end)
--- ))
+mailwidget:buttons(awful.util.table.join(
+		   awful.button({ }, 1, function () exec("urxvt -T Alpine -e alpine") end
+			       ))
+		  )
 -- }}}
 
 
@@ -299,8 +319,8 @@ for s = 1, screen.count() do
         s == screen.count() and systray or nil,
         separator, datewidget, dateicon,
         separator, volwidget,  volbar.widget, volicon,
-        separator, orgwidget,  orgmodeicon,
---        separator, mailwidget, mailicon,
+--        separator, orgwidget,  orgmodeicon,
+        separator, mailwidget, mailicon,
         separator, upicon,     netwidget, dnicon,
         separator, fs.r.widget, fs.h.widget, fs.a.widget, fsicon,
         separator, membar.widget, memicon,
