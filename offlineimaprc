@@ -1,14 +1,19 @@
-# Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
+#Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
 # get started fast.
 
 [general]
 accounts = Work
+maxsyncaccounts = 1
+pythonfile = /home/cbancroft/.offlineimap.py
+
 
 [Account Work]
 localrepository = work-local
 remoterepository = work-remote
 status_backend = sqlite
-
+autorefresh = 5
+quick = 10
+#
 [Repository work-local]
 type = Maildir
 localfolders = ~/Maildir
@@ -18,4 +23,7 @@ type = IMAP
 remotehost = localhost
 remoteport = 8143
 remoteuser = cbancrof
+remotepasseval = keyring.get_password("offlineimap", "cbancroft@bbn.com")
 maxconnections = 3
+keepalive = 60
+holdconnectionopen = yes
