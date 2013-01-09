@@ -1,7 +1,4 @@
 #!/bin/bash
-#
-# anrxc's X.org init file on Arch GNU/Linux
-
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
 	for f in /etc/X11/xinit/xinitrc.d/*; do
 		[ -x "$f" ] && . "$f"
