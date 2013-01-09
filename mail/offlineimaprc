@@ -1,0 +1,97 @@
+[general]
+# General information.  See the fully annotated example more information
+# https://github.com/jgoerzen/offlineimap/blob/master/offlineimap.conf
+
+metadata = ~/.offlineimap
+accounts = work
+maxsyncaccounts = 2
+socktimeout = 60
+ui = Basic
+
+# This helper file lets you use gnome-keyring to store usernames / passwords
+pythonfile = ~/.mail_config/lib/offlineimap-helper.py
+
+[mbnames]
+# Create a list of available mailboxes for mutt
+
+enabled = yes
+
+filename = ~/.mail_config/mutt/muttmailboxes
+header = "mailboxes "
+
+# Exclude these mailboxes from the above mailbox list
+folderfilter = lambda accountname, foldername: not re.search('(^bak.*|.*drafts$|.*spam$|.*trash$)', foldername)
+
+peritem = "+%(accountname)s/%(foldername)s"
+sep = " "
+footer = "\n"
+
+[Account work]
+localrepository = local-work
+remoterepository = remote-work
+
+# Call imapfilter before syncing
+#presynchook = /usr/bin/imapfilter -vc ~/.mail_config/imapfilter/work.lua
+postsynchook = ~/.mail_config/lib/offlineimap-postsync.sh
+status_backend = sqlite
+
+[Account gmail]
+localrepository = local-gmail
+remoterepository = remote-gmail
+
+[Repository local-work]
+type = Maildir
+localfolders = ~/.mail/work
+
+# Translate names from local names to remote names:
+# This one does:
+# 1. Capitalizes all the folder names
+# 2. Changes any underscores to spaces
+# 3. Changes Inbox -> INBOX
+#nametrans = lambda foldername: re.sub('Inbox', 'INBOX',
+#                               re.sub ('_', ' ', foldername.capitalize()))
+
+nametrans = lambda foldername: re.sub( '_', ' ', foldername)
+[Repository remote-work]
+type = IMAP
+maxconnections = 2
+remotehost = localhost
+remoteport = 8143
+remoteusereval = get_username("mail.bbn.com")
+remotepasseval = get_password("mail.bbn.com")
+
+# Translate remote names to local names:
+# This one does:
+# 1. Transforms names to lowercase
+# 2. Replaces spaces with underscores
+#nametrans = lambda foldername: re.sub (' ', '_', foldername.lower())
+nametrans = lambda foldername: re.sub( ' ', '_', foldername )
+[Repository local-gmail]
+type = Maildir
+localfolders = ~/.mail/gmail
+# Note the nametrans below in remote-gmail: it undoes this one
+nametrans = lambda foldername: re.sub ('Inbox', 'INBOX',
+                               re.sub ('Drafts', '[Gmail].Drafts',
+                               re.sub ('Sent', '[Gmail].Sent Mail',
+                               re.sub ('Flagged', 'Starred',
+                               re.sub ('_', ' ', foldername.capitalize())))))
+
+
+[Repository remote-gmail]
+type = Gmail
+maxconnections = 2
+remotehost = imap.gmail.com
+remoteusereval = get_username("imap.gmail.com")
+remotepasseval = get_password("imap.gmail.com")
+# If using ssl, you will need to specify certificates to use with them
+ssl = yes
+sslcacertfile = /path/to/cacertfile.crt
+realdelete = no
+# Note the nametrans above in local-gmail: it undoes this one
+nametrans = lambda foldername: re.sub ('^\[gmail\]\/', '',
+                               re.sub ('sent_mail', 'sent',
+                               re.sub ('starred', 'flagged',
+                               re.sub (' ', '_', foldername.lower()))))
+
+# We don't want to sync all mail, it would pull everything again
+folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']

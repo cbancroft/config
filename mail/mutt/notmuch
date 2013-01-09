@@ -1,0 +1,34 @@
+# Configuration for notmuch extras in mutt-kz
+
+# setup
+set nm_default_uri="notmuch:///home/cbancroft/.mail"
+set virtual_spoolfile	= yes
+
+# virtual mailboxes 
+virtual-mailboxes \
+		"INBOX"                "notmuch://?query=tag:inbox and NOT tag:archive" \
+		"D-CAM"                "notmuch://?query=tag:d-cam and NOT tag:archive" \
+		"BBN-ALL"              "notmuch://?query=tag:bbn-all and NOT tag:archive" \
+		"Bitheads"             "notmuch://?query=tag:bitheads and NOT tag:archive" \
+		"Home"	       	       "notmuch://?query=tag:home and NOT tag:archive" \
+		"Sent"	       	       "notmuch://?query=tag:sent and NOT tag:archive" \
+		"Firefly"	       "notmuch://?query=tag:firefly and NOT tag:archive" \
+		"DaytonaStuff"         "notmuch://?query=tag:daytona and NOT tag:archive" 
+
+# macros
+macro index A "<modify-labels-then-hide>+archive -inbox\n<sync-mailbox>"
+macro index I "<modify-labels-then-hide>-inbox\n<sync-mailbox>"
+
+# sidebar
+set sidebar_width	= 35
+set sidebar_visible	= yes
+color sidebar_new yellow default
+bind index <left> sidebar-prev
+bind index <right> sidebar-next
+bind index <space> sidebar-open
+bind index <Esc>S sidebar-toggle
+
+# index format for mutt-kz
+#set index_format = "%4C %Z %{%b %d} %-15.15L (%4l) %s"
+set index_format = "%4C %Z %{%b %d} %-15.15L %s%>  (%g)"
+set pager_format = "-%Z- %C/%m: %-20.20n %s"
