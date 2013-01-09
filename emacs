@@ -793,6 +793,13 @@ Skips capture tasks and tasks with no subtasks"
 ;(add-to-list 'auto-mode-alist '("cron\\(tab\\)?\\."   . crontab-mode))
 ;}}}
 
+;{{{ Markdown mode
+(autoload 'markdown-mode "markdown-mode.el"
+   "Major mode for editing Markdown files" t)
+(setq auto-mode-alist
+   (cons '("\.md" . markdown-mode) auto-mode-alist))
+
+;}}}
 ;{{{ Post mode
 ;    - http://post-mode.sourceforge.net/
 ;
