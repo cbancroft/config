@@ -3,7 +3,7 @@ A spotify backend for the awesome music framework.
 
 Since we have no signals from spotify, we need to poll every few seconds
 --]]
-require ("awful")
+local awful = require ("awful")
 
 local setmetatable = setmetatable
 local capi = { widget = widget,
@@ -13,7 +13,7 @@ local capi = { widget = widget,
                tooltip = awful.tooltip,
                timer = timer,
                emit_signal = awesome.emit_signal,
-               add_signal = awesome.add_signal }
+               connect_signal = awesome.connect_signal }
 local coroutine = coroutine
 local print = print
 local io = io
@@ -98,7 +98,7 @@ local refresh = function()
    --    end
    refresh_co()
 end
-timer:add_signal("timeout", refresh)
+timer:connect_signal("timeout", refresh)
 
 start = function()
     reset()

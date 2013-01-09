@@ -3,8 +3,8 @@ An mpd backend for the awesome music framework.
 
 Unlike other implimentations, this does not poll mpd.
 --]]
-require ("awful")
-local socket = require("socket")
+local awful = require ("awful")
+--local socket = require("socket")
 local setmetatable = setmetatable
 local capi = { widget = widget,
                button = awful.button,
@@ -13,9 +13,9 @@ local capi = { widget = widget,
                tooltip = awful.tooltip,
                timer = timer,
                emit_signal = awesome.emit_signal,
-               add_signal = awesome.add_signal }
+               connect_signal = awesome.connect_signal }
 local coroutine = coroutine
-
+local screen = screen
 
 -- Mpd: provides Music Player Daemon information
 module("mpd")
@@ -76,7 +76,7 @@ local refresh_co = function()
     s = connect()
     if s == nil then
         state = {}
-        capi.emit_signal("music::update")
+        screen[1]:emit_signal("music::update")
         return
     end
     local buffer, err
@@ -89,7 +89,7 @@ local refresh_co = function()
                 coroutine.yield()
             elseif not buffer then
                 state = {}
-                capi.emit_signal("music::update")
+                screen[1]:emit_signal("music::update")
                 return
             elseif buffer:sub(0,2) == "OK" then
                 break
@@ -99,7 +99,7 @@ local refresh_co = function()
                 end
             end
         end
-        capi.emit_signal("music::update")
+        screen[1]:emit_signal("music::update")
 
         s:settimeout(0)
         s:send("idle player\n")
@@ -109,7 +109,7 @@ local refresh_co = function()
                 coroutine.yield()
             elseif not buffer then
                 state = {}
-                capi.emit_signal("music::update")
+                screen[1]:emit_signal("music::update")
                 return
             end
         until buffer and buffer:sub(0,2) == "OK"
@@ -126,12 +126,12 @@ local refresh = function()
         watcher = coroutine.create(refresh_co)
     end
 end
-timer:add_signal("timeout", refresh)
+timer:connect_signal("timeout", refresh)
 
 start = function()
     reset()
     timer:start()
-    capi.emit_signal("music::update")
+    screen[1]:emit_signal("music::update")
 end
 
 stop = function()

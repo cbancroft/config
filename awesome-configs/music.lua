@@ -21,14 +21,19 @@ Backends must emit music::upsate when state changes.
 
 Licenced under the WTFPL
 --]]
+local wibox = require("wibox")
+local awful = require("awful")
+local mpd = require("mpd")
+local spotify = require("spotify")
+local pianobar = require("pianobar")
 local type = type
 local setmetatable = setmetatable
 local pairs = pairs
 local table = table
-local mpd = mpd
-local pianobar = pianobar
-local spotify = spotify
-local capi = { widget = widget,
+local mpd = require("mpd")
+local pianobar = require("pianobar")
+local spotify = require("spotify")
+local capi = { widget = wibox.widget,
                button = awful.button,
                escape = awful.util.escape,
                join = awful.util.table.join,
@@ -36,20 +41,21 @@ local capi = { widget = widget,
                tooltip = awful.tooltip,
                timer = timer,
                emit_signal = awesome.emit_signal,
-               add_signal = awesome.add_signal }
+               connect_signal = awesome.connect_signal }
 local coroutine = coroutine
-
+local awesome = awesome
+local screen = screen
 
 -- Mpd: provides Music Player Daemon information
 module("music")
 
-DEFAULT_BACKEND = pianobar
-BACKENDS = {
-    ["mpd"] = mpd,
-    ["pianobar"] = pianobar,
-    ["spotify"] = spotify
-}
 
+BACKENDS = {
+   ["mpd"] = mpd,
+   ["pianobar"] = pianobar,
+   ["spotify"] = spotify
+}
+DEFAULT_BACKEND = pianobar
 local backend = nil
 
 setBackend = function(b)
@@ -67,16 +73,12 @@ widget = function(widget_template, tooltip_template, icon)
         icon = icon,
         widget_template = widget_template,
         tooltip_template = tooltip_template,
-        widget = capi.widget({type = "textbox"})
+        widget = wibox.layout.fixed.horizontal(),
+	textbox = capi.widget.textbox(),
+	current_icon = capi.widget.imagebox()
     }
-    if w.icon then
-        w.widget.bg_image = w.icon.pause
-        w.widget:margin({left = 10, right = 6})
-        w.widget.bg_align = "middle"
-    else
-        w.widget:margin({right = 6})
-    end
-
+    w.widget:add(w.current_icon)
+    w.widget:add(w.textbox)
     -- Populate the backends menu.
     local menu_items = {}
     for n, b in pairs(BACKENDS) do
@@ -94,19 +96,20 @@ widget = function(widget_template, tooltip_template, icon)
     })
 
     local update = function()
-        w.widget.text = format(w.widget_template)
+        w.textbox:set_markup(format(w.widget_template) )
         w.tooltip:set_text(
             format(w.tooltip_template)
         )
         if w.icon then
             if isPlaying() then
-                w.widget.bg_image = w.icon.play
+                w.current_icon:set_image(w.icon.play)
             else
-                w.widget.bg_image = w.icon.pause
+                w.current_icon:set_image(w.icon.pause)
             end
         end
     end
-    capi.add_signal("music::update", update)
+    screen[1]:add_signal("music::update")
+    screen[1]:connect_signal("music::update", update)
     update()
     return w.widget
 end

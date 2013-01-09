@@ -94,8 +94,11 @@ urxvtd -q -o -f &
 [[ ! -r "/tmp/emacs${UID}/server" ]] && emacs --daemon &
 
 
-nvidia-settings -a "[gpu:0]/GPUPowerMizerMode=1"
-nvidia-settings -a InitialPixmapPlacement=2
+#nvidia-settings -a "[gpu:0]/GPUPowerMizerMode=1"
+#nvidia-settings -a InitialPixmapPlacement=2
+
+
+compton -cCG -o 0.75 -f 0.05 -t 0.01 -l -2 -r 2.5  -i 0.8 &
 # Start the device monitor
 #devmon &
 
@@ -105,9 +108,10 @@ nvidia-settings -a InitialPixmapPlacement=2
 
 # Open a terminal emulator on the first tag
 #   - resume the old screen session or start a new one
-#urxvt -e byobu -u -2  &
+urxvt -e tmux -s asshai  &
 
-#synclient PalmDetect=1 &
+synclient PalmDetect=1 &
+synclient TouchpadOff=1 &
 # Start the virtual box client
 #            /usr/bin/VBoxClient-all
 # Play a startup sound

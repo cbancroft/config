@@ -41,6 +41,7 @@ plugins=(gitfast git-extras archlinux battery gpg-agent git-remote-branch )
 
 source $ZSH/oh-my-zsh.sh
 
+source $HOME/.zsh/infinality-settings.sh
 # {{{ User Settings
 
 # {{{ Environment
@@ -374,3 +375,7 @@ __git_files () {
 #prompt wunjo
 
 export _JAVA_AWT_WM_NONREPARENTING=1
+
+tmux_create_or_attach() {
+	tmux has-session -t $1 && tmux attach-session -t $1 || tmux new -s $1
+}

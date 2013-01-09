@@ -3,18 +3,18 @@
 --    By Adrian C. (anrxc)   --
 --    License:  GNU GPL v2   --
 -------------------------------
-require("lfs")
-
+local lfs = require("lfs")
+local awful = require("awful")
 -- {{{ Main
 theme = {}
 theme.confdir       = awful.util.getdir("config")
-theme.wallpaper_cmd = { "/usr/bin/nitrogen --restore" }
+theme.wallpaper_cmd = "/usr/bin/nitrogen --restore"
 --theme.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/zenburn/zenburn-background.png" }
 -- }}}
 
 
 -- {{{ Styles
-theme.font      = "Profont 8"
+theme.font      = "Monaco 8"
 
 -- {{{ Colors
 theme.fg_normal = "#DCDCCC"

@@ -11,6 +11,16 @@
 (setq load-path (cons "/usr/share/emacs/site-lisp" load-path))
 (setq load-path (cons "/usr/share/emacs/23.3/lisp" load-path))
 
+
+;; Popup
+;; https://github.com/auto-complete/popup-el
+(require 'popup)
+
+;; Auto-complete
+;; https://github.com/auto-complete/auto-complete
+(require 'auto-complete-config)                                                                                                                               
+(ac-config-default)                                                                                                                                            
+                     
 ;; Turn off the toolbar
 (tool-bar-mode -1)
 ;;
@@ -456,7 +466,7 @@ If there is no *ansi-term*, run it."
 (global-set-key "\C-cw" 'toggle-truncate-lines)
 
 ;; Quick access to the speedbar
-(global-set-key "\C-cs" 'speedbar-get-focus)
+;; (global-set-key "\C-cs" 'speedbar-get-focus)
 
 ;; org-mode bindings for quick access (see below)
 (global-set-key "\C-cl" 'org-store-link)
@@ -773,11 +783,14 @@ Skips capture tasks and tasks with no subtasks"
 
 ;}}}
 
+;{{{ Font config
+(set-default-font "Monaco 10")
+;}}}
 ;{{{ Crontab mode
 ;    - http://www.mahalito.net/~harley/elisp/crontab-mode.el
 ;
-(autoload 'crontab-mode "~/.emacs.d/crontab-mode.el" "Major mode for editing the crontab" t)
-(add-to-list 'auto-mode-alist '("cron\\(tab\\)?\\."   . crontab-mode))
+;(autoload 'crontab-mode "~/.emacs.d/crontab-mode.el" "Major mode for editing the crontab" t)
+;(add-to-list 'auto-mode-alist '("cron\\(tab\\)?\\."   . crontab-mode))
 ;}}}
 
 ;{{{ Post mode
@@ -788,14 +801,28 @@ Skips capture tasks and tasks with no subtasks"
   '("\\.*mutt-*\\|\\.*pico.*\\|.article\\|\\.*200\\(T\\)?\\|\\.followup" . post-mode))
 ;}}}
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/org/todo.org" "~/org/refile.org" "~/org/work.org"))))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode t)
+ '(column-number-mode t)
+ '(notmuch-saved-searches (quote (("inbox" . "tag:inbox") ("unread" . "tag:unread") ("Daytona" . "daytona"))))
+ '(org-agenda-files (quote ("~/org/todo.org" "~/org/refile.org" "~/org/work.org")))
+ '(send-mail-function (quote smtpmail-send-it))
+ '(show-paren-mode t)
+ '(smtpmail-smtp-server "localhost")
+ '(smtpmail-smtp-service 8025)
+ '(tool-bar-mode nil))
+;(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ ;'(default ((t (:family "Monaco for Powerline" :foundry "b&h" :slant normal :weight normal :height 80 :width normal)))))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- )
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(menu ((t (:height 1.0 :family "Monaco 10")))))

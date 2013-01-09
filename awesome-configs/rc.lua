@@ -1,31 +1,39 @@
 
 -- {{{ License
 --
--- Awesome configuration, using awesome 3.4.8 on Arch GNU/Linux
---   * Adrian C. <anrxc@sysphere.org>
+-- Awesome configuration, using awesome 3.5 on Arch GNU/Linux
+--   * Charles B. <charlie.bancroft@gmail.com>
 
--- Screenshot: http://sysphere.org/gallery/snapshots
-
+-- Parts borrow from anrxc's configuration:
+--   * http://git.sysphere.org/awesome-configs
 -- This work is licensed under the Creative Commons Attribution-Share
 -- Alike License: http://creativecommons.org/licenses/by-sa/3.0/
 -- }}}
 
 
 -- {{{ Libraries
-require("awful")
-require("awful.rules")
-require("awful.autofocus")
+local gears = require("gears")
+local awful = require("awful")
+awful.rules = require("awful.rules")
+awful.autofocus = require("awful.autofocus")
+
+-- Wibox is no longer part of standard library
+local wibox = require("wibox")
 
 --Notification Library
-require("naughty")
+local naughty = require("naughty")
+
 -- User libraries
-vicious = require("vicious")
+local vicious = require("vicious")
 vicious.contrib = require("vicious.contrib")
-require("scratch")
-require("mpd")
-require("pianobar")
-require("spotify")
-require("music")
+
+local scratch = require("scratch")
+
+beautiful = require("beautiful")
+local menubar = require("menubar")
+
+local my_widgets = require("widgets") 
+
 
 -- }}}
 
@@ -37,7 +45,7 @@ end
 -- Handle runtime errors after startup
 do
     local in_error = false
-    awesome.add_signal("debug::error", function (err)
+    awesome.connect_signal("debug::error", function (err)
         -- Make sure we don't go into an endless error loop
 			  if in_error then return end
         in_error = true
@@ -46,22 +54,24 @@ do
                          title = "Oops, an error happened!",
                          text = err })
         in_error = false
-				       end)
+    end)
 end
 
 -- {{{ Variable definitions
 local altkey = "Mod1"
 local modkey = "Mod4"
-
+local terminal = "urxvtc"
 local home   = os.getenv("HOME")
 local exec   = awful.util.spawn
 local sexec  = awful.util.spawn_with_shell
 local scount = screen.count()
+local editor = os.getenv("EDITOR") or "vim"
+editor_cmd = terminal .. " -e " .. editor
 -- Beautiful theme
 beautiful.init(home .. "/.config/awesome/zenburn.lua")
 
 -- Window management layouts
-layouts = {
+local layouts = {
   awful.layout.suit.tile,        -- 1
   awful.layout.suit.tile.bottom, -- 2
   awful.layout.suit.fair,        -- 3
@@ -71,6 +81,15 @@ layouts = {
 }
 -- }}}
 
+-- {{{ Wallpaper
+if beautiful.wallpaper then 
+   for s = 1, screen.count() do
+      gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+   end
+elseif beautiful.wallpaper_cmd then
+    exec( beautiful.wallpaper_cmd )
+end
+-- }}}
 
 -- {{{ Tags
 tags = {
@@ -88,128 +107,22 @@ for s = 1, scount do
 end
 -- }}}
 
-
+my_widgets.init_widgets()
 -- {{{ Wibox
 --
 -- {{{ Widgets configuration
 --
 -- {{{ Reusable separator
-separator = widget({ type = "imagebox" })
-separator.image = image(beautiful.widget_sep)
+separator = wibox.widget.imagebox()
+separator:set_image(beautiful.widget_sep)
 -- }}}
-
--- {{{ Music
-musicwidget = music.widget("{artist} - {title}",
-			   "<span color=\"" .. beautiful.fg_normal .. "\">Music - {state}</span>\n Title: {title}\n Artist: {artist}\n Album: {album}", 
-			   { pause = image(beautiful.icons.pause),
-			     play  = image(beautiful.icons.play)
-			   })
-musicwidget.width = 500
-
--- }}}
--- {{{ CPU usage and temperature
-cpuicon = widget({ type = "imagebox" })
-cpuicon.image = image(beautiful.widget_cpu)
--- Initialize widgets
-cpugraph  = awful.widget.graph()
-tzswidget = widget({ type = "textbox" })
--- Graph properties
-cpugraph:set_width(40):set_height(14)
-cpugraph:set_background_color(beautiful.fg_off_widget)
-cpugraph:set_gradient_angle(0):set_gradient_colors({
-   beautiful.fg_end_widget, beautiful.fg_center_widget, beautiful.fg_widget
-}) -- Register widgets
-vicious.register(cpugraph,  vicious.widgets.cpu,      "$1")
-vicious.register(tzswidget, vicious.widgets.thermal, " $1C", 19, "thermal_zone0")
--- }}}
-
--- {{{ Battery state
-baticon = widget({ type = "imagebox" })
-baticon.image = image(beautiful.widget_bat)
--- Initialize widget
-batwidget = widget({ type = "textbox" })
--- Register widget
-vicious.register(batwidget, vicious.widgets.bat, "$1$2%", 61, "BAT0")
--- }}}
-
--- {{{ Memory usage
-memicon = widget({ type = "imagebox" })
-memicon.image = image(beautiful.widget_mem)
--- Initialize widget
-membar = awful.widget.progressbar()
--- Pogressbar properties
-membar:set_vertical(true):set_ticks(true)
-membar:set_height(12):set_width(8):set_ticks_size(2)
-membar:set_background_color(beautiful.fg_off_widget)
-membar:set_gradient_colors({ beautiful.fg_widget,
-   beautiful.fg_center_widget, beautiful.fg_end_widget
-}) -- Register widget
-vicious.register(membar, vicious.widgets.mem, "$1", 13)
--- }}}
-
--- {{{ File system usage
-fsicon = widget({ type = "imagebox" })
-fsicon.image = image(beautiful.widget_fs)
--- Initialize widgets
-fs = {
-  r = awful.widget.progressbar(), h = awful.widget.progressbar(),
-  a = awful.widget.progressbar(), b = awful.widget.progressbar()
-}
--- Progressbar properties
-for _, w in pairs(fs) do
-  w:set_vertical(true):set_ticks(true)
-  w:set_height(14):set_width(5):set_ticks_size(2)
-  w:set_border_color(beautiful.border_widget)
-  w:set_background_color(beautiful.fg_off_widget)
-  w:set_gradient_colors({ beautiful.fg_widget,
-     beautiful.fg_center_widget, beautiful.fg_end_widget
-  }) -- Register buttons
-  w.widget:buttons(awful.util.table.join(
-    awful.button({ }, 1, function () exec("rox", false) end)
-  ))
-end -- Enable caching
-vicious.cache(vicious.widgets.fs)
--- Register widgets
-vicious.register(fs.r, vicious.widgets.fs, "${/ used_p}",            599)
-vicious.register(fs.h, vicious.widgets.fs, "${/home used_p}",        599)
-vicious.register(fs.a, vicious.widgets.fs, "${/abyss used_p}",	     599)
---vicious.register(fs.b, vicious.widgets.fs, "${/mnt/backup used_p}",  599)
--- }}}
-
--- {{{ Network usage
-dnicon = widget({ type = "imagebox" })
-upicon = widget({ type = "imagebox" })
-dnicon.image = image(beautiful.widget_net)
-upicon.image = image(beautiful.widget_netup)
--- Initialize widget
-netwidget = widget({ type = "textbox" })
--- Register widget
-vicious.register(netwidget, vicious.widgets.net, '<span color="'
-  .. beautiful.fg_netdn_widget ..'">${wlan0 down_kb}</span> <span color="'
-  .. beautiful.fg_netup_widget ..'">${wlan0 up_kb}</span>', 3)
--- }}}
-
--- {{{ Mail subject
-mailicon = widget({ type = "imagebox" })
-mailicon.image = image(beautiful.widget_mail)
--- Initialize widget
-mailwidget = widget({ type = "textbox" })
--- Register widget
-vicious.register(mailwidget, vicious.widgets.mdir, "$1", 60, {home .. "/Maildir"})
--- Register buttons
-mailwidget:buttons(awful.util.table.join(
-		   awful.button({ }, 1, function () exec("urxvt -T Alpine -e alpine") end
-			       ))
-		  )
--- }}}
-
 
 -- {{{ Org-mode agenda
-orgmodeicon = widget({ type = "imagebox" })
-orgmodeicon.image = image(beautiful.widget_mail)
+orgmodeicon = wibox.widget.imagebox()
+orgmodeicon:set_image(beautiful.widget_mail)
 
 -- Initialize widget
-orgwidget = widget({ type = "textbox" })
+orgwidget = wibox.widget.textbox()
 -- Configure widget
 local orgmode = {
   files = { home.."/org/todo.org",
@@ -232,53 +145,14 @@ orgwidget:buttons(awful.util.table.join(
 ))
 --}}}
 
--- {{{ Volume level
-volicon = widget({ type = "imagebox" })
-volicon.image = image(beautiful.widget_vol)
--- Initialize widgets
-volbar    = awful.widget.progressbar()
-volwidget = widget({ type = "textbox" })
--- Progressbar properties
-volbar:set_vertical(true):set_ticks(true)
-volbar:set_height(12):set_width(8):set_ticks_size(2)
-volbar:set_background_color(beautiful.fg_off_widget)
-volbar:set_gradient_colors({ beautiful.fg_widget,
-   beautiful.fg_center_widget, beautiful.fg_end_widget
-}) -- Enable caching
-vicious.cache(vicious.widgets.volume)
--- Register widgets
-vicious.register(volbar,    vicious.contrib.pulse,  "$1",  2, "alsa_output.pci-0000_00_1b.0.analog-stereo")
-vicious.register(volwidget, vicious.contrib.pulse, " $1%", 2, "alsa_output.pci-0000_00_1b.0.analog-stereo")
--- Register buttons
-volbar.widget:buttons(awful.util.table.join(
-			 awful.button({ }, 1, function () awful.util.spawn("pavucontrol") end),
-			 awful.button({ }, 4, function () vicious.contrib.pulse.add(5, "alsa_output.pci-0000_00_1b.0.analog-stereo") end),
-			 awful.button({ }, 5, function () vicious.contrib.pulse.add(-5, "alsa_output.pci-0000_00_1b.0.analog-stereo") end)
-)) -- Register assigned buttons
-volwidget:buttons(volbar.widget:buttons())
--- }}}
-
--- {{{ Date and time
-dateicon = widget({ type = "imagebox" })
-dateicon.image = image(beautiful.widget_date)
--- Initialize widget
-datewidget = widget({ type = "textbox" })
--- Register widget
-vicious.register(datewidget, vicious.widgets.date, "%R", 61)
--- Register buttons
-datewidget:buttons(awful.util.table.join(
-  awful.button({ }, 1, function () exec("pylendar.py") end)
-))
--- }}}
 
 -- {{{ System tray
-systray = widget({ type = "systray" })
 -- }}}
 -- }}}
 
 -- {{{ Wibox initialisation
-wibox     = {}
-promptbox = {}
+my_wibox     = {}
+mypromptbox = {}
 layoutbox = {}
 taglist   = {}
 taglist.buttons = awful.util.table.join(
@@ -292,7 +166,7 @@ taglist.buttons = awful.util.table.join(
 
 for s = 1, screen.count() do
     -- Create a promptbox
-    promptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
+    mypromptbox[s] = awful.widget.prompt()
     -- Create a layoutbox
     layoutbox[s] = awful.widget.layoutbox(s)
     layoutbox[s]:buttons(awful.util.table.join(
@@ -303,32 +177,35 @@ for s = 1, screen.count() do
     ))
 
     -- Create the taglist
-    taglist[s] = awful.widget.taglist(s, awful.widget.taglist.label.all, taglist.buttons)
+    taglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist.buttons)
     -- Create the wibox
-    wibox[s] = awful.wibox({      screen = s,
+    my_wibox[s] = awful.wibox({      screen = s,
         fg = beautiful.fg_normal, height = 12,
         bg = beautiful.bg_normal, position = "top",
         border_color = beautiful.border_focus,
         border_width = beautiful.border_width
     })
-    -- Add widgets to the wibox
-    wibox[s].widgets = {
-        {   taglist[s], layoutbox[s], separator, promptbox[s],
-            ["layout"] = awful.widget.layout.horizontal.leftright
-        },
-        s == screen.count() and systray or nil,
-        separator, datewidget, dateicon,
-        separator, volwidget,  volbar.widget, volicon,
---        separator, orgwidget,  orgmodeicon,
-        separator, mailwidget, mailicon,
-        separator, upicon,     netwidget, dnicon,
-        separator, fs.r.widget, fs.h.widget, fs.a.widget, fsicon,
-        separator, membar.widget, memicon,
-        separator, batwidget, baticon,
-        separator, tzswidget, cpugraph.widget, cpuicon,
-        separator, ["layout"] = awful.widget.layout.horizontal.rightleft,
-	musicwidget, separator
-    }
+    
+    local left_layout = wibox.layout.fixed.horizontal()
+    left_layout:add( taglist[s] )
+    left_layout:add( layoutbox[s] )
+    left_layout:add( mypromptbox[s] )
+    
+    local center_layout = wibox.layout.fixed.horizontal()
+
+    local right_layout=wibox.layout.fixed.horizontal()
+    right_layout:add( my_widgets.layout_widgets() )
+
+    if s == 1 then right_layout:add( wibox.widget.systray()) end
+
+
+    local layout = wibox.layout.align.horizontal()
+    layout:set_left(left_layout)
+    layout:set_middle(center_layout)
+    layout:set_right(right_layout)
+
+    my_wibox[s]:set_widget(layout)
+    
 end
 -- }}}
 -- }}}
@@ -392,25 +269,26 @@ globalkeys = awful.util.table.join(
 
     -- {{{ Prompt menus
     awful.key({ altkey }, "F2", function ()
-        awful.prompt.run({ prompt = "Run: " }, promptbox[mouse.screen].widget,
-            function (...) promptbox[mouse.screen].text = exec(unpack(arg), false) end,
-            awful.completion.shell, awful.util.getdir("cache") .. "/history")
+        --awful.prompt.run({ prompt = "Run: " }, promptbox[mouse.screen].widget,
+	--		 function (...) promptbox[mouse.screen]:set_markup(exec(unpack(arg), false)) end,
+	  --     awful.completion.shell, awful.util.getdir("cache") .. "/history")
+	  mypromptbox[mouse.screen]:run()
     end),
     awful.key({ altkey }, "F3", function ()
-        awful.prompt.run({ prompt = "Dictionary: " }, promptbox[mouse.screen].widget,
+        awful.prompt.run({ prompt = "Dictionary: " }, mypromptbox[mouse.screen].widget,
             function (words)
                 sexec("crodict "..words.." | ".."xmessage -timeout 10 -file -")
             end)
     end),
     awful.key({ altkey }, "F4", function ()
-        awful.prompt.run({ prompt = "Web: " }, promptbox[mouse.screen].widget,
+        awful.prompt.run({ prompt = "Web: " }, mypromptbox[mouse.screen].widget,
             function (command)
                 sexec("chromium 'http://yubnub.org/parser/parse?command="..command.."'")
                 awful.tag.viewonly(tags[1][3])
             end)
     end),
     awful.key({ altkey }, "F5", function ()
-        awful.prompt.run({ prompt = "Lua: " }, promptbox[mouse.screen].widget,
+        awful.prompt.run({ prompt = "Lua: " }, mypromptbox[mouse.screen].widget,
         awful.util.eval, nil, awful.util.getdir("cache") .. "/history_eval")
     end),
     -- }}}
@@ -421,7 +299,7 @@ globalkeys = awful.util.table.join(
     end),
     awful.key({ modkey, "Shift" }, "q", awesome.quit),
     awful.key({ modkey, "Shift" }, "r", function ()
-        promptbox[mouse.screen].text = awful.util.escape(awful.util.restart())
+		 mypromptbox[mouse.screen]:set_markup(awful.util.escape(awful.util.restart()))
     end),
     -- }}}
 
@@ -489,13 +367,10 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey, "Shift" }, "m", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey, "Shift" }, "c", function (c) exec("kill -CONT " .. c.pid) end),
     awful.key({ modkey, "Shift" }, "s", function (c) exec("kill -STOP " .. c.pid) end),
-    awful.key({ modkey, "Shift" }, "t", function (c)
-        if   c.titlebar then awful.titlebar.remove(c)
-        else awful.titlebar.add(c, { modkey = modkey }) end
-    end),
+    awful.key({ modkey, "Shift" }, "t", function (c) toggle_titlebar(c) end ),
     awful.key({ modkey, "Shift" }, "f", function (c) if awful.client.floating.get(c)
-        then awful.client.floating.delete(c);    awful.titlebar.remove(c)
-        else awful.client.floating.set(c, true); awful.titlebar.add(c) end
+        then awful.client.floating.delete(c);    awful.titlebar(c,{size=0})
+        else awful.client.floating.set(c, true); awful.titlebar(c):set_widget(awful.titlebar.widget.titlewidget(c)) end
     end)
 )
 -- }}}
@@ -568,16 +443,15 @@ awful.rules.rules = {
 -- {{{ Signals
 --
 -- {{{ Manage signal handler
-client.add_signal("manage", function (c, startup)
+client.connect_signal("manage", function (c, startup)
     -- Add titlebar to floaters, but remove those from rule callback
     if awful.client.floating.get(c)
     or awful.layout.get(c.screen) == awful.layout.suit.floating then
-        if   c.titlebar then awful.titlebar.remove(c)
-        else awful.titlebar.add(c, {modkey = modkey}) end
+		toggle_titlebar(c)
     end
 
     -- Enable sloppy focus
-    c:add_signal("mouse::enter", function (c)
+    c:connect_signal("mouse::enter", function (c)
         if  awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
         and awful.client.focus.filter(c) then
             client.focus = c
@@ -586,7 +460,7 @@ client.add_signal("manage", function (c, startup)
 
     -- Client placement
     if not startup then
-        awful.client.setslave(c)
+        --awful.client.setslave(c)
 
         if  not c.size_hints.program_position
         and not c.size_hints.user_position then
@@ -598,8 +472,8 @@ end)
 -- }}}
 
 -- {{{ Focus signal handlers
-client.add_signal("focus",   function (c) c.border_color = beautiful.border_focus  end)
-client.add_signal("unfocus", function (c) c.border_color = beautiful.border_normal end)
+client.connect_signal("focus",   function (c) c.border_color = beautiful.border_focus  end)
+client.connect_signal("unfocus", function (c) c.border_color = beautiful.border_normal end)
 -- }}}
 
 -- {{{ Notifications
@@ -620,7 +494,7 @@ naughty.config.presets.critical.bg = '#991000cc'
 -- }}}
 
 -- {{{ Arrange signal handler
-for s = 1, screen.count() do screen[s]:add_signal("arrange", function ()
+for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
     local clients = awful.client.visible(s)
     local layout = awful.layout.getname(awful.layout.get(s))
 
@@ -633,3 +507,7 @@ for s = 1, screen.count() do screen[s]:add_signal("arrange", function ()
 end
 -- }}}
 -- }}}
+toggle_titlebar = function( c )
+	if   c.titlebar then awful.titlebar(c, {size=0})
+	else awful.titlebar(c, {modkey = modkey}):set_widget(awful.titlebar.widget.titlewidget(c)) end
+end

@@ -1,8 +1,11 @@
 local setmetatable = setmetatable
 local io = require("io")
 local getenv = os.getenv
-local emit_signal = awesome.emit_signal
+local awesome = awesome
+local screen = screen
 
+
+local print = print
 module("pianobar")
 
 ctl_path = getenv("XDG_CONFIG_HOME") .. "/pianobar/ctl"
@@ -13,6 +16,7 @@ local cmd = function(command)
     end
     ctl:write(command)
     ctl:flush()
+    fireUpdate()
 end
 
 
@@ -29,7 +33,7 @@ reset()
 
 start = function()
     reset()
-    emit_signal("music::update")
+    fireUpdate()
 end
 
 stop = function() end
@@ -53,7 +57,7 @@ setPlaying = function(is_playing)
 end
 
 fireUpdate = function()
-    emit_signal("music::update")
+   screen[1]:emit_signal("music::update")
 end
 
 -- {{{ Actions
