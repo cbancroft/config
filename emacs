@@ -1,7 +1,6 @@
 ;-*- coding: utf-8 mode: emacs-lisp -*-
 ; 
-; anrxc's .emacs for GNU/Emacs 23.2 on Arch GNU/Linux
-;Updated on: Apr 19, 06:52:05 EDT 2011
+; cbancroft's .emacs for GNU/Emacs 24.2 on Arch GNU/Linux
 
 ;* {{{ Initialization
 
