@@ -50,6 +50,7 @@ xpdf*antialias:             yes
 xpdf*foreground:            black
 xpdf*background:            white
 xpdf*viKeys:                yes
+! Need to use xpdf from https://github.com/cbancroft/xpdf
 xpdf*initialOutlineWidth:   350
 ! }}}
 
