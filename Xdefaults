@@ -2,7 +2,7 @@
 !--[[ Urxvt config ]]--!
 
 #include "/home/cbancroft/.xrdb/urxvt.xrdb"
-
+#include "/home/cbancroft/.xrdb/xterm.xrdb"
 xterm*utf8:                     2
 
 	
@@ -50,6 +50,7 @@ xpdf*antialias:             yes
 xpdf*foreground:            black
 xpdf*background:            white
 xpdf*viKeys:                yes
+xpdf*initialOutlineWidth:   350
 ! }}}
 
 !{{{ XFT
@@ -239,5 +240,5 @@ xfontsel.pane.fieldBox.MenuButton.shapeStyle:    rectangle
 
 !{{{ Emacs
 Emacs.FontBackend:    xft
-Emacs.pane.menubar.fontset: Monaco 12
+Emacs.pane.menubar.fontset: Monaco 8:regular
 !}}}

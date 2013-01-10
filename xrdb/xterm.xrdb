@@ -1,0 +1,59 @@
+! Fonts
+!xterm*font:                     xft:Bitstream Vera Sans Mono:pixelsize=9
+!xterm*font:                     xft:Terminus:pixelsize=8
+!xterm*font:                     xft:Anonymous Pro:pixelsize=16
+!xterm*font:                     xft:Dina:pixelsize=8
+!xterm*font:                      xft:Profont:pixelsize=11
+!xterm*font:			xft:Monaco:regular:pixelsize=16
+!xterm*font:			xft:Menlo for Powerline:pixelsize=18
+!xterm*faceName:			xft:Monaco for Powerline:regular:pixelsize=16
+xterm*faceName:         Consolas:regular:pixelsize=16
+!Save n lines of scrollback buffer
+xterm*saveLines:            16384
+
+!toggle scrollbar
+xterm*scrollBar:	        false
+
+!Scrollbar alignment
+xterm*scrollBar_right:	    true
+xterm*jumpScroll:           true
+xterm*loginShell:	        true
+
+!Cursor options
+xterm*cursorBlink:          true
+xterm*cursorColor:          0xFFFFFF
+!Jump to bottom on keypress
+xterm*scrollTtyKeypress:    true
+
+!Jump to bottom when new data comes in
+xterm*scrollWithBuffer:     false
+
+!Jump to bottom on tty output
+xterm*scrollTtyOutput:      false
+
+xterm*skipBuiltinGlyphs:    true
+xterm*xftAntialias:         true
+!xterm*borderLess:               true
+!xterm*fadeColor:                black
+xterm*fadeColor:                #999999
+xterm*tintColor:                white
+!xterm*tintColor:                #999999
+xterm*dynamicColors:            on
+!darken=(0 .. 100) lighten=(-1 .. -100)
+xterm*shading:                 50
+xterm*inheritPixmap:        false
+
+!Name to report in TERM
+xterm*termName:		        xterm-256color
+xterm*transparent:	        true
+xterm*cutchars:		        '"'()*,<>[]{}|
+xterm*secondaryScroll:	        true
+#ifdef USE_COMPOSITING
+xterm*background:           rgba:3333/3333/3333/bbbb
+xterm*depth:                32
+#else
+xterm*background:           #1c1c1c
+xterm*depth:                24
+#endif
+xterm*perl-lib:		       
+xterm*perl-ext-common:	  
