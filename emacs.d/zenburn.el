@@ -58,6 +58,7 @@
 (defvar zenburn-bg "#1c1c1c")
 (defvar zenburn-bg+1 "#2c2c2c")
 (defvar zenburn-bg+2 "#3c3c3c")
+(defvar zenburn-bg-05 "#383838")
 (defvar zenburn-red+1 "#dca3a3")
 (defvar zenburn-red "#cc9393")
 (defvar zenburn-red-1 "#bc8383")

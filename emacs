@@ -67,6 +67,10 @@
 )
 
 
+;Highlight the current line
+(global-hl-line-mode 1)
+(set-face-background 'hl-line "color-235")
+(set-face-attribute hl-line-face nil :underline nil)
 ;; Don't show the welcome message
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
@@ -784,7 +788,7 @@ Skips capture tasks and tasks with no subtasks"
 ;}}}
 
 ;{{{ Font config
-(set-default-font "Monaco 10")
+(set-default-font "Monaco 8")
 ;}}}
 ;{{{ Crontab mode
 ;    - http://www.mahalito.net/~harley/elisp/crontab-mode.el
