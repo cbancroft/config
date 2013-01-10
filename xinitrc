@@ -10,6 +10,7 @@ fi
 # {{{ Environment settings
 errorlog="${HOME}/.xsession-errors"
 gnupglog="${HOME}/.gnupg/gpg-agent.env"
+tmuxSession="asshai"
 # }}}
 
 
@@ -26,13 +27,7 @@ fi
 # {{{ Display settings
 #
 # Ignore reported display size and force DPI
-xrandr --dpi 96
-# Force LVDS as the primary screen
-xrandr --output LVDS-1 --primary --auto
-if (xrandr -q | grep -u "VGA-1 connected" ); then
-	xrandr --output VGA-1 --right-of LVDS-1 --auto
-fi
-# }}}
+xrandr --dpi 144
 
 # {{{ Resource and keymap settings
 usermodmap="${HOME}/.Xmodmap"
@@ -56,22 +51,10 @@ xset r rate 200 30
 # Pointer control, acceleration and threshold
 xset m 30/10 4
 
-# Pointer appearance
-#   - xcb does not support Xcursor yet
-xsetroot -cursor_name left_ptr
 
-# Fix the broken udev keymap
-#  - Lock, Presentation, Sync, €, $
-#        sudo /usr/bin/setkeycodes e06e 152
-#        sudo /usr/bin/setkeycodes e075 217
-#        sudo /usr/bin/setkeycodes e079 173
-#        sudo /usr/bin/setkeycodes e033 159
-#        sudo /usr/bin/setkeycodes e034 151
-# }}}
 
 # {{{ Font Settings
 xset +fp /usr/share/fonts/local
-xset +fp /home/cbancroft/.fonts
 xset fp rehash
 # }}}
 
@@ -87,25 +70,18 @@ fi
 
 # Start the URXVT daemon
 urxvtd -q -o -f &
+
 # Start the GNU Emacs daemon
 [[ ! -r "/tmp/emacs${UID}/server" ]] && emacs --daemon &
-
-
-#nvidia-settings -a "[gpu:0]/GPUPowerMizerMode=1"
-#nvidia-settings -a InitialPixmapPlacement=2
-
 
 compton -cCG -o 0.75 -f 0.05 -t 0.01 -l -2 -r 2.5  -i 0.8 &
 # Start the device monitor
 #devmon &
 
-# Xwrits reminds you to take wrist breaks and avoid RSI
-#            xwrits typetime=45 clock breakclock top ready-picture="${HOME}/.xwrits/ready.gif" \
-	#           rest-picture="${HOME}/.xwrits/rest.gif" warning-picture="${HOME}/.xwrits/warning.gif" &
-
 # Open a terminal emulator on the first tag
 #   - resume the old screen session or start a new one
-urxvt -e tmux -s asshai  &
+tmux has-session -t $tmuxSession || tmux new -d -s $tmuxSession
+urxvt -e zsh -c "tmux attach -t $tmuxSession" &
 
 synclient PalmDetect=1 &
 synclient TouchpadOff=1 &
@@ -133,13 +109,13 @@ case "$WM" in
 		exec gnome-session 
 		;;
 	awesome)
-		exec awesome -c ~/.config/awesome/rc.lua >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
+		exec awesome -c ~/.config/awesome/rc.lua > ~/.cache/awesome/stdout 2> ~/.cache/awesome/stderr
 		;;
 	console)
 		exec urxvt -T console -e /bin/zsh
 		;;
 	*)
-		exec awesome -c ~/.config/awesome/rc.lua >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
+		exec awesome -c ~/.config/awesome/rc.lua > ~/.cache/awesome/stdout 2> ~/.cache/awesome/stderr
 		;;
 esac
 # }}}
