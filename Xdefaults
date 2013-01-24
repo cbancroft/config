@@ -47,9 +47,10 @@ xterm*utf8:                     2
 ! {{{ xpdf
 xpdf*enableFreetype:        yes
 xpdf*antialias:             yes
-xpdf*foreground:            black
-xpdf*background:            white
+Xpdf*foreground:            COLOR_FG
+xpdf*background:            COLOR_BG
 xpdf*viKeys:                yes
+xpdf*font:                  -misc-monaco-medium-*-*-*-10-*-*-*-*-*-iso8859-2
 ! Need to use xpdf from https://github.com/cbancroft/xpdf
 xpdf*initialOutlineWidth:   350
 ! }}}
@@ -87,7 +88,7 @@ XLock.info:
 !XLock.info:         Enter password to unlock \nSelect icon to lock
 XLock.validate:      Validating login...
 XLock.invalid:       Login failed
-XLock*font:          -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
+!XLock*font:          -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
 !XLock.ncolors:      200
 !XLock.dpmsstandby:  600
 !XLock.dpmssuspend:  1200
@@ -100,10 +101,10 @@ Xman*Background:          ZENBURN_BG
 Xman*Foreground:          ZENBURN_FG
 Xman*bothShown:           true
 Xman*topBox:              false
-Xman*manualFontNormal:    -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
-Xman*manualFontBold:      -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-2
-Xman*manualFontItalic:    -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
-Xman*directoryFontNormal: -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
+!Xman*manualFontNormal:    -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
+!Xman*manualFontBold:      -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-2
+!Xman*manualFontItalic:    -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
+!Xman*directoryFontNormal: -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
 !}}}
 
 
@@ -118,7 +119,7 @@ xclock*geometry:   120x120+1160+15
 
 
 !{{{ XMESSAGE
-Xmessage*font:                  -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
+!Xmessage*font:                  -xos4-Terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
 Xmessage*background:            ZENBURN_BG
 Xmessage*foreground:            ZENBURN_FG
 Xmessage*form.*.shapeStyle:     rectangle
@@ -134,7 +135,7 @@ Xmessage*defaultButton:         Quit
 !{{{ XCLIPBOARD
 xclipboard.geometry:      287x195+993+15
 XClipboard*international: true
-XClipboard*font:          -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
+!XClipboard*font:          -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
 XClipboard*borderColor:   ZENBURN_BG
 XClipboard*cursorColor:   Gray93
 XClipboard*Foreground:    ZENBURN_FG
@@ -190,53 +191,53 @@ XCalc*ShapeStyle:             rectangle
 
 
 !{{{ XFONTSEL
-XFontSel*menu*showUnselectable:       false
-XFontSel*sampleText.background:      TEXTBG
-XFontSel*MenuButton.shadowWidth:          0
-XFontsel*Toggle*ToggleStyle:          check
-XFontsel*MenuButton*Justify:           left
-XFontsel*MenuButton*MenuButtonStyle: select
-xfontsel*Font: -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
-xfontsel.pane.commandBox.quitButton.background:           #777777
-xfontsel.pane.commandBox.quitButton.foreground:           snow
-xfontsel.pane.commandBox.ownButton.background:            orange3
-xfontsel.pane.commandBox.ownButton.foreground:            snow
-xfontsel.pane.commandBox.countLabel.background:           snow
-xfontsel.pane.viewPort.sampleText.background:             #777777
-xfontsel.pane.viewPort.sampleText.foreground:             snow
-xfontsel.pane.fieldBox.field0.background:  #777777
-xfontsel.pane.fieldBox.field0.foreground:  snow
-xfontsel.pane.fieldBox.field1.background:  #777777
-xfontsel.pane.fieldBox.field1.foreground:  snow
-xfontsel.pane.fieldBox.field2.background:  #777777
-xfontsel.pane.fieldBox.field2.foreground:  snow
-xfontsel.pane.fieldBox.field3.background:  #777777
-xfontsel.pane.fieldBox.field3.foreground:  snow
-xfontsel.pane.fieldBox.field4.background:  #777777
-xfontsel.pane.fieldBox.field4.foreground:  snow
-xfontsel.pane.fieldBox.field5.background:  #777777
-xfontsel.pane.fieldBox.field5.foreground:  snow
-xfontsel.pane.fieldBox.field6.background:  #777777
-xfontsel.pane.fieldBox.field6.foreground:  snow
-xfontsel.pane.fieldBox.field7.background:  #777777
-xfontsel.pane.fieldBox.field7.foreground:  snow
-xfontsel.pane.fieldBox.field8.background:  #777777
-xfontsel.pane.fieldBox.field8.foreground:  snow
-xfontsel.pane.fieldBox.field9.background:  #777777
-xfontsel.pane.fieldBox.field9.foreground:  snow
-xfontsel.pane.fieldBox.field10.background: #777777
-xfontsel.pane.fieldBox.field10.foreground: snow
-xfontsel.pane.fieldBox.field11.background: #777777
-xfontsel.pane.fieldBox.field11.foreground: snow
-xfontsel.pane.fieldBox.field12.background: #777777
-xfontsel.pane.fieldBox.field12.foreground: snow
-xfontsel.pane.fieldBox.field13.background: #777777
-xfontsel.pane.fieldBox.field13.foreground: snow
-xfontsel.pane.fieldBox*foreground:         #000000
-xfontsel.pane.fieldBox.MenuButton.borderWidth:   1
-xfontsel.pane.fieldBox.MenuButton.internalHeight:1
-xfontsel.pane.fieldBox.MenuButton.internalWidth: 2
-xfontsel.pane.fieldBox.MenuButton.shapeStyle:    rectangle
+!XFontSel*menu*showUnselectable:       false
+!XFontSel*sampleText.background:      TEXTBG
+!XFontSel*MenuButton.shadowWidth:          0
+!XFontsel*Toggle*ToggleStyle:          check
+!XFontsel*MenuButton*Justify:           left
+!XFontsel*MenuButton*MenuButtonStyle: select
+!xfontsel*Font: -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
+!xfontsel.pane.commandBox.quitButton.background:           #777777
+!xfontsel.pane.commandBox.quitButton.foreground:           #333333
+!xfontsel.pane.commandBox.ownButton.background:            orange3
+!xfontsel.pane.commandBox.ownButton.foreground:            #333333
+!xfontsel.pane.commandBox.countLabel.background:           #333333
+!xfontsel.pane.viewPort.sampleText.background:             #777777
+!xfontsel.pane.viewPort.sampleText.foreground:             #333333
+!xfontsel.pane.fieldBox.field0.background:  #777777
+!xfontsel.pane.fieldBox.field0.foreground:  #333333
+!xfontsel.pane.fieldBox.field1.background:  #777777
+!xfontsel.pane.fieldBox.field1.foreground:  #333333
+!xfontsel.pane.fieldBox.field2.background:  #777777
+!xfontsel.pane.fieldBox.field2.foreground:  #333333
+!xfontsel.pane.fieldBox.field3.background:  #777777
+!xfontsel.pane.fieldBox.field3.foreground:  #333333
+!xfontsel.pane.fieldBox.field4.background:  #777777
+!xfontsel.pane.fieldBox.field4.foreground:  #333333
+!xfontsel.pane.fieldBox.field5.background:  #777777
+!xfontsel.pane.fieldBox.field5.foreground:  #333333
+!xfontsel.pane.fieldBox.field6.background:  #777777
+!xfontsel.pane.fieldBox.field6.foreground:  #333333
+!xfontsel.pane.fieldBox.field7.background:  #777777
+!xfontsel.pane.fieldBox.field7.foreground:  #333333
+!xfontsel.pane.fieldBox.field8.background:  #777777
+!xfontsel.pane.fieldBox.field8.foreground:  #333333
+!xfontsel.pane.fieldBox.field9.background:  #777777
+!xfontsel.pane.fieldBox.field9.foreground:  #333333
+!xfontsel.pane.fieldBox.field10.background: #777777
+!xfontsel.pane.fieldBox.field10.foreground: #333333
+!xfontsel.pane.fieldBox.field11.background: #777777
+!xfontsel.pane.fieldBox.field11.foreground: #333333
+!xfontsel.pane.fieldBox.field12.background: #777777
+!xfontsel.pane.fieldBox.field12.foreground: #333333
+!xfontsel.pane.fieldBox.field13.background: #777777
+!xfontsel.pane.fieldBox.field13.foreground: #333333
+Xfontsel.pane.fieldBox*foreground:         #CCCCCC
+!xfontsel.pane.fieldBox.MenuButton.borderWidth:   1
+!xfontsel.pane.fieldBox.MenuButton.internalHeight:1
+!xfontsel.pane.fieldBox.MenuButton.internalWidth: 2
+!xfontsel.pane.fieldBox.MenuButton.shapeStyle:    rectangle
 !}}}
 
 !{{{ Emacs
