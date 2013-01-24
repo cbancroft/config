@@ -199,4 +199,5 @@ imap <C-l> <Right>
 " Powerline goodnes
 "let g:Powerline_symbols = 'fancy'
 "let g:Powerline_cache_file = expand("~/.vim//.Powerline.cache")
-python from powerline.ext.vim import source_plugin; source_plugin()
+"source ~/git/powerline/powerline/bindings/vim/plugin/source_plugin.vim
+"python from powerline.bindings.vim import source_plugin; source_plugin()
