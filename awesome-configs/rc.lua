@@ -239,11 +239,11 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "a", function () exec("urxvt -T Alpine -e alpine") end),
     awful.key({ modkey }, "g", function () sexec("GTK2_RC_FILES=~/.gtkrc-gajim gajim") end),
     awful.key({ modkey }, "q", function () exec("emacsclient --eval '(make-capture-frame)'") end),
-    awful.key({ altkey }, "F12", function () exec("xlock") end),
+    awful.key({ altkey }, "F12", function () exec("slimlock") end),
     -- }}}
 
     -- {{{ Multimedia keys
-    awful.key({}, "#160", function () exec("kscreenlocker --forcelock") end),
+    awful.key({}, "#160", function () exec("slimlock") end),
     awful.key({}, "XF86AudioMute", function () 
 		 exec("/usr/bin/mute_toggle") 
 		 vicious.force({volwidget})
@@ -489,6 +489,7 @@ naughty.config.presets.normal.border_width     = 1
 naughty.config.presets.normal.hover_timeout    = nil
 naughty.config.presets.normal.bg               = '#111111'
 naughty.config.presets.normal.border_color     = '#333333'
+naughty.config.defaults.font                     = "Monaco 12"
 naughty.config.presets.critical.bg = '#991000cc'
 
 -- }}}
