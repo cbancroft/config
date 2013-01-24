@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/cbancroft/.mutt'
-let g:netrw_dirhist_2='/home/cbancroft/.offlineimap'
-let g:netrw_dirhist_3='/home/cbancroft/git/Schnouki_dotfiles'
-let g:netrw_dirhist_4='/etc/X11/xorg.conf.d'
-let g:netrw_dirhist_5='/home/cbancroft/.offlineimap'
