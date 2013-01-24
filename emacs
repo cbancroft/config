@@ -309,7 +309,16 @@
 ;;   - edit files in compressed archives
 (auto-compression-mode 1)
 
-
+;; {{{ AUCTeX
+;; From http://piotrkazmierczak.com/2010/05/13/emacs-as-the-ultimate-latex-editor/
+(load "auctex.el" nil t t)
+(load "preview-latex.el" nil t t)
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq TeX-save-query nil)
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(add-hook 'latex-mode-hook 'turn-on-reftex)
+;; }}}
 ;; Speedbar settings
 (require 'speedbar)
 ;; Additional extensions we are interested in
