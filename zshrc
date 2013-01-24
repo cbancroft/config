@@ -20,7 +20,7 @@ ZSH_THEME="clbancro"
 # CASE_SENSITIVE="true"
 
 # Comment this out to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
 # export UPDATE_ZSH_DAYS=13
@@ -228,6 +228,11 @@ zstyle ":completion:*:*:kill:*:processes" list-colors "=(#b) #([0-9]#)*=0=01;32"
 zstyle ":completion:*:cd:*" ignore-parents parent pwd
 #  * Complete with colors
 zstyle ":completion:*" list-colors ""
+
+#  * Speed up tab complete
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
 # }}}
 
 
