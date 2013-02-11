@@ -46,7 +46,7 @@ sysresources="/etc/X11/xinit/.Xresources"
 # {{{ Input settings
 # 
 # Keyboard control, repeat delay and repeat rate
-xset r rate 200 30
+#xset r rate 200 30
 
 # Pointer control, acceleration and threshold
 xset m 30/10 4
