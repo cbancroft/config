@@ -341,7 +341,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift" }, "j", function () awful.client.swap.byidx(1)  end),
     awful.key({ modkey, "Shift" }, "k", function () awful.client.swap.byidx(-1) end),
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative(1)  end),
-    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end)
+    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
+    awful.key({ modkey}, "XF86Forward", function () awful.screen.focus_relative(1)  end),
+    awful.key({ modkey}, "XF86Back",  function () awful.screen.focus_relative(-1) end)
     -- }}}
 )
 -- }}}
