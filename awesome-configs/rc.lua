@@ -447,8 +447,8 @@ awful.rules.rules = {
 -- {{{ Manage signal handler
 client.connect_signal("manage", function (c, startup)
     -- Add titlebar to floaters, but remove those from rule callback
-    if awful.client.floating.get(c)
-    or awful.layout.get(c.screen) == awful.layout.suit.floating then
+    if awful.client.floating.get(c) then
+    --or awful.layout.get(c.screen) == awful.layout.suit.floating then
 		toggle_titlebar(c)
     end
 
