@@ -8,7 +8,8 @@ local screen = screen
 local print = print
 module("pianobar")
 
-ctl_path = getenv("XDG_CONFIG_HOME") .. "/pianobar/ctl"
+config_home = getenv("XDG_CONFIG_HOME") or "~/.config"
+ctl_path = config_home .. "/pianobar/ctl"
 
 local cmd = function(command)
     if io.type(ctl) ~= "file" then
