@@ -6,7 +6,8 @@
 !urxvt*font:                      xft:Profont:pixelsize=11
 !urxvt*font:			xft:Monaco:regular:pixelsize=16
 !urxvt*font:			xft:Menlo for Powerline:pixelsize=18
-urxvt*font:			xft:Monaco for Powerline:regular:pixelsize=16
+!urxvt*font:			xft:Monaco for Powerline:regular:pixelsize=16
+urxvt*font:			xft:Monaco:regular:pixelsize=15
 !Save n lines of scrollback buffer
 URxvt*saveLines:            16384
 

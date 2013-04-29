@@ -39,7 +39,7 @@ set incsearch		" do incremental searching
 set t_Co=256
 colors xoria256
 if !has("gui_running")
-	set term=screen-256color-bce
+	"set term=screen-256color-bce
 endif
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries

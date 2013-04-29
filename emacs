@@ -57,13 +57,13 @@
 
 ;; Support 256 colors in screen
 ;;   - http://article.gmane.org/gmane.emacs.devel/109504/
-(if (not (window-system)) (load "term/rxvt"))
-(defun terminal-init-screen ()
-  "Terminal initialization function for screen."
-  ;; Use the rxvt color initialization code.
-  (rxvt-register-default-colors)
-  (tty-set-up-initial-frame-faces)
-)
+;;(if (not (window-system)) (load "term/xterm"))
+;;(defun terminal-init-xterm()
+;;  "Terminal initialization function for screen."
+;; Use the rxvt color initialization code.
+;;  (xterm-register-default-colors)
+;;  (tty-set-up-initial-frame-faces)
+;;)
 
 
 ;Highlight the current line
