@@ -201,3 +201,6 @@ imap <C-l> <Right>
 "let g:Powerline_cache_file = expand("~/.vim//.Powerline.cache")
 "source ~/git/powerline/powerline/bindings/vim/plugin/source_plugin.vim
 "python from powerline.bindings.vim import source_plugin; source_plugin()
+set rtp+=/usr/lib/python3.3/site-packages/powerline/bindings/vim
+
+let g:jedi#use_tabs_not_buffers = 0
