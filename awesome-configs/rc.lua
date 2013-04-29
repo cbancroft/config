@@ -12,10 +12,12 @@
 
 
 -- {{{ Libraries
+package.path = package.path .. ';/home/cbancroft/git/powerline/powerline/bindings/awesome/?.lua'
 local gears = require("gears")
 local awful = require("awful")
 awful.rules = require("awful.rules")
 awful.autofocus = require("awful.autofocus")
+local powerline = require("powerline")
 
 -- Wibox is no longer part of standard library
 local wibox = require("wibox")
@@ -194,6 +196,7 @@ for s = 1, screen.count() do
     local center_layout = wibox.layout.fixed.horizontal()
 
     local right_layout=wibox.layout.fixed.horizontal()
+    right_layout:add(powerline_widget)
     right_layout:add( my_widgets.layout_widgets() )
 
     if s == 1 then right_layout:add( wibox.widget.systray()) end
