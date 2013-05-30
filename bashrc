@@ -8,7 +8,7 @@ PS1='[\u@\h \W]\$ '
 
 ## Important environment variables
 export EDITOR="vim"
-export PACMAN="pacman-color"
+export PACMAN="pacman"
 export DETERNET="users.isi.deterlab.net"
 export DETERLAB="deter.d.bbn.com"
 
