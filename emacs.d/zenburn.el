@@ -662,6 +662,8 @@ static char *gnus-pointer[] = {
 
      '(help-argument-name ((t (:weight bold))))
 
+     ;; '(hl-line-face ((t (:background ,"zenburn-bg+1"))))
+     (set-face-background 'hl-line zenburn-bg+1 )
      ;; See also the variable definitions at the top of this file
      '(imaxima-latex-error ((t (:inherit font-lock-warning))))
 

@@ -38,6 +38,10 @@
 ;; Default font
 ;(set-default-font "-xos4-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-2")
 
+;Highlight the current line
+(global-hl-line-mode 1)
+;(set-face-background 'hl-line "color-235")
+(set-face-attribute hl-line-face nil :underline nil)
 
 ;; Color theme initialization
 ;;   - http://emacswiki.org/cgi-bin/wiki/ColorTheme
@@ -65,11 +69,6 @@
 ;;  (tty-set-up-initial-frame-faces)
 ;;)
 
-
-;Highlight the current line
-(global-hl-line-mode 1)
-(set-face-background 'hl-line "color-235")
-(set-face-attribute hl-line-face nil :underline nil)
 ;; Don't show the welcome message
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
@@ -276,6 +275,12 @@
 ;;   - http://www.emacswiki.org/emacs/FoldIngo
 ;; (require 'foldingo)
 
+;; Markdown 
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; Ediff
 ;;
@@ -802,7 +807,7 @@ Skips capture tasks and tasks with no subtasks"
 ;}}}
 
 ;{{{ Font config
-(set-default-font "Monaco 8")
+(set-default-font "Monaco 10")
 ;}}}
 ;{{{ Crontab mode
 ;    - http://www.mahalito.net/~harley/elisp/crontab-mode.el
