@@ -7,7 +7,7 @@
 !xterm*font:			xft:Monaco:regular:pixelsize=16
 !xterm*font:			xft:Menlo for Powerline:pixelsize=18
 !xterm*faceName:			xft:Monaco for Powerline:regular:pixelsize=16
-xterm*faceName:         Consolas:regular:pixelsize=16
+!xterm*faceName:         Consolas:regular:pixelsize=16
 !Save n lines of scrollback buffer
 xterm*saveLines:            16384
 
