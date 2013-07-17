@@ -1,9 +1,10 @@
 
 !--[[ Urxvt config ]]--!
+xterm*utf8:                     2
+URxvt*utf8:                     2
 
 #include "/home/cbancroft/.xrdb/urxvt.xrdb"
 #include "/home/cbancroft/.xrdb/xterm.xrdb"
-xterm*utf8:                     2
 
 	
 !--[[ Theme ]]--!
