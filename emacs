@@ -841,6 +841,7 @@ Skips capture tasks and tasks with no subtasks"
  '(org-agenda-files (quote ("~/org/todo.org" "~/org/refile.org" "~/org/work.org")))
  '(send-mail-function (quote smtpmail-send-it))
  '(show-paren-mode t)
+ '(show-trailing-whitespace t)
  '(smtpmail-smtp-server "localhost")
  '(smtpmail-smtp-service 8025)
  '(tool-bar-mode nil))
