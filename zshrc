@@ -40,6 +40,7 @@ DISABLE_AUTO_UPDATE="true"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -47,7 +48,8 @@ plugins=(gitfast git-extras archlinux battery gpg-agent git-remote-branch svn)
 
 source $ZSH/oh-my-zsh.sh
 
-source $HOME/.zsh/infinality-settings.sh
+source /etc/profile.d/infinality-settings.sh
+xrdb -merge ~/.Xdefaults
 # {{{ User Settings
 
 # {{{ Environment
@@ -60,8 +62,10 @@ export READNULLCMD="${PAGER}"
 export VISUAL="emacsclient"
 export EDITOR="${VISUAL}"
 export BROWSER="chromium"
-export XTERM="urxvt"
-export PACMAN="pacman-color"
+export TERM="xterm-256color"
+export COLORTERM="xterm-256color"
+export XTERM="xterm-256color"
+export PACMAN="pacman"
 export FLASH_ALSA_DEVICE=plug:dmix
 # }}}
 
@@ -219,7 +223,7 @@ setopt histreduceblanks histignorespace inc_append_history
 # New style completion system
 autoload -U compinit; compinit
 #  * List of completers to use
-zstyle ":completion:*" completer _complete _match _approximate
+zstyle ":completion:*" completer _complete _match #_approximate
 #  * Allow approximate
 zstyle ":completion:*:match:*" original only
 zstyle ":completion:*:approximate:*" max-errors 1 numeric
@@ -402,3 +406,4 @@ export LESS_TERMCAP_so=$'\E[38;33;246m'   # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
+export DAYTONA=~/DAYTONA-current/daytona
