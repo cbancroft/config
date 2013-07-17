@@ -4,7 +4,7 @@ An mpd backend for the awesome music framework.
 Unlike other implimentations, this does not poll mpd.
 --]]
 local awful = require ("awful")
---local socket = require("socket")
+local socket = require("socket")
 local setmetatable = setmetatable
 local capi = { widget = widget,
                button = awful.button,

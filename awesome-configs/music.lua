@@ -33,6 +33,7 @@ local table = table
 local mpd = require("mpd")
 local pianobar = require("pianobar")
 local spotify = require("spotify")
+local naughty = require("naughty")
 local capi = { widget = wibox.widget,
                button = awful.button,
                escape = awful.util.escape,
@@ -55,7 +56,7 @@ BACKENDS = {
    ["pianobar"] = pianobar,
    ["spotify"] = spotify
 }
-DEFAULT_BACKEND = pianobar
+DEFAULT_BACKEND = mpd
 local backend = nil
 
 setBackend = function(b)
@@ -108,6 +109,11 @@ widget = function(widget_template, tooltip_template, icon)
             end
         end
     end
+    
+    naughty.notify({ preset = naughty.config.presets.critical,
+                     title = "Setting up music::update signal",
+                     text = awesome.startup_errors })
+    
     screen[1]:add_signal("music::update")
     screen[1]:connect_signal("music::update", update)
     update()
