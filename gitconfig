@@ -11,6 +11,9 @@
 	gi = "!git remote update -p; git gb ..@{u}"
     oldest-ancestor = !zsh -c 'diff -u <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
 	unpushed = !git g --not --remotes --tags
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
+    fc = show --color --pretty  --name-only
+    review = log -p --reverse origin/master..HEAD
 [color]
 	ui = auto
 [diff]
