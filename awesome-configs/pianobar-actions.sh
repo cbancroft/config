@@ -11,6 +11,7 @@ set_status() {
 while read line; do
     local key="${line%%\=*}"
     local value="${line##*\=}"
+
     case $key in
         artist)
             set_status "artist" "$value"

@@ -25,6 +25,8 @@ local pairs = pairs
 local ipairs = ipairs
 local exec   = awful.util.spawn
 local sexec  = awful.util.spawn_with_shell
+local tonumber = tonumber
+local string = string
 -- }}}
 
 module("widgets")
@@ -67,7 +69,7 @@ init_cpuwidget = function()
    local cpugraph = awful.widget.graph()
    cpugraph:set_width(40):set_height(14)
    cpugraph:set_background_color( beautiful.fg_off_widget )
-   cpugraph_color={type="linear", from={0.5,0.5}, to={100,20},
+   cpugraph_color={type="linear", from={0,0}, to={10,0},
 		   stops={{0,beautiful.fg_end_widget},{1,beautiful.fg_center_widget},{2,beautiful.fg_widget}}}
    cpugraph:set_color(cpugraph_color)
 -- Register widgets
@@ -157,11 +159,26 @@ init_netwidget = function()
 
    netwidget = wibox.widget.textbox()
    -- Register widget
-   vicious.register(netwidget, vicious.widgets.net, '<span color="'
-		    .. beautiful.fg_netdn_widget ..
-		    '">${wlan0 down_kb}</span> <span color="'
-		    .. beautiful.fg_netup_widget ..
-		    '">${wlan0 up_kb}</span>', 3)
+   vicious.register(netwidget, vicious.widgets.net, 
+		    function(widget, args)
+		       local down = 0
+		       local up = 0
+		       if (tonumber(args["{eth0 carrier}"]) == 1) then
+			  up = up + args["{eth0 up_kb}"]
+			  down = down + args["{eth0 down_kb}"]
+		       elseif (tonumber(args["{eth1 carrier}"]) == 1) then
+			  up = up + args["{eth1 up_kb}"]
+			  down = down + args["{eth1 down_kb}"]
+		       elseif (tonumber(args["{wlan0 carrier}"]) == 1) then
+			  up = up + args["{wlan0 up_kb}"]
+			  down = down + args["{wlan0 down_kb}"]
+		       end
+		       return string.format( '<span color="'
+					     .. beautiful.fg_netdn_widget ..
+					     '">%.1f</span> <span color="'
+					     .. beautiful.fg_netup_widget ..
+					     '">%.1f</span>',down, up)
+		    end, 3)
    -- }}
    ret.widget:add(downicon)
    ret.widget:add(netwidget)

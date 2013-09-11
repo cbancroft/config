@@ -18,6 +18,7 @@ local coroutine = coroutine
 local print = print
 local io = io
 local string=string
+local screen=screen
 -- Mpd: provides Music Player Daemon information
 module("spotify")
 
@@ -84,7 +85,7 @@ local refresh_co = function()
    end
    metadata:close()
 
-   capi.emit_signal("music::update")
+   screen[1]:emit_signal("music::update")
    
 end
 
@@ -103,7 +104,7 @@ timer:connect_signal("timeout", refresh)
 start = function()
     reset()
     timer:start()
-    capi.emit_signal("music::update")
+    screen[1]:emit_signal("music::update")
 end
 
 stop = function()

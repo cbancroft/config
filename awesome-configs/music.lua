@@ -110,10 +110,6 @@ widget = function(widget_template, tooltip_template, icon)
         end
     end
     
-    naughty.notify({ preset = naughty.config.presets.critical,
-                     title = "Setting up music::update signal",
-                     text = awesome.startup_errors })
-    
     screen[1]:add_signal("music::update")
     screen[1]:connect_signal("music::update", update)
     update()
