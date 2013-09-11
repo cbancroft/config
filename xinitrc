@@ -27,7 +27,7 @@ fi
 # {{{ Display settings
 #
 # Ignore reported display size and force DPI
-xrandr --dpi 144
+#xrandr --dpi 144
 
 # {{{ Resource and keymap settings
 usermodmap="${HOME}/.Xmodmap"
@@ -54,7 +54,7 @@ xset m 30/10 4
 
 
 # {{{ Font Settings
-xset +fp /usr/share/fonts/local
+#xset +fp /usr/share/fonts/local
 xset fp rehash
 # }}}
 
@@ -69,14 +69,14 @@ else
 fi
 
 # Start the URXVT daemon
-urxvtd -q -o -f &
+#urxvtd -q -o -f &
 
 # Start the GNU Emacs daemon
 [[ ! -r "/tmp/emacs${UID}/server" ]] && emacs --daemon &
 
 #nvidia-settings -a InitialPixmapPlacement=2
 #nvidia-settings -a InitialPixmapPlacement=0
-compton -cCG -o 0.75 -f 0.05 -t 0.01 -l -2 -r 2.5  -i 0.8 &
+#compton -cCG -o 0.75 -f 0.05 -t 0.01 -l -2 -r 2.5  -i 0.8 &
 # Start the device monitor
 #devmon &
 
@@ -111,13 +111,13 @@ case "$WM" in
 		exec gnome-session 
 		;;
 	awesome)
-		exec awesome -c ~/.config/awesome/rc.lua > ~/.cache/awesome/stdout 2> ~/.cache/awesome/stderr
+		exec awesome -c ~/.config/awesome/rc.lua >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
 		;;
 	console)
 		exec urxvt -T console -e /bin/zsh
 		;;
 	*)
-		exec awesome -c ~/.config/awesome/rc.lua > ~/.cache/awesome/stdout 2> ~/.cache/awesome/stderr
+		exec awesome -c ~/.config/awesome/rc.lua >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
 		;;
 esac
 # }}}
