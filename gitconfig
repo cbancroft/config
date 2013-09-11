@@ -14,6 +14,7 @@
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
     fc = show --color --pretty  --name-only
     review = log -p --reverse origin/master..HEAD
+    dc = diff --cached
 [color]
 	ui = auto
 [diff]
