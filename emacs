@@ -830,6 +830,12 @@ Skips capture tasks and tasks with no subtasks"
 (add-to-list 'auto-mode-alist 
   '("\\.*mutt-*\\|\\.*pico.*\\|.article\\|\\.*200\\(T\\)?\\|\\.followup" . post-mode))
 ;}}}
+
+;{{{ Daytona
+;
+(add-to-list 'load-path
+             (expand-file-name "~/DAYTONA-current/daytona/cm/standards"))
+(require 'daytona)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
