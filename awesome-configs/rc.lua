@@ -124,8 +124,8 @@ orgmodeicon = wibox.widget.imagebox()
 orgmodeicon:set_image(beautiful.widget_mail)
 
 -- Initialize widget
-orgwidget = wibox.widget.textbox()
--- Configure widget
+--orgwidget = wibox.widget.textbox()
+--[[ Configure widget
 local orgmode = {
   files = { home.."/org/todo.org",
     home.."/org/work.org"
@@ -145,6 +145,7 @@ orgwidget:buttons(awful.util.table.join(
   awful.button({ }, 1, function () exec("emacsclient --eval '(org-agenda-list)'") end),
   awful.button({ }, 3, function () exec("emacsclient --eval '(make-capture-frame)'") end)
 ))
+--]]
 --}}}
 
 
@@ -441,6 +442,8 @@ awful.rules.rules = {
     { rule = { class = "Geeqie" },      properties = { floating = true } },
     { rule = { class = "ROX-Filer" },   properties = { floating = true } },
     { rule = { class = "Pinentry.*" },  properties = { floating = true } },
+    { rule = { class = "llpp" },
+        properties = { tag = tags[1][8], sticky=false } },
 }
 -- }}}
 

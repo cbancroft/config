@@ -8,6 +8,7 @@ local awful = require("awful")
 -- {{{ Main
 theme = {}
 theme.confdir       = awful.util.getdir("config")
+--theme.wallpaper = "/usr/share/awesome/themes/zenburn/zenburn-background.png"
 theme.wallpaper_cmd = "/usr/bin/nitrogen --restore"
 --theme.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/zenburn/zenburn-background.png" }
 -- }}}
@@ -146,7 +147,7 @@ theme.icons = {}
 icon_dir = theme.confdir .. "/icons/png/"
 
 for f in lfs.dir(icon_dir) do
-   theme.icons[string.sub(f,0,-5)] = icon_dir ..f 
+   theme.icons[string.sub(f,0,-5)] = icon_dir .. f 
 end
 
 return theme
