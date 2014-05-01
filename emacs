@@ -57,7 +57,8 @@
 ;;
 ;; Load preferred theme
 ;;   - http://www.brockman.se/software/zenburn/zenburn.el
-(color-theme-zenburn)
+;;(color-theme-zenburn)
+(color-theme-xoria256)
 
 ;; Support 256 colors in screen
 ;;   - http://article.gmane.org/gmane.emacs.devel/109504/
@@ -255,9 +256,9 @@
 
 ;; Egg (git interface)
 ;;   - http://github.com/bogolisk/egg
-(require 'egg)
+;;(require 'egg)
 ;; Enable tooltips while we are still learning
-(setq egg-enable-tooltip t)
+;;(setq egg-enable-tooltip t)
 
 
 ;; SCPaste (scp pastebin)
@@ -833,9 +834,9 @@ Skips capture tasks and tasks with no subtasks"
 
 ;{{{ Daytona
 ;
-(add-to-list 'load-path
-             (expand-file-name "~/DAYTONA-current/daytona/cm/standards"))
-(require 'daytona)
+;;(add-to-list 'load-path
+;;            (expand-file-name "~/DAYTONA-current/daytona/cm/standards"))
+;;(require 'daytona)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
