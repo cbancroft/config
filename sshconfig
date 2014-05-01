@@ -2,7 +2,6 @@
 # Thanks to rshapiro@bbn.com for these settings.
 Host ssh.bbn.com
 # Fast cipher
-Cipher blowfish
 User cbancrof
 ForwardX11 yes
 #ForwardX11 no
@@ -12,18 +11,18 @@ Compression no
 GatewayPorts no
 #LocalForward 8080 ssh.bbn.com:3128
 #LocalForward 8443 ssh.bbn.com:3128
-LocalForward 8025 smtp.bbn.com:25
-LocalForward 8143 mail.bbn.com:143
-LocalForward 8823 daytona.ir.bbn.com:22
-LocalForward 8824 daytona08.ir.bbn.com:22
-LocalForward 8825 daytona.ir.bbn.com:9418
+#LocalForward 8025 smtp.bbn.com:25
+#LocalForward 8143 mail.bbn.com:143
+#LocalForward 8823 daytona.ir.bbn.com:22
+#LocalForward 8824 daytona08.ir.bbn.com:22
+#LocalForward 8825 daytona.ir.bbn.com:9418
 #LocalForward 8022 hops.dsl.bbn.com:22
 #LocalForward 8417 gto-mmaker.bbn.com:417
 #LocalForward 8454 gto-mmaker.bbn.com:454
 #LocalForward 4500 128.89.72.24:4500
 #LocalForward 5222 sm072.dsl.bbn.com:5222
 #LocalForward 5900 128.89.77.33:5900
-LocalForward 5901 userspace-pc.bbn.com:3389
+#LocalForward 5901 userspace-pc.bbn.com:3389
 TCPKeepalive	yes
 
 
@@ -31,3 +30,19 @@ Host daytona
 HostName	daytona08.ir.bbn.com
 User		cbancroft
 IdentityFile	~/.ssh/id_daytona
+ProxyCommand    nc -X 5 -x localhost:8080 %h %p
+Host daytona.ir.bbn.com
+HostName	daytona.ir.bbn.com
+User		cbancroft
+IdentityFile	~/.ssh/id_daytona
+ProxyCommand    nc -X 5 -x localhost:8080 %h %p
+Host        apac
+HostName    apac.bbn.com
+User        cbancroft
+IdentityFile    ~/.ssh/id_apac
+ProxyCommand    nc -X 5 -x localhost:8080 %h %p
+Host        sac
+HostName    sac.bbn.com
+#User        cbancroft
+#IdentityFile    ~/.ssh/id_apac
+ProxyCommand    nc -X 5 -x localhost:8080 %h %p
