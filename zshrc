@@ -11,7 +11,6 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 POWERLINE_DETECT_SSH="true"
-POWERLINE_HIDE_GIT_PROMPT_STATUS="true"
 if [ "${TERM}" = "linux" ]; then
     ZSH_THEME="random"
 else
@@ -48,7 +47,7 @@ plugins=(gitfast git-extras archlinux battery gpg-agent git-remote-branch svn)
 
 source $ZSH/oh-my-zsh.sh
 
-source /etc/profile.d/infinality-settings.sh
+#source /etc/profile.d/infinality-settings.sh
 xrdb -merge ~/.Xdefaults
 # {{{ User Settings
 
@@ -407,3 +406,5 @@ export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 export DAYTONA=~/DAYTONA-current/daytona
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
