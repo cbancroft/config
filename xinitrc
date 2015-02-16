@@ -7,7 +7,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 # Start the virtual box client
-/usr/bin/VBoxClient-all
+/usr/bin/VBoxClient-all &
 
 # {{{ Environment settings
 errorlog="${HOME}/.xsession-errors"
@@ -51,13 +51,13 @@ sysresources="/etc/X11/xinit/.Xresources"
 #xset r rate 200 30
 
 # Pointer control, acceleration and threshold
-xset m 30/10 4
+xset m 30/10 4 &
 
 
 
 # {{{ Font Settings
 #xset +fp /usr/share/fonts/local
-xset fp rehash
+xset fp rehash &
 # }}}
 
 # {{{ Autostart settings
@@ -69,10 +69,10 @@ if (pgrep -u "${USER}" gpg-agent); then
 else
 	eval `gpg-agent --enable-ssh-support --daemon --write-env-file ${gnupglog}`
 fi
-gpg-connect-agent updatestartupdisplay /bye
+gpg-connect-agent updatestartuptty /bye
 
 # Start the URXVT daemon
-urxvtd -q -o -f &
+#urxvtd -q -o -f &
 
 # Start the GNU Emacs daemon
 [[ ! -r "/tmp/emacs${UID}/server" ]] && emacs --daemon &
@@ -82,44 +82,47 @@ urxvtd -q -o -f &
 #compton -cCG -o 0.75 -f 0.05 -t 0.01 -l -2 -r 2.5  -i 0.8 &
 #compton &
 # Start the device monitor
-#devmon &
+devmon &
 
 # Open a terminal emulator on the first tag
 #   - resume the old screen session or start a new one
-tmux has-session -t $tmuxSession || tmux new -d -s $tmuxSession
-urxvt -e zsh -c "tmux attach -t $tmuxSession" &
+tmux has-session -t $tmuxSession || tmux new -d -s $tmuxSession 
+termite -e "zsh -c tmux attach -t $tmuxSession" &
 
-synclient PalmDetect=1 &
-synclient TouchpadOff=1 &
+synclient PalmDetect=1 PalmMinWidth=3 &
+
+dropboxd &
+#synclient TouchpadOff=1 &
 # Play a startup sound
 #            ogg123 -q "${HOME}/.local/share/gajim/sounds/voices/voice-system-activated.ogg" &
 # }}}
 
 # {{{ Window manager selection
-case "$WM" in
-	twm)
-		exec twm
-		;;
-	fvwm)
-		exec fvwm2
-		;;
-	kde)
-		exec startkde
-		;;
-	debug)
-		exec valgrind -v "$1"
-		;;
-	gnome)
-		exec gnome-session 
-		;;
-	awesome)
-		exec awesome -c ~/.config/awesome/rc.lua >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
-		;;
-	console)
-		exec urxvt -T console -e /bin/zsh
-		;;
-	*)
-		exec awesome -c ~/.config/awesome/rc.lua >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
-		;;
-esac
+#case "$WM" in
+#	twm)
+#		exec twm
+#		;;
+#	fvwm)
+#		exec fvwm2
+#		;;
+##	kde)
+#		exec startkde
+#		;;
+#	debug)
+#		exec valgrind -v "$1"
+#		;;
+#	gnome)
+#		exec gnome-session 
+#		;;
+#	awesome)
+#		exec awesome -c ~/.config/awesome/rc.lua >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
+#		;;
+#	console)
+#		exec urxvt -T console -e /bin/zsh
+#		;;
+#	*)
+#       exec awesome -c ~/.config/awesome/rc.lua >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
+#		;;
+#esac
 # }}}
+autorandr -c &
