@@ -83,7 +83,7 @@ init_batwidget = function()
    ret.icon = wibox.widget.imagebox()
    ret.icon:set_image(beautiful.widget_bat)
    ret.widget = wibox.widget.textbox()
-   vicious.register( ret.widget, vicious.widgets.bat, "$1$2%", 61, "BAT0" )
+   vicious.register( ret.widget, vicious.widgets.bat, "$1$2%", 61, "BAT1" )
    
    return ret
 end
@@ -169,9 +169,9 @@ init_netwidget = function()
 		       elseif (tonumber(args["{eth1 carrier}"]) == 1) then
 			  up = up + args["{eth1 up_kb}"]
 			  down = down + args["{eth1 down_kb}"]
-		       elseif (tonumber(args["{wlan0 carrier}"]) == 1) then
-			  up = up + args["{wlan0 up_kb}"]
-			  down = down + args["{wlan0 down_kb}"]
+		       elseif (tonumber(args["{wlp8s0 carrier}"]) == 1) then
+			  up = up + args["{wlp8s0 up_kb}"]
+			  down = down + args["{wlp8s0 down_kb}"]
 		       end
 		       return string.format( '<span color="'
 					     .. beautiful.fg_netdn_widget ..

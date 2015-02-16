@@ -15,7 +15,7 @@ theme.wallpaper_cmd = "/usr/bin/nitrogen --restore"
 
 
 -- {{{ Styles
-theme.font      = "Monaco 8"
+theme.font      = "Terminus 8"
 
 -- {{{ Colors
 theme.fg_normal = "#DCDCCC"
