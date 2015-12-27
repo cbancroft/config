@@ -109,6 +109,7 @@
 ;; Delete selection on a key press
 (delete-selection-mode t)
 
+
 (global-auto-revert-mode t)
 ;; }}}
 ;; }}}

@@ -26,11 +26,10 @@ local lenovo = require('lenovo')
 local minitray = require('minitray')
 local statusbar = require('statusbar')
 
-local picturesque = require('picturesque')
-
-local lustrous = require('lustrous')
+--local lustrous = require('lustrous')
 local smartmenu = require('smartmenu')
 
+local lain = require("lain")
 -- Map useful functions outside
 calc = utility.calc
 notify_at = utility.notify_at
@@ -45,7 +44,6 @@ autorunApps = {
 
 runOnceApps = {
    'thunderbird',
-   'mpd',
    'xrdb -merge ~/.Xresources',
    'pulseaudio --start',
    'redshift -l 60.8:10.7 -m vidmode -g 0.8 -t 6500:5000'
@@ -56,9 +54,10 @@ utility.autorun(autorunApps, runOnceApps)
 -- Various initialization
 lenovo.touchpad.enable(false)
 
-lustrous.init { lat = private.user.loc.lat,
-                lon = private.user.loc.lon,
-                offset = private.user.time_offset }
+-- lustrous.init { lat = private.user.loc.lat,
+--                lon = private.user.loc.lon,
+--                offset = private.user.time_offset }
+--
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
@@ -66,8 +65,9 @@ beautiful.init(awful.util.getdir("config") .. "/themes/serenity/theme.lua")
 --beautiful.init(awful.util.getdir("config") .. "/themes/devotion/theme.lua")
 beautiful.onscreen.init()
 -- {{{ Wallpaper
-picturesque.sfw = true
-scheduler.register_recurring("picturesque", 1800, picturesque.change_image)
+for s = 1, screen.count() do
+   gears.wallpaper.maximized( beautiful.wallpaper[s], s, true)
+end
 -- }}}
 
 -- Default system software
@@ -75,8 +75,8 @@ software = { terminal = "termite",
              terminal_cmd = "termite -e ",
              editor = "emacsclient",
              editor_cmd = "emacsclient -n -c ",
-             browser = "google-chrome-stable",
-             browser_cmd = "google-chrome-stable " }
+             browser = "google-chrome-stable --force-device-scale-factor=1",
+             browser_cmd = "google-chrome-stable --force-device-scale=factor=1" }
 
 -- Default modkey.
 modkey = "Mod4"
@@ -84,9 +84,15 @@ altkey = "Mod1"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts = {
    awful.layout.suit.floating, 	        -- 1
-   awful.layout.suit.tile, 		-- 2
+   lain.layout.uselesstile, 		-- 2
    awful.layout.suit.tile.bottom,	-- 3
-   awful.layout.suit.max.fullscreen
+   awful.layout.suit.max.fullscreen,
+   lain.layout.uselesspiral,
+   lain.layout.uselessfair,
+   lain.layout.centerwork,
+   lain.layout.cascadetile,
+   lain.layout.termfair,
+   lain.layout.cascade
 }
 awful.layout.layouts = layouts
 -- {{{ Tags

@@ -4,7 +4,7 @@
 (require 'helm-eshell)
 (require 'helm-files)
 (require 'helm-grep)
-
+(require 'helm-swoop)
 ;; The default "C-x c" is too close to "C-x C-c", which quits Emacs.
 ;; Change it to "C-c h".
 (global-set-key (kbd "C-c h") 'helm-command-prefix)
@@ -29,6 +29,7 @@
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 ; make TAB work in terminal
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+(global-set-key (kbd "<f9> /") 'helm-swoop)
 ; list actions using C-z
 (define-key helm-map (kbd "C-z") 'helm-select-action)
 

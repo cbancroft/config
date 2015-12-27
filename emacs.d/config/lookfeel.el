@@ -15,8 +15,8 @@
 (setq initial-scratch-message nil)
 
 ;; Shut off message buffer
-(setq message-log-max nil)
-(kill-buffer "*Messages*")
+;;(setq message-log-max nil)
+;;(kill-buffer "*Messages*")
 
 ;; Show column number in modeline
 (setq column-number-mode t)

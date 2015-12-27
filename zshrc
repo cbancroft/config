@@ -52,7 +52,7 @@ xrdb -merge ~/.Xdefaults
 # {{{ User Settings
 
 # {{{ Environment
-export PATH="${PATH}:${HOME}/code/bin"
+export PATH="${PATH}:${HOME}/bin:${HOME}/code/bin"
 export HISTFILE="${HOME}/.zsh_history"
 export HISTSIZE=10000
 export SAVEHIST=10000

@@ -63,6 +63,8 @@
 (global-set-key  [f7]  'htmlfontify-buffer)
 ;; (global-set-key  [f8]  'ispell-buffer)
 ;; (global-set-key  [f9]  'ispell-change-dictionary) ; Switching 'en_US' and 'hr' often
+(global-set-key (kbd "<f9> D") 'epa-decrypt-armor-in-region)
+(global-set-key (kbd "<f9> g") 'magit-status)
 ;(global-set-key [f10]                            ; Quick menu by default
 
 ;(global-set-key  [f11] 'speedbar)

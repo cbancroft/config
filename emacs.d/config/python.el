@@ -13,12 +13,11 @@
 (pymacs-load "ropemacs" "rope-")
 (setq ropemacs-enable-autoimport t)
 
+(setq python-python-command "/usr/bin/python2")
 ;{{{ Python mode
 ;
 ;; ipython is my shell of choice, glad to have it here
-(defcustom python-python-command "ipython -cl"
-  "Shell command to run Python interpreter."
-  :group 'python
-  :type 'string
-)
-;}}}
+
+					;}}}
+
+

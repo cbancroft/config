@@ -10,8 +10,9 @@
 
 !urxvt.font: xft:Monaco for Powerline:regular:size=8
 !urxvt.boldfont: xft:Monaco for Powerline:bold:size=8
-urxvt.font:			xft:DejaVu Sans Mono for Powerline:regular:size=8
-urxvt.boldfont: xft:DejaVu Sans Mono for Powerline:bold:size=8
+!urxvt.font:			xft:DejaVu Sans Mono for Powerline:regular:size=8
+!urxvt.boldfont: xft:DejaVu Sans Mono for Powerline:bold:size=8
+urxvt*font: xft:Inconsolata-g:g:pixelsize=15
 !! Monaco
 !Save n lines of scrollback buffer
 URxvt*saveLines:            16384

@@ -13,13 +13,29 @@ function log.n(data, tag)
       naughty = require("naughty")
    end
    naughty.notify( { title = tag or "ETDP",
-                     text = log.d_return(data, tag or "data"),
+                     text = log.d_return(data),
+                     timeout = 0,
+                     screen = mouse.screen})
+end
+
+function log.e(message, title)
+   if title then
+      print("[ERROR]", title .. " : " .. message)
+   else
+      print("[ERROR]", message)
+   end
+   if not naughty then
+      naughty = require("naughty")
+   end
+   naughty.notify( { preset = naughty.config.presets.critical,
+                     title = title or "Error",
+                     text = message,
                      timeout = 0,
                      screen = mouse.screen})
 end
 
 function log.p(...)
-   print("Debug print", ...)
+   print("[DEBUG]", ...)
 end
 
 return log

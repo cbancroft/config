@@ -1,7 +1,11 @@
 (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
+(require 'cl)
 (require 'org)
 (require 'helm-org)
-
+(require 'org-magit)
+(require 'bbdb)
+(require 'bbdb-com)
+(require 'ox-odt)
 ;; {{{ Variables
 ;; Agenda files
 (setq org-agenda-files (quote ("~/git/org-files"
@@ -22,6 +26,23 @@
 
 (setq org-reverse-note-order nil)
 
+;; Want to highlight code block in their native syntax
+(setq org-src-fontify-natively t)
+
+;; Force showing the next headline
+(setq org-show-entry-below (quote ((default))))
+
+;; Limit restriction lock highlighting to the headline only
+(setq org-agenda-restriction-lock-highlight-subtree nil)
+
+;; Start with indent mode
+(setq org-startup-indented t)
+
+;; Follow links when RET key is hit
+(setq org-return-follows-link t)
+
+;; Export ODT to docx by Default
+(setq org-odt-preferred-output-format "pdf")
 ; Enable habit tracking (and a bunch of other modules)
 (setq org-modules (quote (org-bbdb
                           org-bibtex
@@ -42,6 +63,14 @@
                           org-w3m)))
 
 (defvar cb/hide-scheduled-and-waiting-next-tasks t)
+(defvar cb/projet-list nil)
+
+(setq org-link-frame-setup (quote ((vm . vm-visit-folder)
+                                   (gnus . org-gnus-no-new-news)
+                                   (file . find-file))))
+
+; Use the current window for C-c ' source editing
+(setq org-src-window-setup 'current-window)
 ;; }}}
 
 ;; {{{ Key Bindings
@@ -49,15 +78,36 @@
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
+
 (global-set-key (kbd "<f12>") 'org-agenda)
-(global-set-key (kbd "<f5>" ) 'cb/org-todo) ;Show todo items in this tree
+(global-set-key (kbd "<f5>" ) 'cb/org-todo)
+(global-set-key (kbd "<S-f5>") 'cb/widen)
+(global-set-key (kbd "<f8>" ) 'org-cycle-agenda-files)
+(global-set-key (kbd "<f9> <f9>") 'cb/show-org-agenda)
+(global-set-key (kbd "<f9> b") 'bbdb)
+(global-set-key (kbd "<f9> c") 'calendar)
+(global-set-key (kbd "<f9> m") 'mu4e)
+(global-set-key (kbd "<f9> o") 'cb/hide-other)
+(global-set-key (kbd "<f9> n") 'cb/toggle-next-task-display)
+(global-set-key (kbd "<f9> p") 'cb/phone-call)
+
+(global-set-key (kbd "<f9> I") 'cb/punch-in)
+(global-set-key (kbd "<f9> O") 'cb/punch-out)
+
+(global-set-key (kbd "<f9> o") 'cb/make-org-scratch)
+(global-set-key (kbd "<f9> s") 'cb/switch-to-scratch)
+
+(global-set-key (kbd "<f9> t") 'cb/insert-inactive-timestamp)
+(global-set-key (kbd "<f9> T") 'cb/toggle-insert-inactive-timestamp)
+
+(global-set-key (kbd "<f9> v") 'visible-mode)
+(global-set-key (kbd "<f9> l") 'org-toggle-link-display)
+(global-set-key (kbd "<f9> SPC") 'cb/clock-in-last-task)
+(global-set-key (kbd "C-<f9>") 'previous-buffer)
+(global-set-key (kbd "<S-f9>") 'next-buffer)
 (global-set-key (kbd "<f11>") 'org-clock-goto)
 (global-set-key (kbd "C-<f11>") 'org-clock-in)
 (global-set-key (kbd "C-c c") 'org-capture)
-(global-set-key (kbd "<f9> I") 'cb/punch-in)
-(global-set-key (kbd "<f9> O") 'cb/punch-out)
-(global-set-key (kbd "<f9> SPC") 'cb/clock-in-last-task)
-(global-set-key (kbd "<f9> n") 'cb/toggle-next-task-display)
 ;; }}}
 
 ;; {{{ TODO stuff
@@ -85,10 +135,14 @@
 	       "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n" :clock-in t :clock-resume t)
 	      ("n" "note" entry (file "~/git/org-files/refile.org")
 	       "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
-	      ("j" "journal" entry (file "~/git/org-files/diary.org")
+	      ("i" "interruption" entry (file "~/git/org-files/diary.org")
 	       "* %?\n%U\n" :clock-in t :clock-resume t)
+	      ("j" "journal entry" plain (file+datetree "~/git/org-files/journal.org")
+	       "%i\n%?\n" :unnarrowed t)
 	      ("m" "Meeting" entry (file "~/git/org-files/refile.org")
 	       "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
+	      ("N" "task Note" plain (clock)
+	       "\n%?\n" :unnarrowd t)
 	      ("p" "Phone call" entry (file "~/git/org-files/refile.org")
 	       "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
 	      ("h" "Habit" entry (file "~/git/org-files/refile.org")
@@ -139,6 +193,34 @@
 
 ;; skip multiple timestamps for the same entry.
 (setq org-agenda-skip-additional-timestamps-same-entry t)
+
+;; Show all future entries for repeating tasks
+(setq org-agenda-repeating-timestamp-show-all t)
+
+;; Show all agenda dates - even if they are empty
+(setq org-agenda-show-all-dates t)
+
+;; Sorting order for tasks on the agenda
+(setq org-agenda-sorting-strategy
+      (quote ((agenda habit-down time-up user-defined-up effort-up category-keep)
+	      (todo category-up effort-up)
+	      (tags category-up effort-up)
+	      (search category-up))))
+
+;;; Start the weekly agenda on Monday
+(setq org-agenda-start-on-weekday 1)
+
+;; Enable display of the time grid so we can see the marker for the current line
+(setq org-agenda-time-grid (quote ((daily today remove-match)
+				   #("----------------" 0 16 (org-heading t))
+				   (0900 1100 1300 1500 1700))))
+
+;; Display tags farther right
+(setq org-agenda-tags-column -102)
+
+
+;; Agenda sorting function
+(setq org-agenda-cmp-user-defined 'cb/agenda-sort)
 
 ;; Custom agenda command definitions
 (setq org-agenda-custom-commands
@@ -213,6 +295,7 @@
 		       (org-agenda-skip-function 'cb/skip-non-archivable-tasks)
 		       (org-tags-match-list-sublevels nil))))
 	       nil))))
+
 ;; }}}
 
 ;; {{{Speed Commands
@@ -318,6 +401,14 @@
               :min-duration 0
               :max-gap 0
               :gap-ok-around ("4:00"))))
+
+;;Clock is inverted??
+(custom-set-faces
+ '(org-mode-line-clock ((t (:background "grey75" :foreground "red"
+					:box (:line-width -1 :style
+							  released-button))))
+		       t))
+
 ;; }}}
 
 ;; {{{ Tags
@@ -736,9 +827,346 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
         (setq level (1- level)
               str (concat str "___")))
       (concat str " "))))
+
+(defun cb/clock-in-last-task (arg)
+  "Clock in the interrupted task if there is one. 
+Skip the default task and get the next one.
+A prefix arg forces clock in of the default task."
+  (interactive "p")
+  (let ((clock-in-to-task
+	 (cond
+	  ((eq arg 4) org-clock-default-task)
+	  ((and (org-clock-is-active)
+		(equal org-clock-default-task (cadr org-clock-history)))
+	   (caddr org-clock-history))
+	  ((org-clock-is-active) (cadr org-clock-history))
+	  ((equal org-clock-default-task (car org-clock-history)) (cadr org-clock-history))
+	  (t (car org-clock-history)))))
+    (widen)
+    (org-with-point-at clock-in-to-task
+      (org-clock-in nil))))
+
+(defun cb/phone-call ()
+    "Return name and company info for caller from bbdb lookup"
+    (interactive)
+    (let* (name rec caller)
+      (setq name (completing-read "Who is calling? "
+				  (bbdb-hashtable)
+				  'bbdb-completion-predicate
+				  'confirm))
+      (when (> (length name) 0)
+	;;Something was supplied -- look it up in bbdb
+	(setq rec
+	      (or (first
+		   (or (bbdb-search (bbdb-records) name nil nil)
+		       (bbdb-search (bbdb-records) nil name nil)))
+		  name)))
+
+      ;; Build the bbdb link if we have a bbdb record, otherwise just
+      ;; return the name.
+      (setq caller (cond ((and rec (vectorp rec))
+			  (let ((name (bbdb-record-name rec))
+				(company (bbdb-record-company rec)))
+			    (concat "[[bbdb:"
+				    name "]["
+				    name "]]"
+				    (when company
+				      (concat " - " company)))))
+			 (rec)
+			 (t "NameOfCaller")))
+      (insert caller)))
+
+
+(defun cb/org-todo (arg)
+  (interactive "p")
+  (if (equal arg 4)
+      (save-restriction
+	(cb/narrow-to-org-subtree)
+	(org-show-todo-tree nil))
+    (cb/narrow-to-org-subtree)
+    (org-show-todo-tree nil)))
+
+(defun cb/widen ()
+  (interactive)
+  (if (equal major-mode 'org-agenda-mode)
+      (progn
+	(org-agenda-remove-restriction-lock)
+	(when org-agenda-sticky
+	  (org-agenda-redo)))
+    (widen)))
+
+(defun cb/restrict-to-file-or-follow (arg)
+  "Set agenda restrictions to 'file or with argument invoke follow
+  mode. I don't use follow mode very often but I restrict to file all
+  the time so change the default 'F' binding in the agenda to allow
+  both"
+  (interactive "p")
+  (if (equal arg 4)
+      (org-agenda-follow-mode)
+    (widen)
+    (cb/set-agenda-restriction-lock 4)
+    (org-agenda-redo)
+    (beginning-of-buffer)))
+
+(defun cb/narrow-to-org-subtree ()
+  (widen)
+  (org-narrow-to-subtree)
+  (save-restriction
+    (org-agenda-set-restriction-lock)))
+
+(defun cb/narrow-to-subtree ()
+  (interactive)
+  (if (equal major-mode 'org-agenda-mode)
+      (progn
+	(org-with-point-at (org-get-at-bol 'org-hd-marker)
+	  (cb/narrow-to-org-subtree))
+	(when org-agenda-sticky
+	  (org-agenda-redo)))
+    (cb/narrow-to-org-subtree)))
+
+(defun cb/narrow-up-one-org-level ()
+  (widen)
+  (save-excursion
+    (outline-up-heading 1 'invisible-ok)
+    (cb/narrow-to-org-subtree)))
+
+(defun cb/get-pom-from-agenda-restriction-or-point ()
+  (or (and (marker-position org-agenda-restrict-begin) org-agenda-restrict-begin)
+      (org-get-at-bol 'org-hd-marker)
+      (and (equal major-mode 'org-mode) (point))
+      org-clock-marker))
+
+(defun cb/narrow-up-one-level ()
+  (interactive)
+  (if (equal major-mode 'org-mode)
+      (progn
+	(org-with-point-at (cb/get-pom-from-agenda-restriction-or-point)
+	  (cb/narrow-up-one-org-level))
+	(org-agenda-redo))
+    (cb/narrow-up-one-org-level)))
+
+(defun cb/narrow-to-org-project ()
+  (widen)
+  (save-excursion
+    (cb/find-project-task)
+    (cb/narrow-to-org-subtree)))
+
+(defun cb/narrow-to-project ()
+  (interactive)
+  (if (equal major-mode 'org-agenda-mode)
+      (progn
+	(org-with-point-at (cb/get-pom-from-agenda-restriction-or-point)
+	  (cb/narrow-to-org-project)
+	  (save-excursion
+	    (cb/find-project-task)
+	    (org-agenda-set-restriction-lock)))
+	(org-agenda-redo)
+	(beginning-of-buffer))
+    (cb/narrow-to-org-project)
+    (save-restriction
+      (org-agenda-set-restriction-lock))))
+
+(defun cb/view-next-project ()
+  (interactive)
+  (let (num-project-left current-project)
+    (unless (marker-position org-agenda-restrict-begin)
+      (goto-char (point-min))
+
+      ;; Clear all of the existing markers on the list
+      (while cb/project-list
+	(set-marker (pop cb/project-list) nil))
+
+      (re-search-forward "Tasks to Refile")
+      (forward-visible-line 1))
+
+    ;;Build a new project marker list
+    (unless cb/project-list
+      (while (< (point) (point-max))
+	(while (and (< (point) (point-max))
+		    (or (not (org-get-at-bol 'org-hd-marker))
+			(org-with-point-at (org-get-at-bol 'org-hd-marker)
+			  (or (not (cb/is-project-p))
+			      (cb/is-project-subtree-p)))))
+	  (forward-visible-line 1))
+	(when (< (point) (point-max))
+	  (add-to-list 'cb/project-list (copy-marker (org-get-at-bol 'org-hd-marker)) 'append))
+	(forward-visible-line 1)))
+
+    ;; Pop off the first marker on the list and display
+    (setq current-project (pop cb/project-list))
+    (when current-project
+      (org-with-point-at current-project
+	(setq cb/hide-scheduled-and-waiting-next-tasks nil)
+	(cb/narrow-to-project))
+      ;;Remove the marker-buffer
+      (setq current-project nil)
+      (org-agenda-redo)
+      (beginning-of-buffer)
+      (setq num-projects-left (length cb/project-list))
+      (if (> num-projects-left 0)
+	  (message "%s projects left to view" num-projects-left)
+	(beginning-of-buffer)
+	(setq cb/hide-scheduled-and-waiting-next-tasks t)
+	(error "All projects viewed.")))))
+
+
+(defun cb/set-agenda-restriction-lock (arg)
+  "Set restriction lock to the current task subtree or file if prefix
+is specified"
+  (interactive "p")
+  (let* ((pom (cb/get-pom-from-agenda-restriction-or-point))
+	 (tags (org-with-point-at pom (org-get-tags-at))))
+    (let ((restriction-type (if (equal arg 4) 'file' 'subtree)))
+      (save-restriction
+	(cond
+	 ((and (equal major-mode 'org-agenda-mode) pom)
+	  (org-with-point-at pom
+	   (org-agenda-set-restriction-lock restriction-type))
+	  (org-agenda-redo))
+	 ((and (equal major-mode 'org-mode)
+	       (org-before-first-heading-p))
+	  (org-agenda-set-restriction-lock 'file))
+	 (pom
+	  (org-with-point-at pom
+	    (org-agenda-set-restriction-lock restriction-type))))))))
+
+(defun cb/agenda-sort (a b)
+  "Sorting strategy for agenda items.
+Late deadlines first, then scheduled, then non-late deadlines"
+  (let (result num-a num-b)
+    (cond
+     ;; time specific items are already sorted first by org-agenda-sorting-strategy
+
+     ;;non deadline and non scheduled items next
+     ((cb/agenda-sort-test 'cb/is-not-scheduled-or-deadline a b))
+
+     ;; deadlines for today next
+     ((cb/agenda-sort-test 'cb/is-due-deadline a b))
+
+     ;; late deadlines next
+     ((cb/agenda-sort-test-num 'cb/is-late-deadline '> a b))
+
+     ;; scheduled items for today next
+     ((cb/agenda-sort-test 'cb/is-scheduled-today a b))
+
+     ;; late scheduled items next
+     ((cb/agenda-sort-test-num 'cb/is-scheduled-late '> a b))
+
+     ;; pending deadlines last 
+     ((cb/agenda-sort-test-num 'cb/is-pending-deadline '< a b))
+
+     ;;finally default to unsorted
+     (t (setq result nil)))
+    result))
+
+(defmacro cb/agenda-sort-test (f a b)
+  "Test for agenda sort"
+  `(cond
+   ;; If both match, leave them unsorted
+   ((and (apply ,f (list ,a))
+	 (apply ,f (list ,b)))
+    (setq result nil))
+    ;;if a matches, put it first
+   ((apply ,f (list ,a))
+    (setq result -1))
+   ;;Otherwise put b first
+   ((apply ,f (list ,b))
+    (setq result 1))
+   ;;If none match, leave them unsorted
+   (t nil)))
+
+(defmacro cb/agenda-sort-test-num (fn compfn a b)
+  `(cond
+   ((apply ,fn (list ,a))
+    (setq num-a (string-to-number (match-string 1 ,a)))
+    (if (apply ,fn (list ,b))
+	(progn
+	  (setq num-b (string-to-number (match-string 1 ,b)))
+	  (setq result (if (apply ,compfn (list num-a num-b))
+			   -1
+			 1)))
+      (setq result -1)))
+   ((apply ,fn (list ,b))
+    (setq result 1))
+   (t nil)))
+
+(defun cb/is-not-scheduled-or-deadline (date-str)
+  (and (not (cb/is-deadline date-str))
+       (not (cb/is-scheduled date-str))))
+
+(defun cb/is-due-deadline (date-str)
+  (string-match "Deadline:" date-str))
+
+(defun cb/is-late-deadline (date-str)
+  (string-match "\\([0-9]*\\) d\. ago:" date-str))
+
+(defun cb/is-pending-deadline (date-str)
+  (string-match "In \\([^-]*\\)d\.:" date-str))
+
+(defun cb/is-deadline (date-str)
+  (or (cb/is-due-deadline date-str)
+      (cb/is-late-deadline date-str)
+      (cb/is-pending-deadline date-str)))
+
+(defun cb/is-scheduled (date-str)
+  (or (cb/is-scheduled-today date-str)
+      (cb/is-scheduled-late date-str)))
+
+(defun cb/is-scheduled-today (date-str)
+  (string-match "Scheduled:" date-str))
+
+(defun cb/is-scheduled-late (date-str)
+  (string-match "Sched\.\\(.*\\)x:" date-str))
+
+
 ;; }}}
+
+
 
 ;; {{{ Hooks
 (add-hook 'org-clock-out-hook 'cb/remove-empty-clock-drawers-on-clock-out 'append)
 (add-hook 'org-clock-out-hook 'cb/clock-out-maybe 'append)
+
+;; "W" key widens in agenda view
+(add-hook 'org-agenda-mode-hook
+	  '(lambda () (org-defkey org-agenda-mode-map "W" (lambda ()
+							    (interactive)
+							    (setq
+							     cb/hide-scheduled-and-waiting-next-tasks
+							     t)
+							    (cb/widen))))
+	  'append)
+
+;; "F" (file) narrows to the current file or file of the existing restriction
+(add-hook 'org-agenda-mode-hook
+	  '(lambda () (org-defkey org-agenda-mode-map "F"
+				  'cb/restrict-to-file-or-follow))
+	  'append)
+
+;; N (narrow) narrows to this task subtree
+(add-hook 'org-agenda-mode-hook
+	  '(lambda () (org-defkey org-agenda-mode-map "N" 'cb/narrow-to-subtree))
+	  'append)
+
+;; T (tasks) for C-c / t on the current buffer
+
+;;U (up) narrows to the immediate parent task subtree without moving
+(add-hook 'org-agenda-mode-hook
+	  '(lambda () (org-defkey org-agenda-mode-map "U" 'cb/narrow-up-one-level))
+	  'append)
+
+;;P (project) narrows to the parent project subtree without moving
+(add-hook 'org-agenda-mode-hook
+	  '(lambda () (org-defkey org-agenda-mode-map "P" 'cb/narrow-to-project))
+	  'append)
+
+;;V (view next project)
+(add-hook 'org-agenda-mode-hook
+	  '(lambda () (org-defkey org-agenda-mode-map "V" 'cb/view-next-project))
+	  'append)
+
+;;Add Restriction lock chord to the agenda view
+(add-hook 'org-agenda-mode-hook
+	  '(lambda () (org-defkey org-agenda-mode-map "\C-c\C-x<" 'cb/set-agenda-restriction-lock))
+	  'append)
 ;; }}}

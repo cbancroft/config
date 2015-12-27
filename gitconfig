@@ -13,11 +13,15 @@
 	unpushed = !git g --not --remotes --tags
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
     fc = show --color --pretty  --name-only
-    review = log -p --reverse origin/master..HEAD
+    #review = log -p --reverse origin/master..HEAD
+    review = log -p --reverse origin/develop..HEAD
     dc = diff --cached
+    chg = "!git status -uno"
 [color]
 	ui = auto
 [diff]
 	renames = true
 [push]
 	default = simple
+[core]
+	autocrlf = input

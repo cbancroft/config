@@ -32,8 +32,8 @@ function onscreen.init_processwatcher()
                              sort_by = "rss",
                              ignore = { "defunct", "migration" } } })
 
-   w.font = 'DejaVu Sans Mono 10'
-   w.title_font = 'Helvetica 10'
+   w.font = 'DejaVu Sans Mono 6'
+   w.title_font = 'Helvetica 6'
    w:calculate_line_count(wheight)
    w.line_length = c.line_length or 40
    w:run()
@@ -51,7 +51,7 @@ function onscreen.init_calendar()
    orglendar.text_color = c.text_color or theme.fg_focus
    orglendar.today_color = c.today_color or theme.motive
    orglendar.event_color = theme.fg_onscreen
-   orglendar.font = "DejaVu Sans Mono 10"
+   orglendar.font = "DejaVu Sans Mono 6"
    orglendar.char_width = 8.20
    orglendar.limit_todo_length = c.limit_todo_length or 50
    orglendar.parse_on_show = false

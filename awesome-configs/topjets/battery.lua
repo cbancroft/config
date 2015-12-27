@@ -1,77 +1,120 @@
 local utility = require('utility')
 local wibox = require('wibox')
-local iconic = require('iconic')
+local scheduler = require('scheduler')
+local asyncshell = require('asyncshell')
+local awful = require('awful')
+local base = require('topjets.base')
 
 -- Module topjets.battery
-local battery = {}
+local battery = base { warning_threshold = 10,
+                       devices = {}, data = {} }
 
-local pref_size = '24x24'
 local icons
 
-local function round(n)
-   local s, f = math.modf(n)
-   if f >= 0.5 then return s + 1 else return s end
+function battery.init(devices)
+   battery.devices = devices or { { primary = true, interval = 10 } }
+
+   local l_icon = function (icon_name)
+      return base.icon("gpm-battery-" .. icon_name, "status")
+   end
+
+   icons = { charging = { l_icon('000-charging'),
+                          l_icon('020-charging'),
+                          l_icon('040-charging'),
+                          l_icon('060-charging'),
+                          l_icon('080-charging'),
+                          l_icon('100-charging') },
+             discharging = { l_icon('000'),
+                             l_icon('020'),
+                             l_icon('040'),
+                             l_icon('060'),
+                             l_icon('080'),
+                             l_icon('charged') },
+             full = l_icon('100'),
+             missing = l_icon('empty') }
+
+   for i, dev in ipairs(battery.devices) do
+      battery.data[i] = { }
+      scheduler.register_recurring("topjets.battery" .. i, dev.interval,
+                                   function () battery.get_local(i) end)
+   end
 end
 
 function battery.new()
-   icons = { charging = { iconic.lookup_status_icon('gpm-battery-000-charging', { preferred_size = pref_size }),
-                          iconic.lookup_status_icon('gpm-battery-020-charging', { preferred_size = pref_size }),
-                          iconic.lookup_status_icon('gpm-battery-040-charging', { preferred_size = pref_size }),
-                          iconic.lookup_status_icon('gpm-battery-060-charging', { preferred_size = pref_size }),
-                          iconic.lookup_status_icon('gpm-battery-080-charging', { preferred_size = pref_size }),
-                          iconic.lookup_status_icon('gpm-battery-100-charging', { preferred_size = pref_size }) },
-             discharging = { iconic.lookup_status_icon('gpm-battery-000', { preferred_size = pref_size }),
-                             iconic.lookup_status_icon('gpm-battery-020', { preferred_size = pref_size }),
-                             iconic.lookup_status_icon('gpm-battery-040', { preferred_size = pref_size }),
-                             iconic.lookup_status_icon('gpm-battery-060', { preferred_size = pref_size }),
-                             iconic.lookup_status_icon('gpm-battery-080', { preferred_size = pref_size }),
-                             iconic.lookup_status_icon('gpm-battery-charged', { preferred_size = pref_size }) },
-             full = iconic.lookup_status_icon('gpm-battery-100', { preferred_size = pref_size }) }
-
-   local _widget = wibox.widget.imagebox()
-
-   if battery.update(_widget) then
-      scheduler.register_recurring("topjets.battery", 10,
-                                   function () battery.update(_widget) end)
-      utility.add_hover_tooltip(_widget,
-                                function(w)
-                                   return { title = w.data.charge .. "% - " .. w.data.status,
-                                            text = w.data.time, icon = w.data.icon, icon_size = 32 }
-                                end)
-   end
-   return _widget
+   return wibox.widget.imagebox()
 end
 
-function battery.update(w)
+function battery.update(dev_num, stats)
+   local dev = battery.devices[dev_num]
+   if stats == nil then
+      return
+   end
+   stats.disable_warning = battery.data[dev_num].disable_warning
+
+   if stats.status:match("Discharging") then
+      if stats.charge <= battery.warning_threshold and (not stats.disable_warning) then
+         base.notify { title = "Battery Warning",
+                       text = string.format("Battery is low, %s%% left.", stats.charge),
+                       timeout = 0, position = "top_right", icon = icons.discharging[1].large }
+         stats.disable_warning = true
+      end
+      if (battery.data[dev_num] ~= nil) and (battery.data[dev_num].time_disc == nil) then
+         stats.time_disc = os.time()
+      else
+         stats.time_disc = battery.data[dev_num].time_disc
+      end
+   elseif not stats.status:match("Charging") then
+      stats.time_disc = nil
+   else
+      stats.disable_warning = false
+   end
+   if dev.primary then
+      battery.data.icon = stats.icon
+      battery.refresh_all(stats.icon)
+   end
+   battery.data[dev_num] = stats
+end
+
+function battery.refresh(w, icon)
+   w:set_image(icon.small)
+end
+
+function battery.tooltip()
+   local data = battery.data[1]
+   local text = "Status\t" .. data.status_text or data.status
+   if data.time_disc then
+      text = string.format("%s\nLasting\t%s", text, os.date("!%X",os.time() - data.time_disc))
+   end
+   return { title = string.format("Charge\t%s%%", data.charge),
+            text = text,
+            icon = battery.data.icon.large }
+end
+
+function battery.get_local(dev_num)
    local info = utility.pslurp("acpi", "*line")
    if not info or string.len(info) == 0 then
-      return false
+      battery.update(dev_num, { status = "Missing", charge = 0,
+                                icon = icons.missing })
+      return
    end
 
-   local _, _, status, charge, time =
-      string.find(info, "Battery %d: (%w+), (%d+)%%(.*)")
-   local icon
-
+   local status, charge, time =
+      string.match(info, "Battery %d: (%w+), (%d+)%%(.*)")
    time = time:match(",?%s*(.+)")
    charge = tonumber(charge)
 
+   local icon, time_disconnected
    if status:match("Charging") then
-      icon = icons.charging[round(charge / 20) + 1]
+      icon = icons.charging[utility.round(charge / 20) + 1]
    elseif status:match("Discharging") then
-      icon = icons.discharging[round(charge / 20) + 1]
-      if charge <= 10 then
-	 naughty.notify({ title    = "Battery Warning",
-			  text     = "Battery low! " .. charge .."%" .. " left!",
-			  timeout  = 5,
-                          icon = battery.icon, icon_size = 32,
-			  position = "top_right" })
-      end
+      icon = icons.discharging[utility.round(charge / 20) + 1]
    else
       icon = icons.full
    end
-   w:set_image(icon)
-   w.data = { status = status, charge = charge, time = time, icon = icon }
-   return true
+
+   battery.update(dev_num,
+                  { status = status, charge = charge, time = time,
+                    icon = icon, status_text = time or status })
 end
 
-return setmetatable(battery, { __call = function(_, ...) return battery.new(...) end})
+return battery

@@ -6,8 +6,8 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 	unset f
 fi
 
-# Start the virtual box client
-/usr/bin/VBoxClient-all &
+#xrandr --setprovideroutputsource modesetting NVIDIA-0
+#xrandr --auto
 
 # {{{ Environment settings
 errorlog="${HOME}/.xsession-errors"
@@ -86,13 +86,13 @@ devmon &
 
 # Open a terminal emulator on the first tag
 #   - resume the old screen session or start a new one
-tmux has-session -t $tmuxSession || tmux new -d -s $tmuxSession 
-termite -e "zsh -c tmux attach -t $tmuxSession" &
+#tmux has-session -t $tmuxSession || tmux new -d -s $tmuxSession 
+#termite -e "zsh -c tmux attach -t $tmuxSession" &
 
 synclient PalmDetect=1 PalmMinWidth=3 &
 
-dropboxd &
-#synclient TouchpadOff=1 &
+synclient TouchpadOff=1 &
+wmname Sawfish
 # Play a startup sound
 #            ogg123 -q "${HOME}/.local/share/gajim/sounds/voices/voice-system-activated.ogg" &
 # }}}

@@ -10,11 +10,11 @@ end
 theme.name = "Serenity v0.1"
 theme.theme_dir = util.getdir("config") .. "/themes/serenity"
 
-theme.wallpaper     = res("background.jpg")
+theme.wallpaper     = {res("background.jpg"),res("background2.jpg")}
 theme.icon_dir      = res("icons")
-
-theme.font          = "sans 9"
-theme.taglist_font  = "sans 10"
+theme.useless_gap_width = 10
+theme.font          = "Consolas 8"
+theme.taglist_font  = "Consolas 9"
 
 -- Menu settings
 theme.menu_submenu_icon = res("icons/submenu.png")
