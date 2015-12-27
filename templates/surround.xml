@@ -1,0 +1,21 @@
+<templateSet group="surround">
+  <template name="FR" value="// &lt;editor-fold desc=&quot;Description&quot;&gt;&#10;$SELECTION$&#10;// &lt;/editor-fold&gt;" description="&lt;editor-fold...&gt;" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="HTML_TEXT" value="true" />
+      <option name="HTML" value="true" />
+      <option name="XSL_TEXT" value="true" />
+      <option name="XML" value="true" />
+      <option name="XML_TEXT" value="true" />
+      <option name="JSON" value="true" />
+      <option name="JAVA_CODE" value="true" />
+      <option name="JAVA_STATEMENT" value="true" />
+      <option name="JAVA_EXPRESSION" value="true" />
+      <option name="JAVA_DECLARATION" value="true" />
+      <option name="JAVA_COMMENT" value="true" />
+      <option name="JAVA_STRING" value="true" />
+      <option name="COMPLETION" value="true" />
+      <option name="MAVEN" value="true" />
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+</templateSet>

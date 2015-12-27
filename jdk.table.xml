@@ -1,0 +1,138 @@
+<application>
+  <component name="ProjectJdkTable">
+    <jdk version="2">
+      <name value="1.8" />
+      <type value="JavaSDK" />
+      <version value="java version &quot;1.8.0_66&quot;" />
+      <homePath value="/usr/lib/jvm/default" />
+      <roots>
+        <annotationsPath>
+          <root type="composite">
+            <root type="simple" url="jar://$APPLICATION_HOME_DIR$/lib/jdkAnnotations.jar!/" />
+          </root>
+        </annotationsPath>
+        <classPath>
+          <root type="composite">
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/charsets.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/deploy.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/ext/cldrdata.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/ext/dnsns.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/ext/jaccess.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/ext/jfxrt.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/ext/localedata.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/ext/nashorn.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/ext/sunec.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/ext/sunjce_provider.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/ext/sunpkcs11.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/ext/zipfs.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/javaws.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/jce.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/jfr.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/jfxswt.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/jsse.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/management-agent.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/plugin.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/resources.jar!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/jre/lib/rt.jar!/" />
+          </root>
+        </classPath>
+        <javadocPath>
+          <root type="composite" />
+        </javadocPath>
+        <sourcePath>
+          <root type="composite">
+            <root type="simple" url="jar:///usr/lib/jvm/default/src.zip!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/javafx-src.zip!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/src.zip!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/javafx-src.zip!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/src.zip!/" />
+            <root type="simple" url="jar:///usr/lib/jvm/default/javafx-src.zip!/" />
+          </root>
+        </sourcePath>
+      </roots>
+      <additional />
+    </jdk>
+    <jdk version="2">
+      <name value="Python 2.7.10 (/usr/bin/python2)" />
+      <type value="Python SDK" />
+      <version value="Python 2.7.10" />
+      <homePath value="/usr/bin/python2" />
+      <roots>
+        <annotationsPath>
+          <root type="composite" />
+        </annotationsPath>
+        <classPath>
+          <root type="composite">
+            <root type="simple" url="file:///usr/lib/python2.7" />
+            <root type="simple" url="file:///usr/lib/python2.7/plat-linux2" />
+            <root type="simple" url="file:///usr/lib/python2.7/lib-tk" />
+            <root type="simple" url="file:///usr/lib/python2.7/lib-dynload" />
+            <root type="simple" url="file:///usr/lib/python2.7/site-packages" />
+            <root type="simple" url="file:///usr/lib/python2.7/site-packages/gst-0.10" />
+            <root type="simple" url="file:///usr/lib/python2.7/site-packages/gtk-2.0" />
+            <root type="simple" url="file:///usr/lib/python2.7/site-packages/wx-3.0-gtk2" />
+            <root type="simple" url="file://$USER_HOME$/PlayOnLinux's virtual drives/IDA/drive_c/Program Files (x86)/IDA 6.6/python" />
+            <root type="simple" url="file://$USER_HOME$/PlayOnLinux's virtual drives/IDA/drive_c/Program Files (x86)/IDA 6.6/python/PySide" />
+            <root type="simple" url="file:///usr/lib/python2.7/site-packages/Ice-0.1.0-py2.7.egg" />
+            <root type="simple" url="file:///usr/lib/python2.7/site-packages/pysteam-0.1.3-py2.7.egg" />
+            <root type="simple" url="file:///usr/lib/python2.7/site-packages/appdirs-1.2.0-py2.7.egg" />
+            <root type="simple" url="jar:///usr/lib/python2.7/site-packages/psutil-2.1.1-py2.7-linux-x86_64.egg!/" />
+            <root type="simple" url="file://$USER_HOME$/.IntelliJIdea15/system/python_stubs/-2066100796" />
+            <root type="simple" url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/python-skeletons" />
+          </root>
+        </classPath>
+        <javadocPath>
+          <root type="composite" />
+        </javadocPath>
+        <sourcePath>
+          <root type="composite" />
+        </sourcePath>
+      </roots>
+      <additional />
+    </jdk>
+    <jdk version="2">
+      <name value="Kahlua" />
+      <type value="Lua SDK" />
+      <homePath value="" />
+      <roots>
+        <annotationsPath>
+          <root type="composite" />
+        </annotationsPath>
+        <classPath>
+          <root type="composite" />
+        </classPath>
+        <javadocPath>
+          <root type="composite" />
+        </javadocPath>
+        <sourcePath>
+          <root type="composite">
+            <root type="simple" url="file://$APPLICATION_PLUGINS_DIR$/IDLua/stdlibrary" />
+          </root>
+        </sourcePath>
+      </roots>
+      <additional />
+    </jdk>
+    <jdk version="2">
+      <name value="LuaJ" />
+      <type value="Lua SDK" />
+      <homePath value="" />
+      <roots>
+        <annotationsPath>
+          <root type="composite" />
+        </annotationsPath>
+        <classPath>
+          <root type="composite" />
+        </classPath>
+        <javadocPath>
+          <root type="composite" />
+        </javadocPath>
+        <sourcePath>
+          <root type="composite">
+            <root type="simple" url="file://$APPLICATION_PLUGINS_DIR$/IDLua/stdlibrary" />
+          </root>
+        </sourcePath>
+      </roots>
+      <additional />
+    </jdk>
+  </component>
+</application>

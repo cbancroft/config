@@ -1,0 +1,10 @@
+<application>
+  <component name="UISettings">
+    <option name="WIDESCREEN_SUPPORT" value="true" />
+    <option name="SHOW_STATUS_BAR" value="false" />
+    <option name="EDITOR_TAB_PLACEMENT" value="0" />
+    <option name="MOVE_MOUSE_ON_DEFAULT_BUTTON" value="true" />
+    <option name="USE_SMALL_LABELS_ON_TABS" value="true" />
+    <option name="MAX_LOOKUP_LIST_HEIGHT" value="12" />
+  </component>
+</application>
