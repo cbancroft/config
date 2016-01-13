@@ -58,5 +58,5 @@
 ;(global-linum-mode)
 
 ;{{{ Font config
-(set-default-font "Monaco 10")
+(set-default-font "Sauce Code Pro 8")
 ;}}}

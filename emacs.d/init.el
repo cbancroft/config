@@ -45,7 +45,7 @@
  '(custom-enabled-themes (quote (warm-night)))
  '(custom-safe-themes
    (quote
-    ("6209442746f8ec6c24c4e4e8a8646b6324594308568f8582907d0f8f0260c3ae" "7b0433e99dad500efbdf57cf74553499cde4faf2908a2852850c04b216c41cc9" default)))
+    ("ac2b1fed9c0f0190045359327e963ddad250e131fbf332e80d371b2e1dbc1dc4" "6209442746f8ec6c24c4e4e8a8646b6324594308568f8582907d0f8f0260c3ae" "7b0433e99dad500efbdf57cf74553499cde4faf2908a2852850c04b216c41cc9" default)))
  '(flymake-google-cpplint-command "/usr/bin/cpplint")
  '(safe-local-variable-values
    (quote
@@ -57,5 +57,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Monaco" :foundry "unknown" :slant normal :weight normal :height 60 :width normal))))
- '(org-mode-line-clock ((t (:background "grey75" :foreground "red" :box (:line-width -1 :style released-button)))) t))
+ '(org-mode-line-clock ((t (:background "grey75" :foreground "red" :box (:line-width -1 :style released-button))))))
