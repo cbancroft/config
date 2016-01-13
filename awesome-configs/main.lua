@@ -40,8 +40,7 @@ local autorunApps = {
 
 local tmuxSessionName = 'asshai'
 local runOnceApps = {
-   'mpd',
-   'thunderbird',
+   'lxpolkit',
    'xrdb -merge ~/.Xresources',
    'pulseaudio --start',
    'redshift -l 60.8:10.7 -m vidmode -g 0.8 -t 6500:5000',
@@ -61,13 +60,13 @@ vista.setup {
      properties = { secondary = true,
                     wallpaper = beautiful.wallpapers[2]} },
    { rule = { name = "eDP1" },
-     properties = { primary = true } },
+     properties = { primary = true, wallpaper = beautiful.wallpapers[1]} },
    { rule = { ratio = "1.25-" },
      properties = { wallpaper = beautiful.wallpapers[2],
 		    statusbar = { position = "top", width = vista.scale(38),
 				  unitybar_thin_mode = true } } },
    { rule = { },
-     properties = { wallpaper = beautiful.wallpapers[1],
+     properties = { 
 		    statusbar = { position = "right", width = vista.scale(58) }
      }
    }

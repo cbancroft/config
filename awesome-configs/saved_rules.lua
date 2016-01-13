@@ -68,4 +68,6 @@ return
     rule = { class = "jetbrains-idea" } },
   { properties = { screen = "primary",
       tag = 8 },
-    rule = { class = "Spotify" } } }
+    rule = { class = "Spotify" } },
+  { properties = {  },
+    rule = { class = "Termite" } } }
