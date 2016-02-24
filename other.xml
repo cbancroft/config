@@ -80,6 +80,12 @@
     <option name="UI_COMPACT_EMPTY_MIDDLE_PACKAGES" value="false" />
     <option name="SCOPE_TYPE" value="file" />
   </component>
+  <component name="ErrorReportConfigurable">
+    <option name="ITN_LOGIN" value="" />
+    <option name="ITN_PASSWORD_CRYPT" value="" />
+    <option name="KEEP_ITN_PASSWORD" value="false" />
+    <option name="EMAIL" value="" />
+  </component>
   <component name="PyCodeInsightSettings">
     <option name="PREFER_FROM_IMPORT" value="false" />
     <option name="SHOW_IMPORT_POPUP" value="true" />
