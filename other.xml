@@ -31,7 +31,7 @@
     <option name="EMAIL" value="" />
   </component>
   <component name="NodeLocalInterpreterManager">
-    <node-interpreter path="/usr/bin/node" version="5.7.0" last-modified="1456303410000" />
+    <node-interpreter path="/usr/bin/node" version="5.9.1" last-modified="1458798552000" />
   </component>
   <component name="PyCodeInsightSettings">
     <option name="PREFER_FROM_IMPORT" value="false" />
