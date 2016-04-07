@@ -35,7 +35,6 @@ conv = utility.conversion
 
 -- Autorun programs
 local autorunApps = {
-   "setxkbmap -layout 'us' -variant ',winkeys,winkeys' -option grp:menu_toggle -option compose:ralt -option terminate:ctrl_alt_bksp",
 }
 
 local tmuxSessionName = 'asshai'
