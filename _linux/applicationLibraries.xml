@@ -161,11 +161,7 @@
         <root url="file:///usr/lib/python2.7/lib-tk" />
         <root url="file:///usr/lib/python2.7/lib-dynload" />
         <root url="file:///usr/lib/python2.7/site-packages" />
-        <root url="file:///usr/lib/python2.7/site-packages/gst-0.10" />
-        <root url="file:///usr/lib/python2.7/site-packages/gtk-2.0" />
-        <root url="file:///usr/lib/python2.7/site-packages/wx-3.0-gtk2" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/python-skeletons" />
-        <root url="file://$USER_HOME$/.IntelliJIdea14/system/python_stubs/-2066100796" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
@@ -174,11 +170,7 @@
         <root url="file:///usr/lib/python2.7/lib-tk" />
         <root url="file:///usr/lib/python2.7/lib-dynload" />
         <root url="file:///usr/lib/python2.7/site-packages" />
-        <root url="file:///usr/lib/python2.7/site-packages/gst-0.10" />
-        <root url="file:///usr/lib/python2.7/site-packages/gtk-2.0" />
-        <root url="file:///usr/lib/python2.7/site-packages/wx-3.0-gtk2" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/python-skeletons" />
-        <root url="file://$USER_HOME$/.IntelliJIdea14/system/python_stubs/-2066100796" />
       </SOURCES>
     </library>
     <library name="underscore-DefinitelyTyped" type="javaScript">
