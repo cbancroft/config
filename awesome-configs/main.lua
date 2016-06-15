@@ -35,6 +35,7 @@ conv = utility.conversion
 
 -- Autorun programs
 local autorunApps = {
+   "setxkbmap -layout 'us' -variant ',winkeys,winkeys' -option grp:menu_toggle -option compose:ralt -option terminate:ctrl_alt_bksp",
 }
 
 local tmuxSessionName = 'asshai'
@@ -44,8 +45,8 @@ local runOnceApps = {
    'pulseaudio --start',
    'redshift -l 60.8:10.7 -m vidmode -g 0.8 -t 6500:5000',
    'systemctl --user restart mopidy',
-   'tmux has-session -t ' .. tmuxSessionName .. ' || tmux new -d -s ' .. tmuxSessionName,
-   'termite -e "zsh -c tmux attach -t ' .. tmuxSessionName .. '"',
+   'emacs --daemon',
+   'devmon'
 }
 
 utility.autorun(autorunApps, runOnceApps)
@@ -55,10 +56,10 @@ utility.load_theme('devotion')
 
 -- Configure screens
 vista.setup {
-   { rule = { name = "HDMI1" },
+   { rule = { name = "HDMI-1" },
      properties = { secondary = true,
                     wallpaper = beautiful.wallpapers[2]} },
-   { rule = { name = "eDP1" },
+   { rule = { name = "eDP-1" },
      properties = { primary = true, wallpaper = beautiful.wallpapers[1]} },
    { rule = { ratio = "1.25-" },
      properties = { wallpaper = beautiful.wallpapers[2],
@@ -121,6 +122,7 @@ end
 -- Configure menubar
 menubar.cache_entries = true
 menubar.utils.terminal = software.terminal
+menubar.utils.terminal = software.terminal
 menubar.app_folders = { "/usr/share/applications/",
 			awful.util.getdir("config") .. "/scripts/" }
 menubar.show_categories = false
@@ -167,7 +169,7 @@ globalkeys = utility.keymap (
    "M-=", dict.lookup_word,
    "Print", function() awful.util.spawn("snap " .. os.date("%Y%m%d_%H%M%S")) end,
    "M-Return", function ()
-      quake.toggle({ terminal = software.terminal_,
+      quake.toggle({ terminal = software.terminal,
                      name = "QuakeTermite",
 		     argname = "--name %s",
                      height = 0.25,
@@ -313,7 +315,6 @@ client.connect_signal("manage",
                             -- Set the windows at the slave,
                             -- i.e. put it at the end of others instead of setting it master.
                             -- awful.client.setslave(c)
-
                             -- Put windows in a smart way, only if they does not set an initial position.
                             if not c.size_hints.user_position and not c.size_hints.program_position then
                                awful.placement.no_overlap(c)

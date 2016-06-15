@@ -56,7 +56,9 @@
 (require 'linum)
 ;; - do not enable by default, breaks org-mode
 ;(global-linum-mode)
+(add-hook 'c-mode-hook #'linum-on)
+(add-hook 'asm-mode-hook #'linum-on)
 
 ;{{{ Font config
-(set-default-font "Sauce Code Pro 8")
+(set-default-font "Monaco for Powerline 8")
 ;}}}

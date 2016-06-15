@@ -62,7 +62,7 @@ end
 
 herder.setup {
    { rule = { hostname = "asshai" },
-     properties = { interfaces = { "wlp8s0" },
+     properties = { interfaces = { "wlp8s0", "usb0"},
 		    debugging = true,
                     laptop_name = "Thinkpad X220",
                     hosts = { local_ip = "192.168.1.10",

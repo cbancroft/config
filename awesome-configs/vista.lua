@@ -233,6 +233,7 @@ function vista.xrandr.set(native_on, external_on, position)
       conf(info[2])
    end
 
+   log.e("Executing command '" .. cmd .. "'", "vista.xrandr" )
    os.execute(cmd)
 end
 

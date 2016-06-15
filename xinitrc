@@ -75,14 +75,14 @@ gpg-connect-agent updatestartuptty /bye
 #urxvtd -q -o -f &
 
 # Start the GNU Emacs daemon
-[[ ! -r "/tmp/emacs${UID}/server" ]] && emacs --daemon &
+#[[ ! -r "/tmp/emacs${UID}/server" ]] && emacs --daemon &
 
 #nvidia-settings -a InitialPixmapPlacement=2
 #nvidia-settings -a InitialPixmapPlacement=0
 #compton -cCG -o 0.75 -f 0.05 -t 0.01 -l -2 -r 2.5  -i 0.8 &
 #compton &
 # Start the device monitor
-devmon &
+#devmon &
 
 # Open a terminal emulator on the first tag
 #   - resume the old screen session or start a new one

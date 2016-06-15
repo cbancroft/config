@@ -10,3 +10,20 @@
 ;;(color-theme-zenburn)
 ;;(color-theme-xoria256)
 ;;(load-theme 'warm-night)
+
+(defvar cb/theme-loaded nil)
+
+(defun cb/load-theme (frame)
+  (when (not cb/theme-loaded)
+    (select-frame frame)
+    (set-frame-parameter frame 'background-mode 'dark)
+;;    (setq solarized-termcolors 256)
+;;    (enable-theme 'solarized)
+    (cb/mode-line-theme)
+    (setq cb/theme-loaded t)))
+
+(if (daemonp)
+    (add-hook 'after-make-frame-functions #'cb/load-theme)
+  (cb/load-theme (selected-frame)))
+
+(load-theme 'spacemacs-dark t)
