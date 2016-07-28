@@ -444,7 +444,7 @@
   (interactive)
   (save-excursion
     (beginning-of-line 0)
-    (org-remove-empty-drawer-at "LOGBOOK" (point))))
+    (org-remove-empty-drawer-at (point))))
 
 (defun cb/org-auto-exclude-function (tag)
   "Automatic task exclusion in the agenda with / RET"
