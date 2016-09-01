@@ -1,3 +1,7 @@
+;; variables.el
+;; Generic emacs variables
+
+
 ;; Tool bar modes
 ;; {{{
 ;; Turn off the toolbar
@@ -8,11 +12,10 @@
 ;;
 ;; Turn off the scrollbar
 (scroll-bar-mode -1)
+;; }}}
 
-; }}}
-
-;{{{ General settings
-;
+;; {{{ General settings
+;;
 ;; Provide an error trace if loading .emacs fails
 (setq debug-on-error t)
 
@@ -39,9 +42,9 @@
 (setq completion-ignore-case t
   read-file-name-completion-ignore-case t)
 
-
 ;; Save after a certain amount of time.
 (setq auto-save-timeout 1800)
+
 ;;
 ;; Change backup behavior to save in a specified directory
 (setq backup-directory-alist '(("." . "~/.emacs.d/saves/"))

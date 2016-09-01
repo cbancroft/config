@@ -10,13 +10,6 @@
 (require 'helm-mode)
 (require 'helm-misc)
 
-
-;; The default "C-x c" is too close to "C-x C-c", which quits Emacs.
-;; Change it to "C-c h".
-(global-set-key (kbd "C-c h") 'helm-command-prefix)
-
-(global-unset-key (kbd "C-x c"))
-
 (defun cb/open-file ()
   "Open file using projectile+helm, or just helm"
   (interactive)
@@ -54,6 +47,10 @@
 
     ) "*Helm all the things*"))
 
+;; The default "C-x c" is too close to "C-x C-c", which quits Emacs.
+;; Change it to "C-c h".
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-unset-key (kbd "C-x c"))
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x C-b") 'malb/helm-omni)
 (global-set-key (kbd "M-x") 'helm-M-x)
@@ -69,7 +66,6 @@
 ; list actions using C-z
 (define-key helm-map (kbd "C-z") 'helm-select-action)
 
-
 (define-key helm-grep-mode-map (kbd "<return>") 'helm-grep-mode-jump-other-window )
 (define-key helm-grep-mode-map (kbd "n") 'helm-grep-mode-jump-other-window-forward)
 (define-key helm-grep-mode-map (kbd "p") 'helm-grep-mode-jump-other-window-backward)
@@ -83,12 +79,15 @@
       helm-move-to-line-cycle-in-source t ; move to end or beginning of source when reaching top or bottom
       helm-ff-search-library-in-sexp    t ; search for library in 'require' and 'declare-function' sexp
       helm-ff-file-name-history-use-recentf t;
-      helm-scroll-amount                8 ; scroll 8 lines other window using M-<next>/M-<prior>
+      helm-scroll-amount                4 ; scroll 8 lines other window using M-<next>/M-<prior>
       helm-input-idle-delay 0.01
       helm-bookmark-show-location t
       helm-org-headings-fontify t
-)
+      )
+
 (helm-mode 1)
+
+(add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
 
 ;; helm-ag
 (setq helm-ag-base-command "ag --nocolor --nogroup"

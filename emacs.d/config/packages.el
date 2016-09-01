@@ -5,14 +5,12 @@
 ;; Split the frame horizontally
 (setq ediff-split-window-function 'split-window-horizontally)
 
-
 ;; Saveplace
 ;;   - places cursor in the last place you edited file
 (require 'saveplace)
 (setq-default save-place t)
 ;; Keep places in the load path
 (setq save-place-file "~/.emacs.d/emacs-places")
-
 
 ;; Uniquify
 ;;   - makes buffer names unique
@@ -23,9 +21,6 @@
 ;; EasyPG assistant (GPG mode)
 (require 'epa)
 
-;; Ledger mode
-;; (require 'ledger)
-
 ;; Tramp (remote files editing)
 (require 'tramp)
 (setq tramp-default-method "ssh")
@@ -33,13 +28,6 @@
 ;; BBDB (contact management)
 (require 'bbdb)
 (bbdb-initialize)
-
-;; Egg (git interface)
-;;   - http://github.com/bogolisk/egg
-;;(require 'egg)
-;; Enable tooltips while we are still learning
-;;(setq egg-enable-tooltip t)
-
 
 ;; SCPaste (scp pastebin)
 ;;   - http://www.emacswiki.org/cgi-bin/wiki/SCPaste
@@ -59,38 +47,32 @@
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (add-hook 'latex-mode-hook 'turn-on-reftex)
 ;; }}}
-;; Speedbar settings
-;(require 'speedbar)
-;; Additional extensions we are interested in
-;(speedbar-add-supported-extension
-;  '("PKGBUILD" ".txt" ".org" ".pdf" ".css"
-;    ".php" ".conf" ".patch" ".diff" ".lua" ".sh")
-;)
-;}}}
 
-;{{{ Lua mode
-;    - http://lua-mode.luaforge.net/
-;
+;; {{{ Speedbar settings
+(require 'speedbar)
+;; Additional extensions we are interested in
+(speedbar-add-supported-extension
+  '("PKGBUILD" ".txt" ".org" ".pdf" ".css"
+    ".php" ".conf" ".patch" ".diff" ".lua" ".sh")
+)
+;;}}}
+
+;; {{{ Lua mode
+;;    - http://lua-mode.luaforge.net/
+;;
 (autoload 'lua-mode "lua-mode" "Major-mode for editing lua scripts." t)
-;(setq auto-mode-alist (cons '("\\.lua$" . lua-mode) auto-mode-alist))
+;; (setq auto-mode-alist (cons '("\\.lua$" . lua-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\.lua$" . lua-mode) auto-mode-alist))
     (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+;; }}}
 
-;}}}
-;{{{ Markdown mode
+;; {{{ Markdown mode
 (autoload 'markdown-mode "markdown-mode.el"
    "Major mode for editing Markdown files" t)
 (setq auto-mode-alist
    (cons '("\.md$" . markdown-mode) auto-mode-alist))
 
-;}}}
-;{{{ Post mode
-;    - http://post-mode.sourceforge.net/
-;
-(autoload 'post-mode "~/.emacs.d/post.el" "Major mode for editing e-mail and journal articles" t)
-(add-to-list 'auto-mode-alist 
-  '("\\.*mutt-*\\|\\.*pico.*\\|.article\\|\\.*200\\(T\\)?\\|\\.followup" . post-mode))
-;}}}
+;; }}}
 
 (require 'yasnippet)
 (yas-global-mode 1)
@@ -110,5 +92,3 @@
 ;; Auto Compression
 ;;   - edit files in compressed archives
 (auto-compression-mode 1)
-
-
