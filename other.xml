@@ -24,6 +24,9 @@
     <option name="KEEP_ITN_PASSWORD" value="false" />
     <option name="EMAIL" value="" />
   </component>
+  <component name="LuaApplicationSettings">
+    <option name="INCLUDE_ALL_FIELDS_IN_COMPLETIONS" value="true" />
+  </component>
   <component name="NodeLocalInterpreterManager">
     <node-interpreter path="/usr/bin/node" version="5.9.1" last-modified="1458798552000" />
   </component>
