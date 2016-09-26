@@ -43,6 +43,20 @@
     </option>
   </component>
   <component name="RecentTaskRepositories">
+    <Gitlab shared="false" url="http://10.42.13.150">
+      <commitMessageFormat>#{id}</commitMessageFormat>
+      <option name="currentProject">
+        <GitlabProject id="3" />
+      </option>
+      <password>dffcdfd9df99df9fdfc8dfe1df9fdfc9dfc0df92df93dfeddfeedfc0dfd2dfd3dfdcdfccdfc8dffe</password>
+      <option name="loginAnonymously" value="false" />
+      <option name="preferredCloseTaskState" />
+      <option name="preferredOpenTaskState" />
+      <option name="shouldFormatCommitMessage" value="false" />
+      <option name="useHttpAuthentication" value="false" />
+      <option name="useProxy" value="false" />
+      <username />
+    </Gitlab>
     <Redmine shared="false" url="http://10.42.13.59:3000">
       <option name="APIKey" value="" />
       <option name="assignedToMe" value="false" />
