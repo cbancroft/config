@@ -3,17 +3,7 @@
     <variable name="moduleName" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="moduleDeps" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
-      <option name="HTML_TEXT" value="false" />
-      <option name="HTML" value="false" />
-      <option name="XSL_TEXT" value="false" />
-      <option name="XML" value="false" />
-      <option name="CSS_PROPERTY_VALUE" value="false" />
-      <option name="CSS_DECLARATION_BLOCK" value="false" />
-      <option name="CSS_RULESET_LIST" value="false" />
-      <option name="CSS" value="false" />
       <option name="JAVA_SCRIPT" value="true" />
-      <option name="JSP" value="false" />
-      <option name="OTHER" value="false" />
     </context>
   </template>
   <template name="ng-f" value="angular&#10;    .module('$moduleName$')&#10;    .factory('$factoryName$', $factoryName$);&#10;&#10;$factoryName$.$inject = ['$dependency$'];&#10;&#10;/* @ngInject */&#10;function $factoryName$ ($dependency$){&#10;    var service = {&#10;        $func$: $func$&#10;    };&#10;&#10;    return service;&#10;    &#10;    ////////////////&#10;&#10;    function $func$() { &#10;    }&#10;    $END$&#10;}&#10;" description="A factory in a module" toReformat="true" toShortenFQNames="true">
@@ -22,17 +12,7 @@
     <variable name="dependency" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="func" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
-      <option name="HTML_TEXT" value="false" />
-      <option name="HTML" value="false" />
-      <option name="XSL_TEXT" value="false" />
-      <option name="XML" value="false" />
-      <option name="CSS_PROPERTY_VALUE" value="false" />
-      <option name="CSS_DECLARATION_BLOCK" value="false" />
-      <option name="CSS_RULESET_LIST" value="false" />
-      <option name="CSS" value="false" />
       <option name="JAVA_SCRIPT" value="true" />
-      <option name="JSP" value="false" />
-      <option name="OTHER" value="false" />
     </context>
   </template>
   <template name="ng-c" value="angular&#10;    .module('$moduleName$')&#10;    .controller('$controllerName$', $controllerName$);&#10;&#10;$controllerName$.$inject = ['$dependency$'];&#10;&#10;/* @ngInject */&#10;function $controllerName$ ($dependency$) {&#10;    /* jshint validthis: true */&#10;    var vm = this;&#10;    &#10;    vm.activate = activate;&#10;    vm.title = '$controllerName$';&#10;&#10;    activate();&#10;    &#10;    ////////////////&#10;    &#10;    function activate() { }&#10;    $END$&#10;}" description="Define a new Angular Controller" toReformat="true" toShortenFQNames="true">
@@ -40,17 +20,7 @@
     <variable name="controllerName" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="dependency" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
-      <option name="HTML_TEXT" value="false" />
-      <option name="HTML" value="false" />
-      <option name="XSL_TEXT" value="false" />
-      <option name="XML" value="false" />
-      <option name="CSS_PROPERTY_VALUE" value="false" />
-      <option name="CSS_DECLARATION_BLOCK" value="false" />
-      <option name="CSS_RULESET_LIST" value="false" />
-      <option name="CSS" value="false" />
       <option name="JAVA_SCRIPT" value="true" />
-      <option name="JSP" value="false" />
-      <option name="OTHER" value="false" />
     </context>
   </template>
   <template name="ng-d" value="angular&#10;    .module('$moduleName$')&#10;    .directive('$directiveName$', $directiveName$);&#10;&#10;$directiveName$.$inject = ['$dependency$'];&#10;&#10;/* @ngInject */&#10;function $directiveName$ ($dependency$) {&#10;    var directive = {&#10;        restrict: '$restrict$',&#10;        templateUrl: '$templateUrl$',&#10;        controller: '$controllerName$',&#10;        controllerAs: 'vm'&#10;    };&#10;    &#10;    return directive;&#10;}&#10;$END$" description="Define a new Angular Directive" toReformat="true" toShortenFQNames="true">
@@ -61,17 +31,7 @@
     <variable name="templateUrl" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="controllerName" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
-      <option name="HTML_TEXT" value="false" />
-      <option name="HTML" value="false" />
-      <option name="XSL_TEXT" value="false" />
-      <option name="XML" value="false" />
-      <option name="CSS_PROPERTY_VALUE" value="false" />
-      <option name="CSS_DECLARATION_BLOCK" value="false" />
-      <option name="CSS_RULESET_LIST" value="false" />
-      <option name="CSS" value="false" />
       <option name="JAVA_SCRIPT" value="true" />
-      <option name="JSP" value="false" />
-      <option name="OTHER" value="false" />
     </context>
   </template>
 </templateSet>
