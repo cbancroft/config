@@ -1,8 +1,8 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="Module 'cmp-backend'" />
-    <option name="defaultScopeName" value="Module 'cmp-backend'" />
-    <option name="SEARCH_SCOPE" value="Module 'cmp-backend'" />
+    <option name="customScope" value="Module 'aae-backend'" />
+    <option name="defaultScopeName" value="Module 'aae-backend'" />
+    <option name="SEARCH_SCOPE" value="Module 'aae-backend'" />
     <recentFileMasks>
       <mask>*.properties</mask>
       <mask>*.jsp</mask>
