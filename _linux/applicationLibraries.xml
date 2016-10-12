@@ -1,42 +1,13 @@
 <application>
   <component name="libraryTable">
-    <library name="ace-DefinitelyTyped" type="javaScript">
+    <library name="angular-ui-router-default-DefinitelyTyped" type="javaScript">
+      <properties>
+        <sourceFilesUrls>
+          <item url="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_github.com_DefinitelyTyped_DefinitelyTyped_raw_master_angular-ui-router-default_angular-ui-router-default.d.ts" />
+        </sourceFilesUrls>
+      </properties>
       <CLASSES>
-        <root url="file://$USER_HOME$/.IntelliJIdea14/system/extLibs/http_github.com_borisyankov_DefinitelyTyped_raw_master_ace_ace.d.ts" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES />
-    </library>
-    <library name="angular-ui-bootstrap-DefinitelyTyped" type="javaScript">
-      <CLASSES>
-        <root url="file://$USER_HOME$/.IntelliJIdea14/system/extLibs/http_github.com_borisyankov_DefinitelyTyped_raw_master_angular-ui-bootstrap_angular-ui-bootstrap.d.ts" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES />
-    </library>
-    <library name="angular-ui-router-DefinitelyTyped" type="javaScript">
-      <CLASSES>
-        <root url="file://$USER_HOME$/.IntelliJIdea14/system/extLibs/http_github.com_borisyankov_DefinitelyTyped_raw_master_angular-ui-router_angular-ui-router.d.ts" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES />
-    </library>
-    <library name="angularjs-DefinitelyTyped" type="javaScript">
-      <CLASSES>
-        <root url="file://$USER_HOME$/.IntelliJIdea14/system/extLibs/http_github.com_borisyankov_DefinitelyTyped_raw_master_angularjs_angular-animate.d.ts" />
-        <root url="file://$USER_HOME$/.IntelliJIdea14/system/extLibs/http_github.com_borisyankov_DefinitelyTyped_raw_master_angularjs_angular-resource.d.ts" />
-        <root url="file://$USER_HOME$/.IntelliJIdea14/system/extLibs/http_github.com_borisyankov_DefinitelyTyped_raw_master_angularjs_angular-mocks.d.ts" />
-        <root url="file://$USER_HOME$/.IntelliJIdea14/system/extLibs/http_github.com_borisyankov_DefinitelyTyped_raw_master_angularjs_angular-sanitize.d.ts" />
-        <root url="file://$USER_HOME$/.IntelliJIdea14/system/extLibs/http_github.com_borisyankov_DefinitelyTyped_raw_master_angularjs_angular-route.d.ts" />
-        <root url="file://$USER_HOME$/.IntelliJIdea14/system/extLibs/http_github.com_borisyankov_DefinitelyTyped_raw_master_angularjs_angular.d.ts" />
-        <root url="file://$USER_HOME$/.IntelliJIdea14/system/extLibs/http_github.com_borisyankov_DefinitelyTyped_raw_master_angularjs_angular-cookies.d.ts" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES />
-    </library>
-    <library name="d3-DefinitelyTyped" type="javaScript">
-      <CLASSES>
-        <root url="file://$USER_HOME$/.IntelliJIdea14/system/extLibs/http_github.com_borisyankov_DefinitelyTyped_raw_master_d3_d3.d.ts" />
+        <root url="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_github.com_DefinitelyTyped_DefinitelyTyped_raw_master_angular-ui-router-default_angular-ui-router-default.d.ts" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -62,32 +33,6 @@
       <CLASSES>
         <root url="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_github.com_borisyankov_DefinitelyTyped_raw_master_jasmine_jasmine.d.ts" />
       </CLASSES>
-      <JAVADOC />
-      <SOURCES />
-    </library>
-    <library name="jQuery-2.0.0" type="javaScript">
-      <properties>
-        <option name="frameworkName" value="jQuery" />
-      </properties>
-      <CLASSES>
-        <root url="file://$USER_HOME$/.IntelliJIdea14/system/extLibs/http_code.jquery.com_jquery-2.0.0.js" />
-      </CLASSES>
-      <DOCUMENTATION>
-        <root url="http://api.jquery.com" />
-      </DOCUMENTATION>
-      <JAVADOC />
-      <SOURCES />
-    </library>
-    <library name="jqueryui-DefinitelyTyped" type="javaScript">
-      <properties>
-        <option name="frameworkName" value="jQuery UI" />
-      </properties>
-      <CLASSES>
-        <root url="file://$USER_HOME$/.IntelliJIdea14/system/extLibs/http_github.com_borisyankov_DefinitelyTyped_raw_master_jqueryui_jqueryui.d.ts" />
-      </CLASSES>
-      <DOCUMENTATION>
-        <root url="http://jqueryui.com/demos" />
-      </DOCUMENTATION>
       <JAVADOC />
       <SOURCES />
     </library>
