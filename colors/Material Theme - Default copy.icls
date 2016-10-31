@@ -3,21 +3,22 @@
     <property name="created">2016-10-31T10:54:59</property>
     <property name="ide">idea</property>
     <property name="ideVersion">2016.2.5.0.0</property>
-    <property name="modified">2016-10-31T10:55:07</property>
+    <property name="modified">2016-10-31T11:10:56</property>
     <property name="originalScheme">Material Theme - Default</property>
   </metaInfo>
-  <option name="LINE_SPACING" value="1.6" />
+  <option name="LINE_SPACING" value="1.2" />
   <font>
     <option name="EDITOR_FONT_NAME" value="Fira Code" />
     <option name="EDITOR_FONT_SIZE" value="15" />
   </font>
   <font>
     <option name="EDITOR_FONT_NAME" value="Source Code Pro" />
-    <option name="EDITOR_FONT_SIZE" value="12" />
+    <option name="EDITOR_FONT_SIZE" value="15" />
   </font>
   <option name="EDITOR_LIGATURES" value="true" />
-  <option name="CONSOLE_FONT_NAME" value="DejaVu Sans Mono" />
-  <option name="CONSOLE_FONT_SIZE" value="12" />
+  <option name="CONSOLE_FONT_NAME" value="Fira Code" />
+  <option name="CONSOLE_FONT_SIZE" value="10" />
+  <option name="CONSOLE_LINE_SPACING" value="1.0" />
   <colors>
     <option name="ADDED_LINES_COLOR" value="212c32" />
     <option name="ANNOTATIONS_COLOR" value="8b999f" />
