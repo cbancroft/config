@@ -6,10 +6,12 @@
     <option name="SCOPE_TYPE" value="file" />
   </component>
   <component name="UISettings">
+    <option name="FONT_SIZE" value="12" />
     <option name="WIDESCREEN_SUPPORT" value="true" />
     <option name="SHOW_MEMORY_INDICATOR" value="true" />
     <option name="SHOW_STATUS_BAR" value="false" />
     <option name="MOVE_MOUSE_ON_DEFAULT_BUTTON" value="true" />
+    <option name="OVERRIDE_NONIDEA_LAF_FONTS" value="true" />
     <option name="USE_SMALL_LABELS_ON_TABS" value="true" />
     <option name="MAX_LOOKUP_LIST_HEIGHT" value="12" />
   </component>
