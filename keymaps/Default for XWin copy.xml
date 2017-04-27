@@ -9,6 +9,9 @@
   <action id="FixDocComment">
     <keyboard-shortcut first-keystroke="shift ctrl q" second-keystroke="f" />
   </action>
+  <action id="RearrangeCode">
+    <keyboard-shortcut first-keystroke="shift ctrl q" second-keystroke="r" />
+  </action>
   <action id="SwitchApply">
     <keyboard-shortcut first-keystroke="shift alt enter" />
   </action>
