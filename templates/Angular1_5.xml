@@ -1,0 +1,19 @@
+<templateSet group="Angular1.5">
+  <template name="ng-comp" value="var $componentObject$ = {&#10;  bindings: { $END$&#10;  },&#10;  templateUrl: '$templateUrl$',&#10;  controller: '$controller$'&#10;};&#10;&#10;angular&#10;  .module('$module$')&#10;  .component('$componentName$', $componentName$);" description="Create an angular component" toReformat="true" toShortenFQNames="true">
+    <variable name="componentObject" expression="" defaultValue="&quot;component&quot;" alwaysStopAt="true" />
+    <variable name="templateUrl" expression="" defaultValue="&quot;template URL&quot;" alwaysStopAt="true" />
+    <variable name="controller" expression="" defaultValue="&quot;controller name&quot;" alwaysStopAt="true" />
+    <variable name="module" expression="" defaultValue="&quot;module name&quot;" alwaysStopAt="true" />
+    <variable name="componentName" expression="" defaultValue="&quot;component name&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_SCRIPT" value="true" />
+    </context>
+  </template>
+  <template name="ng-cont" value="function $controllerName$($log) {&#10;  var ctrl = this;&#10;  var logger = $log.getInstance('$module$.$controllerName$');&#10;  &#10;  ctrl.$onInit = function() {&#10;  }&#10; }&#10; &#10; angular&#10; .module('$module$')&#10; .controller('$controllerName$', $controllerName$);" description="Create an Angular 1.5 controller" toReformat="true" toShortenFQNames="true">
+    <variable name="controllerName" expression="" defaultValue="&quot;ControllerName&quot;" alwaysStopAt="true" />
+    <variable name="module" expression="" defaultValue="&quot;Module&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_SCRIPT" value="true" />
+    </context>
+  </template>
+</templateSet>
