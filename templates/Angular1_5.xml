@@ -16,4 +16,11 @@
       <option name="JAVA_SCRIPT" value="true" />
     </context>
   </template>
+  <template name="ng-serv" value="function $serviceName$($log, envService) {&#10;  var logger = $log.getInstance(&quot;$module$.$serviceName$&quot;);&#10;  var data = {};&#10;&#10;  var service = {&#10;    data: data&#10;  };&#10;&#10;  return service;&#10;&#10;  //////////&#10;}&#10;&#10;angular&#10;.module('$module$')&#10;.service('$serviceName$', $serviceName$);" description="Create an Angular 1.5 Service" toReformat="false" toShortenFQNames="true">
+    <variable name="serviceName" expression="" defaultValue="&quot;Service Name&quot;" alwaysStopAt="true" />
+    <variable name="module" expression="" defaultValue="&quot;Module Name&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_SCRIPT" value="true" />
+    </context>
+  </template>
 </templateSet>
