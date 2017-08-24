@@ -7,11 +7,10 @@
   </font>
   <font>
     <option name="EDITOR_FONT_NAME" value="Source Code Pro" />
-    <option name="EDITOR_FONT_SIZE" value="14" />
+    <option name="EDITOR_FONT_SIZE" value="12" />
   </font>
   <option name="EDITOR_LIGATURES" value="true" />
   <option name="CONSOLE_FONT_NAME" value="Source Code Pro" />
-  <option name="CONSOLE_LINE_SPACING" value="1.0" />
   <attributes>
     <option name="MARKDOWN_NAVIGATOR.BOLD_ABBREVIATED_TEXT">
       <value>
