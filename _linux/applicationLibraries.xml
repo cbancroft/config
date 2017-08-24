@@ -100,35 +100,14 @@
       <JAVADOC />
       <SOURCES />
     </library>
-    <library name="Python 2.7.10 (/usr/bin/python2) interpreter library">
+    <library name="Python 3.6.2 virtualenv at ~/astam_venv interpreter library">
       <CLASSES>
-        <root url="file:///usr/lib/python2.7" />
-        <root url="file:///usr/lib/python2.7/plat-linux2" />
-        <root url="file:///usr/lib/python2.7/lib-tk" />
-        <root url="file:///usr/lib/python2.7/lib-dynload" />
-        <root url="file:///usr/lib/python2.7/site-packages" />
-        <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/python-skeletons" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="file:///usr/lib/python2.7" />
-        <root url="file:///usr/lib/python2.7/plat-linux2" />
-        <root url="file:///usr/lib/python2.7/lib-tk" />
-        <root url="file:///usr/lib/python2.7/lib-dynload" />
-        <root url="file:///usr/lib/python2.7/site-packages" />
-        <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/python-skeletons" />
-      </SOURCES>
-    </library>
-    <library name="Python 3.6.2 virtualenv at ~/venv_python3 interpreter library">
-      <CLASSES>
-        <root url="file://$USER_HOME$/venv_python3/lib/python3.6" />
-        <root url="file://$USER_HOME$/venv_python3/lib/python3.6/lib-dynload" />
+        <root url="file://$USER_HOME$/astam_venv/lib/python3.6" />
+        <root url="file://$USER_HOME$/astam_venv/lib/python3.6/lib-dynload" />
         <root url="file:///usr/lib64/python3.6" />
         <root url="file:///usr/lib/python3.6" />
-        <root url="file://$USER_HOME$/venv_python3/lib/python3.6/site-packages" />
-        <root url="file://$USER_HOME$/.local/lib/python3.6/site-packages" />
-        <root url="file:///usr/lib/python3.6/site-packages" />
-        <root url="file://$USER_HOME$/.IntelliJIdea2017.2/system/python_stubs/-1752898634" />
+        <root url="file://$USER_HOME$/astam_venv/lib/python3.6/site-packages" />
+        <root url="file://$USER_HOME$/.IntelliJIdea2017.2/system/python_stubs/-2105450051" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/python-skeletons" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/stdlib/3.6" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/stdlib/3.5" />
@@ -141,14 +120,12 @@
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="file://$USER_HOME$/venv_python3/lib/python3.6" />
-        <root url="file://$USER_HOME$/venv_python3/lib/python3.6/lib-dynload" />
+        <root url="file://$USER_HOME$/astam_venv/lib/python3.6" />
+        <root url="file://$USER_HOME$/astam_venv/lib/python3.6/lib-dynload" />
         <root url="file:///usr/lib64/python3.6" />
         <root url="file:///usr/lib/python3.6" />
-        <root url="file://$USER_HOME$/venv_python3/lib/python3.6/site-packages" />
-        <root url="file://$USER_HOME$/.local/lib/python3.6/site-packages" />
-        <root url="file:///usr/lib/python3.6/site-packages" />
-        <root url="file://$USER_HOME$/.IntelliJIdea2017.2/system/python_stubs/-1752898634" />
+        <root url="file://$USER_HOME$/astam_venv/lib/python3.6/site-packages" />
+        <root url="file://$USER_HOME$/.IntelliJIdea2017.2/system/python_stubs/-2105450051" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/python-skeletons" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/stdlib/3.6" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/stdlib/3.5" />
