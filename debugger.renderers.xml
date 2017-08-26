@@ -18,7 +18,7 @@
       <option name="SHOW_STATIC" value="true" />
       <option name="SHOW_STATIC_FINAL" value="false" />
       <option name="SHOW_FQ_TYPE_NAMES" value="false" />
-      <option name="SHOW_DECLARED_TYPE" value="false" />
+      <option name="SHOW_DECLARED_TYPE" value="true" />
       <option name="SHOW_OBJECT_ID" value="true" />
       <option name="SHOW_STRINGS_TYPE" value="false" />
     </Renderer>
