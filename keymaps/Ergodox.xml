@@ -1,4 +1,4 @@
-<keymap version="1" name="Default for XWin copy" parent="Default for XWin">
+<keymap version="1" name="Ergodox" parent="Default for XWin">
   <action id="BuildArtifact">
     <keyboard-shortcut first-keystroke="shift ctrl alt b" />
   </action>
@@ -8,6 +8,10 @@
   <action id="CheckinProject" />
   <action id="FixDocComment">
     <keyboard-shortcut first-keystroke="shift ctrl q" second-keystroke="f" />
+  </action>
+  <action id="Generate">
+    <keyboard-shortcut first-keystroke="alt insert" />
+    <keyboard-shortcut first-keystroke="shift ctrl alt windows" second-keystroke="i" />
   </action>
   <action id="NextSplitter">
     <keyboard-shortcut first-keystroke="shift ctrl q" second-keystroke="right" />
