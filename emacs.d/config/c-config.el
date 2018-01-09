@@ -41,23 +41,26 @@
 ;;(add-hook 'c++-mode 'cb/irony-enable)
 ;;(add-hook 'c-mode 'cb/irony-enable)
 
+
 (require 'company)
+(setq company-backends (delete 'company-semantic company-backends))
 (add-hook 'after-init-hook 'global-company-mode)
-(delete 'company-semantic company-backends)
+;; (delete 'company-semantic company-backends)
 (define-key company-mode-map (kbd "C-;") 'company-complete)
 
 ;; company-c-headers
 (add-to-list 'company-backends 'company-c-headers)
 
 ;; company-gtags
-;; (add-to-list 'company-backends 'company-gtags)
+(add-to-list 'company-backends 'company-gtags)
+
 ;; hs-minor-mode for folding source code
 (add-hook 'c-mode-common-hook 'hs-minor-mode)
 
 ;;(add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
 
 (setq company-idle-delay .3
-        company-minimum-prefix-length 2
+      company-minimum-prefix-length 2
       company-show-numbers 2
       company-tooltip-limit 20
       company-dabbrev-downcase nil)
@@ -114,3 +117,10 @@
 (require 'projectile)
 (setq project-enable-caching t)
 (setq projectile-indexing-method 'alien)
+
+(require 'semantic)
+(global-semanticdb-minor-mode 1)
+(global-semantic-idle-scheduler-mode 1)
+(semantic-mode 1)
+
+;; (add-to-list 'company-backends 'company-semantic)

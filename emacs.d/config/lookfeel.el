@@ -59,5 +59,5 @@
 (add-hook 'asm-mode-hook #'linum-on)
 
 ;{{{ Font config
-(set-default-font "Monaco for Powerline 6")
+(set-default-font "Monaco for Powerline 10")
 ;}}}

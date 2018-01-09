@@ -97,8 +97,8 @@
       helm-ag-use-grep-ignore-list t
       helm-ag-use-agignore t)
 
+;; helm-gtags
 
-(require 'helm-gtags)
 (setq
  helm-gtags-ignore-case t
  helm-gtags-auto-update t
@@ -106,8 +106,10 @@
  helm-gtags-pulse-at-cursor t
  helm-gtags-prefix-key "\C-cg"
  helm-gtags-suggested-key-mapping t
- 
-)
+ )
+
+(require 'helm-gtags)
+
 (add-hook 'dired-mode-hook 'helm-gtags-mode)
 (add-hook 'eshell-mode-hook 'helm-gtags-mode)
 (add-hook 'c-mode-hook 'helm-gtags-mode)

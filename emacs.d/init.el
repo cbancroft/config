@@ -3,6 +3,13 @@
 ; cbancroft's .emacs for GNU/Emacs 24.2 on Arch GNU/Linux
 
 ;* {{{ Initialization
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (setq gc-cons-threshold 100000000)
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
@@ -56,15 +63,7 @@
  '(column-number-mode t)
  '(custom-safe-themes
    (quote
-    ("40f6a7af0dfad67c0d4df2a1dd86175436d79fc69ea61614d668a635c2cd94ab" "3b24f986084001ae46aa29ca791d2bc7f005c5c939646d2b800143526ab4d323" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "1a53efc62256480d5632c057d9e726b2e64714d871e23e43816735e1b85c144c" "6df30cfb75df80e5808ac1557d5cc728746c8dbc9bc726de35b15180fa6e0ad9" "8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "ac2b1fed9c0f0190045359327e963ddad250e131fbf332e80d371b2e1dbc1dc4" "6209442746f8ec6c24c4e4e8a8646b6324594308568f8582907d0f8f0260c3ae" "7b0433e99dad500efbdf57cf74553499cde4faf2908a2852850c04b216c41cc9" default)))
- '(flymake-google-cpplint-command "/usr/bin/cpplint")
- '(safe-local-variable-values
-   (quote
-    ((company-c-headers-path-system "/home/cbancroft/work/limebluff2/code/prebuilt/kit/includes/" "/home/cbancroft/work/limebluff2/code/aarch64-hyp/includes/" "/usr/include" "/usr/local/include")
-     (company-clang-arguments "-D__C__=1" "-Wno-incompatible-library-redeclaration" "-I/home/cbancroft/work/limebluff2/code/aarch64-hyp/kernel/inc" "-I/home/cbancroft/work/limebluff2/code/aarch64-hyp/includes" "-I/home/cbancroft/work/limebluff2/code/prebuilt/kit/includes")
-     (company-clang-arguments "-D__C__=1" "-Wno-incompatible-library-redeclaration" "-I/home/cbancroft/work/limebluff2/code/hijackmod/inc" "-I/home/cbancroft/work/limebluff2/code/aarch64-hyp/includes" "-I/home/cbancroft/work/limebluff2/code/prebuilt/kit/includes")
-     (company-c-headers-path-system "/home/cbancroft/work/limebluff2/code/prebuilt/kit/includes/" "/home/cbancroft/work/limebluff2/code/hijackmod/inc/" "/usr/include" "/usr/local/include")
-     (company-clang-arguments "-D__C__=1" "-I/home/cbancroft/work/limebluff2/code/hijackmod/inc" "-I/home/cbancroft/work/limebluff2/code/aarch64-hyp/includes" "-I/home/cbancroft/work/limebluff2/code/prebuilt/kit/includes"))))
+    ("8b30636c9a903a9fa38c7dcf779da0724a37959967b6e4c714fdc3b3fe0b8653" "40f6a7af0dfad67c0d4df2a1dd86175436d79fc69ea61614d668a635c2cd94ab" "3b24f986084001ae46aa29ca791d2bc7f005c5c939646d2b800143526ab4d323" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "1a53efc62256480d5632c057d9e726b2e64714d871e23e43816735e1b85c144c" "6df30cfb75df80e5808ac1557d5cc728746c8dbc9bc726de35b15180fa6e0ad9" "8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "ac2b1fed9c0f0190045359327e963ddad250e131fbf332e80d371b2e1dbc1dc4" "6209442746f8ec6c24c4e4e8a8646b6324594308568f8582907d0f8f0260c3ae" "7b0433e99dad500efbdf57cf74553499cde4faf2908a2852850c04b216c41cc9" default)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces

@@ -19,7 +19,8 @@
     (set-frame-parameter frame 'background-mode 'dark)
     ;;    (setq solarized-termcolors 256)
     ;;    (enable-theme 'solarized)
-    (load-theme 'monokai t)
+        (load-theme 'monokai t)
+    ;;(load-theme 'xoria256 t )
     (cb/mode-line-theme)
     (setq cb/theme-loaded t)))
 
