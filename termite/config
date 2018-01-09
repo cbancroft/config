@@ -12,10 +12,12 @@ clickable_url = true
 #font = Inconsolata for Powerline 9
 #font = Sauce Code Pro ExtraLight Nerd Fony Plus Font Awesome plus Pomicons Mono 8
 #font = Ubuntu Mono derivative Powerline
-font = Meslo LG S DZ for Powerline 8
+#font = Meslo LG S DZ for Powerline 8
+font = Hack 10
+#font = Fira Code 10
 scrollback_lines = 10000
 search_wrap = true
-#icon_name = terminal
+icon_name = terminal
 #geometry = 640x480
 
 # "system", "on" or "off"

@@ -43,11 +43,12 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(gitfast git-extras archlinux battery gpg-agent git-remote-branch svn)
+plugins=(gitfast git-extras archlinux battery git-remote-branch svn)
 
 source $ZSH/oh-my-zsh.sh
 
 #source /etc/profile.d/infinality-settings.sh
+source /etc/profile.d/freetype2.sh
 xrdb -merge ~/.Xdefaults
 # {{{ User Settings
 
@@ -405,6 +406,6 @@ export LESS_TERMCAP_so=$'\E[38;33;246m'   # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
-export DAYTONA=~/DAYTONA-current/daytona
+export GOPATH=/home/cbancroft/work/aircoil/go
+export PATH="$PATH:${GOPATH//://bin:}/bin" # Add RVM to PATH for scripting
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

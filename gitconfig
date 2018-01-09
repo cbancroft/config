@@ -1,6 +1,7 @@
 [user]
 	name = Charles Bancroft
 	email = charlie.bancroft@gmail.com
+	signingkey = 0x01B2557CD490AA11
 [push]
 #	default = tracking
 [alias]
@@ -17,6 +18,7 @@
     review = log -p --reverse origin/develop..HEAD
     dc = diff --cached
     chg = "!git status -uno"
+    msr = "log --pretty=format:\"%C(yellow)%h%Creset - %C(magenta)%cn%Creset, %ar : %C(blue bold)%s%Creset\" --since=1.month --merges"
 [color]
 	ui = auto
 [diff]

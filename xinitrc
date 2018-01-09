@@ -63,12 +63,6 @@ xset fp rehash &
 # {{{ Autostart settings
 #
 # Start the GnuPG agent and enable OpenSSH agent emulation
-if (pgrep -u "${USER}" gpg-agent); then
-	eval `cat ${gnupglog}`
-	eval `cut -d= -f1 ${gnupglog} | xargs echo export`
-else
-	eval `gpg-agent --enable-ssh-support --daemon --write-env-file ${gnupglog}`
-fi
 gpg-connect-agent updatestartuptty /bye
 
 # Start the URXVT daemon
