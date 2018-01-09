@@ -35,7 +35,7 @@ function asyncshell.request(command, callback)
                     'echo "asyncshell.deliver(%s)" | ' ..
                     "awesome-client' 2> /dev/null",
                     string.gsub(command, "'", "'\\''"), tmpfname, id, tmpfname)
-   awful.util.spawn(req, false)
+   awful.spawn(req, false)
    return id
 end
 

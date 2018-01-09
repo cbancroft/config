@@ -1,3 +1,4 @@
+local scheduler = require('scheduler')
 local utility = require('utility')
 local asyncshell = require('asyncshell')
 

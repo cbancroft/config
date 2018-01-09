@@ -1,6 +1,6 @@
 -- Serenity awesome theme
 local util = require('awful.util')
-
+local naughty = require('naughty')
 local theme = {}
 
 local function res(res_name)
@@ -14,8 +14,8 @@ theme.wallpapers = { res("wallpapers/plague.jpg"),
                      res("wallpapers/reaper.jpg") }
 theme.icon_dir      = res("icons")
 
-theme.font          = "sans " .. vista.scale(9)
-theme.mono_font     = "monospace " .. vista.scale(9)
+theme.font          = "Hack " .. vista.scale(6)
+theme.mono_font     = "Hack " .. vista.scale(6)
 
 -- Menu settings
 theme.menu_submenu_icon = res("icons/submenu.png")
@@ -50,6 +50,34 @@ theme.fg_urgent       = "#ffffff"
 theme.fg_minimize     = "#ffffff"
 theme.fg_onscreen     = "#7f7f7f"
 
+-- {{{ Titlebar
+theme.titlebar_close_button_focus  = res("icons/awoken/24x24/actions/dust-tab-close-active.png")
+theme.titlebar_close_button_normal = res("icons/awoken/24x24/actions/dust-tab-close-inactive.png")
+
+theme.titlebar_minimize_button_normal = res("icons/awoken/24x24/actions/stock_leave-fullscreen.png")
+theme.titlebar_minimize_button_focus  = res("icons/awoken/24x24/actions/stock_leave-fullscreen.png")
+
+theme.titlebar_ontop_button_focus_active  = res("icons/awoken/24x24/actions/top.png")
+theme.titlebar_ontop_button_normal_active = res("icons/awoken/24x24/actions/top.png")
+theme.titlebar_ontop_button_focus_inactive  = res("icons/awoken/24x24/actions/top.png")
+theme.titlebar_ontop_button_normal_inactive = res("icons/awoken/24x24/actions/top.png")
+
+theme.titlebar_sticky_button_focus_active  = res("icons/awoken/24x24/actions/sticky-notes.png")
+theme.titlebar_sticky_button_normal_active = res("icons/awoken/24x24/actions/sticky-notes.png")
+theme.titlebar_sticky_button_focus_inactive  = res("icons/awoken/24x24/actions/sticky-notes.png")
+theme.titlebar_sticky_button_normal_inactive = res("icons/awoken/24x24/actions/sticky-notes.png")
+
+theme.titlebar_floating_button_focus_active  = res("icons/awoken/24x24/actions/stock_navigator.png")
+theme.titlebar_floating_button_normal_active = res("icons/awoken/24x24/actions/stock_navigator.png")
+theme.titlebar_floating_button_focus_inactive  = res("icons/awoken/24x24/actions/stock_navigator.png")
+theme.titlebar_floating_button_normal_inactive = res("icons/awoken/24x24/actions/stock_navigator.png")
+
+theme.titlebar_maximized_button_focus_active  = res("icons/awoken/24x24/actions/stock_leave-fullscreen.png")
+theme.titlebar_maximized_button_normal_active = res("icons/awoken/24x24/actions/stock_leave-fullscreen.png")
+theme.titlebar_maximized_button_focus_inactive  = res("icons/awoken/24x24/actions/stock_leave-fullscreen.png")
+theme.titlebar_maximized_button_normal_inactive = res("icons/awoken/24x24/actions/stock_leave-fullscreen.png")
+-- }}}
+
 -- Configure naughty
 if naughty then
    local presets = naughty.config.presets
@@ -65,5 +93,6 @@ if naughty then
 end
 
 theme.icon_theme = "awoken"
-
+--theme.icon_theme = "UltraFlatIconsOrange"
+--theme.icon_theme = ultraflatorange
 return theme

@@ -58,7 +58,7 @@ return
       tag = 6 },
     rule = { class = "Gimp" } },
   { properties = { screen = "primary",
-      tag = 5 },
+      tag = 3 },
     rule = { class = "google-chrome",
       role = "app" } },
   { properties = { screen = "primary",

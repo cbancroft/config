@@ -24,7 +24,7 @@
 -- with focus.
 
 local awful  = require("awful")
-
+local timer = require('gears.timer')
 -- Module "quake"
 local quake = { }
 
@@ -76,7 +76,7 @@ function QuakeConsole:display()
 
    local changed_screen = (quake_client.screen ~= mouse.screen)
    -- Resize
-   awful.client.floating.set(quake_client, true)
+   quake_client.floating = true
    quake_client.border_width = 0
    quake_client.size_hints_honor = false
    quake_client:geometry({ x = x, y = y, width = width, height = height })
@@ -94,7 +94,7 @@ function QuakeConsole:display()
 
    -- Toggle display
    if self.visible then
-      awful.client.movetotag(awful.tag.selected(mouse.screen), quake_client)
+      quake_client:move_to_tag(mouse.screen.selected_tag)
       quake_client.hidden = false
       quake_client:raise()
       client.focus = quake_client
@@ -102,7 +102,7 @@ function QuakeConsole:display()
       if not quake_client:isvisible() or changed_screen then
          -- Terminal is on other tag, bring it here
          quake_client.hidden = false
-         awful.client.movetotag(awful.tag.selected(mouse.screen), quake_client)
+         quake_client:move_to_tag(mouse.screen.selected_tag)
          self.visible = true
       else
          quake_client.hidden = true

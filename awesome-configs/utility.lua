@@ -37,7 +37,7 @@ function utility.run_once(prg, times)
       tonumber(awful.util.pread('ps aux | grep "' .. string.gsub(prg, ":", " ") .. '" | grep -v grep | wc -l')) or 0
    if times > count_prog then
       for l = count_prog, times-1 do
-         awful.util.spawn_with_shell(prg)
+         awful.spawn.with_shell(prg)
       end
    end
 end
@@ -49,7 +49,7 @@ end
 function utility.autorun(apps, run_once_apps)
    for _, app in ipairs(apps or {}) do
       print(app)
-      awful.util.spawn_with_shell(subs_home(app), true)
+      awful.spawn.with_shell(subs_home(app), true)
    end
    for _, app in ipairs(run_once_apps or {}) do
       utility.run_once(subs_home(app), 1)
@@ -89,6 +89,7 @@ function utility.calc(result)
                      timeout = 5})
 end
 
+-- Load a given beautiful theme
 function utility.load_theme(theme_name)
    return beautiful.init(string.format("%s/themes/%s/theme.lua",
                                        awful.util.getdir("config"), theme_name))
@@ -99,7 +100,7 @@ function utility.view_non_empty(step, s)
    -- The following makes sure we don't go into an endless loop
    -- if no clients are visible. I guess that case could be handled better,
    -- but meh
-   local num_tags = #awful.tag.gettags(s)
+   local num_tags = #s.tags
    for i = 1, num_tags do
      awful.tag.viewidx(step, s)
      if #awful.client.visible(s) > 0 then
@@ -123,7 +124,7 @@ function utility.view_first_empty(s)
 end
 
 function utility.spawn_in_terminal(program)
-   awful.util.spawn(software.terminal_cmd .. program)
+   awful.spawn(software.terminal.cmd .. program)
 end
 
 function utility.add_hover_tooltip(w, f)
@@ -141,7 +142,10 @@ function utility.add_hover_tooltip(w, f)
                        end
                     end)
 end
-
+--- Can't pass description to mouse button stuff
+function mouse_passthrough(mod, key, cb, _)
+   return awful.button(mod, key, cb, nil)
+end
 function utility.keymap(...)
    local mouse_buttons = { LMB = 1, MMB = 2, RMB = 3, WHEELUP = 4, WHEELDOWN = 5 }
    local arg = {...}
@@ -156,6 +160,13 @@ function utility.keymap(...)
    while i < #arg do
       local key = arg[i]
       local cb = arg[i+1]
+      local desc = arg[i+2]
+      local increment = 2
+      if type(desc) == "table" then
+         increment = 3
+      else
+         desc = {}
+      end
       local modifiers = {}
       local make = awful.key
       for cons in string.gmatch(key, "[^-]+") do
@@ -174,10 +185,10 @@ function utility.keymap(...)
       end
       if mouse_buttons[key] ~= nil then
          key = mouse_buttons[key]
-         make = awful.button
+         make = mouse_passthrough
       end
-      result = awful.util.table.join(result, make(modifiers, key, cb))
-      i = i + 2
+      result = awful.util.table.join(result, make(modifiers, key, cb, desc))
+      i = i + increment
    end
    return result
 end

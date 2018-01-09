@@ -1,3 +1,4 @@
+local gears = require('gears')
 local dbg = require('gears.debug')
 
 -- Module for centralized registration of recurring and deferred
@@ -9,14 +10,14 @@ local event_table = {}
 
 function scheduler.register_recurring(name, interval, func)
    if not event_table[interval] then
-      event_table[interval] = { timer = timer({ timeout = interval }),
+      event_table[interval] = { timer = gears.timer({ timeout = interval }),
                                 events = {} }
    end
    table.insert(event_table[interval].events, { name = name, func = func })
 end
 
 function scheduler.execute_once(delay, func)
-   local t = timer({ timeout = delay })
+   local t = gears.timer({ timeout = delay })
    t:connect_signal("timeout",
                     function()
                        func()
