@@ -1,9 +1,9 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="File '.../cqf-portal/src/main/webapp/cqf/ctm/tabview.js [cqf-portal]'" />
-    <option name="defaultScopeName" value="File '.../cqf-portal/src/main/webapp/cqf/ctm/tabview.js [cqf-portal]'" />
+    <option name="customScope" value="All Places" />
+    <option name="defaultScopeName" value="All Places" />
     <option name="WITH_SUBDIRECTORIES" value="false" />
-    <option name="SEARCH_SCOPE" value="File '.../cqf-portal/src/main/webapp/cqf/ctm/tabview.js [cqf-portal]'" />
+    <option name="SEARCH_SCOPE" value="All Places" />
     <recentFileMasks>
       <mask>*.properties</mask>
       <mask>*.jsp</mask>
