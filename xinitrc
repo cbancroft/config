@@ -86,7 +86,7 @@ gpg-connect-agent updatestartuptty /bye
 synclient PalmDetect=1 PalmMinWidth=3 &
 
 synclient TouchpadOff=1 &
-wmname Sawfish
+wmname LG3D
 # Play a startup sound
 #            ogg123 -q "${HOME}/.local/share/gajim/sounds/voices/voice-system-activated.ogg" &
 # }}}
@@ -119,4 +119,4 @@ wmname Sawfish
 #		;;
 #esac
 # }}}
-autorandr -c &
+# autorandr -c &
