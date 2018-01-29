@@ -1,0 +1,4 @@
+[submodule "awesome-configs/redflat"]
+	path = awesome-configs/redflat
+	url = https://github.com/worron/redflat.git
+	branch = master
