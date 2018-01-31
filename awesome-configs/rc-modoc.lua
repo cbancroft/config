@@ -248,6 +248,11 @@ awful.screen.connect_for_each_screen(
 				env.wrapper(textclock.widget, "textclock"),
 			},
 		}
+
+    -- Active screen edges
+    -----------------------------------------------------------------------------------------------------------------------
+  --  local edges = require("modoc.edges-config") -- load file with edges configuration
+  --  edges:init({screen = s})
 	end
 )
 
@@ -255,12 +260,6 @@ awful.screen.connect_for_each_screen(
 -----------------------------------------------------------------------------------------------------------------------
 -- local desktop = require("modoc.desktop-config") -- load file with desktop widgets configuration
 -- desktop:init({ env = env })
-
-
--- Active screen edges
------------------------------------------------------------------------------------------------------------------------
-local edges = require("modoc.edges-config") -- load file with edges configuration
-edges:init()
 
 
 -- Key bindings
@@ -277,8 +276,8 @@ rules:init({ hotkeys = hotkeys})
 
 -- Titlebar setup
 -----------------------------------------------------------------------------------------------------------------------
-local titlebar = require("modoc.titlebar-config") -- load file with titlebar configuration
-titlebar:init()
+-- local titlebar = require("modoc.titlebar-config") -- load file with titlebar configuration
+-- titlebar:init()
 
 
 -- Base signal set for awesome wm
