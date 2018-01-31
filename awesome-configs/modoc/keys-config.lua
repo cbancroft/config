@@ -831,7 +831,8 @@ function hotkeys:init(args)
 	-- Mouse buttons
 	--------------------------------------------------------------------------------
 	self.mouse.client = awful.util.table.join(
-		awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
+		awful.button({ }, 1, function (c)  end),
+		-- awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
 		awful.button({ env.mod }, 1, awful.mouse.client.move),
 		awful.button({ env.mod }, 3, awful.mouse.client.resize),
 		awful.button({}, 8, function(c) c:kill() end)

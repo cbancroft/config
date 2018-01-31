@@ -16,9 +16,10 @@ rules.base_properties = {
   border_color     = beautiful.border_normal,
   focus            = awful.client.focus.filter,
   raise            = true,
-  size_hints_honor = false,
+  -- size_hints_honor = false,
   screen           = awful.screen.preferred,
   titlebars_enabled= false,
+  placement        = awful.placement.no_overlap + awful.placement.no_offscreen
 }
 
 rules.floating_any = {
@@ -56,10 +57,6 @@ function rules:init(args)
     {
       rule_any   = args.floating_any or self.floating_any,
       properties = { floating = true }
-    },
-    {
-      rule_any   = { type = { "normal", "dialog" }},
-      properties = { placement = awful.placement.no_overlap + awful.placement.no_offscreen }
     },
     {
       rule = { class = "Emacs" },
