@@ -9,6 +9,8 @@
     <option name="AUTO_POPUP_JAVADOC_INFO" value="true" />
     <option name="SHOW_FULL_SIGNATURES_IN_PARAMETER_INFO" value="true" />
     <option name="INDENT_TO_CARET_ON_PASTE" value="true" />
+    <option name="USE_INSTANCEOF_ON_EQUALS_PARAMETER" value="true" />
+    <option name="USE_ACCESSORS_IN_EQUALS_HASHCODE" value="true" />
     <option name="OPTIMIZE_IMPORTS_ON_THE_FLY" value="true" />
   </component>
   <component name="DaemonCodeAnalyzerSettings">
