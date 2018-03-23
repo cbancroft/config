@@ -52,23 +52,6 @@ source /etc/profile.d/freetype2.sh
 xrdb -merge ~/.Xdefaults
 # {{{ User Settings
 
-# {{{ Environment
-export PATH="${PATH}:${HOME}/bin:${HOME}/code/bin"
-export HISTFILE="${HOME}/.zsh_history"
-export HISTSIZE=10000
-export SAVEHIST=10000
-export LESSHISTFILE="-"
-export READNULLCMD="${PAGER}"
-export VISUAL="emacsclient"
-export EDITOR="${VISUAL}"
-export BROWSER="chromium"
-export TERM="xterm-256color"
-export COLORTERM="xterm-256color"
-export XTERM="xterm-256color"
-export PACMAN="pacman"
-export FLASH_ALSA_DEVICE=plug:dmix
-# }}}
-
 # {{{ zle configuration
 bindkey "\e[7~" beginning-of-line	#Home
 bindkey "\e[8~" end-of-line		#End
@@ -406,6 +389,5 @@ export LESS_TERMCAP_so=$'\E[38;33;246m'   # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
-export GOPATH=/home/cbancroft/work/aircoil/go
-export PATH="$PATH:${GOPATH//://bin:}/bin" # Add RVM to PATH for scripting
+# export GOPATH=/home/cbancroft/work/aircoil/go
 

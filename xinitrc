@@ -11,7 +11,6 @@ fi
 
 # {{{ Environment settings
 errorlog="${HOME}/.xsession-errors"
-gnupglog="${HOME}/.gnupg/gpg-agent.env"
 tmuxSession="asshai"
 # }}}
 
@@ -62,9 +61,6 @@ xset fp rehash &
 
 # {{{ Autostart settings
 #
-# Start the GnuPG agent and enable OpenSSH agent emulation
-gpg-connect-agent updatestartuptty /bye
-
 # Start the URXVT daemon
 #urxvtd -q -o -f &
 
@@ -73,19 +69,23 @@ gpg-connect-agent updatestartuptty /bye
 
 #nvidia-settings -a InitialPixmapPlacement=2
 #nvidia-settings -a InitialPixmapPlacement=0
+compton -b --paint-on-overlay --unredir-if-possible --backend xr_glx_hybrid --vsync drm --glx-swap-method -1 --glx-no-stencil
 #compton -cCG -o 0.75 -f 0.05 -t 0.01 -l -2 -r 2.5  -i 0.8 &
-#compton &
+# compton &
 # Start the device monitor
-#devmon &
+udiskie &
 
 # Open a terminal emulator on the first tag
 #   - resume the old screen session or start a new one
 #tmux has-session -t $tmuxSession || tmux new -d -s $tmuxSession 
 #termite -e "zsh -c tmux attach -t $tmuxSession" &
 
-synclient PalmDetect=1 PalmMinWidth=3 &
+# synclient PalmDetect=1 PalmMinWidth=3 &
 
-synclient TouchpadOff=1 &
+# synclient TouchpadOff=1 &
+# Disable the touchpad
+xinput set-prop 20 153 0
+
 wmname LG3D
 # Play a startup sound
 #            ogg123 -q "${HOME}/.local/share/gajim/sounds/voices/voice-system-activated.ogg" &
