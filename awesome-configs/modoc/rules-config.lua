@@ -70,6 +70,10 @@ function rules:init(args)
       rule = { class = "jetbrains-idea" },
       properties = { tag = "Code"}
     },
+    {
+      rule = { class = "franz" },
+      properties = { tag = "Free"}
+    },
   }
 
 

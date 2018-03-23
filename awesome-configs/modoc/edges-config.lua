@@ -20,7 +20,8 @@ function edges:init(args)
 
 	local args = args or {}
 	local ew = args.width or 1 -- edge width
-	local workarea = args.workarea or screen[mouse.screen].workarea
+  local screen = args.screen or screen[mouse.screen]
+	local workarea = args.workarea or screen.workarea
 
 	-- edge geometry
 	local egeometry = {
@@ -48,8 +49,8 @@ function edges:init(args)
 	right.wibox:geometry(egeometry["right"])
 
 	right.layout:buttons(awful.util.table.join(
-		awful.button({}, 5, function() awful.tag.viewnext(mouse.screen) end),
-		awful.button({}, 4, function() awful.tag.viewprev(mouse.screen) end)
+		awful.button({}, 5, function() awful.tag.viewnext(screen) end),
+		awful.button({}, 4, function() awful.tag.viewprev(screen) end)
 	))
 
 	-- Left

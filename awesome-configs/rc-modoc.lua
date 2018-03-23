@@ -138,7 +138,7 @@ sysmon.icon.cpuram = redflat.util.table.check(beautiful, "icon.widget.monitor")
 
 -- battery
 sysmon.widget.battery = redflat.widget.sysmon(
-	{ func = redflat.system.pformatted.bat(25), arg = "BAT1" },
+	{ func = redflat.system.pformatted.bat(25), arg = "BAT0" },
 	{ timeout = 60, widget = redflat.gauge.icon.single, monitor = { is_vertical = true, icon = sysmon.icon.battery } }
 )
 
@@ -200,7 +200,7 @@ awful.screen.connect_for_each_screen(
       --8 lain.layout.centerwork
 
 		-- tags
-		awful.tag({ "Main", "Web", "Code", "Edit", "Mail","Free" }, s, { al[5], al[6], al[8], al[3], al[1] })
+		awful.tag({ "Main", "Web", "Code", "Edit", "Mail","Free", "VM" }, s, { al[5], al[6], al[8], al[3], al[1], al[1] })
 
 		-- layoutbox widget
 		layoutbox[s] = redflat.widget.layoutbox({ screen = s })
