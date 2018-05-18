@@ -74,6 +74,22 @@ function rules:init(args)
       rule = { class = "franz" },
       properties = { tag = "Free"}
     },
+    {
+       rule = {
+	  class = "jetbrains-.*",
+	  instance = "sun-awt-X11-XWindowPeer",
+	  name = "win.*"
+       },
+       properties = {
+	  tag = "Code",
+	  floating = true,
+	  focus = true,
+	  focusable = false,
+	  ontop = true,
+	  placement = awful.placement.restore,
+	  buttons = {}
+       }
+    }
   }
 
 
