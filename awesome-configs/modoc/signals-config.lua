@@ -81,6 +81,8 @@ function signals:init(args)
 		client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 	end
 
+	client.disconnect_signal("request::geometry", awful.ewmh.client_geometry_requests)
+	
 	-- wallpaper update on screen geometry change
 	screen.connect_signal("property::geometry", env.wallpaper)
 
