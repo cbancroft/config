@@ -1,0 +1,5 @@
+<application>
+  <component name="ExternalResourceManagerImpl">
+    <resource url="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0" location="$USER_HOME$/.IntelliJIdea2018.1/system/extResources/a8440932_archetype-descriptor-1.0.0.xsd" />
+  </component>
+</application>
