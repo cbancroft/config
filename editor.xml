@@ -2,13 +2,15 @@
   <component name="DefaultFont">
     <option name="FONT_SIZE" value="17" />
     <option name="FONT_FAMILY" value="Fira Code" />
-    <option name="FONT_SCALE" value="1.8333334" />
+    <option name="FONT_SCALE" value="1.5" />
     <option name="USE_LIGATURES" value="true" />
     <option name="SECONDARY_FONT_FAMILY" value="Source Code Pro" />
   </component>
   <component name="EditorSettings">
     <option name="USE_SOFT_WRAPS" value="" />
     <option name="IS_ENSURE_NEWLINE_AT_EOF" value="true" />
+    <option name="SHOW_BREADCRUMBS" value="false" />
+    <option name="IS_INDENT_GUIDES_SHOWN" value="false" />
     <option name="IS_DND_ENABLED" value="false" />
     <option name="IS_WHEEL_FONTCHANGE_ENABLED" value="true" />
   </component>
