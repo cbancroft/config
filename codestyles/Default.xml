@@ -1,4 +1,7 @@
 <code_scheme name="Default" version="173">
+  <option name="RIGHT_MARGIN" value="80" />
+  <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="true" />
+  <option name="SOFT_MARGINS" value="80,120" />
   <JSCodeStyleSettings>
     <option name="FORCE_SEMICOLON_STYLE" value="true" />
     <option name="SPACE_BEFORE_FUNCTION_LEFT_PARENTH" value="false" />
