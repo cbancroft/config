@@ -1,8 +1,6 @@
 <application>
   <component name="DebuggerSettings">
-    <option name="FORCE_CLASSIC_VM" value="true" />
-    <option name="RUN_HOTSWAP_AFTER_COMPILE" value="RunHotswapNever" />
-    <option name="COMPILE_BEFORE_HOTSWAP" value="true" />
+    <option name="RUN_HOTSWAP_AFTER_COMPILE" value="RunHotswapAlways" />
     <option name="KILL_PROCESS_IMMEDIATELY" value="true" />
   </component>
   <component name="XDebuggerSettings">
