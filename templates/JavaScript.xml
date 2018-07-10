@@ -5,4 +5,21 @@
       <option name="JS_STATEMENT" value="true" />
     </context>
   </template>
+  <template name="js-m" value="/**&#10; * @desc: method&#10; * @param $CLASS$ {jsQualifiedClassName()} [Class]&#10; * @param $FN$ {jsMethodName()} [fn]&#10; * @param $PARAMS$ {} [params]&#10; */&#10;$CLASS$.prototype.$FN$ = function($PARAMS$) {&#10;    $END$&#10;};" description="Create a class method" toReformat="false" toShortenFQNames="true">
+    <variable name="CLASS" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="FN" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PARAMS" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_SCRIPT" value="true" />
+      <option name="JSX_HTML" value="false" />
+    </context>
+  </template>
+  <template name="js-ctor" value="/**&#10; * @desc: constructor&#10; * @param $CLASS$ {} [Class]&#10; * @param: $PARAM$ {} []&#10; */&#10;var $CLASS$ = function($PARAM$) {&#10;    $END$&#10;};" description="Create a class constructor" toReformat="true" toShortenFQNames="true">
+    <variable name="CLASS" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PARAM" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_SCRIPT" value="true" />
+      <option name="JSX_HTML" value="false" />
+    </context>
+  </template>
 </templateSet>

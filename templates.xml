@@ -308,6 +308,10 @@
         </TemplateKey>
         <TemplateKey>
           <option name="groupName" value="GoHiddenTemplate" />
+          <option name="key" value="go_lang_anonymous_func_call" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="GoHiddenTemplate" />
           <option name="key" value="go_lang_anonymous_struct" />
         </TemplateKey>
         <TemplateKey>
@@ -321,6 +325,10 @@
         <TemplateKey>
           <option name="groupName" value="GoHiddenTemplate" />
           <option name="key" value="type_qf" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="GoHiddenTemplate" />
+          <option name="key" value="struct_type_qf" />
         </TemplateKey>
         <TemplateKey>
           <option name="groupName" value="GoHiddenTemplate" />
