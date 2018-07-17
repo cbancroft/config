@@ -1,0 +1,14 @@
+<application>
+  <component name="SettingsState">
+    <option name="host" value="" />
+    <option name="token" value="" />
+    <option name="servers">
+      <list>
+        <ServerDto>
+          <option name="host" value="http://10.42.13.150" />
+          <option name="token" value="qoLr14TznG6vM5pXLRrj" />
+        </ServerDto>
+      </list>
+    </option>
+  </component>
+</application>
