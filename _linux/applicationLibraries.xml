@@ -105,54 +105,14 @@
       <JAVADOC />
       <SOURCES />
     </library>
-    <library name="Python 2.7 (cqf) interpreter library">
+    <library name="Python 3.6 (docxsphinx) interpreter library">
       <CLASSES>
-        <root url="file://$USER_HOME$/work/cqf/venv2/lib/python2.7" />
-        <root url="file://$USER_HOME$/work/cqf/venv2/lib/python2.7/lib-dynload" />
-        <root url="file:///usr/lib64/python2.7" />
-        <root url="file:///usr/lib/python2.7" />
-        <root url="file:///usr/lib/python2.7/plat-linux2" />
-        <root url="file:///usr/lib64/python2.7/lib-tk" />
-        <root url="file:///usr/lib/python2.7/lib-tk" />
-        <root url="file://$USER_HOME$/work/cqf/venv2/lib/python2.7/site-packages" />
-        <root url="file:///usr/lib/python2.7/site-packages" />
-        <root url="file:///usr/lib/python2.7/site-packages/wx-3.0-gtk3" />
-        <root url="file://$USER_HOME$/.IntelliJIdea2017.3/system/python_stubs/1368796255" />
-        <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/python-skeletons" />
-        <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/stdlib/2" />
-        <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/stdlib/2and3" />
-        <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/third_party/2" />
-        <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/third_party/2and3" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="file://$USER_HOME$/work/cqf/venv2/lib/python2.7" />
-        <root url="file://$USER_HOME$/work/cqf/venv2/lib/python2.7/lib-dynload" />
-        <root url="file:///usr/lib64/python2.7" />
-        <root url="file:///usr/lib/python2.7" />
-        <root url="file:///usr/lib/python2.7/plat-linux2" />
-        <root url="file:///usr/lib64/python2.7/lib-tk" />
-        <root url="file:///usr/lib/python2.7/lib-tk" />
-        <root url="file://$USER_HOME$/work/cqf/venv2/lib/python2.7/site-packages" />
-        <root url="file:///usr/lib/python2.7/site-packages" />
-        <root url="file:///usr/lib/python2.7/site-packages/wx-3.0-gtk3" />
-        <root url="file://$USER_HOME$/.IntelliJIdea2017.3/system/python_stubs/1368796255" />
-        <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/python-skeletons" />
-        <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/stdlib/2" />
-        <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/stdlib/2and3" />
-        <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/third_party/2" />
-        <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/third_party/2and3" />
-      </SOURCES>
-    </library>
-    <library name="Python 3.6 (cqf) interpreter library">
-      <CLASSES>
-        <root url="file://$USER_HOME$/work/cqf/venv/lib/python3.6" />
-        <root url="file://$USER_HOME$/work/cqf/venv/lib/python3.6/lib-dynload" />
-        <root url="file:///usr/lib64/python3.6" />
         <root url="file:///usr/lib/python3.6" />
-        <root url="file://$USER_HOME$/work/cqf/venv/lib/python3.6/site-packages" />
-        <root url="file:///usr/lib/python3.6/site-packages" />
-        <root url="file://$USER_HOME$/.IntelliJIdea2017.3/system/python_stubs/-1746716395" />
+        <root url="file:///usr/lib/python3.6/lib-dynload" />
+        <root url="file://$USER_HOME$/git/docxsphinx/venv/lib/python3.6/site-packages" />
+        <root url="jar://$USER_HOME$/git/docxsphinx/venv/lib/python3.6/site-packages/setuptools-39.1.0-py3.6.egg!/" />
+        <root url="file://$USER_HOME$/git/docxsphinx/venv/lib/python3.6/site-packages/pip-10.0.1-py3.6.egg" />
+        <root url="file://$USER_HOME$/.IntelliJIdea2018.1/system/python_stubs/870295008" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/python-skeletons" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/stdlib/3.6" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/stdlib/3.5" />
@@ -165,13 +125,12 @@
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="file://$USER_HOME$/work/cqf/venv/lib/python3.6" />
-        <root url="file://$USER_HOME$/work/cqf/venv/lib/python3.6/lib-dynload" />
-        <root url="file:///usr/lib64/python3.6" />
         <root url="file:///usr/lib/python3.6" />
-        <root url="file://$USER_HOME$/work/cqf/venv/lib/python3.6/site-packages" />
-        <root url="file:///usr/lib/python3.6/site-packages" />
-        <root url="file://$USER_HOME$/.IntelliJIdea2017.3/system/python_stubs/-1746716395" />
+        <root url="file:///usr/lib/python3.6/lib-dynload" />
+        <root url="file://$USER_HOME$/git/docxsphinx/venv/lib/python3.6/site-packages" />
+        <root url="jar://$USER_HOME$/git/docxsphinx/venv/lib/python3.6/site-packages/setuptools-39.1.0-py3.6.egg!/" />
+        <root url="file://$USER_HOME$/git/docxsphinx/venv/lib/python3.6/site-packages/pip-10.0.1-py3.6.egg" />
+        <root url="file://$USER_HOME$/.IntelliJIdea2018.1/system/python_stubs/870295008" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/python-skeletons" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/stdlib/3.6" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/stdlib/3.5" />
