@@ -15,6 +15,7 @@
     <option name="MOVE_MOUSE_ON_DEFAULT_BUTTON" value="true" />
     <option name="OVERRIDE_CONSOLE_CYCLE_BUFFER_SIZE" value="true" />
     <option name="OVERRIDE_NONIDEA_LAF_FONTS" value="true" />
+    <option name="SHOW_MAIN_TOOLBAR" value="true" />
     <option name="SHOW_MEMORY_INDICATOR" value="true" />
     <option name="SHOW_NAVIGATION_BAR" value="false" />
     <option name="smoothScrolling" value="true" />
