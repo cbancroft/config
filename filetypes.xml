@@ -3,6 +3,7 @@
     <extensionMap>
       <mapping pattern="__*.java" type="JAVA" />
       <mapping pattern=".config.js.swp" type="PLAIN_TEXT" />
+      <mapping ext="pmc" type="XML" />
     </extensionMap>
   </component>
 </application>
