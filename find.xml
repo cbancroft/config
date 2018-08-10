@@ -1,10 +1,10 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="File '.../cqf-core/src/main/java/com/siegetechnologies/cqf/core/testbed/loadbalancing/Profile.java [cqf-core]'" />
-    <option name="defaultScopeName" value="File '.../cqf-core/src/main/java/com/siegetechnologies/cqf/core/testbed/loadbalancing/Profile.java [cqf-core]'" />
+    <option name="customScope" value="All Places" />
+    <option name="defaultScopeName" value="All Places" />
     <option name="regularExpressions" value="true" />
     <option name="REGULAR_EXPRESSIONS" value="true" />
-    <option name="SEARCH_SCOPE" value="File '.../cqf-core/src/main/java/com/siegetechnologies/cqf/core/testbed/loadbalancing/Profile.java [cqf-core]'" />
+    <option name="SEARCH_SCOPE" value="All Places" />
     <mask>*.properties</mask>
     <mask>*.jsp</mask>
     <mask>*.xml</mask>
