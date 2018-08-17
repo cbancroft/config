@@ -1,6 +1,8 @@
 <application>
   <component name="FileTypeManager" version="17">
     <extensionMap>
+      <mapping pattern=".env" type="Ini" />
+      <mapping ext="env" type="Ini" />
       <mapping pattern="__*.java" type="JAVA" />
       <mapping pattern=".config.js.swp" type="PLAIN_TEXT" />
       <mapping ext="pmc" type="XML" />
