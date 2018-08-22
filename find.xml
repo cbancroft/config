@@ -1,8 +1,8 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="File '.../cqf-api-jersey/src/main/java/com/siegetechnologies/cqf/aae/api/package-info.java [cqf-api-jersey]'" />
-    <option name="defaultScopeName" value="File '.../cqf-api-jersey/src/main/java/com/siegetechnologies/cqf/aae/api/package-info.java [cqf-api-jersey]'" />
-    <option name="SEARCH_SCOPE" value="File '.../cqf-api-jersey/src/main/java/com/siegetechnologies/cqf/aae/api/package-info.java [cqf-api-jersey]'" />
+    <option name="customScope" value="All Places" />
+    <option name="defaultScopeName" value="All Places" />
+    <option name="SEARCH_SCOPE" value="All Places" />
     <mask>*.properties</mask>
     <mask>*.jsp</mask>
     <mask>*.xml</mask>
