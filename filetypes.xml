@@ -5,6 +5,7 @@
       <mapping ext="env" type="Ini" />
       <mapping pattern="__*.java" type="JAVA" />
       <mapping pattern=".config.js.swp" type="PLAIN_TEXT" />
+      <mapping pattern="*.xml.base" type="XML" />
       <mapping ext="pmc" type="XML" />
     </extensionMap>
   </component>
