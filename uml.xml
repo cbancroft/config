@@ -3,6 +3,7 @@
     <option name="categories">
       <map>
         <entry id="JAVA" categories="Fields;Constructors;Methods" />
+        <entry id="MODULES" categories="Libraries;Test dependencies" />
       </map>
     </option>
   </component>
