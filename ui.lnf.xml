@@ -7,9 +7,9 @@
   </component>
   <component name="UISettings">
     <option name="CONSOLE_CYCLE_BUFFER_SIZE_KB" value="8192" />
-    <option name="FONT_FACE" value="Roboto" />
+    <option name="FONT_FACE" value="Fira Code Retina" />
     <option name="FONT_SCALE" value="1.5" />
-    <option name="FONT_SIZE" value="12" />
+    <option name="FONT_SIZE" value="14" />
     <option name="MAX_LOOKUP_LIST_HEIGHT" value="13" />
     <option name="MAX_LOOKUP_WIDTH2" value="593" />
     <option name="MOVE_MOUSE_ON_DEFAULT_BUTTON" value="true" />
