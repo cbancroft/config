@@ -136,11 +136,6 @@
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/third_party/2and3" />
       </SOURCES>
     </library>
-    <library name="Python 3.7 (cqf) interpreter library">
-      <CLASSES />
-      <JAVADOC />
-      <SOURCES />
-    </library>
     <library name="underscore-DefinitelyTyped" type="javaScript">
       <properties>
         <sourceFilesUrls>
