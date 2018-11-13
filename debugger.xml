@@ -1,5 +1,6 @@
 <application>
   <component name="DebuggerSettings">
+    <option name="SHOW_ALTERNATIVE_SOURCE" value="false" />
     <option name="RUN_HOTSWAP_AFTER_COMPILE" value="RunHotswapAlways" />
     <option name="KILL_PROCESS_IMMEDIATELY" value="true" />
   </component>
@@ -13,12 +14,6 @@
         <configuration doNotStepIntoLibraryCode="false">
           <custom-object-presentation />
           <stepping-filters-enabled>false</stepping-filters-enabled>
-        </configuration>
-      </debugger>
-      <debugger id="kotlin_debugger">
-        <configuration>
-          <option name="DEBUG_DISABLE_KOTLIN_INTERNAL_CLASSES" value="false" />
-          <option name="DEBUG_IS_FILTER_FOR_STDLIB_ALREADY_ADDED" value="true" />
         </configuration>
       </debugger>
     </debuggers>
