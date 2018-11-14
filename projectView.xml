@@ -1,6 +1,7 @@
 <application>
   <component name="ProjectViewSharedSettings">
     <option name="compactDirectories" value="true" />
-    <option name="showModules" value="false" />
+    <option name="flattenModules" value="true" />
+    <option name="flattenPackages" value="true" />
   </component>
 </application>
