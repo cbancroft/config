@@ -5,6 +5,21 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="@types/karma" type="javaScript">
+      <CLASSES />
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="@types/karma-webpack" type="javaScript">
+      <CLASSES />
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="@types/webpack" type="javaScript">
+      <CLASSES />
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="angular-ui-bootstrap-DefinitelyTyped" type="javaScript">
       <properties>
         <sourceFilesUrls>
