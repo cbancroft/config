@@ -3,5 +3,6 @@
     <option name="compactDirectories" value="true" />
     <option name="flattenModules" value="true" />
     <option name="flattenPackages" value="true" />
+    <option name="hideEmptyPackages" value="false" />
   </component>
 </application>
