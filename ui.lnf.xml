@@ -10,13 +10,13 @@
   </component>
   <component name="UISettings">
     <option name="CONSOLE_CYCLE_BUFFER_SIZE_KB" value="8192" />
-    <option name="FONT_FACE" value="Fira Code Retina" />
+    <option name="FONT_FACE" value="Cantarell Regular" />
     <option name="FONT_SCALE" value="1.5" />
+    <option name="IDE_AA_TYPE" value="Greyscale" />
     <option name="MAX_LOOKUP_LIST_HEIGHT" value="13" />
     <option name="MAX_LOOKUP_WIDTH2" value="593" />
     <option name="MOVE_MOUSE_ON_DEFAULT_BUTTON" value="true" />
     <option name="OVERRIDE_CONSOLE_CYCLE_BUFFER_SIZE" value="true" />
-    <option name="OVERRIDE_NONIDEA_LAF_FONTS" value="true" />
     <option name="SHOW_MAIN_TOOLBAR" value="true" />
     <option name="SHOW_MEMORY_INDICATOR" value="true" />
     <option name="smoothScrolling" value="true" />
