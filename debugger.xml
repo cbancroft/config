@@ -4,6 +4,15 @@
     <option name="RUN_HOTSWAP_AFTER_COMPILE" value="RunHotswapAlways" />
     <option name="KILL_PROCESS_IMMEDIATELY" value="true" />
   </component>
+  <component name="NodeRendererSettings">
+    <Renderer ID="ToStringRenderer">
+      <option name="ON_DEMAND" value="true" />
+    </Renderer>
+    <Renderer ID="ClassRenderer">
+      <option name="SHOW_STATIC" value="true" />
+      <option name="SHOW_DECLARED_TYPE" value="true" />
+    </Renderer>
+  </component>
   <component name="XDebuggerSettings">
     <data-views />
     <general>
