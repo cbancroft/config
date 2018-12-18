@@ -5,6 +5,16 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="@types/d3" type="javaScript">
+      <CLASSES />
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="@types/d3-force" type="javaScript">
+      <CLASSES />
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="@types/eslint" type="javaScript">
       <CLASSES />
       <JAVADOC />
