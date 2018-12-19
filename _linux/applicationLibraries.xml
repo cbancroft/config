@@ -25,6 +25,16 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="@types/rx" type="javaScript">
+      <CLASSES />
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="@types/rx-angular" type="javaScript">
+      <CLASSES />
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="@types/webpack" type="javaScript">
       <CLASSES />
       <JAVADOC />
