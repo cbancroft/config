@@ -4,9 +4,11 @@
     <option name="sonarQubeServers">
       <list>
         <SonarQubeServer>
-          <option name="hostUrl" value="http://10.42.13.46:9000/" />
+          <option name="hostUrl" value="http://10.42.17.11:9000/" />
           <token>df9bdfc8dfcbdf9bdf99df93df93df9ddfccdf9edf9bdfc9df9bdf92dfc9df99df9bdfcbdf9adf98dfc9df9cdfccdfcfdf9bdf9adf9edfcedf92df98dfcedf9bdf98df9bdf9edf93df93df9fdf98df9a</token>
           <option name="name" value="CQF" />
+          <organizationKey>default-organization</organizationKey>
+          <enableNotifications>true</enableNotifications>
         </SonarQubeServer>
       </list>
     </option>
