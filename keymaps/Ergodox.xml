@@ -13,6 +13,9 @@
     <keyboard-shortcut first-keystroke="alt insert" />
     <keyboard-shortcut first-keystroke="shift ctrl alt windows" second-keystroke="i" />
   </action>
+  <action id="MoveEditorToOppositeTabGroup">
+    <keyboard-shortcut first-keystroke="shift ctrl q" second-keystroke="o" />
+  </action>
   <action id="NextSplitter">
     <keyboard-shortcut first-keystroke="shift ctrl q" second-keystroke="right" />
   </action>
