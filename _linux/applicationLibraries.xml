@@ -150,16 +150,16 @@
       <JAVADOC />
       <SOURCES />
     </library>
-    <library name="Python 3.7 (clienv) interpreter library">
+    <library name="Python 3.7 (venv) interpreter library">
       <CLASSES>
         <root url="file:///usr/lib/python3.7" />
         <root url="file:///usr/lib/python3.7/lib-dynload" />
-        <root url="file://$USER_HOME$/work/cqf/cli/python/clienv/lib/python3.7/site-packages" />
-        <root url="jar://$USER_HOME$/work/cqf/cli/python/clienv/lib/python3.7/site-packages/setuptools-39.1.0-py3.7.egg!/" />
-        <root url="file://$USER_HOME$/work/cqf/cli/python/clienv/lib/python3.7/site-packages/pip-10.0.1-py3.7.egg" />
-        <root url="file://$USER_HOME$/.IntelliJIdea2018.2/system/python_stubs/126472393" />
+        <root url="file://$USER_HOME$/work/venv/lib/python3.7/site-packages" />
+        <root url="file://$USER_HOME$/.local/lib/python3.7/site-packages" />
+        <root url="file:///usr/lib/python3.7/site-packages" />
+        <root url="file://$USER_HOME$/git/sphinx-docxwriter" />
+        <root url="file://$USER_HOME$/.IntelliJIdea2018.3/system/python_stubs/1140589420" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/python-skeletons" />
-        <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/stdlib/3.4" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/stdlib/3" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/stdlib/2and3" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/third_party/3" />
@@ -169,12 +169,12 @@
       <SOURCES>
         <root url="file:///usr/lib/python3.7" />
         <root url="file:///usr/lib/python3.7/lib-dynload" />
-        <root url="file://$USER_HOME$/work/cqf/cli/python/clienv/lib/python3.7/site-packages" />
-        <root url="jar://$USER_HOME$/work/cqf/cli/python/clienv/lib/python3.7/site-packages/setuptools-39.1.0-py3.7.egg!/" />
-        <root url="file://$USER_HOME$/work/cqf/cli/python/clienv/lib/python3.7/site-packages/pip-10.0.1-py3.7.egg" />
-        <root url="file://$USER_HOME$/.IntelliJIdea2018.2/system/python_stubs/126472393" />
+        <root url="file://$USER_HOME$/work/venv/lib/python3.7/site-packages" />
+        <root url="file://$USER_HOME$/.local/lib/python3.7/site-packages" />
+        <root url="file:///usr/lib/python3.7/site-packages" />
+        <root url="file://$USER_HOME$/git/sphinx-docxwriter" />
+        <root url="file://$USER_HOME$/.IntelliJIdea2018.3/system/python_stubs/1140589420" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/python-skeletons" />
-        <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/stdlib/3.4" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/stdlib/3" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/stdlib/2and3" />
         <root url="file://$APPLICATION_PLUGINS_DIR$/python/helpers/typeshed/third_party/3" />
