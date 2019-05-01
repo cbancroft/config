@@ -10,6 +10,7 @@
     </Renderer>
     <Renderer ID="ClassRenderer">
       <option name="SHOW_STATIC" value="true" />
+      <option name="SHOW_STATIC_FINAL" value="true" />
       <option name="SHOW_DECLARED_TYPE" value="true" />
     </Renderer>
   </component>
