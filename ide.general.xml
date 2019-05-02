@@ -16,7 +16,6 @@
     <entry key="ide.balloon.shadow.size" value="0" />
     <entry key="new.search.everywhere" value="false" />
     <entry key="new.retina.detection" value="true" />
-    <entry key="editor.distraction.free.mode" value="true" />
     <entry key="compiler.automake.allow.when.app.running" value="true" />
   </component>
 </application>

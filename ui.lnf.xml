@@ -12,13 +12,12 @@
     <option name="CONSOLE_CYCLE_BUFFER_SIZE_KB" value="8192" />
     <option name="DND_WITH_PRESSED_ALT_ONLY" value="true" />
     <option name="HIDE_NAVIGATION_ON_FOCUS_LOSS" value="false" />
-    <option name="HIDE_TOOL_STRIPES" value="true" />
     <option name="MAX_LOOKUP_LIST_HEIGHT" value="13" />
     <option name="MAX_LOOKUP_WIDTH2" value="593" />
     <option name="OVERRIDE_CONSOLE_CYCLE_BUFFER_SIZE" value="true" />
     <option name="OVERRIDE_NONIDEA_LAF_FONTS" value="true" />
+    <option name="SHOW_MAIN_TOOLBAR" value="true" />
     <option name="SHOW_MEMORY_INDICATOR" value="true" />
-    <option name="SHOW_STATUS_BAR" value="false" />
     <option name="smoothScrolling" value="true" />
     <option name="SORT_LOOKUP_ELEMENTS_LEXICOGRAPHICALLY" value="true" />
     <option name="USE_SMALL_LABELS_ON_TABS" value="true" />
