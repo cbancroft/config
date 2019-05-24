@@ -8,6 +8,7 @@
   <component name="EditorSettings">
     <option name="USE_SOFT_WRAPS" value="" />
     <option name="IS_ENSURE_NEWLINE_AT_EOF" value="true" />
+    <option name="SHOW_BREADCRUMBS" value="false" />
     <option name="IS_INDENT_GUIDES_SHOWN" value="false" />
     <option name="IS_DND_ENABLED" value="false" />
     <option name="IS_WHEEL_FONTCHANGE_ENABLED" value="true" />
