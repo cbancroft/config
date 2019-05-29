@@ -5,18 +5,22 @@
   <component name="LessonStateBase">
     <option name="myMap">
       <map>
+        <entry key="Actions" value="NOT_PASSED" />
         <entry key="Basic Completion" value="NOT_PASSED" />
         <entry key="Basic Navigation" value="NOT_PASSED" />
+        <entry key="Class Search" value="NOT_PASSED" />
         <entry key="CodeAssistance.CodeFormatting" value="NOT_PASSED" />
         <entry key="CodeAssistance.EditorCodingAssistance" value="NOT_PASSED" />
         <entry key="CodeAssistance.ParameterInfo" value="NOT_PASSED" />
         <entry key="CodeAssistance.QuickPopups" value="NOT_PASSED" />
         <entry key="Collapse" value="NOT_PASSED" />
         <entry key="Comment Line" value="NOT_PASSED" />
+        <entry key="Completion with Tab" value="NOT_PASSED" />
         <entry key="Completions.BasicCompletion" value="NOT_PASSED" />
         <entry key="Completions.CompletionwithTab" value="NOT_PASSED" />
         <entry key="Completions.SmartTypeCompletion" value="NOT_PASSED" />
         <entry key="Completions.StatementCompletion" value="NOT_PASSED" />
+        <entry key="Declaration and usages" value="NOT_PASSED" />
         <entry key="Duplicate" value="NOT_PASSED" />
         <entry key="EditorBasics.Collapse" value="NOT_PASSED" />
         <entry key="EditorBasics.CommentLine" value="NOT_PASSED" />
@@ -25,6 +29,7 @@
         <entry key="EditorBasics.Move" value="NOT_PASSED" />
         <entry key="EditorBasics.MultipleSelections" value="NOT_PASSED" />
         <entry key="EditorBasics.Selection" value="NOT_PASSED" />
+        <entry key="File structure" value="NOT_PASSED" />
         <entry key="Hippie Completion" value="NOT_PASSED" />
         <entry key="Move" value="NOT_PASSED" />
         <entry key="Multiple Selections" value="NOT_PASSED" />
@@ -39,6 +44,7 @@
         <entry key="Refactorings.Rename" value="NOT_PASSED" />
         <entry key="Select" value="NOT_PASSED" />
         <entry key="Smart Type Completion" value="NOT_PASSED" />
+        <entry key="Statement Completion" value="NOT_PASSED" />
         <entry key="swift.codeassistance.codeformatting" value="NOT_PASSED" />
         <entry key="swift.codeassistance.quickpopups" value="NOT_PASSED" />
         <entry key="swift.codegeneration.createfromusage" value="NOT_PASSED" />
