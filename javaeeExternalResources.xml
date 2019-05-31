@@ -1,10 +1,11 @@
 <application>
   <component name="ExternalResourceManagerImpl">
-    <resource url="http://jtcgme.amsaa.army.mil/jnke/oem/core/0.1" location="$USER_HOME$/work/act3/jnke/jtcgme-jnke-niem-1.0.iepd/xsd/extension/JnkeOEMExtension.xsd" />
-    <resource url="http://jtcgme.amsaa.army.mil/jnke/tcm/0.1" location="$USER_HOME$/work/act3/jnke/jtcgme-jnke-niem-1.0.iepd/xsd/extension/JnkeTCMExtension.xsd" />
-    <resource url="http://jtcgme.amsaa.army.mil/jnke/wcm/0.1" location="$USER_HOME$/work/act3/jnke/jtcgme-jnke-niem-1.0.iepd/xsd/extension/JnkeWCMExtension.xsd" />
-    <resource url="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0" location="$USER_HOME$/.IntelliJIdea2018.1/system/extResources/a8440932_archetype-descriptor-1.0.0.xsd" />
-    <resource url="https://release.niem.gov/niem/niem-core/4.0/niem-core.xsd" location="$USER_HOME$/.IntelliJIdea2019.1/system/extResources/623caacf_niem-core.xsd" />
-    <resource url="https://release.niem.gov/niem/utility/structures/4.0/structures.xsd" location="$USER_HOME$/.IntelliJIdea2019.1/system/extResources/72f9fcea_structures.xsd" />
+    <resource url="http://release.niem.gov/niem/codes/iso_3166-1/4.0/" location="$USER_HOME$/work/cqf" />
+    <resource url="http://release.niem.gov/niem/niem-core/4.0/" location="$USER_HOME$/work/cqf/doc/jnke/jtcgme-jnke-niem-1.0.iepd/xsd/niem/niem-core/4.0/niem-core.xsd" />
+    <resource url="http://release.niem.gov/niem/proxy/xsd/4.0/" location="$USER_HOME$/work/cqf" />
+    <resource url="http://release.niem.gov/niem/utility/structures/4.0/" location="$USER_HOME$/work/cqf/doc/jnke/jtcgme-jnke-niem-1.0.iepd/xsd/niem/utility/structures/4.0/structures.xsd" />
+    <resource url="https://release.niem.gov/niem/niem-core/4.0/" location="$USER_HOME$/work/cqf/doc/jnke/jtcgme-jnke-niem-1.0.iepd/xsd/niem/niem-core/4.0/niem-core.xsd" />
+    <resource url="https://release.niem.gov/niem/utility/structures/4.0/" location="$USER_HOME$/work/cqf/doc/jnke/jtcgme-jnke-niem-1.0.iepd/xsd/niem/utility/structures/4.0/structures.xsd" />
+    <resource url="urn:us:gov:ic:ism" location="$USER_HOME$/work/cqf/doc/jnke/jtcgme-jnke-niem-1.0.iepd/xsd/niem/external/IC/ISM/Schema/ISM/IC-ISM.xsd" />
   </component>
 </application>
