@@ -2,6 +2,7 @@
   <component name="DebuggerSettings">
     <option name="SHOW_ALTERNATIVE_SOURCE" value="false" />
     <option name="RUN_HOTSWAP_AFTER_COMPILE" value="RunHotswapAlways" />
+    <option name="WATCH_RETURN_VALUES" value="true" />
     <option name="KILL_PROCESS_IMMEDIATELY" value="true" />
   </component>
   <component name="NodeRendererSettings">
