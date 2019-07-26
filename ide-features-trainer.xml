@@ -29,8 +29,20 @@
         <entry key="EditorBasics.Move" value="NOT_PASSED" />
         <entry key="EditorBasics.MultipleSelections" value="NOT_PASSED" />
         <entry key="EditorBasics.Selection" value="NOT_PASSED" />
+        <entry key="Extract Method" value="NOT_PASSED" />
+        <entry key="Extract Variable" value="NOT_PASSED" />
         <entry key="File structure" value="NOT_PASSED" />
+        <entry key="GopherCon.CodeFormatting" value="NOT_PASSED" />
+        <entry key="GopherCon.CommentLine" value="NOT_PASSED" />
+        <entry key="GopherCon.ExtractFunction/Method" value="NOT_PASSED" />
+        <entry key="GopherCon.ExtractVariable" value="NOT_PASSED" />
+        <entry key="GopherCon.FormatStringArgument" value="NOT_PASSED" />
+        <entry key="GopherCon.GoFmt" value="NOT_PASSED" />
+        <entry key="GopherCon.ImplementMissingMethods" value="NOT_PASSED" />
+        <entry key="GopherCon.Inline" value="NOT_PASSED" />
+        <entry key="GopherCon.Rename" value="NOT_PASSED" />
         <entry key="Hippie Completion" value="NOT_PASSED" />
+        <entry key="Method-Like Function Completion" value="NOT_PASSED" />
         <entry key="Move" value="NOT_PASSED" />
         <entry key="Multiple Selections" value="NOT_PASSED" />
         <entry key="Navigation.Declaration/Implementation" value="NOT_PASSED" />
@@ -38,10 +50,12 @@
         <entry key="Navigation.JumptoSource" value="NOT_PASSED" />
         <entry key="Navigation.Next/PreviousOccurrences" value="NOT_PASSED" />
         <entry key="Postfix Completion" value="NOT_PASSED" />
+        <entry key="Refactoring Menu" value="NOT_PASSED" />
         <entry key="Refactorings.ExtractMethod" value="NOT_PASSED" />
         <entry key="Refactorings.ExtractVariable/Field" value="NOT_PASSED" />
         <entry key="Refactorings.RefactoringBasics" value="NOT_PASSED" />
         <entry key="Refactorings.Rename" value="NOT_PASSED" />
+        <entry key="Rename" value="NOT_PASSED" />
         <entry key="Select" value="NOT_PASSED" />
         <entry key="Smart Type Completion" value="NOT_PASSED" />
         <entry key="Statement Completion" value="NOT_PASSED" />
