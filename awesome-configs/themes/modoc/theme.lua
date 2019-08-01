@@ -36,7 +36,7 @@ theme.homedir = os.getenv("HOME")
 
 theme.panel_height        = 36 -- panel height
 theme.border_width        = 4  -- window border width
-theme.useless_gap         = 4  -- useless gap
+theme.useless_gap         = 14  -- useless gap
 
 theme.cellnum = { x = 96, y = 58 } -- grid layout property
 
@@ -212,16 +212,16 @@ theme.service.navigator = {
 }
 
 theme.service.navigator.keytip = {}
-theme.service.navigator.keytip["fairv"] = { geometry = { width = 600, height = 440 }, exit = true }
+theme.service.navigator.keytip["fairv"] = { geometry = { width = 600, height = 440 }, exit = false }
 theme.service.navigator.keytip["fairh"] = theme.service.navigator.keytip["fairv"]
 
-theme.service.navigator.keytip["tile"] = { geometry = { width = 600, height = 660 }, exit = true }
+theme.service.navigator.keytip["tile"] = { geometry = { width = 600, height = 660 }, exit = false }
 theme.service.navigator.keytip["tileleft"]   = theme.service.navigator.keytip["tile"]
 theme.service.navigator.keytip["tiletop"]    = theme.service.navigator.keytip["tile"]
 theme.service.navigator.keytip["tilebottom"] = theme.service.navigator.keytip["tile"]
 
-theme.service.navigator.keytip["grid"] = { geometry = { width = 1400, height = 520 }, column = 2, exit = true }
-theme.service.navigator.keytip["usermap"] = { geometry = { width = 1400, height = 580 }, column = 2, exit = true }
+theme.service.navigator.keytip["grid"] = { geometry = { width = 1400, height = 520 }, column = 2, exit = false }
+theme.service.navigator.keytip["usermap"] = { geometry = { width = 1400, height = 580 }, column = 2, exit = false }
 
 -- Desktop file parser
 --------------------------------------------------------------------------------
@@ -232,10 +232,10 @@ theme.service.dfparser = {
 		'~/.local/share/applications',
 	},
 	icons = {
-		df_icon       = theme.homedir .. "/.icons/ACYLS/scalable/mimetypes/application-x-executable.svg",
+		df_icon       = theme.path .. "/common/system.svg",
 		theme         = theme.homedir .. "/.icons/ACYLS",
-		custom_only   = true,
-		scalable_only = true
+		custom_only   = false,
+		scalable_only = false
 	}
 }
 
@@ -511,9 +511,13 @@ theme.widget.tasklist.winmenu.icon = {
 	maximized            = theme.path .. "/common/window_control/maximized.svg",
 }
 
+-- Floating widgets
+-----------------------------------------------------------------------------------------------------------------------
+theme.float = { decoration = {} }
+
 -- Client menu
 ------------------------------------------------------------
-theme.widget.clientmenu = {
+theme.float.clientmenu = {
 	micon          = theme.icon,
 	color          = theme.color,
 	actionline     = { height = 28 },
@@ -523,11 +527,6 @@ theme.widget.clientmenu = {
 	tagmenu        = theme.widget.tasklist.winmenu.tagmenu,
 	icon           = theme.widget.tasklist.winmenu.icon,
 }
-
-
--- Floating widgets
------------------------------------------------------------------------------------------------------------------------
-theme.float = { decoration = {} }
 
 -- Audio player
 ------------------------------------------------------------
