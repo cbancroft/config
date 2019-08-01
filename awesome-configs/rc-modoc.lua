@@ -200,7 +200,7 @@ awful.screen.connect_for_each_screen(
       --8 lain.layout.centerwork
 
 		-- tags
-		awful.tag({ "Main", "Web", "Code", "Edit", "Mail","Free", "VM" }, s, { al[5], al[6], al[8], al[3], al[1], al[1] })
+		awful.tag({ "Term", "Web", "Chat", "Code", "Edit", "Mail","Free", "VM" }, s, { al[3], al[6], al[3], al[8], al[3], al[1], al[1] })
 
 		-- layoutbox widget
 		layoutbox[s] = redflat.widget.layoutbox({ screen = s })
