@@ -2,9 +2,13 @@
 #
 # cbancroft's init file for Z-SHELL 4.3.10 on Arch GNU/Linux
 # Modified from anxrc's .zshrc
-
+export LANG="en_US.UTF-8"
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
+
+source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+
+
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -14,7 +18,8 @@ POWERLINE_DETECT_SSH="true"
 if [ "${TERM}" = "linux" ]; then
     ZSH_THEME="random"
 else
-    ZSH_THEME="powerline"
+    #ZSH_THEME="powerlevel9k/powerlevel9k"
+    #ZSH_THEME="powerline"
 fi
 
 # Example aliases
@@ -43,7 +48,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(gitfast git-extras archlinux battery git-remote-branch svn)
+plugins=(gitfast git-extras archlinux battery git-remote-branch svn yarn)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -110,7 +115,7 @@ alias lst="ls -htl | grep `date +%Y-%m-%d`"
 alias grep="grep --color=always"
 alias cp="cp -ia"
 alias mv="mv -i"
-alias rm="rm -i"
+alias rm="rm -I"
 alias cls="clear"
 alias upmem="ps -eo pmem,pcpu,rss,vsize,args | sort -k 1"
 alias top="htop"
@@ -150,7 +155,7 @@ alias deterlab="ssh cbancrof@${DETERLAB}"
 alias bbnvpn="ssh -D 8080 -f -C -q -N cbancrof@ssh.bbn.com && export IMAP_SERVER=localhost:8143"
 alias daytona="cd ~/work/daytona/DAYTONA-current"
 alias school="cd ~/git/school"
-
+alias cleandock='docker rm $(docker ps -a -q -f status=exited)'
 # {{{ Daytona nodes
 alias dbuild="ssh -A -l cbancroft build.daytona.ir.bbn.com"
 # }}}
@@ -390,4 +395,7 @@ export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 # export GOPATH=/home/cbancroft/work/aircoil/go
+
+source /usr/share/nvm/init-nvm.sh
+
 

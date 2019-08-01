@@ -44,7 +44,7 @@ xterm*shading:                 50
 xterm*inheritPixmap:        false
 
 !Name to report in TERM
-xterm*termName:		        xterm-256color
+!xterm*termName:		        xterm-256color
 xterm*transparent:	        true
 xterm*cutchars:		        '"'()*,<>[]{}|
 xterm*secondaryScroll:	        true
