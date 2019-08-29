@@ -47,7 +47,6 @@
         <option value="javascript:S1994" />
         <option value="javascript:S2138" />
         <option value="javascript:S2208" />
-        <option value="javascript:S2228" />
         <option value="javascript:S2234" />
         <option value="javascript:S2310" />
         <option value="javascript:S2376" />
@@ -109,7 +108,6 @@
         <option value="javascript:TrailingWhitespace" />
         <option value="javascript:UnusedFunctionArgument" />
         <option value="javascript:VariableDeclarationAfterUsage" />
-        <option value="javascript:VariableShadowing" />
         <option value="squid:CallToFileDeleteOnExitMethod" />
         <option value="squid:ClassCyclomaticComplexity" />
         <option value="squid:EmptyFile" />
@@ -198,7 +196,6 @@
         <option value="squid:S2221" />
         <option value="squid:S2250" />
         <option value="squid:S2253" />
-        <option value="squid:S2258" />
         <option value="squid:S2301" />
         <option value="squid:S2325" />
         <option value="squid:S2333" />
@@ -208,9 +205,7 @@
         <option value="squid:S2693" />
         <option value="squid:S2694" />
         <option value="squid:S2698" />
-        <option value="squid:S2699" />
         <option value="squid:S2701" />
-        <option value="squid:S2755" />
         <option value="squid:S2959" />
         <option value="squid:S2972" />
         <option value="squid:S2973" />
@@ -223,12 +218,10 @@
         <option value="squid:S3282" />
         <option value="squid:S3306" />
         <option value="squid:S3329" />
-        <option value="squid:S3330" />
         <option value="squid:S3340" />
         <option value="squid:S3366" />
         <option value="squid:S3369" />
         <option value="squid:S3373" />
-        <option value="squid:S3374" />
         <option value="squid:S3417" />
         <option value="squid:S3419" />
         <option value="squid:S3420" />
@@ -242,8 +235,6 @@
         <option value="squid:S3688" />
         <option value="squid:S3749" />
         <option value="squid:S3750" />
-        <option value="squid:S3751" />
-        <option value="squid:S3752" />
         <option value="squid:S3937" />
         <option value="squid:S4011" />
         <option value="squid:S4142" />
@@ -252,7 +243,6 @@
         <option value="squid:S4266" />
         <option value="squid:S4288" />
         <option value="squid:S4551" />
-        <option value="squid:S4601" />
         <option value="squid:S4603" />
         <option value="squid:S4604" />
         <option value="squid:S4605" />
