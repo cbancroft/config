@@ -1,3 +1,5 @@
 <application>
-  <component name="NotificationConfiguration" showBalloons="false" />
+  <component name="NotificationConfiguration" showBalloons="false">
+    <notification groupId="Docker: Dockerfile detection" displayType="NONE" shouldLog="false" />
+  </component>
 </application>
