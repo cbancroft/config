@@ -1,6 +1,15 @@
 <application>
   <component name="SonarLintGlobalSettings">
     <option name="autoTrigger" value="false" />
+    <option name="includedRules">
+      <set>
+        <option value="squid:S1609" />
+        <option value="squid:S1850" />
+        <option value="squid:S2057" />
+        <option value="squid:S2203" />
+        <option value="squid:S4266" />
+      </set>
+    </option>
     <option name="sonarQubeServers">
       <list>
         <SonarQubeServer>
