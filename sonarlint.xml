@@ -1,5 +1,6 @@
 <application>
   <component name="SonarLintGlobalSettings">
+    <option name="autoTrigger" value="false" />
     <option name="includedRules">
       <set>
         <option value="squid:S1609" />
