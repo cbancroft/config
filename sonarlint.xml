@@ -8,6 +8,7 @@
         <option value="squid:S2057" />
         <option value="squid:S2203" />
         <option value="squid:S4266" />
+        <option value="squid:UndocumentedApi" />
       </set>
     </option>
     <option name="sonarQubeServers">
