@@ -6,6 +6,10 @@
     <keyboard-shortcut first-keystroke="ctrl k" />
   </action>
   <action id="CheckinProject" />
+  <action id="FileStructurePopup">
+    <keyboard-shortcut first-keystroke="ctrl f12" />
+    <keyboard-shortcut first-keystroke="shift ctrl q" second-keystroke="s" />
+  </action>
   <action id="FixDocComment">
     <keyboard-shortcut first-keystroke="shift ctrl q" second-keystroke="f" />
   </action>
