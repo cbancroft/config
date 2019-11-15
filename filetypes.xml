@@ -6,6 +6,7 @@
       <mapping pattern=".env" type="Ini" />
       <mapping ext="env" type="Ini" />
       <mapping pattern="__*.java" type="JAVA" />
+      <mapping ext="ttf" type="Native" />
       <mapping pattern=".config.js.swp" type="PLAIN_TEXT" />
       <removed_mapping ext="cmd" approved="true" type="PLAIN_TEXT" />
       <removed_mapping ext="bat" approved="true" type="PLAIN_TEXT" />
