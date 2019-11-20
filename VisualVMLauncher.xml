@@ -1,5 +1,6 @@
 <application>
   <component name="VisualVMLauncher">
-    <option name="visualVmExecutable" value="/usr/lib/jvm/java-8-jdk/bin/jvisualvm" />
+    <option name="jdkHome" value="/usr/lib/jvm/jdk8-jetbrains" />
+    <option name="visualVmExecutable" value="/usr/bin/visualvm" />
   </component>
 </application>
