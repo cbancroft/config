@@ -16,7 +16,9 @@
     </Renderer>
   </component>
   <component name="XDebuggerSettings">
-    <data-views />
+    <data-views>
+      <option name="showLibraryStackFrames" value="false" />
+    </data-views>
     <general>
       <scroll-to-center>true</scroll-to-center>
     </general>
@@ -25,6 +27,11 @@
         <configuration doNotStepIntoLibraryCode="false">
           <custom-object-presentation />
           <stepping-filters-enabled>false</stepping-filters-enabled>
+        </configuration>
+      </debugger>
+      <debugger id="oracle">
+        <configuration>
+          <option name="steppingPauseAtBegin" value="true" />
         </configuration>
       </debugger>
     </debuggers>
