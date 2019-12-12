@@ -1,5 +1,6 @@
 <application>
   <component name="DatabaseSettings" version="4">
+    <option name="limit-page-size" value="false" />
     <option name="ddl-editor-confirm-loss" value="false" />
     <text-mode>
       <parameter-patterns>
