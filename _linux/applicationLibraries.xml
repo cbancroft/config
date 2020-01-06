@@ -15,6 +15,11 @@
       <JAVADOC />
       <SOURCES />
     </library>
+    <library name="@types/jest" type="javaScript">
+      <CLASSES />
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="@types/karma" type="javaScript">
       <CLASSES />
       <JAVADOC />
