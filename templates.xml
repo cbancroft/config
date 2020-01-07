@@ -11,16 +11,40 @@
           <option name="key" value="tldFunction" />
         </TemplateKey>
         <TemplateKey>
-          <option name="groupName" value="struts" />
-          <option name="key" value="act" />
+          <option name="groupName" value="jsf" />
+          <option name="key" value="uicomponent" />
         </TemplateKey>
         <TemplateKey>
-          <option name="groupName" value="struts" />
-          <option name="key" value="fb" />
+          <option name="groupName" value="jsf" />
+          <option name="key" value="jsfconverter" />
         </TemplateKey>
         <TemplateKey>
-          <option name="groupName" value="struts" />
-          <option name="key" value="gf" />
+          <option name="groupName" value="jsf" />
+          <option name="key" value="navrule" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="jsf" />
+          <option name="key" value="refbean" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="jsf" />
+          <option name="key" value="renderkit" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="jsf" />
+          <option name="key" value="jsfvalidator" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="jsf" />
+          <option name="key" value="propertybean" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="jsf" />
+          <option name="key" value="mapentriesbean" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="jsf" />
+          <option name="key" value="listentriesbean" />
         </TemplateKey>
         <TemplateKey>
           <option name="groupName" value="spring" />
@@ -259,12 +283,132 @@
           <option name="key" value="osgisetwithcomparator" />
         </TemplateKey>
         <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_if" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_elif" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_select" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_case" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_for" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_while" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_until" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_function" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_string equal" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_string not equal" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_string is empty" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_string not empty" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_number equal" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_number not equal" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_number less" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_number less or equal" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_number greater" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_number greater or equal" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_file exists" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_file not empty" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_file readable" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_file writable" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_file executable" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_file equals" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_file newer" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_file older" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_path exists" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_directory exists" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="Shell Script Hidden" />
+          <option name="key" value="shell_command exists" />
+        </TemplateKey>
+        <TemplateKey>
           <option name="groupName" value="GoHiddenTemplate" />
           <option name="key" value="go_lang_package" />
         </TemplateKey>
         <TemplateKey>
           <option name="groupName" value="GoHiddenTemplate" />
           <option name="key" value="go_lang_import" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="GoHiddenTemplate" />
+          <option name="key" value="go_lang_import_with_parens" />
         </TemplateKey>
         <TemplateKey>
           <option name="groupName" value="GoHiddenTemplate" />
@@ -316,6 +460,18 @@
         </TemplateKey>
         <TemplateKey>
           <option name="groupName" value="GoHiddenTemplate" />
+          <option name="key" value="go_lang_anonymous_map" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="GoHiddenTemplate" />
+          <option name="key" value="go_lang_anonymous_slice" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="GoHiddenTemplate" />
+          <option name="key" value="go_lang_anonymous_array" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="GoHiddenTemplate" />
           <option name="key" value="go_lang_var" />
         </TemplateKey>
         <TemplateKey>
@@ -349,6 +505,10 @@
         <TemplateKey>
           <option name="groupName" value="GoHiddenTemplate" />
           <option name="key" value="introduce_field" />
+        </TemplateKey>
+        <TemplateKey>
+          <option name="groupName" value="GoHiddenTemplate" />
+          <option name="key" value="template_type_hint_comment" />
         </TemplateKey>
       </list>
     </option>
