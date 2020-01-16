@@ -1,16 +1,11 @@
 <application>
   <component name="FileTypeManager" version="17">
     <extensionMap>
-      <mapping pattern="*.js.flow" type="Flow" />
-      <mapping pattern="*.js.flow" type="Flow" />
       <mapping pattern=".env" type="Ini" />
       <mapping ext="env" type="Ini" />
       <mapping pattern="__*.java" type="JAVA" />
       <mapping ext="ttf" type="Native" />
       <mapping pattern=".config.js.swp" type="PLAIN_TEXT" />
-      <removed_mapping ext="cmd" approved="true" type="PLAIN_TEXT" />
-      <removed_mapping ext="bat" approved="true" type="PLAIN_TEXT" />
-      <removed_mapping ext="log" approved="true" type="PLAIN_TEXT" />
       <mapping pattern="*.xml.base" type="XML" />
       <mapping ext="pmc" type="XML" />
       <removed_mapping ext="bat" approved="true" type="PLAIN_TEXT" />
