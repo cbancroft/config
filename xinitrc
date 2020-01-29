@@ -50,13 +50,13 @@ sysresources="/etc/X11/xinit/.Xresources"
 #xset r rate 200 30
 
 # Pointer control, acceleration and threshold
-xset m 30/10 4 &
+#xset m 30/10 4 &
 
 
 
 # {{{ Font Settings
 #xset +fp /usr/share/fonts/local
-xset fp rehash &
+#xset fp rehash &
 # }}}
 
 # {{{ Autostart settings
@@ -69,7 +69,7 @@ xset fp rehash &
 
 #nvidia-settings -a InitialPixmapPlacement=2
 #nvidia-settings -a InitialPixmapPlacement=0
-compton -b --paint-on-overlay --unredir-if-possible --backend xr_glx_hybrid --vsync drm --glx-swap-method -1 --glx-no-stencil
+#compton -b --paint-on-overlay --unredir-if-possible --backend xr_glx_hybrid --vsync drm --glx-swap-method -1 --glx-no-stencil
 #compton -cCG -o 0.75 -f 0.05 -t 0.01 -l -2 -r 2.5  -i 0.8 &
 # compton &
 # Start the device monitor
@@ -84,9 +84,9 @@ udiskie &
 
 # synclient TouchpadOff=1 &
 # Disable the touchpad
-xinput set-prop 20 153 0
+#xinput set-prop 20 153 0
 
-wmname LG3D
+# wmname LG3D
 # Play a startup sound
 #            ogg123 -q "${HOME}/.local/share/gajim/sounds/voices/voice-system-activated.ogg" &
 # }}}

@@ -11,7 +11,8 @@
     amend = "!git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend"
     chg = "!git status -uno"
     branches = branch -a
-
+    #Show the 10 local branches with the latest commit
+    blatest="!r() { git branch --sort=-committerdate --format='%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' --color=always | head -n10 | column -ts'|'; }; r"
     # Show all changes between this branch and develop
     changes = diff origin/develop..HEAD
     cleanup = !git branch --merged origin/develop | egrep -v '(^\\*|master|dev|backup|parking)' | xargs -n 1 git branch -d
