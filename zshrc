@@ -48,7 +48,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(gitfast git-extras archlinux battery git-remote-branch svn yarn)
+plugins=(gitfast git-extras archlinux battery git-remote-branch svn yarn fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -103,10 +103,9 @@ eval `dircolors -b "${HOME}/.dir_colors"`
 # }}}
 
 # {{{ Aliases
-
-# {{{ Main
 alias ..="cd .."
 alias ...="cd ../.."
+
 alias ls="ls -aFF --color=always"
 alias ll="ls -l"
 alias lfi="ls -l | egrep -v '^d'"
@@ -156,8 +155,16 @@ alias bbnvpn="ssh -D 8080 -f -C -q -N cbancrof@ssh.bbn.com && export IMAP_SERVER
 alias daytona="cd ~/work/daytona/DAYTONA-current"
 alias school="cd ~/git/school"
 alias cleandock='docker rm $(docker ps -a -q -f status=exited)'
+
 # {{{ Daytona nodes
 alias dbuild="ssh -A -l cbancroft build.daytona.ir.bbn.com"
+# }}}
+
+# {{{ CQF commands
+alias cqf="cd ~/work/cqf"
+alias cqfbuild="cqf && ./mvnw clean install -DskipTests"
+alias cqfdist="cqf && ./mvnw clean install"
+alias cqfweb="cqf && cd cqf-portal && yarn start"
 # }}}
 
 # {{{ Auto Extension Stuff
@@ -188,6 +195,7 @@ compctl -k "(add delete draft edit list import preview publish update)" nb
 # }}}
 
 alias skype='xhost +local: && sudo -u skypeuser /usr/bin/skype'
+# }}}
 
 # {{{ ZSH settings
 setopt emacs
@@ -206,7 +214,7 @@ setopt histreduceblanks histignorespace inc_append_history
 # Prompt requirements
 #source ~/.zsh/git-prompt/zshrc.sh
 #setopt extended_glob prompt_subst
-#autoload colors zsh/terminfo
+autoload colors zsh/terminfo
 
 # New style completion system
 autoload -U compinit; compinit
@@ -397,5 +405,5 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 # export GOPATH=/home/cbancroft/work/aircoil/go
 
 source /usr/share/nvm/init-nvm.sh
-
+nvm use stable
 
