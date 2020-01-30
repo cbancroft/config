@@ -1,0 +1,15 @@
+<application>
+  <component name="LuaCheckSettings">
+    <option name="luaCheck" value="" />
+    <option name="luaCheckArgs" value="" />
+  </component>
+  <component name="LuaSettings">
+    <option name="additionalSourcesRoot">
+      <array>
+        <option value="/usr/share/awesome/lib" />
+      </array>
+    </option>
+    <option name="enforceTypeSafety" value="true" />
+    <option name="languageLevel" value="Lua 5.4" />
+  </component>
+</application>
