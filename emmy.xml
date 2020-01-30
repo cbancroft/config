@@ -9,7 +9,8 @@
         <option value="/usr/share/awesome/lib" />
       </array>
     </option>
+    <option name="enableGeneric" value="true" />
     <option name="enforceTypeSafety" value="true" />
-    <option name="languageLevel" value="Lua 5.4" />
+    <option name="strictDoc" value="true" />
   </component>
 </application>
