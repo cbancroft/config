@@ -16,9 +16,7 @@
     </Renderer>
   </component>
   <component name="XDebuggerSettings">
-    <data-views>
-      <option name="showLibraryStackFrames" value="false" />
-    </data-views>
+    <data-views />
     <general>
       <scroll-to-center>true</scroll-to-center>
     </general>
