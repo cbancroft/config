@@ -1,0 +1,5 @@
+<application>
+  <component name="MergeRequestIntegrationApplicationLevel">
+    <Setting name="enable-request-cache" value="1" />
+  </component>
+</application>
