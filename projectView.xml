@@ -4,5 +4,7 @@
     <option name="flattenModules" value="true" />
     <option name="showMembers" value="true" />
     <option name="showModules" value="false" />
+    <option name="showVisibilityIcons" value="true" />
+    <option name="sortByType" value="true" />
   </component>
 </application>
