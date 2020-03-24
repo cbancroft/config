@@ -19,6 +19,7 @@
     <option name="OVERRIDE_NONIDEA_LAF_FONTS" value="true" />
     <option name="SHOW_INPLACE_COMMENTS" value="true" />
     <option name="SHOW_MEMORY_INDICATOR" value="true" />
+    <option name="showTreeIndentGuides" value="true" />
     <option name="SORT_LOOKUP_ELEMENTS_LEXICOGRAPHICALLY" value="true" />
     <option name="USE_SMALL_LABELS_ON_TABS" value="true" />
     <option name="WIDESCREEN_SUPPORT" value="true" />
