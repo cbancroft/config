@@ -24,7 +24,7 @@ local mat_icon = require("widget.material.icon")
 
 --- Create the icon for the home button
 local create_home_button = function(panel)
-  print('creating home button -- ' .. panel.type)
+  print("creating home button -- " .. panel.type)
 
   -- Icon for the home button
   local menu_icon =
@@ -39,10 +39,10 @@ local create_home_button = function(panel)
     wibox.widget {
     wibox.widget {
       menu_icon,
-      widget = clickable_container,
+      widget = clickable_container
     },
     bg = beautiful.background.hue_800 .. "66", -- beautiful.primary.hue_500,
-    widget = wibox.container.background,
+    widget = wibox.container.background
   }
 
   home_button:buttons(
@@ -58,6 +58,22 @@ local create_home_button = function(panel)
     )
   )
 
+  -- Set the icon to close, when the panel is opened
+  panel:connect_signal(
+    "opened",
+    function()
+      menu_icon.icon = icons.close
+    end
+  )
+
+  -- Set the icon back to the home menu button on close
+  panel:connect_signal(
+    "closed",
+    function()
+      menu_icon.icon = icons.menu
+    end
+  )
+
   return home_button, menu_icon
 end
 
@@ -67,6 +83,7 @@ local LayoutBox = function(s)
   local layoutBox = clickable_container(awful.widget.layoutbox(s))
   layoutBox:buttons(
     awful.util.table.join(
+      -- LMB: Next layout
       awful.button(
         {},
         1,
@@ -74,6 +91,7 @@ local LayoutBox = function(s)
           awful.layout.inc(1)
         end
       ),
+      -- RMB: Previous layout
       awful.button(
         {},
         3,
@@ -81,6 +99,7 @@ local LayoutBox = function(s)
           awful.layout.inc(-1)
         end
       ),
+      -- MWheel Up: Next Layout
       awful.button(
         {},
         4,
@@ -88,6 +107,7 @@ local LayoutBox = function(s)
           awful.layout.inc(1)
         end
       ),
+      -- MWheel Down: Prev Layout
       awful.button(
         {},
         5,
@@ -100,52 +120,27 @@ local LayoutBox = function(s)
   return layoutBox
 end
 
-local separator = function()
-  return wibox.widget {
-    orientation = "horizontal",
-    forced_height = dpi(1),
-    opacity = 0.20,
-    widget = wibox.widget.separator
-  }
-end
-
 --- Create a new action bar on the given screen.
 -- @tparam table screen the screen on which to create the panel
 -- @tparam table panel the left-panel that this action bar belongs to
 -- @tparam int action_bar_width the dpi based width of this action bar
 local create_action_bar = function(screen, panel, action_bar_width)
-  print('Creating action bar')
-  local home_button, menu_icon = create_home_button(panel)
+  local home_button = create_home_button(panel)
 
-  -- Set the icon to close, when the panel is opened
-  panel:connect_signal(
-    "opened",
-    function()
-      print("Menu is opened")
-      menu_icon.icon = icons.close
-    end
-  )
-
-  -- Set the icon back to the home menu button on close
-  panel:connect_signal(
-    "closed",
-    function()
-      print("Menu is closed")
-      menu_icon.icon = icons.menu
-    end
-  )
-
+  local xdg_folders_widget = require("widget.xdg-folders")
   return wibox.widget {
-    { -- Top widgets
+    {
+      -- Top widgets
       home_button,
       -- Create a taglist widget
       TagList(screen),
-      require("widget.xdg-folders"),
+      xdg_folders_widget,
       layout = wibox.layout.fixed.vertical
     },
     -- Empty space in the middle
     nil,
-    { -- Bottom widgets
+    {
+      -- Bottom widgets
       LayoutBox(screen),
       layout = wibox.layout.fixed.vertical
     },

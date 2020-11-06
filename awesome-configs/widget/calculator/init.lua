@@ -47,7 +47,7 @@ local calculator_screen = wibox.widget {
   {
     id = 'calcu_screen',
     text = '0',
-    font = 'SFNS Display 20',
+    font = 'SFNS Display 18',
     align = 'right',
     valign = 'center',
     widget = wibox.widget.textbox,

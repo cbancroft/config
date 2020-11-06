@@ -21,8 +21,8 @@ local globalKeys =
   awful.key(
     {modkey}, 'e',
     function()
-      _G.screen.primary.left_panel:HideDashboard()
-      _G.screen.primary.right_panel:HideDashboard()
+      _G.screen.primary.left_panel:hideDashboard()
+      _G.screen.primary.right_panel:hideDashboard()
       awful.util.spawn(apps.default.rofiappmenu)
     end,
   { description = "Open Application Drawer", group = "launcher"}),
