@@ -1,3 +1,11 @@
+-------------------------------------------------------------------------------
+-- default-theme.lua
+--
+-- Defines cusom color theme
+--
+-- Forked from version by @mewantcookieee
+-------------------------------------------------------------------------------
+
 local gears = require('gears')
 local beautiful = require('beautiful')
 
@@ -6,11 +14,17 @@ local mat_colors = require('theme.mat-colors')
 local theme_dir = filesystem.get_configuration_dir() .. '/theme'
 local dpi = require('beautiful').xresources.apply_dpi
 
+local fonts = {
+  basic='SFNS Display Regular 10',
+  title='SFNS Display Bold 14'
+}
+local ICON_THEME = 'Papirus-Dark'
+
 local theme = {}
 theme.icons = theme_dir .. '/icons/'
-theme.font = 'SFNS Display Regular 10'
+theme.font = fonts.basic
 
--- Colors Pallets
+-- Colors Pallettes
 
 -- Custom
 theme.custom = '#ffffff'
@@ -33,8 +47,8 @@ local awesome_overrides =
   -- Default Wallpaper if Dynamic wallpaper module is not loaded
   theme.wallpaper = theme.dir .. '/wallpapers/day-wallpaper.jpg'
 
-  theme.font = 'SFNS Display Regular 10'
-  theme.title_font = 'SFNS Display Bold 14'
+  theme.font = fonts.basic
+  theme.title_font = fonts.title
 
   theme.fg_normal = '#ffffffde'
 
@@ -126,7 +140,7 @@ local awesome_overrides =
 
   -- Tasklist
 
-  theme.tasklist_font = 'SFNS Display Regular 10'
+  theme.tasklist_font = fonts.basic
   theme.tasklist_bg_normal = theme.background.hue_800 .. '99'
   theme.tasklist_bg_focus =
     'linear:0,0:0,' ..
@@ -139,7 +153,7 @@ local awesome_overrides =
   theme.tasklist_fg_urgent = theme.fg_normal
   theme.tasklist_fg_normal = '#AAAAAA'
 
-  theme.icon_theme = 'Papirus-Dark'
+  theme.icon_theme = ICON_THEME
 
   --Client
   theme.border_width = dpi(0)

@@ -1,15 +1,8 @@
+
+
 local awful = require('awful')
-local left_panel = require('layout.left-panel')
-local top_panel = require('layout.top-panel')
-
--- Create a wibox for each screen and add it
-_G.screen.connect_signal("request::desktop_decoration", function(s)
-      -- Create the left_panel
-      s.left_panel = left_panel(s)
-      -- Create the Top bar
-      s.top_panel = top_panel(s, true)
-end)
-
+local create_left_panel = require('layout.left-panel')
+local create_top_panel = require('layout.top-panel')
 
 -- Hide bars when app go fullscreen
 local function updateBarsVisibility()
@@ -24,6 +17,16 @@ local function updateBarsVisibility()
     end
   end
 end
+
+-- Signals 
+
+-- Create a wibox for each screen and add it
+_G.screen.connect_signal("request::desktop_decoration", function(s)
+      -- Create the left_panel
+      s.left_panel = create_left_panel(s)
+      -- Create the Top bar
+      s.top_panel = create_top_panel(s, true)
+end)
 
 _G.tag.connect_signal(
   'property::selected',

@@ -1,8 +1,10 @@
 local gtable = require('gears.table')
 local default_theme = require('theme.default-theme')
+
 -- PICK THEME HERE
 local theme = require('theme.floppy-theme')
 
+-- Crush tables together and apply overrides
 local final_theme = {}
 gtable.crush(final_theme, default_theme.theme)
 gtable.crush(final_theme, theme.theme)

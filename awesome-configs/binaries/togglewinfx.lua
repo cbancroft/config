@@ -2,7 +2,7 @@
 -- depends : picom-tryone
 local awful = require('awful')
 
-local toggfx = {}
+local togglefx = {}
 
 local toggle_fx = function(togglemode)
   local toggle_fx_script = [[
@@ -36,7 +36,7 @@ local disablefx = function()
   toggle_fx('disable')
 end
 
-toggfx.enable = enablefx
-toggfx.disable = disablefx
+togglefx.enable = enablefx
+togglefx.disable = disablefx
 
-return toggfx
+return togglefx

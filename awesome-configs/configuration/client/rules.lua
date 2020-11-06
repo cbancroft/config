@@ -39,20 +39,15 @@ awful.rules.rules = {
   {
     rule_any = {
       type = { 'dialog', 'modal' },
-      class = {
-        'Wicd-client.py',
-        'calendar.google.com'
-      }
     },
     properties = {
       ontop = true,
       floating = true,
       drawBackdrop = true,
       skip_decoration = true,
-      placement = awful.placement.centered
+      placement = awful.placement.centered,
     }
   },
-
 
   -- Terminals
   {
@@ -73,7 +68,6 @@ awful.rules.rules = {
     },
     properties = {
       size_hints_honor = false,
-      screen = 1, 
       tag = '1',
       switchtotag = true,
     }
@@ -87,7 +81,7 @@ awful.rules.rules = {
         "Tor Browser"
       },
     },
-    properties = { screen = 1, tag = '2' }
+    properties = { tag = '2' }
   },
 
 
@@ -101,7 +95,7 @@ awful.rules.rules = {
         "code-oss"
       },
     },
-    properties = { screen = 1, tag = '3' }
+    properties = { tag = '3' }
   },
 
   -- File Managers
@@ -136,7 +130,6 @@ awful.rules.rules = {
     },
   },
     properties = {
-      screen = 1,
       tag = '6',
       switchtotag = true,
       floating = true,
@@ -153,7 +146,7 @@ awful.rules.rules = {
       "Flowblade"
     },
   },
-    properties = { screen = 1, tag = '7'}
+    properties = { tag = '7'}
   },
 
   -- Virtualbox
@@ -164,7 +157,7 @@ awful.rules.rules = {
       "VirtualBox Machine"
     },
   },
-    properties = { screen = 1, tag = '8'}
+    properties = { tag = '8'}
   },
 
 
@@ -175,12 +168,15 @@ awful.rules.rules = {
       "Oomox",
       "Unity",
       "UnityHub",
-      "jetbrains-studio"
+      "jetbrains-studio",
+      "jetbrains-idea"
     },
   },
+  except_any = {
+    type = { 'dialog', 'modal'}
+  },
     properties = { 
-      screen = 1,
-      tag = '9', 
+      tag = '3', 
       skip_decoration = true,
       round_corners = true,
     }
@@ -192,7 +188,8 @@ awful.rules.rules = {
     class = {
       "feh",
       "Mugshot",
-      "Pulseeffects"
+      "Pulseeffects",
+      "jetbrains-toolbox",
     },
   },
     properties = {
@@ -284,7 +281,7 @@ client.connect_signal("property::class",function(c)
     elseif c.class == 'SuperTuxKart' then
       tagName = '6'
     end
-    local t = awful.tag.find_by_name(awful.screen.focused(), tagName)
+    local t = awful.tag.find_by_name(awful.screen.preferred(c), tagName)
     c:move_to_tag(t)
     t:view_only()
 

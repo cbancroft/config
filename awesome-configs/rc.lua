@@ -37,10 +37,11 @@ require('module.battery')
 -- Setup all configurations
 require('configuration.client')
 require('configuration.tags')
+
 _G.root.keys(require('configuration.keys.global'))
 
-
-screen.connect_signal("request::wallpaper", function(s)
+-- Handle wallpaper changes
+_G.screen.connect_signal("request::wallpaper", function(s)
     -- If wallpaper is a function, call it with the screen
     if beautiful.wallpaper then
         if type(beautiful.wallpaper) == "string" then
@@ -73,7 +74,6 @@ _G.client.connect_signal(
 )
 
 -- Enable sloppy focus, so that focus follows mouse.
-
 _G.client.connect_signal(
   'mouse::enter',
   function(c)
@@ -81,6 +81,7 @@ _G.client.connect_signal(
   end
 )
 
+-- Focus/unfocus border colors
 _G.client.connect_signal(
   'focus',
   function(c)

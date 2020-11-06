@@ -15,26 +15,27 @@ local right_dashboard = require('widget.right-dashboard')
 
 -- Clock / Calendar 12h format
 -- Get Time/Date format using `man strftime`
-local textclock = wibox.widget.textclock('<span font="SFNS Display Bold 10">%l:%M %p</span>', 1)
-
+local CLOCK_FORMAT = '<span font="SFNS Display Bold 10">%l:%M %p</span>'
 -- Clock / Calendar 12AM/PM fornatan font="Roboto Mono bold 11">%I\n%M</span>\n<span font="Roboto Mono bold 9">%p</span>')
-local clock_widget = wibox.container.margin(textclock, dpi(0), dpi(0))
 
--- Alternative to naughty.notify - tooltip. You can compare both and choose the preferred one
-awful.tooltip(
-  {
-    objects = {clock_widget},
-    mode = 'outside',
-    align = 'right',
-    timer_function = function()
-      return os.date("The date today is %B %d, %Y. And it's fucking %A!")
-    end,
-    preferred_positions = {'right', 'left', 'top', 'bottom'},
-    margin_leftright = dpi(8),
-    margin_topbottom = dpi(8)
-  }
-)
+local BAR_HEIGHT = 26
 
+local create_clock_tooltip = function(widget) 
+  -- Alternative to naughty.notify - tooltip. You can compare both and choose the preferred one
+  awful.tooltip(
+    {
+      objects = {widget},
+      mode = 'outside',
+      align = 'right',
+      timer_function = function()
+        return os.date("The date today is %A %B %d, %Y.")
+      end,
+      preferred_positions = {'right', 'left', 'top', 'bottom'},
+      margin_leftright = dpi(8),
+      margin_topbottom = dpi(8)
+    }
+  )
+end
 
 local cal_shape = function(cr, width, height)
   -- gears.shape.infobubble(cr, width, height, 12)
@@ -42,24 +43,36 @@ local cal_shape = function(cr, width, height)
     cr, width, height, false, false, true, true, 12)
 end
 
--- Calendar Widget
-local month_calendar = awful.widget.calendar_popup.month({
-	start_sunday = true,
-	spacing = 10,
-	font = 'SFNS Display 10',
-	long_weekdays = true,
-	margin = 0, -- 10
-	style_month = { border_width = 0, padding = 12, shape = cal_shape, padding = 25},
-	style_header = { border_width = 0, bg_color = '#00000000'},
-	style_weekday = { border_width = 0, bg_color = '#00000000' },
-	style_normal = { border_width = 0, bg_color = '#00000000'},
-	style_focus = { border_width = 0, bg_color = beautiful.primary.hue_500 },
-})
--- Attach calentar to clock_widget
-month_calendar:attach(clock_widget, "tc" , { on_pressed = true, on_hover = false })
+--- Create a new Clock widget on the given screen
+local create_clock_widget = function(s) 
+  local textclock = wibox.widget.textclock(CLOCK_FORMAT, 1)
+
+  local clock_widget = wibox.container.margin(textclock, dpi(0), dpi(0))
+
+  create_clock_tooltip(clock_widget)
+
+  -- Calendar Widget
+  local month_calendar = awful.widget.calendar_popup.month({
+    start_sunday = true,
+    spacing = 10,
+    screen = s,
+    font = 'SFNS Display 10',
+    long_weekdays = true,
+    margin = 0, -- 10
+    style_month = { border_width = 0, shape = cal_shape, padding = 25},
+    style_header = { border_width = 0, bg_color = '#00000000'},
+    style_weekday = { border_width = 0, bg_color = '#00000000' },
+    style_normal = { border_width = 0, bg_color = '#00000000'},
+    style_focus = { border_width = 0, bg_color = beautiful.primary.hue_500 },
+  })
+  -- Attach calentar to clock_widget
+  month_calendar:attach(clock_widget, "tc" , { on_pressed = true, on_hover = false })
+
+  return clock_widget
+end
 
 -- Create to each screen
-screen.connect_signal("request::desktop_decoration", function(s)
+_G.screen.connect_signal("request::desktop_decoration", function(s)
   s.systray = wibox.widget.systray()
   s.systray.visible = false
   s.systray:set_horizontal(true)
@@ -70,7 +83,7 @@ end)
 
 
 -- Execute only if system tray widget is not loaded
-awesome.connect_signal("toggle_tray", function()
+_G.awesome.connect_signal("toggle_tray", function()
   if not require('widget.systemtray') then
     if awful.screen.focused().systray.visible ~= true then
       awful.screen.focused().systray.visible = true
@@ -102,6 +115,9 @@ add_button:buttons(
 )
 
 
+--- Creates the new top panel widget
+-- @tparam s The screen to create the top panel on
+-- @param offset true/false, offset due to action bar?
 local TopPanel = function(s, offset)
   local offsetx = 0
   local target_screen = s
@@ -114,7 +130,7 @@ local TopPanel = function(s, offset)
       ontop = true,
       screen = s,
       type = 'dock',
-      height = dpi(26),
+      height = dpi(BAR_HEIGHT),
       width = s.geometry.width - offsetx,
       x = s.geometry.x + offsetx,
       y = s.geometry.y,
@@ -122,14 +138,14 @@ local TopPanel = function(s, offset)
       bg = beautiful.background.hue_800,
       fg = beautiful.fg_normal,
       struts = {
-        top = dpi(26)
+        top = dpi(BAR_HEIGHT)
       }
     }
   )
 
   panel:struts(
     {
-      top = dpi(26)
+      top = dpi(BAR_HEIGHT)
     }
   )
 
@@ -144,7 +160,7 @@ local TopPanel = function(s, offset)
     },
 	  -- Clock
     -- Change to `nil` if you want to extend tasklist up to the right
-	  clock_widget,
+	  create_clock_widget(s),
     {
       layout = wibox.layout.fixed.horizontal,
       s.systray,
@@ -155,7 +171,7 @@ local TopPanel = function(s, offset)
       require('widget.wifi'),
       require('widget.battery'),
       require('widget.search'),
-      right_dashboard(target_screen),
+      right_dashboard(s),
     }
   }
 
