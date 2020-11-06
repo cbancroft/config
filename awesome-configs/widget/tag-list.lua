@@ -1,9 +1,21 @@
-local awful = require('awful')
-local wibox = require('wibox')
-local dpi = require('beautiful').xresources.apply_dpi
+-------------------------------------------------------------------------------
+-- tag-list.lua
+--
+-- Defines the tag list used by the wibox
+--
+-- Forked from version by @mewantcookieee
+-------------------------------------------------------------------------------
+
+-- Awesome requires
+local awful = require("awful")
+local wibox = require("wibox")
+local dpi = require("beautiful").xresources.apply_dpi
 local capi = {button = _G.button}
-local clickable_container = require('widget.material.clickable-container')
-local modkey = require('configuration.keys.mod').modKey
+
+-- local requires
+local clickable_container = require("widget.material.clickable-container")
+local modkey = require("configuration.keys.mod").modKey
+
 --- Common method to create buttons.
 -- @tab buttons
 -- @param object
@@ -18,15 +30,15 @@ local function create_buttons(buttons, object)
       -- argument.
       local btn = capi.button {modifiers = b.modifiers, button = b.button}
       btn:connect_signal(
-        'press',
+        "press",
         function()
-          b:emit_signal('press', object)
+          b:emit_signal("press", object)
         end
       )
       btn:connect_signal(
-        'release',
+        "release",
         function()
-          b:emit_signal('release', object)
+          b:emit_signal("release", object)
         end
       )
       btns[#btns + 1] = btn
@@ -36,129 +48,139 @@ local function create_buttons(buttons, object)
   end
 end
 
+--- Update the display list as running applications change
+
 local function list_update(w, buttons, label, data, objects)
   -- update the widgets, creating them if needed
   w:reset()
   for i, o in ipairs(objects) do
     local cache = data[o]
-    local ib, tb, bgb, tbm, ibm, l, bg_clickable
+    local imagebox, textbox, background_box, textbox_margin, imagebox_margin, l, bg_clickable
     if cache then
-      ib = cache.ib
-      tb = cache.tb
-      bgb = cache.bgb
-      tbm = cache.tbm
-      ibm = cache.ibm
+      imagebox = cache.ib
+      textbox = cache.tb
+      background_box = cache.bgb
+      textbox_margin = cache.tbm
+      imagebox_margin = cache.ibm
     else
-	  local icondpi = 10 -- CUSTOM VARIABLE
-      ib = wibox.widget.imagebox()
-      tb = wibox.widget.textbox()
-      bgb = wibox.container.background()
-      tbm = wibox.container.margin(tb, dpi(4), dpi(16))
-      ibm = wibox.container.margin(ib, dpi(icondpi), dpi(icondpi), dpi(icondpi), dpi(icondpi)) -- ALL 12
+      local icondpi = 10 -- CUSTOM VARIABLE
+      imagebox = wibox.widget.imagebox()
+      textbox = wibox.widget.textbox()
+      background_box = wibox.container.background()
+      textbox_margin = wibox.container.margin(textbox, dpi(4), dpi(16))
+      imagebox_margin = wibox.container.margin(imagebox, dpi(icondpi), dpi(icondpi), dpi(icondpi), dpi(icondpi)) -- ALL 12
       l = wibox.layout.fixed.horizontal()
       bg_clickable = clickable_container()
 
       -- All of this is added in a fixed widget
       l:fill_space(true)
-      l:add(ibm)
+      l:add(imagebox_margin)
       -- l:add(tbm)
       bg_clickable:set_widget(l)
 
       -- And all of this gets a background
-      bgb:set_widget(bg_clickable)
+      background_box:set_widget(bg_clickable)
 
-      bgb:buttons(create_buttons(buttons, o))
+      background_box:buttons(create_buttons(buttons, o))
 
       data[o] = {
-        ib = ib,
-        tb = tb,
-        bgb = bgb,
-        tbm = tbm,
-        ibm = ibm
+        ib = imagebox,
+        tb = textbox,
+        bgb = background_box,
+        tbm = textbox_margin,
+        ibm = imagebox_margin
       }
     end
 
-    local text, bg, bg_image, icon, args = label(o, tb)
+    local text, bg, bg_image, icon, args = label(o, textbox)
     args = args or {}
 
     -- The text might be invalid, so use pcall.
-    if text == nil or text == '' then
-      tbm:set_margins(0)
+    if text == nil or text == "" then
+      textbox_margin:set_margins(0)
     else
-      if not tb:set_markup_silently(text) then
-        tb:set_markup('<i>&lt;Invalid text&gt;</i>')
+      if not textbox:set_markup_silently(text) then
+        textbox:set_markup("<i>&lt;Invalid text&gt;</i>")
       end
     end
-    bgb:set_bg(bg)
-    if type(bg_image) == 'function' then
+    background_box:set_bg(bg)
+    if type(bg_image) == "function" then
       -- TODO: Why does this pass nil as an argument?
-      bg_image = bg_image(tb, o, nil, objects, i)
+      bg_image = bg_image(textbox, o, nil, objects, i)
     end
-    bgb:set_bgimage(bg_image)
+    background_box:set_bgimage(bg_image)
     if icon then
-      ib.image = icon
+      imagebox.image = icon
     else
-      ibm:set_margins(0)
+      imagebox_margin:set_margins(0)
     end
 
-    bgb.shape = args.shape
-    bgb.shape_border_width = args.shape_border_width
-    bgb.shape_border_color = args.shape_border_color
+    background_box.shape = args.shape
+    background_box.shape_border_width = args.shape_border_width
+    background_box.shape_border_color = args.shape_border_color
 
-    w:add(bgb)
+    w:add(background_box)
   end
 end
 
 local TagList = function(s)
   return awful.widget.taglist(
-    s,
-    awful.widget.taglist.filter.all,
-    awful.util.table.join(
-      awful.button(
-        {},
-        1,
-        function(t)
-          t:view_only()
-        end
-      ),
-      awful.button(
-        {modkey},
-        1,
-        function(t)
-          if _G.client.focus then
-            _G.client.focus:move_to_tag(t)
+    {
+      screen = s,
+      filter = awful.widget.taglist.filter.all,
+      buttons = awful.util.table.join(
+        -- LMB: View this tag
+        awful.button(
+          {},
+          1,
+          function(t)
             t:view_only()
           end
-        end
-      ),
-      awful.button({}, 3, awful.tag.viewtoggle),
-      awful.button(
-        {modkey},
-        3,
-        function(t)
-          if _G.client.focus then
-            _G.client.focus:toggle_tag(t)
+        ),
+        -- Mod4 + LMB: Move active and view
+        awful.button(
+          {modkey},
+          1,
+          function(t)
+            if _G.client.focus then
+              _G.client.focus:move_to_tag(t)
+              t:view_only()
+            end
           end
-        end
+        ),
+        -- RMB: Toggle this tag
+        awful.button({}, 3, awful.tag.viewtoggle),
+        -- Mod4 + RMB: Toggle this client on this tag
+        awful.button(
+          {modkey},
+          3,
+          function(t)
+            if _G.client.focus then
+              _G.client.focus:toggle_tag(t)
+            end
+          end
+        ),
+        -- MWheelUp: Previous tag
+        awful.button(
+          {},
+          4,
+          function(t)
+            awful.tag.viewprev(t.screen)
+          end
+        ),
+        -- MWheelDown: Next tag
+        awful.button(
+          {},
+          5,
+          function(t)
+            awful.tag.viewnext(t.screen)
+          end
+        )
       ),
-      awful.button(
-        {},
-        4,
-        function(t)
-          awful.tag.viewprev(t.screen)
-        end
-      ),
-      awful.button(
-        {},
-        5,
-        function(t)
-          awful.tag.viewnext(t.screen)
-        end
-      )
-    ),
-    {},
-    list_update,
-    wibox.layout.fixed.vertical()
+      style = {},
+      update_function = list_update,
+      layout = wibox.layout.fixed.vertical()
+    }
   )
 end
 return TagList

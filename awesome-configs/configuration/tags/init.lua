@@ -7,61 +7,51 @@ local tags = {
     icon = icons.terminal,
     type = 'terminal',
     defaultApp = 'kitty',
-    screen = 1
   },
   {
     icon = icons.chrome,
     type = 'chrome',
     defaultApp = 'firefox',
-    screen = 1
   },
   {
     icon = icons.code,
     type = 'code',
     defaultApp = 'atom',
-    screen = 1
   },
  --[[ {
     icon = icons.social,
     type = 'social',
-    defaultApp = 'station',
-    screen = 1
+    defaultApp = 'station'
   },]]--
   {
     icon = icons.folder,
     type = 'files',
     defaultApp = 'nemo',
-    screen = 1
   },
   {
     icon = icons.music,
     type = 'music',
     defaultApp = 'kitty -e ncmpcpp',
-    screen = 1
   },
   {
     icon = icons.game,
     type = 'game',
     defaultApp = 'supertuxkart',
-    screen = 1
   },
   {
     icon = icons.art,
     type = 'art',
     defaultApp = 'gimp',
-    screen = 1
   },
   {
     icon = icons.vbox,
     type = 'virtualbox',
     defaultApp = 'virtualbox',
-    screen = 1
   },
   {
     icon = icons.lab,
     type = 'any',
     defaultApp = '',
-    screen = 1
   }
 }
 

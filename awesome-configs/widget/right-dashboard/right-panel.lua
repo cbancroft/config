@@ -2,17 +2,18 @@ local awful = require("awful")
 local wibox = require("wibox")
 local gears = require("gears")
 local beautiful = require("beautiful")
-
+local mode_switcher = require("widget.right-dashboard.subwidgets.panel-mode-switcher")
 local HOME = os.getenv("HOME")
 
 local dpi = require("beautiful").xresources.apply_dpi
 
-panel_visible = false
+panel_visible = false;
 
 local right_panel = function(screen)
   local panel_width = dpi(350, screen)
   print("Creating right panel with width " .. panel_width)
   print("Screen geometry " .. screen.geometry.width .. "x" .. screen.geometry.height)
+  print("Creating panel at " .. screen.geometry.x + screen.geometry.width - panel_width .. ", " .. screen.geometry.y)
   local panel =
     wibox {
     ontop = true,
@@ -20,12 +21,15 @@ local right_panel = function(screen)
     type = "dock",
     width = panel_width,
     height = screen.geometry.height,
-    x = screen.geometry.width - panel_width,
+    x = screen.geometry.x + screen.geometry.width - panel_width,
+    y = screen.geometry.y,
     bg = beautiful.background.hue_800,
     fg = beautiful.fg_normal
   }
 
   panel.opened = false
+
+  local switcher = mode_switcher()
 
   local backdrop =
     wibox {
@@ -44,24 +48,23 @@ local right_panel = function(screen)
       right = 0
     }
   )
-  openPanel = function()
+  local openPanel = function()
     panel_visible = true
     backdrop.visible = true
     panel.visible = true
     panel:emit_signal("opened")
   end
 
-  closePanel = function()
+  local closePanel = function()
     panel_visible = false
     panel.visible = false
     backdrop.visible = false
     -- Change to notif mode on close
-    _G.switch_mode("notif_mode")
     panel:emit_signal("closed")
   end
 
   -- Hide this panel when app dashboard is called.
-  function panel:HideDashboard()
+  function panel:hideDashboard()
     closePanel()
   end
 
@@ -74,7 +77,10 @@ local right_panel = function(screen)
     end
   end
 
+  local debug = require("gears.debug")
   function panel:switch_mode(mode)
+    debug.dump(mode, "mode")
+    print("panel switching to mode " .. mode)
     if mode == "notif_mode" then
       -- Update Content
       panel:get_children_by_id("notif_id")[1].visible = true
@@ -85,6 +91,9 @@ local right_panel = function(screen)
       panel:get_children_by_id("widgets_id")[1].visible = true
     end
   end
+
+  switcher:connect_signal("mode_change", function(_, m) panel:switch_mode(m) end)
+
 
   backdrop:buttons(
     awful.util.table.join(
@@ -124,7 +133,7 @@ local right_panel = function(screen)
       expand = "none",
       layout = wibox.layout.align.horizontal,
       nil,
-      require("widget.right-dashboard.subwidgets.panel-mode-switcher"),
+      switcher,
       nil
     },
     separator,

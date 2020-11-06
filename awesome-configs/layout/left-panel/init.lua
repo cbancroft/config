@@ -1,3 +1,12 @@
+-------------------------------------------------------------------------------
+-- layout/init.lua
+--
+-- Defines the layout of the WM
+--
+-- Forked from version by @mewantcookieee
+-------------------------------------------------------------------------------
+
+
 local awful = require("awful")
 local beautiful = require("beautiful")
 local wibox = require("wibox")
@@ -8,6 +17,7 @@ local create_dashboard_widget = require("layout.left-panel.dashboard")
 local create_actionbar_widget = require("layout.left-panel.action-bar")
 
 --- Left panel object.
+-- The left panel contains the start-bar, the dashboard and search panels.
 -- @tparam table screen The screen this panel will be shown on
 local create_left_panel = function(screen)
     local action_bar_width = dpi(45)
@@ -20,12 +30,14 @@ local create_left_panel = function(screen)
         width = action_bar_width,
         type = "dock",
         height = screen.geometry.height,
+        -- Start in the upper left corner of the screen
         x = screen.geometry.x,
         y = screen.geometry.y,
         ontop = true,
         bg = beautiful.background.hue_800,
         fg = beautiful.fg_normal
     }
+
     -- Reserve `action_bar-width` pixels
     panel:struts(
         {
@@ -59,24 +71,35 @@ local create_left_panel = function(screen)
         )
     )
 
-    local openPanel = function(should_run_rofi)
+    --- Opens the dashboard panel
+    -- @param should_run_rofi Should we run rofi when this opens
+    function panel:openPanel(should_run_rofi)
         print("Opening dashboard panel")
         panel.width = action_bar_width + panel_content_width
         backdrop.visible = true
-        panel.visible = false
-        panel.visible = true
-        panel:get_children_by_id("panel_content")[1].visible = true
+
+        -- TODO: Why is this in here ??
+        self.visible = false
+        self.visible = true
+
+        -- Set the dashboard to be visible
+        self:get_children_by_id("panel_content")[1].visible = true
+
         if should_run_rofi then
-            panel:run_rofi()
+            self:run_rofi()
         end
-        panel:emit_signal("opened")
+
+        self:emit_signal("opened")
     end
 
-    local closePanel = function()
-        panel.width = action_bar_width
-        panel:get_children_by_id("panel_content")[1].visible = false
+    --- Closes the dashboard panel
+    function panel:closePanel()
+
+        -- Narrow the panel to just the action bar
+        self.width = action_bar_width
+        self:get_children_by_id("panel_content")[1].visible = false
         backdrop.visible = false
-        panel:emit_signal("closed")
+        self:emit_signal("closed")
     end
 
     -- Dashboard starts closed
@@ -96,8 +119,8 @@ local create_left_panel = function(screen)
     end
 
     -- Hide this panel when app dashboard is called.
-    function panel:HideDashboard()
-        closePanel()
+    function panel:hideDashboard()
+        self:closePanel()
     end
 
     --- Toggles the panel open or closed.
@@ -105,9 +128,9 @@ local create_left_panel = function(screen)
     function panel:toggle(should_run_rofi)
         self.opened = not self.opened
         if self.opened then
-            openPanel(should_run_rofi)
+            self:openPanel(should_run_rofi)
         else
-            closePanel()
+            self:closePanel()
         end
     end
 
