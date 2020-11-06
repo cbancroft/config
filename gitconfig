@@ -1,3 +1,70 @@
 [user]
-	email = charlie.bancroft@gmail.com
-	name = Charles Bancroft
+    name = Charles Bancroft
+    email = charlie.bancroft@gmail.com
+    signingkey = 0x01B2557CD490AA11
+
+[push]
+    default = simple
+
+[alias]
+    # Amend last commit without modifying commit message
+    amend = "!git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend"
+    chg = "!git status -uno"
+    branches = branch -a
+    #Show the 10 local branches with the latest commit
+    blatest="!r() { git branch --sort=-committerdate --format='%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' --color=always | head -n10 | column -ts'|'; }; r"
+    # Show all changes between this branch and develop
+    changes = diff origin/develop..HEAD
+    cleanup = !git branch --merged origin/develop | egrep -v '(^\\*|master|dev|backup|parking)' | xargs -n 1 git branch -d
+    dc = diff --cached
+    fc = show --color --pretty  --name-only
+    # Create a commit that will be automatically squashed as a fixup when you
+    # run `git rebase --autosquash`
+    fixup = "commit --fixup=HEAD"
+    ff = "merge --ff-only @{u}"
+    fwl = "push --force-with-lease"
+    gb = log --graph --boundary --date-order --pretty=tformat:\"%C(yellow)%h%Creset %C(magenta)%aE %ai%Creset %C(green bold)%d%Creset%n        %s\"
+    gd = !git gdt origin/develop
+    gdt = !sh -c 'git gb ${0}..HEAD'
+    g = !git gb --all
+    go = !git gb @{u}..
+    gi = "!git remote update -p; git gb ..@{u}"
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
+    mc = !sh -c 'git diff ${0}~..${0}'
+    msr = "!f() { git log --pretty=format:\"%C(yellow)%h%Creset - %C(magenta)%cn%Creset, %aD : %C(blue bold)%s%Creset\" --merges --before={`date --date=\"$(date +${2:-%Y}-$1-01) +1 month\" '+%Y-%m-01-00:00'`} --after={`date "+${2:-%Y}-$1-01"`} ${3:-origin/develop}; }; f"
+#   msr = "shortlog --pretty=format:\"%C(yellow)%h%Creset - %C(magenta)%cn%Creset, %ar : %C(blue bold)%s%Creset\" --since=1.month --merges"
+    oldmsr = "log --pretty=format:\"%C(yellow)%h%Creset - %C(magenta)%cn%Creset, %ar : %C(blue bold)%s%Creset\" --since=1.month --merges"
+    oldest-ancestor = !zsh -c 'diff -u <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
+    oreset = "reset --hard @{u}"
+    pull = pull --ff-only
+    remotes = remote -v
+    #review = log -p --reverse origin/master..HEAD
+    review = log -p --reverse origin/develop..HEAD
+    reviewto = !sh -c 'git log -p --reverse ${0}..HEAD'
+    tags = tag -l
+    unpushed = !git g --not --remotes --tags
+    up = "!git remote update -p; git merge --ff-only @{u}"
+    # Better diffs for prose
+    wdiff = "diff --color-words"
+
+
+[color]
+    ui = auto
+
+[diff]
+    renames = true
+
+[push]
+    default = simple
+
+[core]
+    autocrlf = input
+
+[merge]
+    renamelimit = 9999
+
+[credential]
+    helper = cache --timeout=3600
+
+[includeIf "gitdir:~/work/**"]
+    path = ~/.gitconfig-siege
