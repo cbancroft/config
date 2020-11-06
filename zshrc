@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # -*- shell-script -*-
 #
 # cbancroft's init file for Z-SHELL 4.3.10 on Arch GNU/Linux
@@ -6,7 +13,7 @@ export LANG="en_US.UTF-8"
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 
 
@@ -48,7 +55,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(gitfast git-extras archlinux battery git-remote-branch svn yarn fzf)
+plugins=(gitfast git-extras archlinux battery git-remote-branch svn fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -401,9 +408,11 @@ export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
 export LESS_TERMCAP_so=$'\E[38;33;246m'   # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
-
 # export GOPATH=/home/cbancroft/work/aircoil/go
 
 source /usr/share/nvm/init-nvm.sh
-nvm use stable
+nvm use --silent stable
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
