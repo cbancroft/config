@@ -5,6 +5,7 @@
 ;
 ;; C-w to backward kill for compatibility (and ease of use)
 (global-set-key "\C-w"     'backward-kill-word)
+
 ;; ...and then provide alternative for cutting
 (global-set-key "\C-x\C-k" 'kill-region)
 
@@ -19,7 +20,7 @@
 (global-set-key "\C-cw" 'toggle-truncate-lines)
 
 ;; Quick access to the speedbar
-;; (global-set-key "\C-cs" 'speedbar-get-focus)
+(global-set-key "\C-cs" 'sr-speedbar-select-window)
 
 ;; Quicker access to go-to line
 
@@ -47,6 +48,7 @@
 (global-set-key (kbd "C-c <down>") 'windmove-down)
 ;}}}
 
+(global-set-key (kbd "RET") 'newline-and-indent) ; automatically indent when press RET
 ;{{{ Fn bindings
 ;
 (global-set-key  [f1]  (lambda () (interactive) (manual-entry (current-word))))
@@ -56,8 +58,8 @@
 ;f5 in cb-org.el
 (global-set-key  (kbd "<f6> l")  'linum-mode)     ; Toggle line numbering
 ;(global-set-key  (kbd "<f6> c")  'calendar)       ; Toggle calendar
-;(global-set-key  (kbd "<f6> I")  'cb/clock-in)    ; Clock in
-;(global-set-key  (kbd "<f6> O")  'cb/clock-out)   ; Clock out
+(global-set-key  (kbd "<f6> I")  'cb/clock-in)    ; Clock in
+(global-set-key  (kbd "<f6> O")  'cb/clock-out)   ; Clock out
 (global-set-key  (kbd "<f6> h")  'cb/hide-other)  ; Hide other windows?
 ;(global-set-key  (kbd "<f6> i")  'cb/org-info)    ; Get info on org
 (global-set-key  [f7]  'htmlfontify-buffer)
@@ -67,7 +69,7 @@
 (global-set-key (kbd "<f9> g") 'magit-status)
 ;(global-set-key [f10]                            ; Quick menu by default
 
-;(global-set-key  [f11] 'speedbar)
+(global-set-key  [f10] 'sr-speedbar-toggle)
 (global-set-key  [f12] 'kill-buffer)
 ;}}}
 ;}}}

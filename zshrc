@@ -1,10 +1,21 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # -*- shell-script -*-
 #
 # cbancroft's init file for Z-SHELL 4.3.10 on Arch GNU/Linux
 # Modified from anxrc's .zshrc
-
+export LANG="en_US.UTF-8"
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
+
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -14,7 +25,8 @@ POWERLINE_DETECT_SSH="true"
 if [ "${TERM}" = "linux" ]; then
     ZSH_THEME="random"
 else
-    ZSH_THEME="powerline"
+    #ZSH_THEME="powerlevel9k/powerlevel9k"
+    #ZSH_THEME="powerline"
 fi
 
 # Example aliases
@@ -43,30 +55,14 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(gitfast git-extras archlinux battery gpg-agent git-remote-branch svn)
+plugins=(gitfast git-extras archlinux battery git-remote-branch svn fzf)
 
 source $ZSH/oh-my-zsh.sh
 
 #source /etc/profile.d/infinality-settings.sh
+source /etc/profile.d/freetype2.sh
 xrdb -merge ~/.Xdefaults
 # {{{ User Settings
-
-# {{{ Environment
-export PATH="${PATH}:${HOME}/bin:${HOME}/code/bin"
-export HISTFILE="${HOME}/.zsh_history"
-export HISTSIZE=10000
-export SAVEHIST=10000
-export LESSHISTFILE="-"
-export READNULLCMD="${PAGER}"
-export VISUAL="emacsclient"
-export EDITOR="${VISUAL}"
-export BROWSER="chromium"
-export TERM="xterm-256color"
-export COLORTERM="xterm-256color"
-export XTERM="xterm-256color"
-export PACMAN="pacman"
-export FLASH_ALSA_DEVICE=plug:dmix
-# }}}
 
 # {{{ zle configuration
 bindkey "\e[7~" beginning-of-line	#Home
@@ -114,10 +110,9 @@ eval `dircolors -b "${HOME}/.dir_colors"`
 # }}}
 
 # {{{ Aliases
-
-# {{{ Main
 alias ..="cd .."
 alias ...="cd ../.."
+
 alias ls="ls -aFF --color=always"
 alias ll="ls -l"
 alias lfi="ls -l | egrep -v '^d'"
@@ -126,7 +121,7 @@ alias lst="ls -htl | grep `date +%Y-%m-%d`"
 alias grep="grep --color=always"
 alias cp="cp -ia"
 alias mv="mv -i"
-alias rm="rm -i"
+alias rm="rm -I"
 alias cls="clear"
 alias upmem="ps -eo pmem,pcpu,rss,vsize,args | sort -k 1"
 alias top="htop"
@@ -166,9 +161,17 @@ alias deterlab="ssh cbancrof@${DETERLAB}"
 alias bbnvpn="ssh -D 8080 -f -C -q -N cbancrof@ssh.bbn.com && export IMAP_SERVER=localhost:8143"
 alias daytona="cd ~/work/daytona/DAYTONA-current"
 alias school="cd ~/git/school"
+alias cleandock='docker rm $(docker ps -a -q -f status=exited)'
 
 # {{{ Daytona nodes
 alias dbuild="ssh -A -l cbancroft build.daytona.ir.bbn.com"
+# }}}
+
+# {{{ CQF commands
+alias cqf="cd ~/work/cqf"
+alias cqfbuild="cqf && ./mvnw clean install -DskipTests"
+alias cqfdist="cqf && ./mvnw clean install"
+alias cqfweb="cqf && cd cqf-portal && yarn start"
 # }}}
 
 # {{{ Auto Extension Stuff
@@ -199,6 +202,7 @@ compctl -k "(add delete draft edit list import preview publish update)" nb
 # }}}
 
 alias skype='xhost +local: && sudo -u skypeuser /usr/bin/skype'
+# }}}
 
 # {{{ ZSH settings
 setopt emacs
@@ -217,7 +221,7 @@ setopt histreduceblanks histignorespace inc_append_history
 # Prompt requirements
 #source ~/.zsh/git-prompt/zshrc.sh
 #setopt extended_glob prompt_subst
-#autoload colors zsh/terminfo
+autoload colors zsh/terminfo
 
 # New style completion system
 autoload -U compinit; compinit
@@ -404,7 +408,11 @@ export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
 export LESS_TERMCAP_so=$'\E[38;33;246m'   # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
+# export GOPATH=/home/cbancroft/work/aircoil/go
 
-export DAYTONA=~/DAYTONA-current/daytona
+source /usr/share/nvm/init-nvm.sh
+nvm use --silent stable
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+

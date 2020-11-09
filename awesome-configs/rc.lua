@@ -1,79 +1,96 @@
-local util = require('awful.util')
+--[[
+    _                                       __        ____  __ 
+   / \__      _____  ___  ___  _ __ ___   __\ \      / /  \/  |
+  / _ \ \ /\ / / _ \/ __|/ _ \| '_ ` _ \ / _ \ \ /\ / /| |\/| |
+ / ___ \ V  V /  __/\__ \ (_) | | | | | |  __/\ V  V / | |  | |
+/_/   \_\_/\_/ \___||___/\___/|_| |_| |_|\___| \_/\_/  |_|  |_|
 
--- Module for individually configuring Awesome for different machines.
-herder = { current = {} }
-local rc_folder = util.getdir("config")
+--]]
 
-local function merge(src, dst)
-   for k, v in pairs(src) do
-      dst[k] = v
-   end
-end
 
-local function hostname()
-   local f = io.popen("hostname")
-   local res = f:read()
-   f:close()
-   return res
-end
 
-local function matches(rule)
-   for k, v in pairs(rule) do
-      if k == "hostname" then
-         if v ~= hostname() then
-            return false
-         end
-      end
-      if k == "env_flag" then
-         if v ~= os.getenv("AWESOME_HERDER_FLAG") then
-            return false
-         end
-      end
-   end
-   return true
-end
+local gears = require('gears')
+local awful = require('awful')
+local beautiful = require('beautiful')
+require('awful.autofocus')
 
-function herder.setup(rules)
-   for i = #rules, 1, -1 do
-      if matches(rules[i].rule) then
-         merge(rules[i].properties, herder.current)
-      end
-   end
-end
+-- Theme
+beautiful.init(require('theme'))
 
-function herder.start()
-   if herder.current.configs then
-      for _, conf_name in ipairs(herder.current.configs) do
-         local conf_file = conf_name
-         if string.sub(conf_file, 1, 1) ~= "/" then
-            conf_file = rc_folder .. "/" .. conf_file
-         end
-         local len = string.len(conf_file)
-         if string.sub(conf_file, len - 3, len) ~= ".lua" then
-            conf_file = conf_file .. ".lua"
-         end
-         print("herder: loading config " .. conf_file)
-         dofile(conf_file)
-      end
-   end
-end
+-- Layout
+require('layout')
 
--- End of herder module
+-- Init all modules
+require('module.notifications')
+require('module.auto-start')
+require('module.decorate-client')
+-- require('module.backdrop')
+require('module.exit-screen')
+require('module.quake-terminal')
+require('module.titlebar')
+-- require('module.menu')
+require('module.volume-osd')
+require('module.brightness-osd')
+local wallchanger = require('module.wallchange')
+require('module.battery')
 
-herder.setup {
-   { rule = { hostname = "asshai" },
-     properties = { interfaces = { "wlp8s0" },
-		    debugging = true,
-                    laptop_name = "Thinkpad X220",
-                    hosts = { local_ip = "192.168.1.10",
-                              router_ip = "192.168.1.1" } } },
-   { rule = { env_flag = "dbg" },
-     properties = { debugging = true } },
-   { rule = { },
-     properties = { configs = { "main" },
-                    keys = { lock = "XF86ScreenSaver" },
-                    xbacklight_step = 10 } }
-}
+-- Setup all configurations
+require('configuration.client')
+require('configuration.tags')
 
-rc = herder.current -- Export configuration as rc
-herder.start()
+_G.root.keys(require('configuration.keys.global'))
+
+-- Handle wallpaper changes
+_G.screen.connect_signal("request::wallpaper", function(s)
+    -- If wallpaper is a function, call it with the screen
+    if beautiful.wallpaper then
+        if type(beautiful.wallpaper) == "string" then
+            if beautiful.wallpaper:sub(1, #"#") == "#" then
+                gears.wallpaper.set(beautiful.wallpaper)
+            elseif beautiful.wallpaper:sub(1, #"/") == "/" then
+                gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+            end
+        else
+            beautiful.wallpaper(s)
+        end
+    end
+end)
+
+-- Signal function to execute when a new client appears.
+_G.client.connect_signal(
+  'manage',
+  function(c)
+    -- Set the windows at the slave,
+    -- i.e. put it at the end of others instead of setting it master.
+    if not _G.awesome.startup then
+      awful.client.setslave(c)
+    end
+
+    if _G.awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
+      -- Prevent clients from being unreachable after screen count changes.
+      awful.placement.no_offscreen(c)
+    end
+  end
+)
+
+-- Enable sloppy focus, so that focus follows mouse.
+_G.client.connect_signal(
+  'mouse::enter',
+  function(c)
+    c:emit_signal('request::activate', 'mouse_enter', {raise = true})
+  end
+)
+
+-- Focus/unfocus border colors
+_G.client.connect_signal(
+  'focus',
+  function(c)
+    c.border_color = beautiful.border_focus
+  end
+)
+_G.client.connect_signal(
+  'unfocus',
+  function(c)
+    c.border_color = beautiful.border_normal
+  end
+)

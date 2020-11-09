@@ -1,61 +1,76 @@
-;-*- coding: utf-8 mode: emacs-lisp -*-
-; 
-; cbancroft's .emacs for GNU/Emacs 24.2 on Arch GNU/Linux
+;; Use a hook so the startup message doesn't get clobbered
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (message "Emacs ready in %s with %d garbage collections."
+		     (format "%.2f seconds"
+			     (float-time
+			      (time-subtract after-init-time before-init-time)))
+		     gcs-done)))
 
-;* {{{ Initialization
+;; Fix garbage collection to make emacs start faster
+(setq gc-cons-threshold most-positive-fixnum gc-cons-percentage 0.6)
 
-(add-to-list 'load-path "~/.emacs.d/lisp")
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
-;; Define the load path
-(defconst user-init-dir
-  (cond ((boundp 'user-emacs-directory)
-         user-emacs-directory)
-        ((boundp 'user-init-directory)
-         user-init-directory)
-        (t "~/.emacs.d/config")))
+(defvar startup/file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
 
+(defun startup/revert-file-name-handler-alist ()
+  (setq file-name-handler-alist startup/file-name-handler-alist))
 
-(defun load-user-file (file)
-  (interactive "f")
-  "Load a file in current user's configuration directory"
-  (load-file (expand-file-name file user-init-dir)))
+(defun startup/reset-gc ()
+  (setq gc-cons-threshold 16777216
+	gc-cons-percentage 0.1))
 
+(add-hook 'emacs-startup-hook 'startup/revert-file-name-handler-alist)
+(add-hook 'emacs-startup-hook 'startup/reset-gc)
 
-(load-user-file "config/personal.el")
-(load-user-file "config/melpa.el" )
-(load-user-file "config/variables.el")
-(load-user-file "config/keyboard.el")
-(load-user-file "config/aliases.el" )
-(load-user-file "config/c-config.el")
-(load-user-file "config/python.el")
-(load-user-file "config/helm-config.el" )
-(load-user-file "config/theme.el")
-(load-user-file "config/lookfeel.el")
-(load-user-file "config/cb-org.el")
-(load-user-file "config/cb-gnus.el")
-(load-user-file "config/cb-bbdb.el")
-(load-user-file "config/packages.el" )
-;{{{ Major modes for editing code and other formats
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'package)
+(setq package-enable-at-startup nil)
+
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("org"   . "https://orgmode.org/elpa"))
+
+(package-initialize)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Bootstrap use-package
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+;; (unless (package-installed-p 'spacemacs-theme)
+;;   (package-refresh-contents)
+;;   (package-install 'spacemacs-theme))
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((dot . t)))
+
+;; Process literate configuration files
+(when (file-readable-p "~/.emacs.d/config.org")
+  (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+
+;; Pull in any custom set variables
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(column-number-mode t)
- '(custom-enabled-themes (quote (warm-night)))
+ '(backup-directory-alist (quote (("." . "~/.emacs.d/backups"))))
+ '(custom-enabled-themes (quote (spacemacs-dark)))
  '(custom-safe-themes
    (quote
-    ("6209442746f8ec6c24c4e4e8a8646b6324594308568f8582907d0f8f0260c3ae" "7b0433e99dad500efbdf57cf74553499cde4faf2908a2852850c04b216c41cc9" default)))
- '(flymake-google-cpplint-command "/usr/bin/cpplint")
- '(safe-local-variable-values
+    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
+ '(package-selected-packages
    (quote
-    ((company-clang-arguments "-I/home/cbancroft/work/aridswamp/master/phase_2/runtime/arm/aridswamp_mod/inc/" "-I/home/cbancroft/work/aridswamp/master/phase_2/runtime/arm/kit/includes/"))))
- '(show-paren-mode t)
- '(tool-bar-mode nil))
+    (htmlize company-shell company-lua slime-company slime company-jedi company-c-headers flycheck-clang-analyzer flycheck zzz-to-char linum-relative projectile zerodark-theme json-mode gitlab helm-gitlab ivy-gitlab magit magit-find-file magit-lfs magit-todos sphinx-mode graphviz-dot-mode scratch yasnippet-snippets yasnippet company-irony expand-region mark-multiple swiper popup-kill-ring dmenu diminish spaceline company dashboard rainbow-delimiters sudo-edit hungry-delete switch-window rainbow-mode rainbow avy smex ido-vertical-mode org-bullets beacon which-key spacemacs-theme use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Monaco" :foundry "unknown" :slant normal :weight normal :height 60 :width normal))))
- '(org-mode-line-clock ((t (:background "grey75" :foreground "red" :box (:line-width -1 :style released-button)))) t))
+ '(default ((t (:inherit nil :stipple nil :background "#292b2e" :foreground "#b2b2b2" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 108 :width normal :foundry "outline" :family "Fira Mono for Powerline")))))

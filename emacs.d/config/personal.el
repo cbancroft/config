@@ -1,7 +1,9 @@
 ;{{{ Custom modes for some custom files
 ;
+
 ;; Shell script mode for Arch PKGBUILDs
 (setq auto-mode-alist (cons '("\\PKGBUILD$" . sh-mode) auto-mode-alist))
+
 ;;
 ;; Conf mode for personal config files
 (when (locate-library "conf-mode")

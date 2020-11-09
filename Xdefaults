@@ -58,12 +58,13 @@ xpdf*initialOutlineWidth:   350
 
 !{{{ XFT
 Xft.dpi:	                    144
+!Xft.dpi:	                    96
 Xft.lcdfilter:                  lcddefault
-Xft.antialias:                  true
-Xft.rgba:                       rgb
-Xft.hinting:                    true
-Xft.hintstyle:                  hintfull
-Xft.autohint:			0
+Xft.antialias:                  1
+Xft.rgba:                       rgba
+Xft.hinting:                    1
+Xft.hintstyle:                  hintslight
+Xft.autohint:			        0
 ! }}}
 
 !{{{ XDIARY
@@ -243,5 +244,4 @@ Xfontsel.pane.fieldBox*foreground:         #CCCCCC
 
 !{{{ Emacs
 Emacs.FontBackend:    xft
-Emacs.pane.menubar.fontset: Monaco 8:regular
 !}}}

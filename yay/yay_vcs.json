@@ -1,0 +1,32 @@
+[
+	{
+		"pkgname": "ttf-hack-powerline-git",
+		"url": "https://api.github.com/repos/powerline/fonts/branches",
+		"sha": "a08b1f611edecbbc3554aa1ee5aad51bdc68f318"
+	},
+	{
+		"pkgname": "clevo_wmi-gui",
+		"url": "https://api.github.com/repos/ChristophHaag/clevo_wmi_kivy-gui/branches",
+		"sha": "674ae233e29156e2ba062ffc1048194697934c59"
+	},
+	{
+		"pkgname": "clevo-wmi-dkms-git",
+		"url": "https://api.github.com/repos/ChristophHaag/clevo-wmi/branches",
+		"sha": "09ece773b2c7f5e597d6f6740bcad403d16053e8"
+	},
+	{
+		"pkgname": "awesome-luajit-git",
+		"url": "https://api.github.com/repos/awesomeWM/awesome/branches",
+		"sha": "b0b5a1c1ab2e064d0cdf8ba27d96dd53c2d35e40"
+	},
+	{
+		"pkgname": "awesome-git",
+		"url": "https://api.github.com/repos/awesomeWM/awesome/branches",
+		"sha": "681025dc50fce3f7b03096b0193923cd7d8b049b"
+	},
+	{
+		"pkgname": "wine-staging-pba",
+		"url": "https://api.github.com/repos/acomminos/wine-pba/branches",
+		"sha": "1712a3769b0b1ae107cdc0e3bfa4f285b0e43321"
+	}
+]
