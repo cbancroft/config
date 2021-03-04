@@ -369,7 +369,7 @@ local global_keys = awful.util.table.join(
 		{ 'Control' },
 		'Escape',
 		function ()
-			if screen.primary.systray then
+			if screen.systray then
 				if not screen.primary.tray_toggler then
 					local systray = screen.primary.systray
 					systray.visible = not systray.visible
@@ -465,7 +465,7 @@ local global_keys = awful.util.table.join(
 			if focused.right_panel and focused.right_panel.visible then
 				focused.right_panel.visible = false
 			end
-			screen.focused.left_panel:toggle()
+			focused.left_panel:toggle()
 		end,
 		{description = 'open sidebar', group = 'launcher'}
 	),
@@ -478,7 +478,7 @@ local global_keys = awful.util.table.join(
 			if focused.right_panel and focused.right_panel.visible then
 				focused.right_panel.visible = false
 			end
-			screen.focused.left_panel:toggle(true)
+			focused.left_panel:toggle(true)
 		end,
 		{description = 'open sidebar and global search', group = 'launcher'}
 	),

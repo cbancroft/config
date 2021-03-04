@@ -75,7 +75,8 @@ ruled.client.connect_signal(
 				floating = true,
 				above = true,
 				skip_decoration = true,
-				placement = awful.placement.centered
+				placement = awful.placement.centered,
+				screen = awful.screen.preferred,
 			}
 		}
 
@@ -90,7 +91,8 @@ ruled.client.connect_signal(
 				floating = true,
 				above = true,
 				skip_decoration = true,
-				placement = awful.placement.centered
+				placement = awful.placement.centered,
+				screen = awful.screen.preferred,
 			}
 		}
 
@@ -260,7 +262,8 @@ ruled.client.connect_signal(
 					'VirtualBox Manage',
 					'VirtualBox Machine',
 					'Gnome-boxes',
-					'Virt-manager'
+					'Virt-manager',
+					'vmware'
 				}
 			},
 			properties = {
@@ -277,14 +280,14 @@ ruled.client.connect_signal(
 					'Unity',
 					'UnityHub',
 					'jetbrains-studio',
+     				'jetbrains-idea',
 					'Ettercap',
 					'scrcpy'
 				}
 			},
 			properties = {
 				tag = '9',
-				skip_decoration = true
-			}
+				skip_decoration = true			}
 		}
 
 		-- Image viewers
@@ -389,5 +392,5 @@ client.connect_signal(
 				end
 			end
 		end
-	end
-)
+  end
+  )

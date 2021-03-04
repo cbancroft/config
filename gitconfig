@@ -31,7 +31,7 @@
     gi = "!git remote update -p; git gb ..@{u}"
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
     mc = !sh -c 'git diff ${0}~..${0}'
-    msr = "!f() { git log --pretty=format:\"%C(yellow)%h%Creset - %C(magenta)%cn%Creset, %aD : %C(blue bold)%s%Creset\" --merges --before={`date --date=\"$(date +${2:-%Y}-$1-01) +1 month\" '+%Y-%m-01-00:00'`} --after={`date "+${2:-%Y}-$1-01"`} ${3:-origin/develop}; }; f"
+    msr = "!f() { git log --pretty=format:\"%C(yellow)%h%Creset - %C(magenta)%cn%Creset, %aD : %C(blue bold)%s%Creset\" --merges --before={`date --date=\"$(date +${2:-%Y}-$1-01) +3 month\" '+%Y-%m-01-00:00'`} --after={`date "+${2:-%Y}-$1-01"`} ${3:-origin/develop}; }; f"
 #   msr = "shortlog --pretty=format:\"%C(yellow)%h%Creset - %C(magenta)%cn%Creset, %ar : %C(blue bold)%s%Creset\" --since=1.month --merges"
     oldmsr = "log --pretty=format:\"%C(yellow)%h%Creset - %C(magenta)%cn%Creset, %ar : %C(blue bold)%s%Creset\" --since=1.month --merges"
     oldest-ancestor = !zsh -c 'diff -u <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -

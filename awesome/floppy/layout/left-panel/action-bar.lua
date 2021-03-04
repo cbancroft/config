@@ -19,7 +19,6 @@ return function(s, panel, action_bar_width)
 		margins = dpi(10),
 		widget = wibox.container.margin
 	}
-	
 	local open_dashboard_button = wibox.widget {
 		{
 			menu_icon,

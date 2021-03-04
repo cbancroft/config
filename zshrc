@@ -15,8 +15,6 @@ ZSH=$HOME/.oh-my-zsh
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
-
-
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -289,110 +287,19 @@ function extract () {
 }
 
 # {{{ Terminal and prompt
-#function precmd {
-#    # Terminal width = width - 1 (for lineup)
-#    local TERMWIDTH
-#    ((TERMWIDTH=${COLUMNS} - 1))
-#
-#    # Truncate long paths
-#    PR_FILLBAR=""
-#    PR_PWDLEN=""
-#    local PROMPTSIZE="${#${(%):---(%n@%m:%l)---()--}}"
-#    local PWDSIZE="${#${(%):-%~}}"
-#    if [[ "${PROMPTSIZE} + ${PWDSIZE}" -gt ${TERMWIDTH} ]]; then
-#	((PR_PWDLEN=${TERMWIDTH} - ${PROMPTSIZE}))
-#    else
-#        PR_FILLBAR="\${(l.((${TERMWIDTH} - (${PROMPTSIZE} + ${PWDSIZE})))..${PR_HBAR}.)}"
-#    fi
-#}
-
-#function preexec () {
-#    # Screen window titles as currently running programs
-#    if [[ "${TERM}" == "screen-256color" ]]; then
-#        local CMD="${1[(wr)^(*=*|sudo|-*)]}"
-#        echo -n "\ek$CMD\e\\"
-#    fi
-#}
-
-#function setprompt () {
-#    if [[ "${terminfo[colors]}" -ge 8 ]]; then
-#        colors
-#    fi
-#    for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-#	eval PR_"${color}"="%{${terminfo[bold]}$fg[${(L)color}]%}"
-#	eval PR_LIGHT_"${color}"="%{$fg[${(L)color}]%}"
-#    done
-#    PR_NO_COLOUR="%{${terminfo[sgr0]}%}"
-#
-#    # Try to use extended characters to look nicer
-#    typeset -A altchar
-#    set -A altchar ${(s..)terminfo[acsc]}
-#    PR_SET_CHARSET="%{${terminfo[enacs]}%}"
-#    PR_SHIFT_IN="%{${terminfo[smacs]}%}"
-#    PR_SHIFT_OUT="%{${terminfo[rmacs]}%}"
-#    PR_HBAR="${altchar[q]:--}"
-#    PR_ULCORNER="${altchar[l]:--}"
-#    PR_LLCORNER="${altchar[m]:--}"
-#    PR_LRCORNER="${altchar[j]:--}"
-#    PR_URCORNER="${altchar[k]:--}"
-#
-#    # Terminal prompt settings
-#    case "${TERM}" in
-#        dumb) # Simple prompt for dumb terminals
-#            unsetopt zle
-#            PROMPT='%n@%m:%~%% '
-#            ;;
-#        linux) # Simple prompt with Zenburn colors for the console
-#            echo -en "\e]P01e2320" # zenburn black (normal black)
-#            echo -en "\e]P8709080" # bright-black  (darkgrey)
-#            echo -en "\e]P1705050" # red           (darkred)
-#            echo -en "\e]P9dca3a3" # bright-red    (red)
-#            echo -en "\e]P260b48a" # green         (darkgreen)
-#            echo -en "\e]PAc3bf9f" # bright-green  (green)
-#            echo -en "\e]P3dfaf8f" # yellow        (brown)
-#            echo -en "\e]PBf0dfaf" # bright-yellow (yellow)
-#            echo -en "\e]P4506070" # blue          (darkblue)
-#            echo -en "\e]PC94bff3" # bright-blue   (blue)
-#            echo -en "\e]P5dc8cc3" # purple        (darkmagenta)
-#            echo -en "\e]PDec93d3" # bright-purple (magenta)
-#            echo -en "\e]P68cd0d3" # cyan          (darkcyan)
-#            echo -en "\e]PE93e0e3" # bright-cyan   (cyan)
-#            echo -en "\e]P7dcdccc" # white         (lightgrey)
-#            echo -en "\e]PFffffff" # bright-white  (white)
-#            PROMPT='$PR_GREEN%n@%m$PR_WHITE:$PR_YELLOW%l$PR_WHITE:$PR_RED%~$PR_YELLOW%%$PR_NO_COLOUR '
-#            ;;
-#        *)  # Main prompt
-#            PROMPT='$PR_SET_CHARSET$PR_GREEN$PR_SHIFT_IN$PR_ULCORNER$PR_GREEN$PR_HBAR\
-#$PR_SHIFT_OUT($PR_GREEN%(!.%SROOT%s.%n)$PR_GREEN@%m$PR_WHITE:$PR_YELLOW%l$PR_GREEN)\
-#$PR_SHIFT_IN$PR_HBAR$PR_GREEN$PR_HBAR${(e)PR_FILLBAR}$PR_GREEN$PR_HBAR$PR_SHIFT_OUT(\
-#$PR_RED%$PR_PWDLEN<...<%~%<<$PR_GREEN)$PR_SHIFT_IN$PR_HBAR$PR_GREEN$PR_URCORNER$PR_SHIFT_OUT\
-#
-#$PR_GREEN$PR_SHIFT_IN$PR_LLCORNER$PR_GREEN$PR_HBAR$(git_super_status)$PR_SHIFT_OUT(\
-#%(?..$PR_RED%?$PR_WHITE:)%(!.$PR_RED.$PR_YELLOW)%#$PR_GREEN)$PR_NO_COLOUR '
-#
-#            RPROMPT=' $PR_GREEN$PR_SHIFT_IN$PR_HBAR$PR_GREEN$PR_LRCORNER$PR_SHIFT_OUT$PR_NO_COLOUR'
-#            ;;
-#    esac
-#}
 
 # Git autocomplete speed fix
-__git_files () { 
-    _wanted files expl 'local files' _files 
+__git_files () {
+    _wanted files expl 'local files' _files
 }
 
 function git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
-# Prompt init
-#setprompt
-# }}}
-# }}}
-#autoload -U promptinit
-#promptinit
-#prompt wunjo
 
-export _JAVA_AWT_WM_NONREPARENTING=1
+# }}}
+# }}}
 
 function tmux_create_or_attach() {
 	tmux has-session -t $1 && tmux attach-session -t $1 || tmux new -s $1
@@ -402,16 +309,13 @@ function tmux_create_or_attach() {
 # Less Colors for Man Pages
 # http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
-export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
+export LESS_TERMCAP_md=$'\E[01;36m'  # begin bold
 export LESS_TERMCAP_me=$'\E[0m'           # end mode
 export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
-export LESS_TERMCAP_so=$'\E[38;33;246m'   # begin standout-mode - info box
+export LESS_TERMCAP_so=$'\E[01;44;33m'   # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
-export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
+export LESS_TERMCAP_us=$'\E[01;32m' # begin underline
 # export GOPATH=/home/cbancroft/work/aircoil/go
-
-source /usr/share/nvm/init-nvm.sh
-nvm use --silent stable
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

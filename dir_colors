@@ -75,20 +75,20 @@ DIR 01;34 # directory
 LINK 01;36 # symbolic link. (If you set this to 'target' instead of a
  # numerical value, the color is as for the file pointed to.)
 MULTIHARDLINK 00 # regular file with more than one link
-FIFO 40;33 # pipe
-SOCK 01;35 # socket
-DOOR 01;35 # door
+FIFO 40;33;00 # pipe
+SOCK 01;35;00 # socket
+DOOR 01;35;00 # door
 BLK 40;33;01 # block device driver
 CHR 40;33;01 # character device driver
 ORPHAN 40;31;01 # symlink to nonexistent file, or non-stat'able file
-SETUID 37;41 # file that is setuid (u+s)
-SETGID 30;43 # file that is setgid (g+s)
-CAPABILITY 30;41 # file with capability
-STICKY_OTHER_WRITABLE 30;42 # dir that is sticky and other-writable (+t,o+w)
-OTHER_WRITABLE 34;42 # dir that is other-writable (o+w) and not sticky
-STICKY 37;44 # dir with the sticky bit set (+t) and not other-writable
+SETUID 37;41;00 # file that is setuid (u+s)
+SETGID 30;43;00 # file that is setgid (g+s)
+CAPABILITY 30;41;00 # file with capability
+STICKY_OTHER_WRITABLE 30;42;00 # dir that is sticky and other-writable (+t,o+w)
+OTHER_WRITABLE 34;42;00 # dir that is other-writable (o+w) and not sticky
+STICKY 37;44;00 # dir with the sticky bit set (+t) and not other-writable
 # This is for files with execute permission:
-EXEC 01;32
+EXEC 01;32;00
 # List any file extensions like '.gz' or '.tar' that you would like ls
 # to colorize below. Put the extension, a space, and the color init string.
 # (and any comments you want to add after a '#')
@@ -103,26 +103,26 @@ EXEC 01;32
 #.sh 01;32
 #.csh 01;32
  # archives or compressed (bright red)
-.tar 01;31
-.tgz 01;31
-.arj 01;31
-.taz 01;31
-.lzh 01;31
-.lzma 01;31
-.tlz 01;31
-.txz 01;31
-.zip 01;31
-.z 01;31
-.Z 01;31
-.dz 01;31
-.gz 01;31
-.lz 01;31
-.xz 01;31
-.bz2 01;31
-.bz 01;31
-.tbz 01;31
-.tbz2 01;31
-.tz 01;31
+.tar 01;31;00
+.tgz 01;31;00
+.arj 01;31;00
+.taz 01;31;00
+.lzh 01;31;00
+.lzma 01;31;00
+.tlz 01;31;00
+.txz 01;31;00
+.zip 01;31;00
+.z 01;31;00
+.Z 01;31;00
+.dz 01;31;00
+.gz 01;31;00
+.lz 01;31;00
+.xz 01;31;00
+.bz2 01;31;00
+.bz 01;31;00
+.tbz 01;31;00
+.tbz2 01;31;00
+.tz 01;31;00
 .deb 01;31
 .rpm 01;31
 .jar 01;31

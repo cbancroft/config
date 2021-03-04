@@ -1,247 +1,114 @@
-
-!--[[ Urxvt config ]]--!
-xterm*utf8:                     2
-URxvt*utf8:                     2
-
-#include "/home/cbancroft/.xrdb/urxvt.xrdb"
-#include "/home/cbancroft/.xrdb/xterm.xrdb"
-
-	
-!--[[ Theme ]]--!
-#include "/home/cbancroft/.xrdb/look/look-tangoesque.xrdb"
-!#include "/home/cbancroft/.xrdb/look/look-daisuke.xrdb"
-!#include ".xrdb/look/look-zenburn.xrdb"
-
-! {{{ colors 
-*background:                    COLOR_BG
-*foreground:                    COLOR_FG
-
-! Black
-*color0:        COLOR_TERM_BLACK
-*color8:        COLOR_TERM_DARK_GRAY
-! Red
-*color1:        COLOR_TERM_DARK_RED
-*color9:        COLOR_TERM_LIGHT_RED
-! Green
-*color2:        COLOR_TERM_DARK_GREEN
-*color10:       COLOR_TERM_LIGHT_GREEN
-! Yellow
-*color3:        COLOR_TERM_DARK_YELLOW
-*color11:       COLOR_TERM_LIGHT_YELLOW
-! Blue
-*color4:        COLOR_TERM_DARK_BLUE
-*color12:       COLOR_TERM_LIGHT_BLUE
-! Mangenta
-*color5:        COLOR_TERM_DARK_MAGENTA
-*color13:       COLOR_TERM_LIGHT_MAGENTA
-! Cyan 
-*color6:        COLOR_TERM_DARK_CYAN
-*color14:       COLOR_TERM_LIGHT_CYAN
-! White
-*color7:        COLOR_TERM_LIGHT_GRAY
-*color15:       COLOR_TERM_WHITE
-! }}}
-
-#define                     ZENBURN_FG      #F0DFAF
-#define                     ZENBURN_BG      #3F3F3F
-
-! {{{ xpdf
-xpdf*enableFreetype:        yes
-xpdf*antialias:             yes
-Xpdf*foreground:            COLOR_FG
-xpdf*background:            COLOR_BG
-xpdf*viKeys:                yes
-xpdf*font:                  -misc-monaco-medium-*-*-*-10-*-*-*-*-*-iso8859-2
-! Need to use xpdf from https://github.com/cbancroft/xpdf
-xpdf*initialOutlineWidth:   350
-! }}}
-
-!{{{ XFT
-Xft.dpi:	                    144
-!Xft.dpi:	                    96
-Xft.lcdfilter:                  lcddefault
-Xft.antialias:                  1
-Xft.rgba:                       rgba
-Xft.hinting:                    1
-Xft.hintstyle:                  hintslight
-Xft.autohint:			        0
-! }}}
-
-!{{{ XDIARY
-xdiary*geometry:                220x190+1034+15
-xdiary*foreground:              ZENBURN_FG
-xdiary*background:              ZENBURN_BG
-!}}}
-Xcursor.theme:                  neutral
-
-!{{{ XLOCK
-XLock.mode:          blank
-!XLock.mode:         fzort
-!XLock.mode:         atunnels
-!XLock.icongeometry: 256x256
-XLock.username:      Username:
-XLock.password:      Password:
-XLock.foreground:    White
-XLock.background:    Gray20
-XLock.description:   false
-XLock.echokeys:      true
-XLock.echokey:       *
-XLock.info:
-!XLock.info:         Enter password to unlock \nSelect icon to lock
-XLock.validate:      Validating login...
-XLock.invalid:       Login failed
-!XLock*font:          -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
-!XLock.ncolors:      200
-!XLock.dpmsstandby:  600
-!XLock.dpmssuspend:  1200
-!XLock.dpmsoff:      1800
-!}}}
+!  ██╗░░██╗██████╗░███████╗███████╗░██████╗░██╗░░░██╗██████╗░░██████╗███████╗███████╗
+!  ╚██╗██╔╝██╔══██╗██╔════╝██╔════╝██╔═══██╗██║░░░██║██╔══██╗██╔════╝██╔════╝██╔════╝
+!  ░╚███╔╝░██████╔╝█████╗░░███████╗██║░░░██║██║░░░██║██████╔╝██║░░░░░█████╗░░███████╗
+!  ░██╔██╗░██╔══██╗██╔══╝░░╚════██║██║░░░██║██║░░░██║██╔══██╗██║░░░░░██╔══╝░░╚════██║
+!  ██╔╝░██╗██║░░██║███████╗███████║╚██████╔╝╚██████╔╝██║░░██║╚██████╗███████╗███████║
+!  ╚═╝░░╚═╝╚═╝░░╚═╝╚══════╝╚══════╝░╚═════╝░░╚═════╝░╚═╝░░╚═╝░╚═════╝╚══════╝╚══════╝
 
 
-!{{{ XMAN
-Xman*Background:          ZENBURN_BG
-Xman*Foreground:          ZENBURN_FG
-Xman*bothShown:           true
-Xman*topBox:              false
-!Xman*manualFontNormal:    -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
-!Xman*manualFontBold:      -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-2
-!Xman*manualFontItalic:    -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
-!Xman*directoryFontNormal: -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
-!}}}
+!  ░█▀▀░█▀█░█░░░█▀█░█▀▄░█▀▀
+!  ░█░░░█░█░█░░░█░█░█▀▄░▀▀█
+!  ░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀
+
+! special
+*.foreground:   #f8f8f2
+*.background:   #000000
+*.cursorColor:  #F8F8F2
+
+! black
+*.color0:       #3D4C5F
+*.color8:       #56687E
+
+! red
+*.color1:       #EE4F84
+*.color9:       #F48FB1
+
+! green
+*.color2:       #53E2AE
+*.color10:      #A1EFD3
+
+! yellow
+*.color3:       #F1FF52
+*.color11:      #F1FA8C
+
+! blue
+*.color4:       #6498EF
+*.color12:      #92B6F4
+
+! magenta
+*.color5:       #985EFF
+*.color13:      #BD99FF
+
+! cyan
+*.color6:       #24D1E7
+*.color14:      #87DFEB
+
+! white
+*.color7:       #E5E5E5
+*.color15:      #F8F8F2
 
 
-!{{{ XCLOCK
-xclock*update:     1
-xclock*Mode:       analog
-xclock*Background: ZENBURN_BG
-xclock*Border:     ZENBURN_BG
-xclock*Foreground: ZENBURN_FG
-xclock*geometry:   120x120+1160+15
-!}}}
+!  ░█▀▀░█▀█░█▀█░▀█▀░█▀▀
+!  ░█▀▀░█░█░█░█░░█░░▀▀█
+!  ░▀░░░▀▀▀░▀░▀░░▀░░▀▀▀
 
+Xft.dpi: 144
+Xft.antialias: true
+Xft.hinting: true
+Xft.rightScrollBar: rgb
+Xft.autohint: true
+Xft.hintstyle: full
+Xft.lcdfilter: lcddefault
 
-!{{{ XMESSAGE
-!Xmessage*font:                  -xos4-Terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
-Xmessage*background:            ZENBURN_BG
-Xmessage*foreground:            ZENBURN_FG
-Xmessage*form.*.shapeStyle:     rectangle
-Xmessage*Scrollbar.width:       1
-Xmessage*Scrollbar.borderWidth: 0
-!Xmessage.form.message.Scroll:  WhenNeeded
-Xmessage*Buttons:               Quit
-Xmessage*defaultButton:         Quit
-!Xmessage*geometry:             +20+20
-!}}}
+!  ░█░█░█▀▄░█░█░█░█░▀█▀
+!  ░█░█░█▀▄░▄▀▄░▀▄▀░░█░
+!  ░▀▀▀░▀░▀░▀░▀░░▀░░░▀░
 
+URxvt.cursorBlink: 1
+URxvt.font: xft:MesloLGS NF:pixelsize=13:antialias=true,xft:MesloLGS NF
+URxvt.boldFont: xft:MesloLGS NF:pixelsize=13:weight=bold:antialias=true,xft:MesloLGS NF
+URxvt.italicFont: xft:MesloLGS NF:pixelsize=13:weight=italic:antialias=true,xft:MesloLGS NF
 
-!{{{ XCLIPBOARD
-xclipboard.geometry:      287x195+993+15
-XClipboard*international: true
-!XClipboard*font:          -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
-XClipboard*borderColor:   ZENBURN_BG
-XClipboard*cursorColor:   Gray93
-XClipboard*Foreground:    ZENBURN_FG
-XClipboard*Background:    ZENBURN_BG
-XClipboard*form.*.shapeStyle: rectangle
-!}}}
+URxvt.lineSpace: 0
+URxvt.letterSpace: -1
+URxvt.scrollBar: false
+URxvt.internalBorder: 32
+URxvt.geometry: 70x13
+URxvt.thickness: 5
+URxvt.titleBar: true
+URxvt.intensityStyles: false
+URxvt.scrollTtyKeypress: true
+URxvt.scrollTtyOutput: true
+URxvt.cursorUnderline: true
+URxvt*allow_bold: true
+URxvt*iso14755: False
 
+URxvt.perl-ext-common: fullscreen,resize-font,matcher,clipboard
+URxvt.keysym.F11: perl:fullscreen:switch
+URxvt.keysym.C-Down: resize-font:smaller
+URxvt.keysym.C-Up: resize-font:bigger
+URxvt.url-launcher: firefox
+URxvt.matcher.button: 1
 
-!{{{ XCALC
-xcalc*geometry:                        200x275
-xcalc.ti.bevel.background:             #111111
-xcalc.ti.bevel.screen.background:      #000000
-xcalc.ti.bevel.screen.DEG.background:  #000000
-xcalc.ti.bevel.screen.DEG.foreground:  LightSeaGreen
-xcalc.ti.bevel.screen.GRAD.background: #000000
-xcalc.ti.bevel.screen.GRAD.foreground: LightSeaGreen
-xcalc.ti.bevel.screen.RAD.background:  #000000
-xcalc.ti.bevel.screen.RAD.foreground:  LightSeaGreen
-xcalc.ti.bevel.screen.INV.background:  #000000
-xcalc.ti.bevel.screen.INV.foreground:  Red
-xcalc.ti.bevel.screen.LCD.background:  #000000
-xcalc.ti.bevel.screen.LCD.foreground:  LightSeaGreen
-xcalc.ti.bevel.screen.LCD.shadowWidth: 0
-xcalc.ti.bevel.screen.M.background:    #000000
-xcalc.ti.bevel.screen.M.foreground:    LightSeaGreen
-xcalc.ti.bevel.screen.P.background:    #000000
-xcalc.ti.bevel.screen.P.foreground:    Yellow
-xcalc.ti.Command.foreground:  White
-xcalc.ti.Command.background:  #777777
-xcalc.ti.button5.background:  Orange3
-xcalc.ti.button19.background: #611161
-xcalc.ti.button18.background: #611161
-xcalc.ti.button20.background: #611111
-xcalc.ti.button25.background: #722222
-xcalc.ti.button30.background: #833333
-xcalc.ti.button35.background: #944444
-xcalc.ti.button40.background: #a55555
-xcalc.ti.button22.background: #222262
-xcalc.ti.button23.background: #222262
-xcalc.ti.button24.background: #222272
-xcalc.ti.button27.background: #333373
-xcalc.ti.button28.background: #333373
-xcalc.ti.button29.background: #333373
-xcalc.ti.button32.background: #444484
-xcalc.ti.button33.background: #444484
-xcalc.ti.button34.background: #444484
-xcalc.ti.button37.background: #555595
-xcalc.ti.button38.background: #555595
-xcalc.ti.button39.background: #555595
-XCalc*Cursor:                 hand2
-XCalc*ShapeStyle:             rectangle
-!}}}
+!  ░█░█░▀█▀░█▀▀░█▀▄░█▄█
+!  ░▄▀▄░░█░░█▀▀░█▀▄░█░█
+!  ░▀░▀░░▀░░▀▀▀░▀░▀░▀░▀
 
+XTerm.termName: xterm-256color
+XTerm.vt100.locale: true
+XTerm.vt100.metaSendsEscape: true
+XTerm.vt100.backarrowKey: false
+XTerm.ttyModes: erase ^?
+XTerm.vt100.saveLines: 16384
+XTerm.vt100.faceName: xft:MesloLGS NF:size=10.5:antialias=true
+XTerm.vt100.bellIsUrgent: true
+XTerm.letterSpace: 0
+XTerm.scaleHeight: 1.01
+XTerm.faceSize: 10
+XTerm.internalBorder: 32
+XTerm.vt100*geometry: 70x13
+XTerm.loginShell: true
+XTerm.charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+XTerm.eightBitInput: false
 
-!{{{ XFONTSEL
-!XFontSel*menu*showUnselectable:       false
-!XFontSel*sampleText.background:      TEXTBG
-!XFontSel*MenuButton.shadowWidth:          0
-!XFontsel*Toggle*ToggleStyle:          check
-!XFontsel*MenuButton*Justify:           left
-!XFontsel*MenuButton*MenuButtonStyle: select
-!xfontsel*Font: -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
-!xfontsel.pane.commandBox.quitButton.background:           #777777
-!xfontsel.pane.commandBox.quitButton.foreground:           #333333
-!xfontsel.pane.commandBox.ownButton.background:            orange3
-!xfontsel.pane.commandBox.ownButton.foreground:            #333333
-!xfontsel.pane.commandBox.countLabel.background:           #333333
-!xfontsel.pane.viewPort.sampleText.background:             #777777
-!xfontsel.pane.viewPort.sampleText.foreground:             #333333
-!xfontsel.pane.fieldBox.field0.background:  #777777
-!xfontsel.pane.fieldBox.field0.foreground:  #333333
-!xfontsel.pane.fieldBox.field1.background:  #777777
-!xfontsel.pane.fieldBox.field1.foreground:  #333333
-!xfontsel.pane.fieldBox.field2.background:  #777777
-!xfontsel.pane.fieldBox.field2.foreground:  #333333
-!xfontsel.pane.fieldBox.field3.background:  #777777
-!xfontsel.pane.fieldBox.field3.foreground:  #333333
-!xfontsel.pane.fieldBox.field4.background:  #777777
-!xfontsel.pane.fieldBox.field4.foreground:  #333333
-!xfontsel.pane.fieldBox.field5.background:  #777777
-!xfontsel.pane.fieldBox.field5.foreground:  #333333
-!xfontsel.pane.fieldBox.field6.background:  #777777
-!xfontsel.pane.fieldBox.field6.foreground:  #333333
-!xfontsel.pane.fieldBox.field7.background:  #777777
-!xfontsel.pane.fieldBox.field7.foreground:  #333333
-!xfontsel.pane.fieldBox.field8.background:  #777777
-!xfontsel.pane.fieldBox.field8.foreground:  #333333
-!xfontsel.pane.fieldBox.field9.background:  #777777
-!xfontsel.pane.fieldBox.field9.foreground:  #333333
-!xfontsel.pane.fieldBox.field10.background: #777777
-!xfontsel.pane.fieldBox.field10.foreground: #333333
-!xfontsel.pane.fieldBox.field11.background: #777777
-!xfontsel.pane.fieldBox.field11.foreground: #333333
-!xfontsel.pane.fieldBox.field12.background: #777777
-!xfontsel.pane.fieldBox.field12.foreground: #333333
-!xfontsel.pane.fieldBox.field13.background: #777777
-!xfontsel.pane.fieldBox.field13.foreground: #333333
-Xfontsel.pane.fieldBox*foreground:         #CCCCCC
-!xfontsel.pane.fieldBox.MenuButton.borderWidth:   1
-!xfontsel.pane.fieldBox.MenuButton.internalHeight:1
-!xfontsel.pane.fieldBox.MenuButton.internalWidth: 2
-!xfontsel.pane.fieldBox.MenuButton.shapeStyle:    rectangle
-!}}}
-
-!{{{ Emacs
-Emacs.FontBackend:    xft
-!}}}
+Xcursor.size: 48

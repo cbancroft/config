@@ -90,6 +90,7 @@ tag.connect_signal(
 screen.connect_signal(
 	'request::desktop_decoration',
 	function(s)
+		print("Connecting tags for screen " .. s.index)
 		for i, tag in pairs(tags) do
 			awful.tag.add(
 				i,

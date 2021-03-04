@@ -5,18 +5,17 @@ local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi
 local apps = require('configuration.apps')
 
-local left_panel = function(screen)
-	
+local left_panel = function(s)
 	local action_bar_width = dpi(45)
 	local panel_content_width = dpi(350)
 
 	local panel = wibox {
-		screen = screen,
+		screen = s,
 		width = action_bar_width,
 		type = 'dock',
-		height = screen.geometry.height,
-		x = screen.geometry.x,
-		y = screen.geometry.y,
+		height = s.geometry.height,
+		x = s.geometry.x,
+		y = s.geometry.y,
 		ontop = true,
 		shape = gears.shape.rectangle,
 		bg = beautiful.background,
@@ -31,13 +30,13 @@ local left_panel = function(screen)
 
 	local backdrop = wibox {
 		ontop = true,
-		screen = screen,
+		screen = s,
 		bg = beautiful.transparent,
 		type = 'utility',
-		x = screen.geometry.x,
-		y = screen.geometry.y,
-		width = screen.geometry.width,
-		height = screen.geometry.height
+		x = s.geometry.x,
+		y = s.geometry.y,
+		width = s.geometry.width,
+		height = s.geometry.height
 	}
 
 	function panel:run_rofi()
@@ -51,7 +50,7 @@ local left_panel = function(screen)
 				panel:toggle()
 			end
 		)
-		
+
 		-- Hide panel content if rofi global search is opened
 		panel:get_children_by_id('panel_content')[1].visible = false
 	end
@@ -142,11 +141,11 @@ local left_panel = function(screen)
 			visible = false,
 			forced_width = panel_content_width,
 			{
-				require('layout.left-panel.dashboard')(screen, panel),
+				require('layout.left-panel.dashboard')(s, panel),
 				layout = wibox.layout.stack
 			}
 		},
-		require('layout.left-panel.action-bar')(screen, panel, action_bar_width)
+		require('layout.left-panel.action-bar')(s, panel, action_bar_width)
 	}
 	return panel
 end

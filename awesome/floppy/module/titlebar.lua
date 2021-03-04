@@ -58,7 +58,7 @@ local create_vertical_bar = function(c, pos, bg, size)
 	if (pos == 'top' or pos == 'bottom') then
 		pos = 'left'
 		bg = '#FF00FF'
-	end 
+	end
 
 	awful.titlebar(c, {position = pos, bg = bg, size = size}) : setup {
 		{
@@ -69,7 +69,7 @@ local create_vertical_bar = function(c, pos, bg, size)
 				spacing = dpi(7),
 				layout  = wibox.layout.fixed.vertical
 			},
-			margins = dpi(10),
+			margins = dpi(4),
 			widget = wibox.container.margin
 		},
 		{
@@ -83,7 +83,7 @@ local create_vertical_bar = function(c, pos, bg, size)
 				spacing = dpi(7),
 				layout  = wibox.layout.fixed.vertical
 			},
-			margins = dpi(10),
+			margins = dpi(4),
 			widget = wibox.container.margin
 		},
 		layout = wibox.layout.align.vertical
@@ -96,7 +96,7 @@ local create_horizontal_bar = function(c, pos, bg, size)
 	if (pos == 'left' or pos == 'right') then
 		pos = 'top'
 		bg = '#FF00FF'
-	end 
+	end
 
 	awful.titlebar(c, {position = pos, bg = bg, size = size}) : setup {
 		{
@@ -134,7 +134,7 @@ local create_vertical_bar_dialog = function(c, pos, bg, size)
 	if (pos == 'top' or pos == 'bottom') then
 		pos = 'left'
 		bg = '#FF00FF'
-	end 
+	end
 
 	awful.titlebar(c, {position = pos, bg = bg, size = size}) : setup {
 		{
@@ -163,7 +163,7 @@ local create_horizontal_bar_dialog = function(c, pos, bg, size)
 	if (pos == 'left' or pos == 'right') then
 		pos = 'top'
 		bg = '#FF00FF'
-	end 
+	end
 
 	awful.titlebar(c, {position = pos, bg = bg, size = size}) : setup {
 		{
@@ -189,7 +189,7 @@ end
 client.connect_signal(
 	'request::titlebars',
 	function(c)
-		
+
 		-- Customize here
 		if c.type == 'normal' then
 
@@ -228,7 +228,7 @@ client.connect_signal(
 			elseif c.class == 'Google-chrome' or c.class == 'Chromium' then
 				create_vertical_bar(c, 'left',
 					beautiful.gtk.get_theme_variables().base_color, beautiful.titlebar_size)
-				
+
 			elseif c.class == 'TelegramDesktop' then
 				create_vertical_bar(c, 'left', '#17212b', beautiful.titlebar_size)
 

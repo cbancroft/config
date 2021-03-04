@@ -6,14 +6,13 @@
 local gears = require('gears')
 local beautiful = require('beautiful')
 local awful = require('awful')
-require('awful.autofocus')
 
 -- ░█▀▀░█░█░█▀▀░█░░░█░░
 -- ░▀▀█░█▀█░█▀▀░█░░░█░░
 -- ░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀▀▀
 
 awful.util.shell = 'sh'
-
+awful.screen.set_auto_dpi_enabled(true)
 -- ░▀█▀░█░█░█▀▀░█▄█░█▀▀
 -- ░░█░░█▀█░█▀▀░█░█░█▀▀
 -- ░░▀░░▀░▀░▀▀▀░▀░▀░▀▀▀

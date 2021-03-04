@@ -36,3 +36,4 @@ GtkEntry {
     font-family: monospace;
     font-size: 9pt;
 }
+@import 'colors.css';
