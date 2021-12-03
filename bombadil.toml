@@ -15,7 +15,7 @@ posthooks = [ "sway reload" ]
 
 # A dot entry representing a symlink, `source` is relative to `dotfiles_dir`
 # and `target` shall be relative to $HOME directory or absolute.
-sway = { source = "sway", target = ".config/sway" }
+# sway = { source = "sway", target = ".config/sway" }
 
 # You can have as many dot entry as you want, linking files or directories
-alacritty = { source = "alacritty", target = ".config/alacritty/alacritty.yml" }
+# alacritty = { source = "alacritty", target = ".config/alacritty/alacritty.yml" }
