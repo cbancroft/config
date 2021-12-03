@@ -11,7 +11,7 @@ local awful = require('awful')
 -- ░▀▀█░█▀█░█▀▀░█░░░█░░
 -- ░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀▀▀
 
-awful.util.shell = 'sh'
+awful.util.shell = 'zsh'
 awful.screen.set_auto_dpi_enabled(true)
 -- ░▀█▀░█░█░█▀▀░█▄█░█▀▀
 -- ░░█░░█▀█░█▀▀░█░█░█▀▀
@@ -44,9 +44,9 @@ require('module.exit-screen')
 require('module.quake-terminal')
 require('module.menu')
 require('module.titlebar')
-require('module.brightness-osd')
-require('module.volume-osd')
-require('module.lockscreen')
+-- require('module.brightness-osd')
+-- require('module.volume-osd')
+-- require('module.lockscreen')
 require('module.dynamic-wallpaper')
 
 -- ░█░█░█▀█░█░░░█░░░█▀█░█▀█░█▀█░█▀▀░█▀▄

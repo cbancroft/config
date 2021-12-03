@@ -13,7 +13,6 @@ export LANG="en_US.UTF-8"
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -25,6 +24,7 @@ if [ "${TERM}" = "linux" ]; then
 else
     #ZSH_THEME="powerlevel9k/powerlevel9k"
     #ZSH_THEME="powerline"
+    ZSH_THEME="powerlevel10k/powerlevel10k"
 fi
 
 # Example aliases
@@ -53,13 +53,13 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(gitfast git-extras archlinux battery git-remote-branch svn fzf)
+plugins=(gitfast git-extras ubuntu battery fzf docker gpg-agent)
 
 source $ZSH/oh-my-zsh.sh
 
 #source /etc/profile.d/infinality-settings.sh
-source /etc/profile.d/freetype2.sh
-xrdb -merge ~/.Xdefaults
+#source /etc/profile.d/freetype2.sh
+#xrdb -merge ~/.Xdefaults
 # {{{ User Settings
 
 # {{{ zle configuration
@@ -160,6 +160,7 @@ alias bbnvpn="ssh -D 8080 -f -C -q -N cbancrof@ssh.bbn.com && export IMAP_SERVER
 alias daytona="cd ~/work/daytona/DAYTONA-current"
 alias school="cd ~/git/school"
 alias cleandock='docker rm $(docker ps -a -q -f status=exited)'
+alias ppjson="python3 -m json.tool"
 
 # {{{ Daytona nodes
 alias dbuild="ssh -A -l cbancroft build.daytona.ir.bbn.com"
@@ -252,7 +253,7 @@ function web ()   { "${BROWSER}" "http://yubnub.org/parser/parse?command=${*}" }
 function pmem ()  { ps -o rss,comm -p `pgrep "$1"` }
 function dsync () { rsync -lprt --progress --stats --delete "$1/" "$2/" }
 
-function snap () {
+function ssnap () {
     [ "$2" ] && tmout="$2"  || tmout=5
     [ "$3" ] && format="$3" || format=png
     fname="${HOME}/$1-`date +%d%m%y-%H%M`"
@@ -316,7 +317,19 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'   # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[01;32m' # begin underline
 # export GOPATH=/home/cbancroft/work/aircoil/go
+# source /usr/share/nvm/init-nvm.sh
+# nvm use --silent stable
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+if [ "$XDG_SESSION_DESKTOP" = "sway" ] ; then
+    # https://github.com/swaywm/sway/issues/595
+    export _JAVA_AWT_WM_NONREPARENTING=1
+fi
+
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
