@@ -93,7 +93,7 @@ bindkey "\e[F" end-of-line
 
 # {{{ Dircolors
 #       - with rxvt-256color support
-eval `dircolors -b "${HOME}/.dir_colors"`
+# eval `dircolors -b "${HOME}/.dir_colors"`
 # }}}
 
 # {{{ Man Pages
