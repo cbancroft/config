@@ -1,0 +1,5 @@
+bar = "waybar"
+grimshot = "~/.local/bin/grimshot"
+notification = "mako"
+launcher = "wofi -iIG --show drun"
+lock = "~/.local/bin/create_lock_image && swaylock -f -i /tmp/sway_lock_image.png"

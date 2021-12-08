@@ -1,5 +1,6 @@
 #width=600
 #height=300
+prompt=...
 mode=drun
 filter_rate=100
 matching=contains

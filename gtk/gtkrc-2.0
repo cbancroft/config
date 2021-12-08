@@ -1,0 +1,6 @@
+gtk-icon-theme-name = "Arc-Dark"
+gtk-theme-name = "Moka"
+gtk-font-name = "Fira Code 11"
+gtk-xft-antialias=1
+gtk-xft-hinting=1
+gtk-xft-hintstyle=hintfull

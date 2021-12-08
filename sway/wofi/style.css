@@ -1,0 +1,39 @@
+.window {
+    margin: 5px;
+    padding: 5px;
+    background-color: __[bg]__;
+}
+
+#input {
+    background-color: __[input_bg]__;
+    color: __[input_color]__;
+    border: 0px solid __[input_bg]__;
+}
+
+#input:focus {
+    background-color: __[input_focused_bg]__;
+    color: __[input_focused_color]__;
+    border: 0px solid __[input_focused_border]__;
+}
+
+#inner-box {
+    background-color: __[inner_box_bg]__;
+}
+
+#inner-box flowboxchild:focus {
+    background-color: __[inner_box_flowchild_focused_bg]__;
+}
+
+#outer-box {
+    background-color: __[outer_box_bg]__;
+}
+
+#text {
+    margin: 2px;
+    background-color: __[text_bg]__;
+    color: __[text]__;
+}
+
+#scroll {
+    background-color: __[scroll]__;
+}
