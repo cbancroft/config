@@ -16,6 +16,12 @@ kitty = { source = "kitty", target = ".config/kitty"}
 gtk2 = { source = "gtk/gtkrc-2.0", target = ".gtkrc-2.0" }
 gtk3 = { source = "gtk/gtk-3.0", target = ".config/gtk-3.0" }
 nvim = { source = "nvim", target = ".config/nvim"}
+zshrc = { source = "zsh/zshrc", target = ".zshrc" }
+zshprofile = { source = "zsh/zshprofile", target = ".zsh_profile" }
+tmuxrc = { source = "tmux/tmux.conf", target = ".tmux.conf"}
+tmux_sessionizer = { source = "tmux/tmux-sessionizer", target = ".local/bin/tmux-sessionizer" }
+tmux_windowizer = { source = "tmux/tmux-windowizer", target = ".local/bin/tmux-windowizer" }
+tmux_cht = { source = 'tmux/tmux-cht.sh', target = ".local/bin/tmux-cht.sh" }
 
 # You can have as many dot entry as you want, linking files or directories
 # alacritty = { source = "alacritty", target = ".config/alacritty/alacritty.yml" }
