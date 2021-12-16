@@ -8,3 +8,4 @@ waybar = { source = "sway/waybar", target = ".config/waybar" }
 kanshi = { source = "sway/kanshi", target = ".config/kanshi" }
 mako = { source = "sway/mako", target = ".config/mako" }
 wofi = { source = "sway/wofi", target = ".config/wofi" }
+treeswitcher = { source = "sway/tree-switcher", target = ".local/bin/tree-switcher" }

@@ -1,8 +1,0 @@
-[submodule "awesome-configs/redflat"]
-	path = awesome-configs/redflat
-	url = https://github.com/worron/redflat.git
-	branch = master
-[submodule "awesome-configs/lain"]
-	path = awesome-configs/lain
-	url = https://github.com/lcpz/lain.git
-	branch = master

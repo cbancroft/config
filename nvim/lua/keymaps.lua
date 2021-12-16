@@ -57,13 +57,6 @@ map("n", "<leader>n", ":NvimTreeFindFile<CR>", default_opts) -- search file
 -- Vista tag-viewer
 map("n", "<C-m>", ":Vista!!<CR>", default_opts) -- open/close
 
----------------------------------------------------------------
--- Telescope
----------------------------------------------------------------
--- Find files using Telescope command line sugar
-mapnl("ff", "<cmd>Telescope find_files<cr>", default_opts)
-mapnl("fg", "<cmd>Telescope live_grep<cr>", default_opts)
-mapnl("fb", "<cmd>Telescope buffers<cr>", default_opts)
-mapnl("fh", "<cmd>Telescope help_tags<cr>", default_opts)
+
 
 

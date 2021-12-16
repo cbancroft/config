@@ -3,5 +3,9 @@
 ---------------------------------------------------------
 
 require("settings")
-require("keymaps")
 require("plugins")
+require("keymaps")
+
+vim.cmd([[colorscheme tokyonight]])
+
+

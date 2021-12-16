@@ -54,7 +54,6 @@ gls.left[1] = {
         highlight = {colors.red, colors.bg}
     }
 }
-print(vim.fn.getbufvar(0, "ts"))
 vim.fn.getbufvar(0, "ts")
 
 gls.left[2] = {

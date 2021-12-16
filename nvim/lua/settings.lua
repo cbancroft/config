@@ -36,19 +36,21 @@ opt.cursorline = true -- highlight current line
 opt.scrolloff = 1 -- when scrolling, keep cursor 1 lines away from screen border
 opt.sidescrolloff = 2 -- Keep 2 columns visible on left/right sides
 
--- remove whitespace when saving
-cmd([[au BufWritePre * :%s/\s\+$//e]])
-
 -- highlight on yank
-exec(
-  [[
+cmd([[
     augroup YankHighlight
       autocmd!
       autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
     augroup end
-]],
-  false
-)
+]])
+
+cmd([[
+    augroup code_stuff
+    autocmd!
+    autocmd BufWritePre *.lua,*.cpp,*.c,*.h,*.hpp,*.cxx,*.cc Neoformat
+    autocmd BufWritePre * :%s/\s\+$//e
+    augroup END
+ ]])
 
 ---------------------------------------------------------------
 -- Memory/CPU
@@ -65,8 +67,6 @@ opt.termguicolors = true -- enable 24-bit RGB
 
 --to Show whitespace, MUST be inserted BEFORE the colorscheme command
 cmd("autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=grey")
-
-cmd([[colorscheme tokyonight]])
 
 ---------------------------------------------------------------
 -- Tabs, indent
@@ -90,6 +90,7 @@ cmd([[
 
 -- json
 cmd([[ au BufEnter *.json set ai expandtab shiftwidth=2 tabstop=2 sta fo=croql ]])
+
 ---------------------------------------------------------------
 -- Autocomplete
 ---------------------------------------------------------------
@@ -116,28 +117,28 @@ cmd([[
 ---------------------------------------------------------------
 -- disable builtin plugins
 local disabled_built_ins = {
-  "netrw",
-  "netrwPlugin",
-  "netrwSettings",
-  "netrwFileHandlers",
-  "gzip",
-  "zip",
-  "zipPlugin",
-  "tar",
-  "tarPlugin",
-  "getscript",
-  "getscriptPlugin",
-  "vimball",
-  "vimballPlugin",
-  "2html_plugin",
-  "logipat",
-  "rrhelper",
-  "spellfile_plugin",
-  "matchit",
+	"netrw",
+	"netrwPlugin",
+	"netrwSettings",
+	"netrwFileHandlers",
+	"gzip",
+	"zip",
+	"zipPlugin",
+	"tar",
+	"tarPlugin",
+	"getscript",
+	"getscriptPlugin",
+	"vimball",
+	"vimballPlugin",
+	"2html_plugin",
+	"logipat",
+	"rrhelper",
+	"spellfile_plugin",
+	"matchit",
 }
 
 for _, plugin in pairs(disabled_built_ins) do
-  g["loaded_" .. plugin] = 1
+	g["loaded_" .. plugin] = 1
 end
 
 -- disable nvim intro
@@ -149,4 +150,3 @@ cmd([[
     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
   endif
 ]])
-
