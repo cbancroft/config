@@ -20,7 +20,9 @@ local function config(_config)
 		capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
 	}, _config or {})
 end
-
+local lua_runtime_path = vim.split(package.path, ";")
+table.insert(lua_runtime_path, "lua/?.lua")
+table.insert(lua_runtime_path, "lua/?/init.lua")
 local overrides = {
 	pyright = {
 		settings = {
@@ -34,13 +36,13 @@ local overrides = {
 	},
 
 	sumneko_lua = {
-	    	settings = {
+		settings = {
 			Lua = {
 				runtime = {
 					-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
 					version = "LuaJIT",
 					-- Setup your lua path
-					path = vim.split(package.path, ";"),
+					path = lua_runtime_path,
 				},
 				diagnostics = {
 					-- Get the language server to recognize the `vim` global
@@ -48,10 +50,10 @@ local overrides = {
 				},
 				workspace = {
 					-- Make the server aware of Neovim runtime files
-					library = {
-						[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-						[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-					},
+					library = vim.api.nvim_get_runtime_file("", true),
+				},
+				telemetry = {
+					enable = false,
 				},
 			},
 		},
@@ -61,9 +63,9 @@ local overrides = {
 local function make_server_ready(attach)
 	lsp_installer.on_server_ready(function(server)
 		local opts = {}
-    if overrides[server.name] ~= nil then
-      opts = config(overrides[server.name])
-    end
+		if overrides[server.name] ~= nil then
+			opts = config(overrides[server.name])
+		end
 		opts.on_attach = attach
 
 		-- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
