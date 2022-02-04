@@ -11,8 +11,7 @@
 -- Thanks to ibhagwan for the example to follow:
 --- https://github.com/ibhagwan/nvim-lua
 
-
-local colors = require('plugins/colors')
+local colors = R 'plugins/colors'
 
 -- monokai colors
 local vi_mode_colors = {
@@ -29,15 +28,15 @@ local vi_mode_colors = {
   COMMAND = colors.pink,
   SHELL = colors.pink,
   TERM = colors.pink,
-  NONE = colors.purple
+  NONE = colors.purple,
 }
 
 local lsp = require 'feline.providers.lsp'
 local vi_mode_utils = require 'feline.providers.vi_mode'
 
 local lsp_get_diag = function(str)
-  local count = vim.lsp,diagnostic.get_count(0, str)
-  return (count > 0) and ' '..count..' ' or ''
+  local count = vim.diagnostic.get_count(0, str)
+  return (count > 0) and ' ' .. count .. ' ' or ''
 end
 
 -- My components
@@ -46,7 +45,7 @@ local comps = {
   vi_mode = {
     left = {
       provider = function()
-        local label = ' '..vi_mode_utils.get_vim_mode()..' '
+        local label = ' ' .. vi_mode_utils.get_vim_mode() .. ' '
         return label
       end,
       hl = function()
@@ -54,13 +53,13 @@ local comps = {
           name = vi_mode_utils.get_mode_highlight_name(),
           fg = colors.bg,
           bg = vi_mode_utils.get_mode_color(),
-          style = 'bold'
+          style = 'bold',
         }
         return set_color
       end,
       left_sep = ' ',
-      right_sep = ' '
-    }
+      right_sep = ' ',
+    },
   },
   -- parse file information
   file = {
@@ -70,8 +69,8 @@ local comps = {
         name = 'file_info',
         opts = {
           type = 'relative',
-          file_modified_icon = ''
-        }
+          file_modified_icon = '',
+        },
       },
       hl = { fg = colors.cyan },
       icon = '',
@@ -96,21 +95,21 @@ local comps = {
       end,
       hl = { fg = colors.fg },
       left_sep = ' ',
-      right_sep = ' '
+      right_sep = ' ',
     },
     -- cursor position in %
     line_percentage = {
       provider = { name = 'line_percentage' },
       hl = { fg = colors.pink },
       left_sep = ' ',
-      right_sep = ' '
+      right_sep = ' ',
     },
     -- raw-column
     position = {
-      provider = {name = 'position'},
+      provider = { name = 'position' },
       hl = {
         fg = colors.cyan,
-        style = 'bold'
+        style = 'bold',
       },
       right_sep = ' ',
     },
@@ -119,7 +118,7 @@ local comps = {
       provider = { name = 'scroll_bar' },
       hl = { fg = colors.fg },
       left_sep = ' ',
-      right_sep = ' '
+      right_sep = ' ',
     },
   },
   -- LSP info
@@ -155,7 +154,7 @@ local comps = {
       icon = '  ',
       hl = { fg = colors.pink },
       left_sep = '  ',
-    }
+    },
   },
   -- git info
   git = {
@@ -182,8 +181,8 @@ local comps = {
       icon = '  ',
       hl = { fg = colors.red },
       left_sep = ' ',
-    }
-  }
+    },
+  },
 }
 
 -- Get active/inactive components
@@ -218,10 +217,10 @@ table.insert(components.active[2], comps.file.line_percentage)
 table.insert(components.active[2], comps.file.position)
 
 -- call feline
-require('feline').setup {
+R('feline').setup {
   colors = {
     bg = colors.bg,
-    fg = colors.fg
+    fg = colors.fg,
   },
   components = components,
   vi_mode_colors = vi_mode_colors,
@@ -229,7 +228,7 @@ require('feline').setup {
     filetypes = {
       'NvimTree',
       'vista',
-      'term'
+      'term',
     },
     buftypes = {},
     bufnames = {},

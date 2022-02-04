@@ -1,8 +1,12 @@
 # {{{ User Settings
+export PATH
+
 # {{{ Aliases
 alias ..="cd .."
 alias ...="cd ../.."
 
+alias bat="batcat"
+alias cat="batcat --paging=never"
 alias ls="ls -aFF --color=always"
 alias ll="ls -l"
 alias lfi="ls -l | egrep -v '^d'"
@@ -55,6 +59,9 @@ alias -s doc=libreoffice
 alias -s docx=libreoffice
 # }}}
 
+# {{{ Path Settings
+export PATH="$HOME/.cargo/bin:$PATH"
+# }}}
 # {{{ Completion
 compctl -k "(add delete draft edit list import preview publish update)" nb
 # }}}
@@ -104,5 +111,6 @@ function extract () {
         echo 'Error: "$1" is not a valid file for extraction'
     fi
 }
+
 
 # }}}

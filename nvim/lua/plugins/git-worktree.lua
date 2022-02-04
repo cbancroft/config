@@ -1,5 +1,5 @@
-local worktree = require("git-worktree")
+local worktree = require 'git-worktree'
 
-require("git-worktree").setup({
-  change_directory_command = "tcd",
-})
+worktree.setup {
+  change_directory_command = 'tcd',
+}

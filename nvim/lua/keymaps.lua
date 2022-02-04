@@ -1,62 +1,38 @@
 ---------------------------------------------------------------
 -- Keymaps configuration: neovim and plugins
 ---------------------------------------------------------------
-
-local map = vim.api.nvim_set_keymap
-local default_opts = { noremap = true, silent = true }
-local cmd = vim.cmd
-local NOP = "<nop>"
-
-local function mapn(...)
-  map("n", ...)
-end
-local function mapnl(binding, ...)
-  map("n", "<leader>" .. binding, ...)
-end
-
 ---------------------------------------------------------------
 -- Neovim shortcuts
 ---------------------------------------------------------------
 
 -- clear search highlighting
-map("n", "<leader>c", ":nohl<CR>", default_opts)
+MAP('n', '<leader>C', ':nohl<CR>', MAP_DEFAULTS)
 
 -- map Esc to kk
-map("i", "kk", "<Esc>", { noremap = true })
-
--- Don't use hjkl for nav
-map("", "h", NOP, { noremap = true })
-map("", "j", NOP, { noremap = true })
-map("", "k", NOP, { noremap = true })
-map("", "l", NOP, { noremap = true })
+MAP('i', 'kk', '<Esc>', { noremap = true })
 
 -- fast saving with <leader> and s
-map("n", "<leader>s", ":w<CR>", default_opts)
-map("i", "<leader>s", "<C-c>:w<CR>", default_opts)
+MAP('n', '<leader>s', ':w<CR>', MAP_DEFAULTS)
+MAP('i', '<leader>s', '<C-c>:w<CR>', MAP_DEFAULTS)
 
 -- move around splits using Ctrl + {up, down, left, right}
-map("n", "<C-Left>", "<C-w>h", default_opts)
-map("n", "<C-Down>", "<C-w>j", default_opts)
-map("n", "<C-Up>", "<C-w>k", default_opts)
-map("n", "<C-Right>", "<C-w>l", default_opts)
+MAP('n', '<C-Left>', '<C-w>h', MAP_DEFAULTS)
+MAP('n', '<C-Down>', '<C-w>j', MAP_DEFAULTS)
+MAP('n', '<C-Up>', '<C-w>k', MAP_DEFAULTS)
+MAP('n', '<C-Right>', '<C-w>l', MAP_DEFAULTS)
 
 -- close all windows and exit from neovim
-map("n", "<leader>q", ":qa!<CR>", default_opts)
+MAP('n', '<leader>q', ':qa!<CR>', MAP_DEFAULTS)
 
 ---------------------------------------------------------------
 -- Applications & Plugins shortcuts:
 ---------------------------------------------------------------
 -- open terminal
-map("n", "<C-t>", ":Term<CR>", { noremap = true })
+MAP('n', '<C-t>', ':Term<CR>', { noremap = true })
 
 -- nvim-tree
-map("n", "<C-n>", ":NvimTreeToggle<CR>", default_opts) -- open/close
-map("n", "<leader>r", ":NvimTreeRefresh<CR>", default_opts) -- refresh
-map("n", "<leader>n", ":NvimTreeFindFile<CR>", default_opts) -- search file
+MAP('n', '<C-n>', ':NvimTreeToggle<CR>', MAP_DEFAULTS) -- open/close
+MAP('n', '<leader>r', ':NvimTreeRefresh<CR>', MAP_DEFAULTS) -- refresh
+MAP('n', '<leader>n', ':NvimTreeFindFile<CR>', MAP_DEFAULTS) -- search file
 
--- Vista tag-viewer
-map("n", "<C-m>", ":Vista!!<CR>", default_opts) -- open/close
-
-
-
-
+MAP('n', '<leader>cr', ':call cb#save_and_exec()<CR>', MAP_DEFAULTS)

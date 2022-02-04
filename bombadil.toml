@@ -21,11 +21,13 @@ gtk3 = { source = "gtk/gtk-3.0", target = ".config/gtk-3.0" }
 nvim = { source = "nvim", target = ".config/nvim"}
 zshrc = { source = "zsh/zshrc", target = ".zshrc" }
 zshprofile = { source = "zsh/zshprofile", target = ".zsh_profile" }
+zshplugins = {source = "zsh/zshplugins.zsh", target = ".zshplugins"}
 tmuxrc = { source = "tmux/tmux.conf", target = ".tmux.conf"}
 tmux_sessionizer = { source = "tmux/tmux-sessionizer", target = ".local/bin/tmux-sessionizer" }
 tmux_windowizer = { source = "tmux/tmux-windowizer", target = ".local/bin/tmux-windowizer" }
 tmux_cht = { source = 'tmux/tmux-cht.sh', target = ".local/bin/tmux-cht.sh" }
 tmux_tpm = { source = 'tmux/tpm', target = ".tmux/plugins/tpm" }
+tmux_ta = { source = "tmux/ta", target = ".local/bin/ta" }
 # You can have as many dot entry as you want, linking files or directories
 # alacritty = { source = "alacritty", target = ".config/alacritty/alacritty.yml" }
 
