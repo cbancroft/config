@@ -1,18 +1,50 @@
 -- Set completeopt to have a better completion experience
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
-local lspkind = require 'lspkind'
+local cmp_status_ok, cmp = pcall(require, 'cmp')
+if not cmp_status_ok then
+  return
+end
+local snip_status_ok, luasnip = pcall(require, 'luasnip')
+if not snip_status_ok then
+  return
+end
+
 local v = vim
 local WIDE_HEIGHT = 100
-
--- Don't show the dumb matching stuff.
-vim.opt.shortmess:append 'c'
-
+local kind_icons = {
+  Text = '',
+  Method = 'm',
+  Function = '',
+  Constructor = '',
+  Field = '',
+  Variable = '',
+  Class = '',
+  Interface = '',
+  Module = '',
+  Property = '',
+  Unit = '',
+  Value = '',
+  Enum = '',
+  Keyword = '',
+  Snippet = '',
+  Color = '',
+  File = '',
+  Reference = '',
+  Folder = '',
+  EnumMember = '',
+  Constant = '',
+  Struct = '',
+  Event = '',
+  Operator = '',
+  TypeParameter = '',
+}
 cmp.setup {
   mapping = {
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-t>'] = cmp.mapping.scroll_docs(4),
-    ['<C-e>'] = cmp.mapping.close(),
+    ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-t>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-e>'] = cmp.mapping {
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    },
     ['<C-y>'] = cmp.mapping(
       cmp.mapping.confirm {
         behavior = cmp.ConfirmBehavior.Insert,
@@ -22,9 +54,7 @@ cmp.setup {
     ),
     ['(<C-space>'] = cmp.mapping {
       i = cmp.mapping.complete(),
-      c = function(
-        _ --[[fallback]]
-      )
+      c = function(_)
         if cmp.visible() then
           if not cmp.confirm { select = true } then
             return
@@ -81,14 +111,21 @@ cmp.setup {
   documentation = {
     border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
     winhighlight = 'NormalFloat:NormalFloat,FloatBorder:NormalFloat',
-    maxwidth = math.floor(WIDE_HEIGHT * (v.o.columns / 100)),
-    maxheight = math.floor(WIDE_HEIGHT * (v.o.lines / 100)),
   },
   formatting = {
-    format = lspkind.cmp_format {
-      with_text = true,
-      max_width = 50,
-    },
+    fields = { 'kind', 'abbr', 'menu' },
+    format = function(entry, item)
+      -- Icons
+      item.kind = string.format('%s', kind_icons[item.kind])
+      item.menu = ({
+        nvim_lsp = '[LSP]',
+        nvim_lua = '[NVIM_LUA]',
+        luasnip = '[Snippet]',
+        buffer = '[Buffer]',
+        path = '[Path]',
+      })[entry.source.name]
+      return item
+    end,
   },
   sources = {
     { name = 'nvim_lsp' },
@@ -98,6 +135,10 @@ cmp.setup {
     { name = 'buffer', keyword_length = 5, max_item_count = 5 },
     { name = 'calc' },
     { name = 'emoji' },
+  },
+  confirm_opts = {
+    behavior = cmp.ConfirmBehavior.Replace,
+    select = False,
   },
   experimental = {
     native_menu = false,

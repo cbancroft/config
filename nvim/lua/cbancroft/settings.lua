@@ -78,7 +78,7 @@ opt.shiftwidth = 4 -- shift 4 spaces when tabbing
 opt.tabstop = 4 -- 1 tab == 4 spaces
 opt.smartindent = true -- autoindent new lines
 opt.autoindent = true
-opt.foldlevelstart = 1 -- Don't overfold everything
+opt.foldlevelstart = 5 -- Don't overfold everything
 -- no autocommenting new lines
 cmd [[au BufEnter * set fo-=c fo-=r fo-=o]]
 
@@ -148,7 +148,6 @@ end
 
 -- disable nvim intro
 opt.shortmess:append 'sI'
-
 -- Jump to the last position when reopening file
 cmd [[
   if has("autocmd")

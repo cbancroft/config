@@ -7,6 +7,10 @@ CMD = vim.cmd
 NOP = '<nop>'
 R = function(name)
   package.loaded[name] = nil
+  local status, pkg = pcall(require, name)
+  if not status then
+    return nil
+  end
   return require(name)
 end
 
@@ -17,9 +21,10 @@ function mapnl(binding, ...)
   MAP('n', '<leader>' .. binding, ...)
 end
 
-R 'settings'
-R 'plugins'
-R 'keymaps'
+R 'cbancroft.settings'
+R 'cbancroft.plugins'
+R 'cbancroft.keymaps'
+R 'cbancroft.lsp'
 
 -- CMD [[colorscheme tokyonight]]
 CMD [[colorscheme kanagawa]]

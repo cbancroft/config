@@ -27,12 +27,12 @@ end
 local cmd = vim.cmd
 cmd [[packadd packer.nvim]]
 
--- Recompile things whenever we rewrite the plugins.lua file
+-- Recompile things whenever we rewrite the cbancroft.plugins.lua file
 vim.api.nvim_exec(
   [[
 augroup Packer
   autocmd!
-  autocmd BufWritePost plugins.lua PackerCompile
+  autocmd BufWritePost cbancroft.plugins.lua PackerCompile
   augroup END
 ]],
   false
@@ -50,16 +50,16 @@ return packer.startup(function(use)
     requires = {
       'kyazdani42/nvim-web-devicons', -- for file icons
     },
-    config = [[ R'plugins.nvim-tree' ]],
+    config = [[ R'cbancroft.plugins.nvim-tree' ]],
   }
 
   -- indent line
-  use { 'lukas-reineke/indent-blankline.nvim', config = [[ R'plugins.indent-blankline' ]] }
+  use { 'lukas-reineke/indent-blankline.nvim', config = [[ R'cbancroft.plugins.indent-blankline' ]] }
 
   -- autopair
   -- use {
   --  'windwp/nvim-autopairs',
-  --  config = [[ R'plugins.autopairs' ]],
+  --  config = [[ R'cbancroft.plugins.autopairs' ]],
   --}
 
   -- icons
@@ -69,7 +69,7 @@ return packer.startup(function(use)
   use 'voldikss/vim-floaterm'
 
   -- treesitter interface
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = [[R'plugins.nvim-treesitter']] }
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = [[R'cbancroft.plugins.nvim-treesitter']] }
   use 'nvim-treesitter/nvim-treesitter-textobjects'
 
   -- colorschemes
@@ -89,26 +89,19 @@ return packer.startup(function(use)
   -- LSP
   use { -- A collection of common configs for Neovim's built-in LSP client
     'neovim/nvim-lspconfig',
-    config = [[R('plugins/nvim-lspconfig')]],
   }
   -- Installs LSP servers for us
-  use { 'williamboman/nvim-lsp-installer', config = [[ R('plugins/nvim-lspinstaller') ]] }
-
-  use { -- VSCode like icons for neovim completion topics
-    'onsails/lspkind-nvim',
-    config = [[ R'plugins/lspkind' ]],
-  }
+  use { 'williamboman/nvim-lsp-installer' }
 
   use { -- Utility functions for getting diagnostic status and progress messages from LSP
     'nvim-lua/lsp-status.nvim',
-    config = [[ R'plugins/lspstatus' ]],
+    config = [[ R'cbancroft.plugins.lspstatus' ]],
   }
 
   --- For doing Lua formatting
-  -- use({ "jose-elias-alvarez/null-ls.nvim", config = [[ require'plugins.null-ls' ]] })
+  -- use({ "jose-elias-alvarez/null-ls.nvim", config = [[ require'cbancroft.plugins.null-ls' ]] })
 
   -- autocomplete
-  --[==[
   use {
     'hrsh7th/nvim-cmp',
     requires = {
@@ -121,20 +114,9 @@ return packer.startup(function(use)
       'hrsh7th/cmp-buffer',
       'saadparwaiz1/cmp_luasnip',
     },
-    config = [[ R'plugins/cmp' ]],
+    config = [[ R'cbancroft.plugins.cmp' ]],
   }
---]==]
 
-  -- CoQ
-  use {
-    'ms-jpq/coq_nvim',
-    branch = 'coq',
-    config = [[ R'plugins/coq' ]],
-    requires = {
-      { 'ms-jpq/coq.artifacts', branch = 'artifacts' },
-      { 'ms-jpq/coq.thirdparty', branch = '3p' },
-    },
-  }
   use { 'ajouellette/sway-vim-syntax' }
 
   use { -- Snippet Engine for Neovim written in Lua.
@@ -143,49 +125,49 @@ return packer.startup(function(use)
       -- Snippets collection for different languages
       'rafamadriz/friendly-snippets',
     },
-    config = [[ R'plugins.luasnip' ]],
+    config = [[ R'cbancroft.plugins.luasnip' ]],
   }
 
   -- statusline
   -- use {
   --   'famiu/feline.nvim',
   --   requires = { 'kyazdani42/nvim-web-devicons' },
-  --   config = [[ R'plugins.feline' ]],
+  --   config = [[ R'cbancroft.plugins.feline' ]],
   --  }
 
   use {
     'nvim-lualine/lualine.nvim',
     require = { 'kyazdani42/nvim-web-devicons' },
-    config = [[ R'plugins.lualine' ]],
+    config = [[ R'cbancroft.plugins.lualine' ]],
   }
 
   -- git labels
   use {
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
-    config = [[ R'plugins.gitsigns' ]],
+    config = [[ R'cbancroft.plugins.gitsigns' ]],
   }
 
   -- dashboard
   use {
     'goolord/alpha-nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
-    config = [[ R'plugins.alpha-nvim' ]],
+    config = [[ R'cbancroft.plugins.alpha-nvim' ]],
   }
 
   -- bufferline goodness
   use {
     'akinsho/bufferline.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
-    config = [[R'plugins.bufferline']],
+    config = [[R'cbancroft.plugins.bufferline']],
   }
   -- Telescope
   use {
     'nvim-telescope/telescope.nvim',
     requires = { { 'nvim-lua/plenary.nvim' } },
-    config = [[ R'plugins.telescope' ]],
+    config = [[ R'cbancroft.plugins.telescope' ]],
   }
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', config = [[ R'plugins.telescope-fzf' ]] }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', config = [[ R'cbancroft.plugins.telescope-fzf' ]] }
   use {
     'nvim-telescope/telescope-file-browser.nvim',
     config = function()
@@ -197,12 +179,12 @@ return packer.startup(function(use)
   use {
     'ThePrimeagen/git-worktree.nvim',
     requires = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
-    config = [[ R'plugins.git-worktree' ]],
+    config = [[ R'cbancroft.plugins.git-worktree' ]],
   }
   use 'sbdchd/neoformat'
 
-  use { 'folke/which-key.nvim', config = [[ R'plugins.which-key' ]] }
-  use { 'liuchengxu/vista.vim', config = [[ R'plugins.vista' ]] }
+  use { 'folke/which-key.nvim', config = [[ R'cbancroft.plugins.which-key' ]] }
+  use { 'liuchengxu/vista.vim', config = [[ R'cbancroft.plugins.vista' ]] }
   use { 'tpope/vim-surround' }
   use { 'tpope/vim-commentary' }
   -- Automatically set up your configuration after cloning packer.nvim
