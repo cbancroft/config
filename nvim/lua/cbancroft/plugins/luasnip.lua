@@ -1,118 +1,125 @@
-local ls = require 'luasnip'
--- some shorthands...
-local s = ls.snippet
-local sn = ls.snippet_node
-local t = ls.text_node
-local i = ls.insert_node
-local f = ls.function_node
-local c = ls.choice_node
-local d = ls.dynamic_node
+local M = {}
 
-local snippet = s
-local snippets = {}
+function M.setup()
+  print 'Initializing luasnip'
+  local ls = require 'luasnip'
+  -- some shorthands...
+  local s = ls.snippet
+  local sn = ls.snippet_node
+  local t = ls.text_node
+  local i = ls.insert_node
+  local f = ls.function_node
+  local c = ls.choice_node
+  local d = ls.dynamic_node
 
-local same = function(index)
-  return f(function(args)
-    return args[1]
-  end, { index })
-end
+  local snippet = s
+  local snippets = {}
 
-local str = function(text)
-  return t { text }
-end
-
-local newline = function(text)
-  return t { '', text }
-end
-
-local shortcut = function(val)
-  if type(val) == 'string' then
-    return { t { val }, i(0) }
+  local same = function(index)
+    return f(function(args)
+      return args[1]
+    end, { index })
   end
-  if type(val) == 'table' then
-    for k, v in ipairs(val) do
-      if type(v) == 'string' then
-        val[k] = t { v }
+
+  local str = function(text)
+    return t { text }
+  end
+
+  local newline = function(text)
+    return t { '', text }
+  end
+
+  local shortcut = function(val)
+    if type(val) == 'string' then
+      return { t { val }, i(0) }
+    end
+    if type(val) == 'table' then
+      for k, v in ipairs(val) do
+        if type(v) == 'string' then
+          val[k] = t { v }
+        end
       end
     end
-  end
-  return val
-end
-
-local make = function(tbl)
-  local result = {}
-  for k, v in pairs(tbl) do
-    table.insert(result, (snippet({ trig = k, desc = v.desc }, shortcut(v))))
+    return val
   end
 
-  return result
-end
+  local make = function(tbl)
+    local result = {}
+    for k, v in pairs(tbl) do
+      table.insert(result, (snippet({ trig = k, desc = v.desc }, shortcut(v))))
+    end
 
--- Every unspecified option will be set to the default.
-ls.config.set_config {
-  history = true,
-  -- Update more often, :h events for more info.
-  updateevents = 'TextChanged,TextChangedI',
-}
-
---stylua: ignore
-snippets.lua = make {
-  ignore = "--stylua: ignore",
-  lf = {
-    desc = "table function",
-    "local ", i(1), " = function(", i(2), ")", newline "  ", i(0), newline "end",
-  },
-
-  f = { "function(", i(1), ")", i(0), newline "end" },
-
-}
-
-local js_attr_split = function(args, old_state)
-  local val = args[1][1]
-  local split = vim.split(val, '.', { plain = true })
-
-  local choices = {}
-  local thus_far = {}
-  for index = 0, #split - 1 do
-    table.insert(thus_far, 1, split[#split - index])
-    table.insert(choices, t { table.concat(thus_far, '.') })
+    return result
   end
 
-  return sn(nil, c(1, choices))
-end
+  -- Every unspecified option will be set to the default.
+  ls.config.set_config {
+    history = true,
+    -- Update more often, :h events for more info.
+    updateevents = 'TextChanged,TextChangedI',
 
-local fill_line = function(char)
-  return function()
-    local row = vim.api.nvim_win_get_cursor(0)[1]
-    local lines = vim.api.nvim_buf_get_lines(0, row - 2, row, false)
-    return string.rep(char, #lines[1] - #lines[2])
+    enable_autosnippets = true
+  }
+
+  --stylua: ignore
+  snippets.lua = make {
+    ignore = "--stylua: ignore",
+    lf = {
+      desc = "table function",
+      "local ", i(1), " = function(", i(2), ")", newline "  ", i(0), newline "end",
+    },
+
+    --f = { "function(", i(1), ")", i(0), newline "end" },
+
+    wkb = { i(1), " = {'<Cmd>", i(2), "<CR>', '", i(3), "' },", newline "", i(0) }
+  }
+
+  local js_attr_split = function(args, old_state)
+    local val = args[1][1]
+    local split = vim.split(val, '.', { plain = true })
+
+    local choices = {}
+    local thus_far = {}
+    for index = 0, #split - 1 do
+      table.insert(thus_far, 1, split[#split - index])
+      table.insert(choices, t { table.concat(thus_far, '.') })
+    end
+
+    return sn(nil, c(1, choices))
   end
-end
+
+  local fill_line = function(char)
+    return function()
+      local row = vim.api.nvim_win_get_cursor(0)[1]
+      local lines = vim.api.nvim_buf_get_lines(0, row - 2, row, false)
+      return string.rep(char, #lines[1] - #lines[2])
+    end
+  end
 
 
---stylua: ignore
-snippets.rst = make({
-	jsa = {
-		":js:attr:`", d(2, js_attr_split, { 1 }), " <", i(1), ">", "`",
-  },
+  --stylua: ignore
+  snippets.rst = make({
+    jsa = {
+      ":js:attr:`", d(2, js_attr_split, { 1 }), " <", i(1), ">", "`",
+    },
 
-	link = { ".. _", i(1), ":" },
+    link = { ".. _", i(1), ":" },
 
-	head = f(fill_line("="), {}),
-	sub = f(fill_line("-"), {}),
-	subsub = f(fill_line("^"), {}),
+    head = f(fill_line("="), {}),
+    sub = f(fill_line("-"), {}),
+    subsub = f(fill_line("^"), {}),
 
-	ref = { ":ref:`", same(1), " <", i(1), ">`" },
-})
+    ref = { ":ref:`", same(1), " <", i(1), ">`" },
+  })
 
-ls.snippets = snippets
+  ls.snippets = snippets
 
-require('luasnip.loaders.from_vscode').load()
+  -- require('luasnip.loaders.from_vscode').load()
 
--- You can also use lazy loading so you only get in memory snippets of languages you use
-require('luasnip/loaders/from_vscode').lazy_load()
+  -- You can also use lazy loading so you only get in memory snippets of languages you use
+  require('luasnip/loaders/from_vscode').lazy_load()
 
-vim.cmd [[
+  vim.cmd [[
   imap <silent><expr> <c-k> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<c-k>'
   inoremap <silent> <c-j> <cmd>lua require('luasnip').jump(-1)<CR>
 
@@ -121,3 +128,33 @@ vim.cmd [[
   snoremap <silent> <c-k> <cmd>lua require('luasnip').jump(1)<CR>
   snoremap <silent> <c-j> <cmd>lua require('luasnip').jump(-1)<CR>
 ]]
+
+  -- <c-k> is the expansion key
+  -- Expand the current item or jump to the next
+  vim.keymap.set({ "i", "s" }, "<c-k>", function()
+    if ls.expand_or_jumpable() then
+      ls.expand_or_jump()
+    end
+  end, { silent = true })
+
+  -- <c-j> jumps backwards
+  -- Moves to the previous item within the snippet
+  vim.keymap.set({ "i", "s" }, "<c-j>", function()
+    if ls.jumpable(-1) then
+      ls.jump(-1)
+    end
+  end, { silent = true }
+  )
+
+  -- <c-l> is selecting from within a list of options
+  -- This is useful for choice nodes
+  vim.keymap.set("i", "<c-l>", function()
+    if ls.choice_active() then
+      ls.change_choice(1)
+    end
+  end
+  )
+  vim.keymap.set("i", "<c-u>", require "luasnip.extras.select_choice")
+end
+
+return M

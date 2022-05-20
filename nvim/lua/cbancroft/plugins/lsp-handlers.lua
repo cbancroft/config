@@ -12,7 +12,7 @@ vim.lsp.handlers['textDocument/definition'] = function(_, result)
   end
 end
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.diagnostic.on_publish_diagnostics, {
   underline = true,
   signs = true,
   update_in_insert = true,

@@ -7,10 +7,10 @@
 
 local nvim_lsp = require 'lspconfig'
 
-local telescope = require 'plugins.telescope'
+local telescope = require 'cbancroft.plugins.telescope'
 local tele_map = telescope.map_tele
 
-local handlers = require 'plugins.lsp-handlers'
+local handlers = require 'cbancroft.plugins.lsp-handlers'
 -- Options for LSP diagnostic
 
 -- -- uncomment below to enable nerd-font based icons for diagnostics in the
@@ -178,8 +178,8 @@ local my_on_attach = function(client, bufnr)
   tele_map('<leader>ld', 'lsp_document_symbols', { ignore_filename = true }, true)
   tele_map('<leader>lw', 'lsp_dynamic_workspace_symbols', { ignore_filename = true }, true)
 
-  buf_nnoremap { '[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>' }
-  buf_nnoremap { ']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>' }
+  buf_nnoremap { '[g', '<cmd>lua vim.diagnostic.goto_prev()<cr>' }
+  buf_nnoremap { ']g', '<cmd>lua vim.diagnostic.goto_next()<cr>' }
   buf_nnoremap { '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>' }
 
   if filetype ~= 'lua' then
@@ -188,7 +188,7 @@ local my_on_attach = function(client, bufnr)
 
   vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
 
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.document_highlight then
     vim.cmd [[
       augroup lsp_document_highlight
         autocmd! * <buffer>

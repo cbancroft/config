@@ -32,7 +32,7 @@ local map_tele = function(key, f, options, buffer)
   TelescopeMapArgs[map_key] = options or {}
 
   local mode = 'n'
-  local rhs = string.format("<cmd>lua R('plugins.telescope')['%s']()<CR>", f, map_key)
+  local rhs = string.format("<cmd>lua R('cbancroft.plugins.telescope')['%s']()<CR>", f, map_key)
 
   if not buffer then
     vim.api.nvim_set_keymap(mode, key, rhs, map_options)
@@ -112,6 +112,14 @@ function M.bracketer_find()
   }
 end
 
+function M.search_dotfiles()
+  require('telescope.builtin').find_files {
+    prompt_title = '-- Config Files --',
+    shorten_path = false,
+    cwd = '~/git/config/nvim',
+  }
+end
+
 function M.fd()
   local opts = themes.get_ivy { hidden = false }
   require('telescope.builtin').fd(opts)
@@ -142,17 +150,6 @@ function M.git_files()
   }
 
   require('telescope.builtin').git_files(opts)
-end
-
-function M.lsp_code_actions()
-  local opts = themes.get_dropdown {
-    winblend = 10,
-    border = true,
-    previewer = false,
-    shorten_path = false,
-  }
-
-  require('telescope.builtin').lsp_code_actions(opts)
 end
 
 function M.live_grep()
@@ -310,6 +307,7 @@ map_tele('fi', 'search_all_files')
 map_tele('wt', 'treesitter')
 
 M.map_tele = map_tele
+print "Loaded telescope"
 return setmetatable({}, {
   __index = function(_, k)
     if M[k] then

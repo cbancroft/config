@@ -17,9 +17,10 @@ standup_session() {
     (TMUX=''
      tmux new-session -Ad -s "$selected_name" -c $selected;
      tmux split-window -vb -t "$selected_name" -c $selected -p 70;
-     tmux send-keys -t "$selected_name" "nvim '+Telescope find_files'" Enter;
+     tmux send-keys -t "$selected_name" "nvim" Enter;
     )
 }
+
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     tmux new-session -s $selected_name -c $selected
     exit 0

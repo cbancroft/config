@@ -1,3 +1,6 @@
+local M = {}
+function M.setup(server)
+
 return {
   cmd = { 'rst-lsp-serve', '--log-file', vim.fn.expand '~/.cache/nvim/rst-lsp.log', '-v' },
   filetypes = { 'rst' },
@@ -38,3 +41,6 @@ return {
 
   settings = {},
 }
+end
+
+return M

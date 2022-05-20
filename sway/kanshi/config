@@ -1,7 +1,8 @@
 profile home {
     output eDP-1 disable
-    output DP-5 mode 1920x1080 position 937,0
-    output DP-4 mode 3440x1440@100Hz position 0,1080
+    output DP-5 mode 1920x1080 position 0,0 transform 270
+    # output DP-5 mode 1920x1080 position 937,0
+    output DP-4 mode 3440x1440@100Hz position 1080,240
     # exec swaymsg '[workspace="3"]', move workspace to output HDMI-A-1
 }
 

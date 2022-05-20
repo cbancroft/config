@@ -162,6 +162,8 @@ local schemas = {
   },
 }
 
+local M = {}
+
 local opts = {
   settings = {
     json = {
@@ -178,5 +180,7 @@ local opts = {
     },
   },
 }
-
-return opts
+function M.setup(server)
+  return opts
+end
+return M

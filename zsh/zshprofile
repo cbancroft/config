@@ -1,4 +1,5 @@
 # {{{ User Settings
+PATH="$HOME/.local/bin:$PATH"
 export PATH
 
 # {{{ Aliases
@@ -83,6 +84,7 @@ setopt histreduceblanks histignorespace inc_append_history
 # {{{ Keyboard shortcuts
 bindkey -s ^f "tmux-sessionizer\n"
 # }}}
+
 # {{{ Functions
 function web ()   { "${BROWSER}" "http://yubnub.org/parser/parse?command=${*}" }
 function pmem ()  { ps -o rss,comm -p `pgrep "$1"` }
