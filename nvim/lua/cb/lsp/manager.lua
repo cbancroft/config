@@ -16,7 +16,7 @@ function M.init_defaults(languages)
   end
 end
 
--- Resolde the config for a server by merging it with the default config
+-- Resolve the config for a server by merging it with the default config
 local function resolve_config(server_name, ...)
   local defaults = {
     on_attach = require('cb.lsp').common_on_attach,
@@ -25,7 +25,7 @@ local function resolve_config(server_name, ...)
     capabilities = require('cb.lsp').common_capabilities(),
   }
 
-  local has_custom_provider, custom_config = pcall(require, 'cb/lsp/providers/' .. server_name)
+  local has_custom_provider, custom_config = pcall(require, 'cb.lsp.providers.' .. server_name)
   if has_custom_provider then
     defaults = vim.tbl_deep_extend('force', defaults, custom_config)
   end
@@ -74,6 +74,7 @@ function M.setup(server_name, user_config)
   local server_available, server = servers.get_server(server_name)
 
   if not server_available then
+    print('Setting up server ' .. server_name)
     local config = resolve_config(server_name, user_config)
     launch_server(server_name, config)
     return

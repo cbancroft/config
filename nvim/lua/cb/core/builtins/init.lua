@@ -20,8 +20,11 @@ local builtins = {
 
 function M.config(config)
   for _, builtin_path in ipairs(builtins) do
-    print('Loading builtin ' .. builtin_path)
-    local builtin = require(builtin_path)
+    local is_ok, builtin = pcall(require, builtin_path)
+    if not is_ok then
+      print('Couldnt load builtin "' .. builtin_path .. '" ' .. builtin)
+    end
+    -- local builtin = require(builtin_path)
     builtin.config(config)
   end
 end

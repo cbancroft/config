@@ -148,10 +148,12 @@ M.methods.jumpable = jumpable
 M.config = function()
   local status_cmp_ok, cmp = pcall(require, "cmp")
   if not status_cmp_ok then
+    print('Couldnt load cmp ' .. cmp)
     return
   end
   local status_luasnip_ok, luasnip = pcall(require, "luasnip")
   if not status_luasnip_ok then
+    print('Couldnt load luasnip ' .. luasnip)
     return
   end
 

@@ -27,7 +27,7 @@ local defaults = {
     -- 'kj' for quitting insert mode
     ['kj'] = '<ESC>',
     -- 'jj' for quitting insert mode
-    ['jj'] = '<ESC>',
+    ['kk'] = '<ESC>',
     -- Move current line/block with Alt-j/k
     ['<A-j>'] = '<Esc>:m .+1<CR>==gi',
     ['<A-k>'] = '<Esc>:m .-2<CR>==gi',

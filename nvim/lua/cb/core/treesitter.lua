@@ -38,12 +38,50 @@ M.config = function()
       },
       -- move = textobj_move_keymaps,
       select = {
-        enable = false,
+        enable = true,
         -- keymaps = textobj_sel_keymaps,
+        -- Automatically jump forward to textobj, similar to targets.vim
+        lookahead = true,
+
+        keymaps = {
+          -- You can use the capture groups defined here:
+          -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects/blob/master/queries/c/textobjects.scm
+          ['af'] = '@function.outer',
+          ['if'] = '@function.inner',
+          ['ab'] = '@block.outer',
+          ['ib'] = '@block.inner',
+          ['as'] = '@statement.outer',
+          ['is'] = '@statement.inner',
+          ['aC'] = '@class.outer',
+          ['iC'] = '@class.inner',
+          ['ac'] = '@conditional.outer',
+          ['ic'] = '@conditional.inner',
+        },
+
       },
+      move = {
+        enable = true,
+        set_jumps = true,
+        goto_next_start = {
+          [']m'] = '@function.outer',
+          [']]'] = '@class.outer',
+        },
+        goto_next_end = {
+          [']M'] = '@function.outer',
+          [']['] = '@class.outer',
+        },
+        goto_previous_start = {
+          ['[m'] = '@function.outer',
+          ['[['] = '@class.outer',
+        },
+        goto_previous_end = {
+          ['[M'] = '@function.outer',
+          ['[]'] = '@class.outer',
+        },
+      }
     },
     textsubjects = {
-      enable = false,
+      enable = true,
       keymaps = { ["."] = "textsubjects-smart", [";"] = "textsubjects-big" },
     },
     playground = {
@@ -93,4 +131,3 @@ M.setup = function()
 end
 
 return M
-

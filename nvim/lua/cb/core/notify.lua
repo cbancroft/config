@@ -38,7 +38,7 @@ local defaults = {
 
 function M.config()
   if not cb.use_icons then
-    default.opts.icons = {
+    defaults.opts.icons = {
       ERROR = '[ERROR]',
       WARN = '[WARNING]',
       INFO = '[INFO]',
@@ -55,8 +55,10 @@ function M.setup()
   end
 
   local opts = cb.builtin.notify and cb.builtin.notify.opts or defaults
-  local notify = notify
+  local notify = require 'notify'
   -- Config notification
+  notify.setup(opts)
+  vim.notify = notify
 end
 
 return M

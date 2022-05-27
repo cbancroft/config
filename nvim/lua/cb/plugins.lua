@@ -113,6 +113,10 @@ local plugins = {
     config = function()
       require("cb.core.treesitter").setup()
     end,
+    requires = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      'RRethy/nvim-treesitter-textsubjects'
+    },
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
@@ -239,6 +243,12 @@ local plugins = {
   {
     "b0o/schemastore.nvim",
   },
+  
+  -- Need that surround goodness
+  {
+    'tpope/vim-surround',
+    keys = {'c', 'd', 'y'}
+  }
 }
 
 for _, entry in ipairs(plugins) do
