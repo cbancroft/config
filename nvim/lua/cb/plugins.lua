@@ -243,11 +243,20 @@ local plugins = {
   {
     "b0o/schemastore.nvim",
   },
-  
+
   -- Need that surround goodness
   {
     'tpope/vim-surround',
-    keys = {'c', 'd', 'y'}
+    keys = { 'c', 'd', 'y' }
+  },
+
+  -- Neogit
+  {
+    'TimUntersberger/neogit',
+    cmd = 'Neogit',
+    config = function()
+      require('cb.core.neogit').setup()
+    end
   }
 }
 

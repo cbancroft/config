@@ -22,6 +22,7 @@ function M.load_default_options()
     showtabline = 2, -- Always show tabs
     smartcase = true, -- Smart case
     smartindent = true, -- Make indenting smart again
+    autoindent = true, -- Make indenting smart again
     splitbelow = true, -- force all hsplits to go below current window
     splitright = true, -- force all vsplits to go to right of current window
     swapfile = false, -- no swapfile
