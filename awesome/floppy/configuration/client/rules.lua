@@ -235,7 +235,7 @@ ruled.client.connect_signal(
 				tag = '6',
 				skip_decoration = true,
 				switch_to_tags = true,
-				placement = awful.placement.centered
+        -- placement = awful.placement.centered
 			}
 		}
 

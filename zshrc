@@ -59,7 +59,8 @@ source $ZSH/oh-my-zsh.sh
 
 #source /etc/profile.d/infinality-settings.sh
 source /etc/profile.d/freetype2.sh
-xrdb -merge ~/.Xdefaults
+# Uncomment if using locally
+# xrdb -merge ~/.Xdefaults
 # {{{ User Settings
 
 # {{{ zle configuration
@@ -316,6 +317,8 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'   # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[01;32m' # begin underline
 # export GOPATH=/home/cbancroft/work/aircoil/go
+source /usr/share/nvm/init-nvm.sh
+nvm use --silent stable
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
