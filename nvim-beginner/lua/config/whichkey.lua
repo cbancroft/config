@@ -36,12 +36,33 @@ function M.setup()
 			s = { '<cmd>PackerSync<CR>', 'Sync' },
 			S = { '<cmd>PackerStatus<CR>', 'Status' },
 			u = { '<cmd>PackerUpdate<CR>', 'Update' },
+			r = { '<cmd>lua reload_config()<CR>', 'Reload config' }
 		},
 
+		f = {
+			name = 'Find',
+			f = { '<cmd>Telescope find_files<cr>', 'Files'},
+			F = { '<cmd>Telescope git_files<cr>', 'Git Files'},
+			d = { '<cmd>lua require("utils.finder").find_dotfiles()<cr>', 'Dotfiles'},
+			b = { '<cmd>Telescope buffers<cr>', 'Buffers'},
+			o = { '<cmd>Telescope oldfiles<cr>', 'Old Files'},
+			g = { '<cmd>Telescope live_grep<cr>', 'Live grep'},
+			c = { '<cmd>Telescope commands<cr>', 'Commands'},
+			r = { '<cmd>Telescope file_browser<cr>', 'Browser'},
+			w = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'Current Buffer'},
+			e = { '<cmd>NvimTreeToggle<cr>', 'Explorer' },
+		},
+		
 		g = {
 			name = 'Git',
 			s = { '<cmd>Neogit<CR>', 'Status'},
 		},
+
+		p = {
+			name = 'Project',
+			p = { '<cmd>Telescope projects<cr>', 'List'},
+			s = { '<cmd>Telescope repo list<cr>', 'Search' },
+		}
 	}
 
 	whichkey.setup(conf)

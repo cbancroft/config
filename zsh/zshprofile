@@ -1,8 +1,8 @@
-# {{{ User Settings
+# User Settings
 PATH="$HOME/.local/bin:$PATH"
 export PATH
 
-# {{{ Aliases
+# Aliases
 alias ..="cd .."
 alias ...="cd ../.."
 
@@ -47,7 +47,7 @@ alias ppjson="python3 -m json.tool"
 alias vim="nvim"
 
 
-# {{{ Auto Extension Stuff
+# Auto Extension Stuff
 alias -s html=${BROWSER}
 alias -s png=feh
 alias -s jpg=feh
@@ -58,16 +58,14 @@ alias -s ppt=libreoffice
 alias -s pptx=libreoffice
 alias -s doc=libreoffice
 alias -s docx=libreoffice
-# }}}
 
-# {{{ Path Settings
+# Path Settings
 export PATH="$HOME/.cargo/bin:$PATH"
-# }}}
-# {{{ Completion
+
+# Completion
 compctl -k "(add delete draft edit list import preview publish update)" nb
-# }}}
-# }}}
-# {{{ ZSH settings
+
+# ZSH settings
 setopt nohup
 setopt autocd
 setopt cdablevars
@@ -79,13 +77,13 @@ setopt shwordsplit
 setopt interactivecomments
 setopt autopushd pushdminus pushdsilent pushdtohome
 setopt histreduceblanks histignorespace inc_append_history
-# }}}
 
-# {{{ Keyboard shortcuts
-bindkey -s ^f "tmux-sessionizer\n"
-# }}}
 
-# {{{ Functions
+# Keyboard shortcuts
+
+#bindkey -s ^f "tmux-sessionizer\n"
+
+# Functions
 function web ()   { "${BROWSER}" "http://yubnub.org/parser/parse?command=${*}" }
 function pmem ()  { ps -o rss,comm -p `pgrep "$1"` }
 function dsync () { rsync -lprt --progress --stats --delete "$1/" "$2/" }
@@ -113,6 +111,3 @@ function extract () {
         echo 'Error: "$1" is not a valid file for extraction'
     fi
 }
-
-
-# }}}

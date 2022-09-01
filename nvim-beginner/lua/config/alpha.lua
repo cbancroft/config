@@ -10,8 +10,8 @@ function M.setup()
 
 	dashboard.section.buttons.val = {
 		dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-    dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
-    dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+		dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
+		dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
 	}
 
 	local function footer()
@@ -39,4 +39,3 @@ function M.setup()
 end
 
 return M
-

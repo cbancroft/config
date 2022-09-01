@@ -16,8 +16,6 @@ prehooks = [
 # and `target` shall be relative to $HOME directory or absolute.
 # sway = { source = "sway", target = ".config/sway" }
 kitty = { source = "kitty", target = ".config/kitty"}
-gtk2 = { source = "gtk/gtkrc-2.0", target = ".gtkrc-2.0" }
-gtk3 = { source = "gtk/gtk-3.0", target = ".config/gtk-3.0" }
 nvim = { source = "nvim", target = ".config/nvim"}
 zshrc = { source = "zsh/zshrc", target = ".zshrc" }
 zshprofile = { source = "zsh/zshprofile", target = ".zsh_profile" }
