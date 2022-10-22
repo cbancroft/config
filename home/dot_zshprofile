@@ -1,0 +1,114 @@
+# User Settings
+PATH="$HOME/.local/bin:$PATH"
+export PATH
+
+# Aliases
+alias ..="cd .."
+alias ...="cd ../.."
+
+alias bat="batcat"
+alias cat="batcat --paging=never"
+alias ls="ls -aFF --color=always"
+alias ll="ls -l"
+alias lfi="ls -l | egrep -v '^d'"
+alias ldi="ls -l | egrep '^d'"
+alias lst="ls -htl | grep `date +%Y-%m-%d`"
+alias grep="grep --color=always"
+alias cp="cp -ia"
+alias mv="mv -i"
+alias rm="rm -I"
+alias cls="clear"
+alias upmem="ps -eo pmem,pcpu,rss,vsize,args | sort -k 1"
+alias top="htop"
+alias psg="ps auxw | grep -i "
+alias psptree="ps auxwwwf"
+alias df="df -hT"
+alias du="du -hc"
+alias dus="du -S | sort -n"
+alias free="free -m"
+alias su="su - "
+alias x="startx &! logout"
+alias rehash="hash -r"
+alias vuser="fuser -v"
+alias ping="ping -c 5"
+alias more="less"
+alias mc=". /usr/lib/mc/mc-wrapper.sh -x"
+alias xtr="extract"
+alias sat="date +%R"
+alias calc="bc -l <<<"
+alias iodrag="ionice -c3 nice -n19"
+alias pandora="pianobar"
+alias spell="aspell -a <<< "
+alias gpgd="gpg2 --decrypt"
+alias passgen="< /dev/urandom tr -cd \[:graph:\] | fold -w32 | head -n 5"
+alias xpop="xprop | grep --color=none 'WM_CLASS\|^WM_NAME' |  xmessage -file -"
+alias cleandock='docker rm $(docker ps -a -q -f status=exited)'
+alias ppjson="python3 -m json.tool"
+alias vim="nvim"
+
+
+# Auto Extension Stuff
+alias -s html=${BROWSER}
+alias -s png=feh
+alias -s jpg=feh
+alias -s cpp=${EDITOR}
+alias -s pdf=xpdf
+alias -s txt=${EDITOR}
+alias -s ppt=libreoffice
+alias -s pptx=libreoffice
+alias -s doc=libreoffice
+alias -s docx=libreoffice
+
+# Path Settings
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Completion
+compctl -k "(add delete draft edit list import preview publish update)" nb
+
+# ZSH settings
+setopt nohup
+setopt autocd
+setopt cdablevars
+setopt ignoreeof
+setopt nobgnice
+#setopt nobanghist
+setopt noclobber
+setopt shwordsplit
+setopt interactivecomments
+setopt autopushd pushdminus pushdsilent pushdtohome
+setopt histreduceblanks histignorespace inc_append_history
+
+
+# Keyboard shortcuts
+
+#bindkey -s ^f "tmux-sessionizer\n"
+
+# Functions
+function web ()   { "${BROWSER}" "http://yubnub.org/parser/parse?command=${*}" }
+function pmem ()  { ps -o rss,comm -p `pgrep "$1"` }
+function dsync () { rsync -lprt --progress --stats --delete "$1/" "$2/" }
+
+function extract () {
+    if [[ -f "$1" ]]; then
+        case "$1" in
+            *.tbz2 | *.tar.bz2) tar -xvjf  "$1"     ;;
+            *.txz | *.tar.xz)   tar -xvJf  "$1"     ;;
+            *.tgz | *.tar.gz)   tar -xvzf  "$1"     ;;
+            *.tar | *.cbt)      tar -xvf   "$1"     ;;
+            *.zip | *.cbz)      unzip      "$1"     ;;
+            *.rar | *.cbr)      unrar x    "$1"     ;;
+            *.arj)              unarj x    "$1"     ;;
+            *.ace)              unace x    "$1"     ;;
+            *.bz2)              bunzip2    "$1"     ;;
+            *.xz)               unxz       "$1"     ;;
+            *.gz)               gunzip     "$1"     ;;
+            *.7z)               7z x       "$1"     ;;
+            *.Z)                uncompress "$1"     ;;
+            *.gpg)       gpg2 -d "$1" | tar -xvzf - ;;
+            *) echo 'Error: failed to extract "$1"' ;;
+        esac
+    else
+        echo 'Error: "$1" is not a valid file for extraction'
+    fi
+}
+

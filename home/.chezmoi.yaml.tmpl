@@ -1,0 +1,43 @@
+{{- /* Declare variables */ -}}
+{{- $minimal := false -}}
+{{- $secrets := false -}}
+
+{{- if (env "DOTFILES_MINIMAL") -}}
+{{- $minimal = true -}}
+{{- $secrets = false -}}
+{{- end }}
+
+{{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
+{{- $headless := not stdinIsATTY -}}
+
+{{/* declare variables as empty values to populate below */}}
+{{- $name := get . "name" | default "" -}}
+{{- $email := get . "email" | default "" -}}
+
+// See: https://raw.githubusercontent.com/benmezger/dotfiles/150e1d16faa0a975e110ae9f10745c15be79b186/.chezmoi.yaml.tmpl
+// finish defining what is important to me and templating from EVs, Prompts, or default values
+{{- if (env "ASK") }}
+  {{- $minimal = promptBool "minimal (skip Brew bundle)" -}}
+
+  {{- $name = promptString "full name" $name -}}
+  {{- $email = promptString "email" $email -}}
+{{/* Add defaults for when ASK is not provided */}}
+{{- else if (or (eq (env "GITHUB_USER") "cbancroft") (has (env "USER") (list "clbancro" "cbancroft"))) -}}
+  {{- $name = get . "name" | default "Charles Bancroft" -}}
+  {{- $email = get . "email" | default "charlie.bancroft@gmail.com" -}}
+{{- end -}}
+
+{{- if not $headless -}}
+{{-   writeToStdout "💡 Tip: you can re-enter your name and email with `chezmoi init --data=false`.\n" -}}
+{{- end -}}
+
+sourceDir: "{{ .chezmoi.sourceDir }}"
+
+data:
+  config_state:
+    secrets: {{ $secrets }}
+    headless: {{ $headless }}
+    minimal: {{ $minimal }}
+  name: {{ $name }}
+  email: {{ $email }}
+

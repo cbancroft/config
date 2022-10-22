@@ -1,0 +1,22 @@
+# Touch a file in the workspace root
+
+# Prints the root path to the current workspace
+workspace_root() {
+  path=$(find_up packageInfo)
+  if [[ -n "$path" ]]; then
+    root="$(cd "$(dirname "${path}")" && pwd -P)"
+    echo "$root"
+  fi
+}
+
+# Touches a file each time the environment is loaded
+unison_activate_workspace() {
+  path="$(workspace_root)"
+  if [[ -n "$path" ]]; then
+    export WS_ROOT=$path
+    touchfile="${path}/.ws_last_touched"
+    log_status "Activating workspace ${path}"
+    touch "${touchfile}"
+  fi
+}
+

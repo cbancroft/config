@@ -1,0 +1,47 @@
+#!/usr/bin/env fish
+
+
+set HOME_ROOT "{{ .chezmoi.sourceDir }}"
+set SRC_ROOT $(cd $HOME_ROOT/.. && pwd -P)
+source $SRC_ROOT/scripts/common.fish
+
+set -q DRYRUN;or set DRYRUN false
+
+
+function run_bundle
+  set brewfile $argv[1]
+  if test $DRYRUN = 'true'
+    log::status "DRYRUN" $(set_color green) "brew bundle --no-lock --file $brewfile" $(set_color normal)
+  else
+    brew bundle install --no-lock --file $brewfile
+  end
+end
+
+{{ if eq .chezmoi.os "darwin" }}
+
+# Only install homebrew packages if not deploying minimal version
+{{ if not .config_state.minimal }}
+log::status "Installing MacOSX Homebrew packages"
+
+# Install primary homebrew packages
+run_bundle "$HOME_ROOT/Brewfile"
+
+log::status "💡 Post install steps to run Yabai" \
+"    1) Disable System Protection: https://github.com/koekeishiya/yabai/wiki/Disabling-System-Integrity-Protection"
+
+# Install Apple Silicon specific packages
+{{ if eq .chezmoi.arch "arm64" }}
+log::status "Installing MacOSX ARM64 Homebrew packages"
+run_bundle $HOME_ROOT/Brewfile-Darwin-arm64
+{{ end }}
+
+#Install Amazon homebrew packages
+{{- if (and (hasKey . "email") (hasSuffix "@amazon.com" .email)) }}
+log::status "Installing Amazon Homebrew packages"
+run_bundle $HOME_ROOT/Brewfile-Amzn
+{{ end }}
+
+{{ else }}
+log::status "$(set_color yellow)Skipping Homebrew package install due to minimal config$(set_color normal)"
+{{ end }}
+{{ end }}

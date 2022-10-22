@@ -1,0 +1,28 @@
+#!/usr/bin/env expect -f
+
+# InfoSec consultation: https://t.corp.amazon.com/P33840651
+# Description: This script renews your kerberos ticket and midway authentication on devdesktop terminal
+# Pre-reqs: 
+# 0. Have expect installed 'brew install expect'
+# 1. Have your amazon password stored as a  on mac-keychain under the name "amazon_ldap"
+# 2. Have your amazon midway PIN stored as a password on mac-keychain under the name "midway_pin"
+# 3. Grant execute permissions to this file (chmod +x devdesk-authenticate)
+# Usage: devdesk-authenticate YOUR_UBIKEY_TOKEN
+
+set my_user "$env(USER)"
+# set my_dev_desktop "$env(CDD_HOST)"
+set my_pwd [exec security find-generic-password -a $my_user -s amazon_ldap -w]
+set my_pin [exec security find-generic-password -a $my_user -s midway_pin -w]
+set yk_token [lindex $argv 0]
+set timeout -1
+
+spawn kinit -f
+
+expect -exact "$my_user@ANT.AMAZON.COM's password: "
+
+send -- "$my_pwd\r"
+
+expect -exact "
+"
+
+

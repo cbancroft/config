@@ -1,0 +1,16 @@
+export PATH=$HOME/bin:$HOME/.local/bin:$HOME/scripts:/opt/homebrew/bin:$PATH
+
+fpath=(
+	~/.config/zsh/completion
+	{{- if eq .chezmoi.os "darwin" }}
+		{{- if (and (eq .email "clbancro@amazon.com"))}}
+		~/code/AmazonZshFunctions/zsh/functions/5.7.1
+		{{- end}}
+		$(brew --prefix)/share/zsh/site-functions
+	{{- end}}
+	$fpath
+)
+
+{{- if eq .email "clbancro@amazon.com" }}
+export PATH=$HOME/.toolbox/bin:$PATH
+{{- end}}

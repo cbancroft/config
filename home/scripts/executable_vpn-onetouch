@@ -1,0 +1,29 @@
+#!/usr/bin/env expect -f
+
+# InfoSec consultation: https://t.corp.amazon.com/P33840651
+# https://w.amazon.com/bin/view/ClientEng/Bravehearts/MacCheatCodes/
+# USAGE: $vpn-onetouch $YUBIKEY_OTP
+
+set my_user "$env(USER)"
+set my_service midway_pin
+set my_endpoint "Automatic Selection (Route53)"
+#set my_endpoint "Seattle, WA, US"
+#set my_endpoint orca.amazon.com
+#pdx-h-orca.amazon.com
+set my_password [exec security find-generic-password -a $my_user -s $my_service -w]
+set yk_token  [lindex $argv 0]
+set timeout -1
+spawn /usr/bin/arch -x86_64 /opt/cisco/anyconnect/bin/vpn connect $my_endpoint
+match_max 100000
+expect -re "\r
+Group: .*?"
+send -- "2\r"
+expect -exact "\r
+\r
+Username: "
+send -- "$my_user\r"
+expect -exact "\r
+Password: "
+send -- "$my_password$yk_token\r"
+expect eof
+

@@ -1,0 +1,56 @@
+# general files within home directory to ignore
+Brewfile
+Brewfile-Amzn
+Brewfile-Darwin-arm64
+Brewfile-Msft
+
+{{/* Deploy Amazon specific configs if email matches domain */}}
+{{- if not (and (hasKey . "email") (hasSuffix "@amazon.com" .email)) }}
+.config/zsh/brazil.zshrc
+.config/zsh/sam_toolkit.zshrc
+.config/zsh/midway.zshrc
+.config/zsh/node_nvm.zshrc
+.config/zsh/odin.zshrc
+.config/zsh/pearl.zshrc
+scripts/drive.py
+scripts/git-package
+scripts/prop-parser
+scripts/list-persistent-configs
+scripts/get-persistent-configs
+{{- end }}
+
+{{- if ne .chezmoi.os "darwin" }}
+.config/kitty
+.config/boop
+.config/zsh/kitty.zshrc
+.config/zsh/macosx.zshrc
+.config/zsh/midway.zshrc
+.config/zsh/programming_excuses.zshrc
+scripts/fix-mac-file-limits.sh
+scripts/render-git
+scripts/devdesk-authenticate
+scripts/master-amazon
+scripts/midway-authenticate
+scripts/vpn-onetouch
+{{- end }}
+
+{{- if ne .chezmoi.os "linux" }}
+{{- end }}
+
+{{- if ne .chezmoi.os "windows" }}
+Documents
+{{ else }}
+.vim
+.vimrc
+.zshrc
+{{- end }}
+
+{{- if .config_state.minimal }}
+{{- if ne .chezmoi.os "darwin" }}
+.config/skhd
+.config/yabai
+.config/spacebar
+.simplebarrc
+{{- end }}
+{{- end}}
+

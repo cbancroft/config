@@ -1,0 +1,7 @@
+Downloaded from Github:
+https://github.com/dexpota/kitty-themes
+
+wget  -P ~/.config/kitty/kitty-themes/themes https://github.com/dexpota/kitty-themes/raw/master/themes/Solarized_Dark_Higher_Contrast.conf
+wget  -P ~/.config/kitty/kitty-themes/themes https://github.com/dexpota/kitty-themes/raw/master/themes/Solarized_Dark.conf
+wget  -P ~/.config/kitty/kitty-themes/themes https://github.com/dexpota/kitty-themes/raw/master/themes/Solarized_Light.conf
+

@@ -1,0 +1,110 @@
+
+####### Shortcut Hotkeys #############
+# Toggle Yabai
+# lhyper - u : ~/.config/skhd/toggle_yabai.sh 1
+# lhyper - y : ~/.config/skhd/toggle_yabai.sh 0
+
+# finder
+lhyper - e : open ~/
+
+# open terminal
+lhyper - return : $HOME/.config/skhd/open_terminal.sh --single-instance
+lhyper + rctrl - return : $HOME/.config/skhd/open_terminal.sh
+
+
+####### Window Management Hotkeys #############
+# focus window
+lhyper - n : yabai -m window --focus west || yabai -m display --focus west
+lhyper - e : yabai -m window --focus south || yabai -m display --focus south
+lhyper - u : yabai -m window --focus north || yabai -m display --focus north
+lhyper - i : yabai -m window --focus east || yabai -m display --focus east
+
+# go back to previous workspace (kind of like back_and_forth in i3)
+lhyper - b : yabai -m space --focus recent
+
+# move focused window to previous workspace
+lhyper + rctrl - b : yabai -m window --space recent; \
+                  yabai -m space --focus recent
+
+# navigate workspaces next / previous using arrow keys
+lhyper + rcmd - n : yabai -m space --focus prev
+lhyper + rcmd - i : yabai -m space --focus next
+
+# navigate to specific workspace (with back and forth support)
+# Note: script fails when workspace is empty due to Yabai not reporting the workspace (bug?)
+#       best to use the create + move window command instead of creating a blank window
+lhyper - a : $HOME/.config/skhd/switch_workspace.sh 1
+lhyper - r : $HOME/.config/skhd/switch_workspace.sh 2
+lhyper - s : $HOME/.config/skhd/switch_workspace.sh 3
+lhyper - t : $HOME/.config/skhd/switch_workspace.sh 4
+lhyper - g : $HOME/.config/skhd/switch_workspace.sh 5
+lhyper - 1 : $HOME/.config/skhd/switch_workspace.sh 6
+lhyper - 2 : $HOME/.config/skhd/switch_workspace.sh 7
+lhyper - 3 : $HOME/.config/skhd/switch_workspace.sh 8
+lhyper - 4 : $HOME/.config/skhd/switch_workspace.sh 9
+lhyper - 5 : $HOME/.config/skhd/switch_workspace.sh 10
+
+# Move focused window to specific workspace (with back and forth support)
+lhyper + rctrl - a : $HOME/.config/skhd/move_to_workspace.sh 1
+lhyper + rctrl - r : $HOME/.config/skhd/move_to_workspace.sh 2
+lhyper + rctrl - s : $HOME/.config/skhd/move_to_workspace.sh 3
+lhyper + rctrl - t : $HOME/.config/skhd/move_to_workspace.sh 4
+lhyper + rctrl - g : $HOME/.config/skhd/move_to_workspace.sh 5
+lhyper + rctrl - 1 : $HOME/.config/skhd/move_to_workspace.sh 6
+lhyper + rctrl - 2 : $HOME/.config/skhd/move_to_workspace.sh 7
+lhyper + rctrl - 3 : $HOME/.config/skhd/move_to_workspace.sh 8
+lhyper + rctrl - 4 : $HOME/.config/skhd/move_to_workspace.sh 9
+lhyper + rctrl - 5 : $HOME/.config/skhd/move_to_workspace.sh 10
+
+# resize windows
+lhyper + rctrl - n : yabai -m window --resize right:-100:0 || yabai -m window --resize left:-100:0
+lhyper + rctrl - e : yabai -m window --resize bottom:0:100 || yabai -m window --resize top:0:100
+lhyper + rctrl - u : yabai -m window --resize bottom:0:-100 || yabai -m window --resize top:0:-100
+lhyper + rctrl - i : yabai -m window --resize right:100:0 || yabai -m window --resize left:100:0
+
+# balance size of windows
+lhyper + rshift - v : yabai -m space --balance
+
+# shift window in current workspace
+lhyper + rshift - n : yabai -m window --warp west
+lhyper + rshift - e : yabai -m window --warp south
+lhyper + rshift - u : yabai -m window --warp north
+lhyper + rshift - i: yabai -m window --warp east
+
+# rotate tree
+lhyper + rshift - r : yabai -m space --rotate 90
+
+# mirror tree y-axis
+lhyper - w : yabai -m space --mirror y-axis
+
+# toggle split direction
+lhyper - p : yabai -m window --toggle split
+
+# make floating window fill screen
+rctrl + lhyper - up     : yabai -m window --grid 1:1:0:0:1:1
+
+# make floating window fill left-half of screen
+rctrl + lhyper - left   : yabai -m window --grid 1:2:0:0:1:1
+
+# make floating window fill right-half of screen
+rctrl + lhyper - right  : yabai -m window --grid 1:2:1:0:1:1
+
+# toggle sticky
+lhyper + ralt - s : yabai -m window --toggle sticky
+
+# float / unfloat window and center on screen
+#alt - t : yabai -m window --toggle float;\
+#          yabai -m window --grid 4:4:1:1:2:2
+lhyper - c : yabai -m window --grid 4:4:1:1:2:2
+
+# float / unfloat window and leave in its current location
+lhyper - space : yabai -m window --toggle float
+
+# toggle window native fullscreen
+lhyper - f : yabai -m window --toggle native-fullscreen
+
+# focus monitor
+lhyper - c  : yabai -m display --focus recent
+lhyper - x  : yabai -m display --focus prev
+lhyper - d  : yabai -m display --focus next
+

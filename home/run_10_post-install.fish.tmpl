@@ -1,0 +1,10 @@
+#!/usr/bin/env fish
+
+# Use chezmoi to get the source root, since it runs things from tmp
+set HOME_ROOT "{{ .chezmoi.sourceDir }}"
+set SRC_ROOT $(cd $HOME_ROOT/.. && pwd -P)
+source $SRC_ROOT/scripts/common.fish
+
+log::status "Running post install..."
+
+cd $SRC_ROOT && bash -c "make post-chezmoi"

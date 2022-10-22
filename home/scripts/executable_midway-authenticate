@@ -1,0 +1,28 @@
+#!/usr/bin/env expect -f
+
+# InfoSec consultation: https://t.corp.amazon.com/P33840651
+# Description: This script provides midway authenticate for your terminal
+# Pre-reqs: 
+# 0. Have expect installed 'brew install expect'
+# 1. Have your amazon midway PIN stored as a password on mac-keychain under the name "midway_pin"
+# 2. Grant execute permissions to this file (chmod +x midway-authenticate)
+# Usage: midway-authenticate YOUR_UBIKEY_TOKEN
+
+
+set my_user "$env(USER)"
+set my_pin [exec security find-generic-password -a $my_user -s midway_pin -w]
+set yk_token  [lindex $argv 0]
+set timeout -1
+
+spawn mwinit --aea -s
+
+expect -exact "PIN for $my_user:"
+
+send -- "$my_pin\r"
+
+expect -exact "Press the button on your U2F token...\r"
+
+send -- "$yk_token\r"
+
+expect eof
+

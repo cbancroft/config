@@ -1,0 +1,10 @@
+# Install Amazon Tap
+tap "amazon/amazon", "ssh://git.amazon.com/pkg/HomebrewAmazon"
+
+# Install Brazil specific tools
+brew "amazon/amazon/brazil-git-scripts"
+brew "amazon/amazon/brazil-recursive-cmd-parallel"
+
+# Install dev helper utils
+brew "amazon/amazon/env-improvement"
+brew "amazon/amazon/livejq"

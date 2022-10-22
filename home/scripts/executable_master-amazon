@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# InfoSec consultation: https://t.corp.amazon.com/P33840651
+# Description: This file connects your mac to VPN, authenticates the terminal with midway and authenticates kerberos and midway on
+#              your devdesktop
+# Pre-reqs: 
+# 0. Have expect installed 'brew install expect'
+# 1. Have your amazon password stored in keychain under the name "amazon_ldap"
+# 2. Have your amazon midway PIN stored in keychain under the name "midway_pin"
+# 3. Grant execute permissions to this file (chmod +x master-amazon)
+# Usage: 
+# * WITH PARAMS --> master-amazon YOUR_UBIKEY_TOKEN ANOTHER_YUBIKEY_TOKEN AND_ANOTHER_YUBIKEY_TOKEN 
+# OR
+# * WITH PROMPT --> master-amazon
+
+_token1=""
+_token2=""
+_token3=""
+
+if [ -z "$1" ] || [[ ${#1} -ne 44 && "$1" != "go" ]]; then
+    echo -n "TOKEN1 (press your yubikey): "
+    read _token1
+else
+    _token1=$1
+fi
+if [ -z "$2" ] || [ ${#2} -ne 44 ]; then
+    echo -n "TOKEN2 (press your yubikey): "
+    read _token2
+else
+    _token2=$2
+fi
+if [ -z "$3" ] || [ ${#3} -ne 44 ]; then
+    echo -n "TOKEN3 (press your yubikey): "
+    read _token3
+else
+    _token3=$3
+fi
+if [[ ${#_token1} -eq 44 || "$_token1" == "go" ]] && [ ${#_token2} -eq 44 ] && [ ${#_token3} -eq 44 ] && \
+   [ "$_token1" != "$_token2" ] && [ "$_token1" != "$_token3" ] && [ "$_token2" != "$_token3" ]; then
+    if [ "$_token1" != "go" ]; then
+        expect -f ~/scripts/vpn-onetouch $_token1
+        sleep 1
+    fi
+    expect -f ~/scripts/midway-authenticate $_token2
+    sleep 1
+    expect -f ~/scripts/devdesk-authenticate $_token3
+else
+    echo " "
+    echo "-------------  Invalid Yubikey tokens (all yubikey tokens must be different), please try again...    -------------"
+    echo " "
+fi
+

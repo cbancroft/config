@@ -1,0 +1,6 @@
+if [ -d $HOME/.config/zshrc.d ]; then
+	for file in $HOME/.config/zshrc.d/*.zsh(N); do
+		. $file
+	done
+fi
+
