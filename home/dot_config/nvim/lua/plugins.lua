@@ -1,5 +1,5 @@
 local M = {}
-
+print(config)
 function M.setup()
 	-- First time installation
 	local packer_bootstrap = false
@@ -82,7 +82,7 @@ function M.setup()
 						lsp_saga = true,
 					}
 				}
-				vim.api.nvim_command 'colorscheme catppuccin'
+				-- vim.api.nvim_command 'colorscheme catppuccin'
 			end,
 		}
 
@@ -91,6 +91,8 @@ function M.setup()
 		use 'EdenEast/nightfox.nvim'
 		use 'shaunsingh/nord.nvim'
 		use 'rebelot/kanagawa.nvim'
+		use "lunarvim/Onedarker.nvim"
+
 		-- Startup screen
 		use {
 			'goolord/alpha-nvim',
@@ -363,7 +365,7 @@ function M.setup()
 		-- LSP
 		use {
 			'neovim/nvim-lspconfig',
-			opt = true,
+			opt = false,
 			event = 'BufReadPre',
 			wants = {
 				'cmp-nvim-lsp',
