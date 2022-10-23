@@ -44,10 +44,10 @@ local function on_attach(client, bufnr)
 	vim.api.nvim_buf_set_option(0, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
 
 	-- Configure key mappings
-	require('config.lsp.keymaps').setup(client, bufnr)
+	require('cb.lsp.keymaps').setup(client, bufnr)
 	
 	-- Configure highlighting
-	require('config.lsp.highlighting').setup(client)
+	require('cb.lsp.highlighting').setup(client)
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -62,17 +62,17 @@ local opts = {
 }
 
 -- Setup LSP Handlers
-require('config.lsp.handlers').setup()
+require('cb.lsp.handlers').setup()
 
 function M.setup()
 	-- null-ls
-	local status, nullls = pcall(require, 'config.lsp.null-ls')
+	local status, nullls = pcall(require, 'cb.lsp.null-ls')
 	if status then
 		nullls.setup(opts)
 	else
 		print('Error loading null-ls ' .. nullls)
 	end
-	require('config.lsp.installer').setup(servers, opts)
+	require('cb.lsp.installer').setup(servers, opts)
 end
 
 return M

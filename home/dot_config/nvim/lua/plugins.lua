@@ -97,7 +97,7 @@ function M.setup()
 		use {
 			'goolord/alpha-nvim',
 			config = function()
-				require('config.alpha').setup()
+				require('cb.alpha').setup()
 			end,
 		}
 
@@ -106,7 +106,7 @@ function M.setup()
 			'TimUntersberger/neogit',
 			cmd = 'Neogit',
 			config = function()
-				require('config.neogit').setup()
+				require('cb.neogit').setup()
 			end,
 		}
 
@@ -116,7 +116,7 @@ function M.setup()
 			wants = 'plenary.nvim',
 			requires = { 'nvim-lua/plenary.nvim' },
 			config = function()
-				require('config.gitsigns').setup()
+				require('cb.gitsigns').setup()
 			end,
 		}
 
@@ -125,7 +125,7 @@ function M.setup()
 			'folke/which-key.nvim',
 			event = 'VimEnter',
 			config = function()
-				require('config.whichkey').setup()
+				require('cb.whichkey').setup()
 			end,
 		}
 
@@ -134,7 +134,7 @@ function M.setup()
 			'lukas-reineke/indent-blankline.nvim',
 			event = 'BufReadPre',
 			config = function()
-				require('config.indentblankline').setup()
+				require('cb.indentblankline').setup()
 			end,
 		}
 
@@ -190,7 +190,7 @@ function M.setup()
 			'nvim-lualine/lualine.nvim',
 			after = 'nvim-treesitter',
 			config = function()
-				require('config.lualine').setup()
+				require('cb.lualine').setup()
 			end,
 			requires = { 'nvim-web-devicons' },
 		}
@@ -211,7 +211,7 @@ function M.setup()
 			run = ':TSUpdate',
 			config = function()
 				print 'Loading treesitter'
-				require('config.treesitter').setup()
+				require('cb.treesitter').setup()
 			end,
 			requires = {
 				{ 'nvim-treesitter/nvim-treesitter-textobjects' },
@@ -237,7 +237,7 @@ function M.setup()
 			},
 			cmd = { 'NvimTreeToggle', 'NvimTreeClose' },
 			config = function()
-				require('config.nvimtree').setup()
+				require('cb.nvimtree').setup()
 			end,
 		}
 
@@ -258,7 +258,7 @@ function M.setup()
 			'nvim-telescope/telescope.nvim',
 			opt = true,
 			config = function()
-				require('config.telescope').setup()
+				require('cb.telescope').setup()
 			end,
 			cmd = { 'Telescope' },
 			module = 'telescope',
@@ -294,7 +294,7 @@ function M.setup()
 			event = 'BufReadPre',
 			wants = 'nvim-web-devicons',
 			config = function()
-				require('config.bufferline').setup()
+				require('cb.bufferline').setup()
 			end,
 		}
 
@@ -309,7 +309,7 @@ function M.setup()
 			event = 'InsertEnter',
 			opt = true,
 			config = function()
-				require('config.cmp').setup()
+				require('cb.cmp').setup()
 			end,
 			wants = { 'LuaSnip' },
 			requires = {
@@ -328,7 +328,7 @@ function M.setup()
 					'L3MON4D3/LuaSnip',
 					wants = 'friendly-snippets',
 					config = function()
-						require('config.luasnip').setup()
+						require('cb.luasnip').setup()
 					end,
 				},
 				'rafamadriz/friendly-snippets',
@@ -341,7 +341,7 @@ function M.setup()
 			wants = 'nvim-treesitter',
 			module = { 'nvim-autopairs.completion.cmp', 'nvim-autopairs' },
 			config = function()
-				require('config.autopairs').setup()
+				require('cb.autopairs').setup()
 			end,
 		}
 
@@ -377,7 +377,7 @@ function M.setup()
 			},
 			config = function()
 				require('neodev').setup()
-				require('config.lsp').setup()
+				require('cb.lsp').setup()
 			end,
 			requires = {
 				'williamboman/nvim-lsp-installer',
