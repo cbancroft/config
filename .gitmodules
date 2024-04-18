@@ -1,3 +1,6 @@
 [submodule "tmux/tpm"]
 	path = tmux/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "themes"]
+	path = themes
+	url = git@github.com:cbancroft/themes.git
