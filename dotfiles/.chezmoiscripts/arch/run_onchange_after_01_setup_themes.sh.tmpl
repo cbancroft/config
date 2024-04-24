@@ -19,9 +19,9 @@ print_prompt() {
     echo ""
 }
 
-scrDir=$(builtin cd $(chezmoi source-path)/../scripts; pwd)
+scrDir=$(builtin cd {{ .chezmoi.sourceDir }}/../scripts; pwd)
 echo "Scriptdir: $scrDir. PWD: `pwd`.  Zero: $0. src-path: $(chezmoi source-path)"
-themesDir=$(builtin cd $(chezmoi source-path)/../themes/wm; pwd)
+themesDir=$(builtin cd {{ .chezmoi.sourceDir }}/../themes/wm; pwd)
 confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
 
 verbose="${4}"
