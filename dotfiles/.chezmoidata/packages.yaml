@@ -54,8 +54,6 @@ packages:
       - "swww-git"
       - "swaylock-effects-git"
       - "grimblast-git"
-      - "oh-my-zsh-git"
-      - "zsh-theme-powerlevel10k"
       - "hyde-cli-git"
       - "pokemon-colorscripts-git"
       - "wlogout"

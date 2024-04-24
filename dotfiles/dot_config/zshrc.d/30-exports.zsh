@@ -9,11 +9,7 @@ fi
 export EDITOR=nvim
 export PAGER=bat
 
-{{- if eq .chezmoi.os "darwin" }}
-export XDG_CONFIG_DIR=$HOME/.config
-export XDG_CACHE_HOME=$HOME/.cache
-{{- end }}
-
 export PYENV_ROOT=$HOME/.pyenv
 export PATH="$PYENV_ROOT/bin:$PATH"
 ## eval "$(pyenv init --path)"
+eval "$(fzf --zsh)"
