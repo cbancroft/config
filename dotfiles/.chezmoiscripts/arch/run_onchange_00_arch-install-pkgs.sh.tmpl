@@ -1,0 +1,20 @@
+{{- if eq .osid "linux-arch" -}}
+#!/bin/bash
+
+# package.yaml hash: {{ include ".chezmoidata/packages.yaml" | sha256sum }}
+
+sudo pacman -S --needed - <<EOF
+{{- range (index .packages "linux-arch").pacman }}
+{{ . -}}
+{{- end }}
+EOF
+
+( which yay &> /dev/null && [ $? -eq 0 ] ) || (git clone https://aur.archlinux.org/yay.git /tmp/yay && cd /tmp/yay && makepkg -si --noconfirm && cd .. && rm -rf /tmp/yay )
+
+yay -S --needed - <<EOF
+{{- range (index .packages "linux-arch").aur }}
+{{ . -}}
+{{- end }}
+EOF
+
+{{ end -}}

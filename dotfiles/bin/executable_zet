@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Borrowed from @mischavandenburg
+# A bash script to create notes in my second brain
+
+get_filename() {
+  read -p "Enter a filename: " filename
+  echo $filename
+}
+
+# Create and open a file in the specified directory
+open_file() {
+
+  cd "$1" || exit
+  touch "$1/$filename.md"
+
+  # Create unique id for links section
+  timestamp=$(date +"%Y%m%d%H%M")
+
+  # format the file
+  {
+    echo "# "
+    echo -en "\n"
+    echo -en "\n"
+    echo -en "\n"
+    echo "Links:"
+    echo -en "\n"
+    echo "$timestamp"
+  } >> "$1/$filename.md"
+
+  # Open in neovim
+  nvim '+ normal ggzzi' "$1/$filename.md" -c :NoNeckPain
+}
+
+# Prompt user if no filename is given
+if [[ $# -eq 0 ]]; then
+  filename=$(get_filename)
+fi
+
+# if more than one argument given, error out
+if [[ $# -gt 1 ]]; then
+  echo "Provide only one filename, without .md extension."
+  echo "Example: zet my-new-note"
+  exit 1
+fi
+
+if [[ $# -eq 1 ]]; then
+  filename=$1
+fi
+
+open_file "$SECOND_BRAIN/0-inbox"

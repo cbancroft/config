@@ -1,0 +1,39 @@
+#!/bin/bash
+
+today=$(date +"%Y-%m-%d")
+tomorrow=$(date -d "tomorrow" '+%Y-%m-%d')
+yesterday=$(date -d "yesterday" '+%Y-%m-%d')
+file="$SECOND_BRAIN"'/periodic-notes/daily-notes/'$(date +"%Y-%m-%d").md
+
+cd "$SECOND_BRAIN" || exit
+
+new_note() {
+  touch $file
+
+  # Format the file with the daily template
+  cat <<EOF >"$file"
+  # $today
+
+  [[$yesterday]] - [[$tomorrow]]
+
+  ## Habits
+
+  - [ ] Ate breakfast
+  - [ ] Fill in daily tasks
+  - [ ] Workout 
+  - [ ] Spend 15 minutes cleaning
+
+  - [ ] Logged my calories
+  - [ ] Physical Therapy/Mobility
+
+  ## Log
+EOF
+}
+
+# If the daily note doesn't exist, create a new one
+if [ ! -f "$file" ]; then
+  echo "Creating new daily note."
+  new_note
+fi
+
+nvim '+ normal Gzzo' "$file" -c ":NoNeckPain"
