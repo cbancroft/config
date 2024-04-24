@@ -1,6 +1,0 @@
-export PATH=$HOME/bin:$HOME/.local/bin:$HOME/scripts:/opt/homebrew/bin:$PATH
-
-fpath=(
-	~/.config/zsh/completion
-	$fpath
-)
