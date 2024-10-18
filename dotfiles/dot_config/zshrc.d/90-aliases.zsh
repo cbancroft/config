@@ -22,3 +22,5 @@ alias bat="bat"
 alias cat="bat --paging=never"
 
 alias cm="chezmoi -S ~/git/config"
+
+alias svdev="docker run -v /home/bancroftc/work/sv/svms-ui/:/svms -it svms_dev"

@@ -58,4 +58,6 @@ packages:
       - "pokemon-colorscripts-git"
       - "wlogout"
       - "hyprpicker"
+    cargo:
+      - "tmux-sessionizer"
 

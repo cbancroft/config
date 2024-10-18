@@ -17,4 +17,7 @@ yay -S --needed - <<EOF
 {{- end }}
 EOF
 
+{{- range (index .packages "linux-arch").cargo }}
+cargo install {{ . -}}
+{{- end }}
 {{ end -}}

@@ -29,8 +29,8 @@ return {
     vim.g.loaded_netrwPlugin = 1
     require('nvim-tree').setup(opts)
 
-    require('which-key').register {
-      ['<leader>e'] = { name = '[E]xplorer', _ = 'which_key_ignore' },
+    require('which-key').add {
+      { '<leader>e', group = '[E]xplorer', hidden = true },
     }
     vim.keymap.set('n', '<leader>ee', ':NvimTreeToggle<CR>', { desc = '[E]xplorer Toggl[E]' })
     vim.keymap.set('n', '<leader>es', ':NvimTreeFocus<CR>', { desc = '[E]xplorer Focu[S]' })

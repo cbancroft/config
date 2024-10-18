@@ -12,21 +12,26 @@ new_note() {
 
   # Format the file with the daily template
   cat <<EOF >"$file"
-  # $today
+# $today
 
-  [[$yesterday]] - [[$tomorrow]]
+[[$yesterday]] - [[$tomorrow]]
 
-  ## Habits
+## Habits
 
-  - [ ] Ate breakfast
-  - [ ] Fill in daily tasks
-  - [ ] Workout 
-  - [ ] Spend 15 minutes cleaning
+- [ ] Ate breakfast
+- [ ] Fill in daily tasks
+- [ ] Workout 
+- [ ] Spend 15 minutes cleaning
 
-  - [ ] Logged my calories
-  - [ ] Physical Therapy/Mobility
+- [ ] Logged my calories
+- [ ] Physical Therapy/Mobility
 
-  ## Log
+## Log
+
+
+## Journal
+
+
 EOF
 }
 
@@ -36,4 +41,4 @@ if [ ! -f "$file" ]; then
   new_note
 fi
 
-nvim '+ normal Gzzo' "$file" -c ":NoNeckPain"
+nvim '+ normal Gzzo' "$file"

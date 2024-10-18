@@ -18,8 +18,8 @@ return {
   config = function(_, opts)
     local harpoon = require 'harpoon'
     harpoon:setup(opts)
-    require('which-key').register {
-      ['<leader>h'] = { name = '[H]arpoon', _ = 'which_key_ignore' },
+    require('which-key').add {
+      { '<leader>h', group = '[H]arpoon', hidden = true },
     }
     key('a', function()
       harpoon:list():append()

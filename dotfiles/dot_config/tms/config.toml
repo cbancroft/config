@@ -1,0 +1,7 @@
+[[search_dirs]]
+path = "/home/bancroftc/work"
+depth = 10
+
+[[search_dirs]]
+path = "/home/bancroftc/git"
+depth = 10

@@ -96,6 +96,8 @@ fi
 rm -rf "${confDir}/gtk-4.0"
 ln -s "${themeDir}/${gtkTheme}/gtk-4.0" "${confDir}/gtk-4.0"
 
+echo before flatpak
+sleep 90
 
 #// flatpak GTK
 
@@ -106,6 +108,7 @@ fi
 
 
 #// wallpaper
-
+echo setting wpp
+sleep 30
 "${scrDir}/swwwallpaper.sh" -s "$(readlink "${hydeThemeDir}/wall.set")"
 

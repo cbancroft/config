@@ -5,6 +5,7 @@ killall xdg-desktop-portal-gnome
 killall xdg-desktop-portal-kde
 killall xdg-desktop-portal-lxqt
 killall xdg-desktop-portal-wlr
+killall xdg-desktop-portal-gtk
 killall xdg-desktop-portal
 sleep 1
 
@@ -15,6 +16,8 @@ else
     libDir=/usr/lib
 fi
 
+echo "Launching hyprland desktop portal"
 $libDir/xdg-desktop-portal-hyprland &
 sleep 2
+echo "Launching general desktop portal"
 $libDir/xdg-desktop-portal &

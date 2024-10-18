@@ -1,89 +1,3 @@
---[[
-
-=====================================================================
-==================== READ THIS BEFORE CONTINUING ====================
-=====================================================================
-========                                    .-----.          ========
-========         .----------------------.   | === |          ========
-========         |.-""""""""""""""""""-.|   |-----|          ========
-========         ||                    ||   | === |          ========
-========         ||   KICKSTART.NVIM   ||   |-----|          ========
-========         ||                    ||   | === |          ========
-========         ||                    ||   |-----|          ========
-========         ||:Tutor              ||   |:::::|          ========
-========         |'-..................-'|   |____o|          ========
-========         `"")----------------(""`   ___________      ========
-========        /::::::::::|  |::::::::::\  \ no mouse \     ========
-========       /:::========|  |==hjkl==:::\  \ required \    ========
-========      '""""""""""""'  '""""""""""""'  '""""""""""'   ========
-========                                                     ========
-=====================================================================
-=====================================================================
-
-What is Kickstart?
-
-  Kickstart.nvim is *not* a distribution.
-
-  Kickstart.nvim is a starting point for your own configuration.
-    The goal is that you can read every line of code, top-to-bottom, understand
-    what your configuration is doing, and modify it to suit your needs.
-
-    Once you've done that, you can start exploring, configuring and tinkering to
-    make Neovim your own! That might mean leaving kickstart just the way it is for a while
-    or immediately breaking it into modular pieces. It's up to you!
-
-    If you don't know anything about Lua, I recommend taking some time to read through
-    a guide. One possible example which will only take 10-15 minutes:
-      - https://learnxinyminutes.com/docs/lua/
-
-    After understanding a bit more about Lua, you can use `:help lua-guide` as a
-    reference for how Neovim integrates Lua.
-    - :help lua-guide
-    - (or HTML version): https://neovim.io/doc/user/lua-guide.html
-
-Kickstart Guide:
-
-  TODO: The very first thing you should do is to run the command `:Tutor` in Neovim.
-
-    If you don't know what this means, type the following:
-      - <escape key>
-      - :
-      - Tutor
-      - <enter key>
-
-    (If you already know how the Neovim basics, you can skip this step)
-
-  Once you've completed that, you can continue working through **AND READING** the rest
-  of the kickstart init.lua
-
-  Next, run AND READ `:help`.
-    This will open up a help window with some basic information
-    about reading, navigating and searching the builtin help documentation.
-
-    This should be the first place you go to look when you're stuck or confused
-    with something. It's one of my favorite neovim features.
-
-    MOST IMPORTANTLY, we provide a keymap "<space>sh" to [s]earch the [h]elp documentation,
-    which is very useful when you're not sure exactly what you're looking for.
-
-  I have left several `:help X` comments throughout the init.lua
-    These are hints about where to find more information about the relevant settings,
-    plugins or neovim features used in kickstart.
-
-   NOTE: Look for lines like this
-
-    Throughout the file. These are for you, the reader, to help understand what is happening.
-    Feel free to delete them once you know what you're doing, but they should serve as a guide
-    for when you are first encountering a few different constructs in your nvim config.
-
-If you experience any errors while trying to install kickstart, run `:checkhealth` for more info
-
-I hope you enjoy your Neovim journey,
-- TJ
-
-P.S. You can delete this when you're done too. It's your config now! :)
---]]
-
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
@@ -212,8 +126,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('n', '<leader>w', ':update<cr>', { desc = '[W]rites changes' })
 vim.keymap.set('n', '<leader>x', ':quit<cr>', { desc = 'E[X]it buffer' })
 vim.keymap.set('n', '<leader>X', ':qa<cr>', { desc = 'E[X]it all' })
+
 -- Don't capture single character deletes to the clipboard
 vim.keymap.set('n', 'x', '"_x')
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -327,13 +243,13 @@ require('lazy').setup({
       require('which-key').setup()
 
       -- Document existing key chains
-      require('which-key').register {
-        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>W'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+      require('which-key').add {
+        { '<leader>c', group = '[C]ode', hidden = true },
+        { '<leader>g', group = '[G]it', hidden = true },
+        { '<leader>d', group = '[D]ocument', hidden = true },
+        { '<leader>r', group = '[R]ename', hidden = true },
+        { '<leader>s', group = '[S]earch', hidden = true },
+        { '<leader>W', group = '[W]orkspace', hidden = true },
       }
     end,
   },
@@ -467,6 +383,11 @@ require('lazy').setup({
           layout_config = { height = 40 },
         }
       end, { desc = '[S]earch using File [B]rowser' })
+      --
+      -- Notes finder
+      vim.keymap.set('n', '<leader>sj', function()
+        builtin.find_files { cwd = vim.fn.expand '$SECOND_BRAIN' }
+      end, { desc = '[S]earch [J]ournal files' })
     end,
   },
 
@@ -481,6 +402,9 @@ require('lazy').setup({
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
+    },
+    opts = {
+      inlay_hints = { enabled = true },
     },
     config = function()
       -- Brief Aside: **What is LSP?**
@@ -515,7 +439,6 @@ require('lazy').setup({
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
-          vim.print(event)
           -- NOTE: Remember that lua is a real programming language, and as such it is possible
           -- to define small helper and utility functions so you don't have to repeat yourself
           -- many times.
@@ -549,7 +472,7 @@ require('lazy').setup({
 
           -- Fuzzy find all the symbols in your current workspace
           --  Similar to document symbols, except searches over your whole project.
-          map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+          map('<leader>Ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
           -- Rename the variable under your cursor
           --  Most Language Servers support renaming across files, etc.
@@ -591,6 +514,10 @@ require('lazy').setup({
             map('<leader>bM', function() require('dap-python').test_method() end, 'De[B]ug Method')
             map('<leader>bR', function() require('dap-python').test_selection() end, 'De[B]ug Selection')
           end
+
+          if client.name == 'rust-analyzer' then
+            vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+          end
         end,
       })
 
@@ -611,6 +538,7 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
+        -- bashls = {},
         -- clangd = {},
         -- gopls = {},
         pyright = {},
@@ -625,6 +553,36 @@ require('lazy').setup({
         --
 
         cssls = {},
+        rust_analyzer = {
+          settings = {
+            ['rust-analyzer'] = {
+              imports = {
+                granularity = {
+                  group = 'module',
+                },
+                prefix = 'self',
+              },
+              cargo = {
+                buildScripts = {
+                  enable = true,
+                },
+                features = 'all',
+              },
+              procMacro = {
+                enable = true,
+              },
+            },
+          },
+        },
+        markdown_oxide = {
+          capabilities = {
+            workspace = {
+              didChangeWatchedFiles = {
+                dynamicRegistration = true,
+              },
+            },
+          },
+        },
         tailwindcss = {
           root_dir = function(...)
             return require('lspconfig.util').root_pattern '.git'(...)
@@ -641,12 +599,12 @@ require('lazy').setup({
                 checkThirdParty = false,
                 -- Tells lua_ls where to find all the Lua files that you have loaded
                 -- for your neovim configuration.
-                -- library = {
-                --   '${3rd}/luv/library',
-                --   unpack(vim.api.nvim_get_runtime_file('', true)),
-                -- },
+                library = {
+                  '${3rd}/luv/library',
+                  unpack(vim.api.nvim_get_runtime_file('', true)),
+                },
                 -- If lua_ls is really slow on your computer, you can try this instead:
-                library = { vim.env.VIMRUNTIME },
+                -- library = { vim.env.VIMRUNTIME },
               },
               completion = {
                 callSnippet = 'Replace',
@@ -671,7 +629,8 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format lua code
-        'debugpy',
+        'debugpy', -- For debugging python
+        'markdownlint', -- For markdown files
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -745,7 +704,10 @@ require('lazy').setup({
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
+
       luasnip.config.setup {}
+
+      require('luasnip.loaders.from_vscode').lazy_load()
 
       cmp.setup {
         snippet = {
@@ -754,14 +716,15 @@ require('lazy').setup({
           end,
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
-
         -- For an understanding of why these mappings were
         -- chosen, you will need to read `:help ins-completion`
         --
         -- No, but seriously. Please read `:help ins-completion`, it is really good!
         mapping = cmp.mapping.preset.insert {
+
           -- Select the [n]ext item
           ['<C-n>'] = cmp.mapping.select_next_item(),
+
           -- Select the [p]revious item
           ['<C-p>'] = cmp.mapping.select_prev_item(),
 
@@ -788,6 +751,7 @@ require('lazy').setup({
               luasnip.expand_or_jump()
             end
           end, { 'i', 's' }),
+
           ['<C-h>'] = cmp.mapping(function()
             if luasnip.locally_jumpable(-1) then
               luasnip.jump(-1)
@@ -800,6 +764,26 @@ require('lazy').setup({
           { name = 'path' },
         },
       }
+      cmp.setup.filetype('markdown', {
+        sources = {
+          {
+            name = 'latex_symbols',
+            option = {
+              strategy = 2, -- mixed
+            },
+          },
+          {
+            name = 'nvim_lsp',
+            option = {
+              markdown_oxide = {
+                keyword_pattern = [[\(/k\| \|\/\|#\|#\|\^\)\+]],
+              },
+            },
+          },
+          { name = 'luasnip' },
+          { name = 'path' },
+        },
+      })
     end,
   },
 
@@ -881,7 +865,6 @@ require('lazy').setup({
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup {
         ensure_installed = {
-          'bash',
           'c',
           'html',
           'lua',
@@ -954,6 +937,13 @@ require('lazy').setup({
     end,
   },
 
+  {
+    'renerocksai/telekasten.nvim',
+    dependencies = { 'nvim-telescope/telescope.nvim' },
+    opts = {
+      home = vim.fn.expand '~/brain', -- Put the name of your notes directory here
+    },
+  },
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- put them in the right spots if you want.

@@ -29,7 +29,7 @@ open_file() {
   } >> "$1/$filename.md"
 
   # Open in neovim
-  nvim '+ normal ggzzi' "$1/$filename.md" -c :NoNeckPain
+  nvim '+ normal ggzzi' "$1/$filename.md"
 }
 
 # Prompt user if no filename is given
