@@ -30,7 +30,7 @@ return {
     require('nvim-tree').setup(opts)
 
     require('which-key').add {
-      { '<leader>e', group = '[E]xplorer', hidden = true },
+      { '<leader>e', group = '[E]xplorer' },
     }
     vim.keymap.set('n', '<leader>ee', ':NvimTreeToggle<CR>', { desc = '[E]xplorer Toggl[E]' })
     vim.keymap.set('n', '<leader>es', ':NvimTreeFocus<CR>', { desc = '[E]xplorer Focu[S]' })

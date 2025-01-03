@@ -1,167 +1,399 @@
+/* Variables */
+@define-color mantle #1e2030;
+@define-color base rgb(36, 39, 58);
+@define-color text #cad3f5;
+@define-color surface0 #363a4f;
+@define-color surface2 #5b6078;
+@define-color blue #8aadf4;
+@define-color green #a6da95;
+@define-color peach #f5a97f;
+@define-color rosewater #f4dbd6;
+@define-color lavender #b7bdf8;
+@define-color yellow #eed49f;
+@define-color red #ed8796;
+@define-color maroon #ee99a0;
+@define-color teal #8bd5ca;
+@define-color sky #91d7e3;
+@define-color sapphire #7dc4e4;
+@define-color mauve #c6a0f6;
+@define-color pink #f5bde6;
+@define-color border rgba(183, 189, 248, 0.4);
+@define-color shadow rgb(30, 32, 48);
+
 * {
-    border: none;
-    border-radius: 0px;
-    font-family: "JetBrainsMono Nerd Font";
-    font-weight: bold;
-    font-size: 10px;
-    min-height: 10px;
+  font-family: JetBrainsMono Nerd Font;
+  font-size: 13px;
+  min-height: 0;
 }
 
-@import "theme.css";
+/* General Settings */
+#battery,
+#cava,
+#custom-cava,
+#custom-clipboard,
+#custom-notifications,
+#custom-arch,
+#custom-gpu-usage,
+#custom-updates,
+#mode,
+#cpu,
+#memory,
+#temperature,
+#custom-music,
+#custom-fans,
+#clock,
+#idle_inhibitor,
+#bluetooth,
+#custom-wf-recorder,
+#pulseaudio,
+#backlight,
+#network,
+#tray,
+#custom-power-menu,
+#language,
+#window,
+#custom-weather,
+#custom-weather.severe,
+#custom-weather.sunnyDay,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-weather.default {
+  background-color: alpha(@base, 0.9);
+  padding: 0 10px;
+  margin: 2px 4px 5px 4px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 1px 1px alpha(@shadow, 0.7);
+  border: 2px solid @border;
+  background-clip: padding-box;
+}
 
 window#waybar {
-    background: @bar-bg;
+  color: @text;
+  background: transparent;
 }
 
-tooltip {
-    background: @main-bg;
-    color: @main-fg;
-    border-radius: 8px;
-    border-width: 0px;
+window#waybar.hidden {
+  opacity: 0;
+}
+
+#workspaces * {
+  font-size: 14px;
+}
+#workspaces button label {
+  color: @lavender;
+  font-weight: bolder;
+  transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.68);
+}
+
+#workspaces button.active label {
+  color: @base;
+  font-weight: bolder;
+}
+
+#workspaces button.urgent {
+  background-color: @red;
+}
+
+#workspaces button.urgent label {
+  color: @base;
+  font-weight: bolder;
+}
+
+#workspaces {
+  background-color: alpha(@base, 0.9);
+  border: 2px solid @border;
+  padding: 0 10px;
+  margin: 2px 4px 5px 4px;
+  box-shadow: 3px 3px 1px 1px alpha(@shadow, 0.7);
+  border-radius: 10px;
+  background-clip: padding-box;
 }
 
 #workspaces button {
-    box-shadow: none;
-	text-shadow: none;
-    padding: 0px;
-    border-radius: 9px;
-    margin-top: 3px;
-    margin-bottom: 3px;
-    margin-left: 0px;
-    padding-left: 3px;
-    padding-right: 3px;
-    margin-right: 0px;
-    color: @main-fg;
-    animation: ws_normal 20s ease-in-out 1;
+  border-radius: 15px;
+  margin-right: 3px;
+  margin-left: 3px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding: 0 5px;
+  font-weight: bolder;
+  min-width: 20px;
+  color: @base;
+  transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
 }
 
 #workspaces button.active {
-    background: @wb-act-bg;
-    color: @wb-act-fg;
-    margin-left: 3px;
-    padding-left: 12px;
-    padding-right: 12px;
-    margin-right: 3px;
-    animation: ws_active 20s ease-in-out 1;
-    transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
+  padding-right: 6px;
+  padding-left: 6px;
+  box-shadow: 3px 3px 1px 1px alpha(@shadow, 0.7);
+  padding-bottom: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background: linear-gradient(
+    52deg,
+    rgba(139, 213, 202, 1) 0%,
+    rgba(138, 173, 244, 1) 30%,
+    rgba(183, 189, 248, 1) 48%,
+    rgba(198, 160, 246, 1) 77%,
+    rgba(238, 153, 160, 1) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+  color: @mauve;
+  border-radius: 12px;
 }
 
 #workspaces button:hover {
-    background: @wb-hvr-bg;
-    color: @wb-hvr-fg;
-    animation: ws_hover 20s ease-in-out 1;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+  background-color: @surface0;
 }
 
-#taskbar button {
-    box-shadow: none;
-	text-shadow: none;
-    padding: 0px;
-    border-radius: 9px;
-    margin-top: 3px;
-    margin-bottom: 3px;
-    margin-left: 0px;
-    padding-left: 3px;
-    padding-right: 3px;
-    margin-right: 0px;
-    color: @wb-color;
-    animation: tb_normal 20s ease-in-out 1;
+#workspaces button.focused:hover {
+  background-color: alpha(@base, 0.9);
 }
 
-#taskbar button.active {
-    background: @wb-act-bg;
-    color: @wb-act-color;
-    margin-left: 3px;
-    padding-left: 12px;
-    padding-right: 12px;
-    margin-right: 3px;
-    animation: tb_active 20s ease-in-out 1;
-    transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
+#workspaces button.focused:hover label {
+  color: @text;
 }
 
-#taskbar button:hover {
-    background: @wb-hvr-bg;
-    color: @wb-hvr-color;
-    animation: tb_hover 20s ease-in-out 1;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+/* Individual Modules */
+#battery {
+  color: @mauve;
 }
 
-#backlight,
-#battery,
-#bluetooth,
-#custom-cliphist,
-#clock,
-#custom-cpuinfo,
-#cpu,
-#custom-gpuinfo,
-#idle_inhibitor,
-#custom-keybindhint,
-#language,
-#memory,
-#mpris,
-#network,
-#custom-power,
-#pulseaudio,
-#custom-spotify,
-#taskbar,
-#custom-theme,
-#tray,
-#custom-updates,
-#custom-wallchange,
-#custom-wbar,
-#window,
-#workspaces,
-#custom-l_end,
-#custom-r_end,
-#custom-sl_end,
-#custom-sr_end,
-#custom-rl_end,
-#custom-rr_end {
-    color: @main-fg;
-    background: @main-bg;
-    opacity: 1;
-    margin: 4px 0px 4px 0px;
-    padding-left: 4px;
-    padding-right: 4px;
+#battery.warning {
+  color: @yellow;
 }
 
-#workspaces,
-#taskbar {
-    padding: 0px;
+#battery.critical {
+  color: @peach;
 }
 
-#custom-r_end {
-    border-radius: 0px 22px 22px 0px;
-    margin-right: 9px;
-    padding-right: 3px;
+#battery.urgent {
+  color: @red;
 }
 
-#custom-l_end {
-    border-radius: 22px 0px 0px 22px;
-    margin-left: 9px;
-    padding-left: 3px;
+#custom-cava {
+  color: @lavender;
+  border-radius: 12px;
 }
 
-#custom-sr_end {
-    border-radius: 0px;
-    margin-right: 9px;
-    padding-right: 3px;
+#cpu {
+  color: @blue;
+  transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.68);
 }
 
-#custom-sl_end {
-    border-radius: 0px;
-    margin-left: 9px;
-    padding-left: 3px;
+#memory {
+  color: @green;
+  transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.68);
 }
 
-#custom-rr_end {
-    border-radius: 0px 8px 8px 0px;
-    margin-right: 9px;
-    padding-right: 3px;
+#custom-notifications {
+  color: @yellow;
 }
 
-#custom-rl_end {
-    border-radius: 8px 0px 0px 8px;
-    margin-left: 9px;
-    padding-left: 3px;
+#custom-weather {
+  color: @red;
+}
+
+#custom-updates {
+  color: @teal;
+}
+
+#custom-wf-recorder {
+  color: @red;
+}
+
+#custom-gpu-temp {
+  color: @peach;
+}
+
+#custom-gpu-usage {
+  color: @teal;
+}
+
+#custom-power-menu {
+  color: @red;
+}
+
+#temperature {
+  color: @peach;
+}
+
+#bluetooth {
+  color: @blue;
+}
+
+#window {
+  background: linear-gradient(
+    52deg,
+    rgba(139, 213, 202, 1) 0%,
+    rgba(138, 173, 244, 1) 30%,
+    rgba(183, 189, 248, 1) 48%,
+    rgba(198, 160, 246, 1) 77%,
+    rgba(238, 153, 160, 1) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  text-shadow: 0px 0px 5px @lavender;
+  font-weight: bold;
+  color: @mantle;
+  transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+  border: none;
+}
+
+#temperature.critical {
+  background-color: @red;
+  color: @mantle;
+}
+
+#custom-music {
+  background: @lavender;
+  background: linear-gradient(
+    52deg,
+    rgba(139, 213, 202, 1) 0%,
+    rgba(138, 173, 244, 1) 30%,
+    rgba(183, 189, 248, 1) 48%,
+    rgba(198, 160, 246, 1) 77%,
+    rgba(238, 153, 160, 1) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  text-shadow: 0px 0px 5px @border;
+  font-weight: bold;
+  color: @mantle;
+  transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+  border: none;
+}
+
+#custom-fans {
+  color: @green;
+}
+
+#clock {
+  color: @lavender;
+}
+
+#language {
+  color: @blue;
+}
+
+#pulseaudio {
+  color: @pink;
+}
+
+#pulseaudio.muted {
+  background-color: @red;
+  color: @mantle;
+}
+
+#pulseaudio.source-muted {
+  background-color: @peach;
+  color: @mantle;
+}
+
+#backlight {
+  color: @blue;
+}
+
+#battery {
+  color: @green;
+}
+
+#battery.charging,
+#battery.plugged {
+  background-color: @green;
+  color: @mantle;
+}
+
+#battery.critical:not(.charging) {
+  background-color: @red;
+  color: @mantle;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#network {
+  color: @sky;
+}
+
+#network.disconnected {
+  background-color: @red;
+  color: @mantle;
+}
+
+#network.linked {
+  background-color: @peach;
+  color: @mantle;
+}
+
+#clock.cl2 {
+  background: @lavender;
+  background: linear-gradient(
+    52deg,
+    rgba(139, 213, 202, 1) 0%,
+    rgba(138, 173, 244, 1) 30%,
+    rgba(183, 189, 248, 1) 48%,
+    rgba(198, 160, 246, 1) 77%,
+    rgba(238, 153, 160, 1) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  text-shadow: 0px 0px 5px @border;
+  font-weight: bold;
+  color: @mantle;
+  transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+  border: none;
+}
+
+/* Animation Keyframes */
+@keyframes blink {
+  to {
+    background-color: alpha(@base, 0.9);
+    color: @red;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradient_f {
+  0% {
+    background-position: 0% 200%;
+  }
+
+  50% {
+    background-position: 200% 0%;
+  }
+
+  100% {
+    background-position: 400% 200%;
+  }
+}
+
+@keyframes gradient_f_nh {
+  0% {
+    background-position: 0% 200%;
+  }
+
+  100% {
+    background-position: 200% 200%;
+  }
 }

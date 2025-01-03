@@ -19,7 +19,7 @@ return {
     local harpoon = require 'harpoon'
     harpoon:setup(opts)
     require('which-key').add {
-      { '<leader>h', group = '[H]arpoon', hidden = true },
+      { '<leader>h', group = '[H]arpoon' },
     }
     key('a', function()
       harpoon:list():append()

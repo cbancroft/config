@@ -1,34 +1,25 @@
-    "pulseaudio": {
-        "format": "{icon} {volume}",
-        "rotate": ${r_deg},
-        "format-muted": "婢",
-        "on-click": "pavucontrol -t 3",
-        "on-click-middle": "volumecontrol.sh -o m",
-        "on-scroll-up": "volumecontrol.sh -o i",
-        "on-scroll-down": "volumecontrol.sh -o d",
-        "tooltip-format": "{icon} {desc} // {volume}%",
-        "scroll-step": 5,
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        }
+{
+  "pulseaudio": {
+    "format": "{icon} {volume}% {format_source}",
+    "format-bluetooth": "{icon} {volume}% {format_source}",
+    "format-bluetooth-muted": "   {volume}% {format_source}",
+    "format-muted": "  {format_source}",
+    "format-source": " ",
+    "format-source-muted": " ",
+    "format-icons": {
+      "headphone": " ",
+      "hands-free": " ",
+      "headset": " ",
+      "phone": " ",
+      "portable": " ",
+      "car": " ",
+      "default": [" ", " ", " "],
     },
-
-    "pulseaudio#microphone": {
-        "format": "{format_source}",
-        "rotate": ${r_deg},
-        "format-source": "",
-        "format-source-muted": "",
-        "on-click": "pavucontrol -t 4",
-        "on-click-middle": "volumecontrol.sh -i m",
-        "on-scroll-up": "volumecontrol.sh -i i",
-        "on-scroll-down": "volumecontrol.sh -i d",
-        "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
-        "scroll-step": 5
-    },
-
+    "tooltip-format": "{desc}, {volume}%",
+    "on-click": "swayosd-client --output-volume mute-toggle",
+    "on-click-right": "swayosd-client --input-volume mute-toggle",
+    "on-click-middle": "pypr toggle volume",
+    "on-scroll-up": "swayosd-client --output-volume +1",
+    "on-scroll-down": "swayosd-client --output-volume -1",
+  },
+}
